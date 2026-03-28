@@ -1,0 +1,1177 @@
+{
+  "name": "Workflow A：智能检测流",
+  "nodes": [
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{$json.tags.join(\",\")}}",
+                    "rightValue": "reentrancy",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    },
+                    "id": "7b471088-0c82-4d7a-9590-c0e23ab7724b"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "fed66686-670b-4ad9-beac-422cc223e520",
+                    "leftValue": "={{$json.tags.join(\",\")}}",
+                    "rightValue": "access control",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "90bcae4e-85b1-4275-8e80-495dffb16c28",
+                    "leftValue": "={{$json.tags.join(\",\")}}",
+                    "rightValue": "tx.origin",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "bf13d99d-c719-41d7-a481-2e9cc79e2bc3",
+                    "leftValue": "={{$json.tags.join(\",\")}}",
+                    "rightValue": "approval_risk",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "73f9a5a6-ae38-401e-bf2b-85561474220d",
+                    "leftValue": "={{$json.tags.join(\",\")}}",
+                    "rightValue": "={{$json.tags.join(\",\")}}",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        736,
+        -128
+      ],
+      "id": "b1b3bef3-100e-43d8-a2bf-b1ba79f0f776",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.chaingpt.org/chat/stream",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer ecc5d32d-01e4-4aec-8bdd-f920fb6f7809"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "model",
+              "value": "=smart_contract_auditor"
+            },
+            {
+              "name": "question",
+              "value": "=Audit this Solidity code: {{ $json.code }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        176,
+        0
+      ],
+      "id": "aeca258a-58c3-4e49-8508-9343cb5b9822",
+      "name": "ChainGPT check"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://192.168.1.53:5001/api/v1/analyze",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "code",
+              "value": "={{$json.code}}"
+            },
+            {
+              "name": "contractName",
+              "value": "={{$json.fileName.replace('.sol','')}}"
+            },
+            {
+              "name": "executionTimeout",
+              "value": "30"
+            },
+            {
+              "name": "createTimeout",
+              "value": "15"
+            },
+            {
+              "name": "solverTimeout",
+              "value": "10000"
+            },
+            {
+              "name": "maxDepth",
+              "value": "12"
+            },
+            {
+              "name": "transactionCount",
+              "value": "1"
+            },
+            {
+              "name": "noOnchainData",
+              "value": "true"
+            },
+            {
+              "name": "processTimeout",
+              "value": "120"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 180000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        192,
+        144
+      ],
+      "id": "1483f325-c08d-45a0-862b-8229676742cf",
+      "name": "Mythril check",
+      "retryOnFail": false,
+      "waitBetweenTries": 5000,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "const processedResults = [];\nconst allItems = $input.all();\n\nfor (let i = 0; i < allItems.length; i++) {\n  const item = allItems[i];\n  if (item.binary) {\n    const binaryKeys = Object.keys(item.binary);\n    for (const key of binaryKeys) {\n      try {\n        // 使用 helper 函数读取并强制转为字符串，防止乱码\n        const binaryBuffer = await this.helpers.getBinaryDataBuffer(i, key);\n        const rawCode = binaryBuffer.toString('utf-8');\n\n        if (rawCode.length > 0) {\n          processedResults.push({\n            json: {\n              code: rawCode,\n              fileName: item.binary[key].fileName || `${key}.sol`\n            }\n          });\n        }\n      } catch (e) { console.error(e.message); }\n    }\n  }\n}\nreturn processedResults;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -80,
+        64
+      ],
+      "id": "acc16fd4-37c8-46cf-acdb-3466933af321",
+      "name": "Data Preprocessing & Aggregation"
+    },
+    {
+      "parameters": {
+        "formTitle": "Upload File",
+        "formFields": {
+          "values": [
+            {
+              "fieldName": "file",
+              "fieldLabel": "File",
+              "fieldType": "file"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.4,
+      "position": [
+        -272,
+        64
+      ],
+      "id": "2701ad6f-2b64-41fd-935e-3f3654dc6486",
+      "name": "On form submission",
+      "webhookId": "5423cb99-eb58-4e48-9af4-6b6b2974b89e"
+    },
+    {
+      "parameters": {
+        "jsCode": "return items.map(item => {\n  return {\n    json: {\n      tool: \"ChainGPT\",\n      file_name: item.json.fileName || item.json.filename || \"unknown.sol\",\n      status: \"success\",\n      raw_response: item.json.data ?? item.json,\n      timestamp: new Date().toISOString()\n    }\n  };\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        512,
+        -288
+      ],
+      "id": "0404dc3e-5f25-4615-8e0b-95fe576e2857",
+      "name": "ChainGpt log"
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $input.item.json || {};\n\nconst fileName =\n  input.fileName ||\n  input.filename ||\n  input.file_name ||\n  input.name ||\n  input.originalFileName ||\n  input.original_filename ||\n  $('Data Preprocessing & Aggregation').first().json.fileName ||\n  $('On form submission').first().json.fileName ||\n  'unknown.sol';\n\nconst issues = input.data?.issues || input.issues || [];\nconst error = input.data?.error ?? input.error ?? null;\nconst status =\n  input.status ||\n  (input.data?.success === true ? 'success' : 'unknown');\n\nconst tool = input.tool || 'Mythril';\n\nreturn [{\n  json: {\n    tool,\n    file_name: fileName,\n    status,\n    error,\n    issues,\n    raw_output: input,\n    timestamp: new Date().toISOString()\n  }\n}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        384,
+        560
+      ],
+      "id": "76fdc5bd-e2b8-49de-9068-71b571cd944d",
+      "name": "Mythril log"
+    },
+    {
+      "parameters": {
+        "jsCode": "const data = $input.first().json;\n\nconst paragraphs = String(data.raw_response || \"\")\n  .split(/\\n\\s*\\n/)\n  .map(p => p.trim())\n  .filter(Boolean);\n\nconst pretty = {\n  tool: data.tool,\n  file_name: data.file_name,\n  status: data.status,\n  raw_response_paragraphs: paragraphs,\n  timestamp: data.timestamp\n};\n\nconst content = JSON.stringify(pretty, null, 2);\n\nreturn [\n  {\n    json: {},\n    binary: {\n      file: {\n        data: Buffer.from(content, \"utf8\").toString(\"base64\"),\n        mimeType: \"application/json\",\n        fileName: \"chaingpt_log_pretty.json\"\n      }\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        736,
+        -288
+      ],
+      "id": "38f79f95-b81c-4c28-8ad1-1fbb1e2b6cf0",
+      "name": "download chaingpt log"
+    },
+    {
+      "parameters": {
+        "jsCode": "const data = $input.item.json || {};\nconst jsonText = JSON.stringify(data, null, 2);\n\nreturn [{\n  json: {\n    success: true,\n    preview: 'Mythril log JSON generated'\n  },\n  binary: {\n    data: {\n      data: Buffer.from(jsonText, 'utf8').toString('base64'),\n      mimeType: 'application/json',\n      fileName: 'mythril_log.json'\n    }\n  }\n}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        592,
+        560
+      ],
+      "id": "596d0682-1974-4d89-ae25-bd75cfa2e271",
+      "name": "download Mythril log"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{$json.tags.join(\",\")}}",
+                    "rightValue": "reentrancy",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    },
+                    "id": "7b471088-0c82-4d7a-9590-c0e23ab7724b"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "fed66686-670b-4ad9-beac-422cc223e520",
+                    "leftValue": "={{$json.tags.join(\",\")}}",
+                    "rightValue": "external_call",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "90bcae4e-85b1-4275-8e80-495dffb16c28",
+                    "leftValue": "={{$json.tags.join(\",\")}}",
+                    "rightValue": "unchecked_call",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "bf13d99d-c719-41d7-a481-2e9cc79e2bc3",
+                    "leftValue": "={{$json.tags.join(\",\")}}",
+                    "rightValue": "arithmetic",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "3cfde1e4-83b4-44b7-bec0-cdefede74836",
+                    "leftValue": "={{$json.tags.join(\",\")}}",
+                    "rightValue": "=access_control",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "3fd18252-6b19-4298-b352-c656c7dd6f1d",
+                    "leftValue": "={{$json.tags.join(\",\")}}",
+                    "rightValue": "no_findings",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "06a36f51-561d-4bde-8a17-cf272b89fffb",
+                    "leftValue": "={{$json.tags.join(\",\")}}",
+                    "rightValue": "tool_failure",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        816,
+        80
+      ],
+      "id": "d8c33458-1d88-4679-ae64-0aa43b5cabd8",
+      "name": "Switch1",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "jsCode": "const normalizedFindings = [];\nconst rawToolOutputs = {};\nlet toolCount = 0;\n\n// Filter obvious engineering suggestions that should not be treated as vulnerabilities\nfunction isLikelyNonVulnerability(text) {\n  const t = String(text).toLowerCase();\n  const patterns = [\n    \"consider adding events\",\n    \"improve transparency\",\n    \"gas optimization\",\n    \"documentation\",\n    \"best practice\",\n    \"testing is recommended\",\n    \"consider thorough testing\",\n    \"lack of events\",\n    \"fallback or receive function\",\n    \"forced ether reception\"\n  ];\n  return patterns.some(p => t.includes(p));\n}\n\n// Split ChainGPT long text into candidate claims\nfunction extractChainClaims(text) {\n  const raw = String(text || \"\").trim();\n  if (!raw) return [];\n\n  const parts = raw\n    .split(/\\n(?=\\d+\\.\\s|\\-\\s|\\*\\*Issue|\\*\\*Recommendation|###|####)/)\n    .map(s => s.trim())\n    .filter(Boolean);\n\n  const claims = [];\n\n  for (const part of parts) {\n    if (isLikelyNonVulnerability(part)) {\n      claims.push({\n        tool: \"ChainGPT\",\n        type: \"engineering_suggestion\",\n        status: \"unsupported_as_vulnerability\",\n        confidence: \"low\",\n        content: part\n      });\n    } else {\n      claims.push({\n        tool: \"ChainGPT\",\n        type: \"candidate_claim\",\n        status: \"unverified\",\n        confidence: \"low\",\n        content: part\n      });\n    }\n  }\n\n  return claims;\n}\n\n// Read ChainGPT output\ntry {\n  const chainNode = $(\"ChainGPT check\").first();\n  if (chainNode && chainNode.json && chainNode.json.data) {\n    toolCount++;\n    rawToolOutputs.ChainGPT = chainNode.json.data;\n\n    const chainClaims = extractChainClaims(chainNode.json.data);\n    normalizedFindings.push(...chainClaims);\n  }\n} catch (e) {\n  normalizedFindings.push({\n    tool: \"ChainGPT\",\n    type: \"tool_error\",\n    status: \"failed\",\n    confidence: \"high\",\n    content: \"ChainGPT read failed\"\n  });\n}\n\n// Build summary text\nconst summaryText = normalizedFindings.map((f, idx) => {\n  return [\n    `Finding #${idx + 1}`,\n    `tool: ${f.tool}`,\n    `type: ${f.type}`,\n    `status: ${f.status}`,\n    `confidence: ${f.confidence || \"unknown\"}`,\n    `content: ${f.content || \"\"}`\n  ].filter(Boolean).join(\"\\n\");\n}).join(\"\\n\\n--------------------\\n\\n\");\n\nconst keywordsText = summaryText.toLowerCase();\n\n// Generate routing tags\nconst tags = [];\nif (keywordsText.includes(\"reentrancy\")) tags.push(\"reentrancy\");\nif (\n  keywordsText.includes(\"access control\") ||\n  keywordsText.includes(\"onlyowner\") ||\n  keywordsText.includes(\"owner check\") ||\n  keywordsText.includes(\"unprotected function\") ||\n  keywordsText.includes(\"init\")\n) tags.push(\"access_control\");\nif (keywordsText.includes(\"tx.origin\")) tags.push(\"tx_origin\");\nif (\n  keywordsText.includes(\"approve\") ||\n  keywordsText.includes(\"allowance\") ||\n  keywordsText.includes(\"approval\")\n) tags.push(\"approval_risk\");\nif (\n  keywordsText.includes(\"overflow\") ||\n  keywordsText.includes(\"underflow\") ||\n  keywordsText.includes(\"unchecked\")\n) tags.push(\"arithmetic\");\nif (keywordsText.includes(\"event\")) tags.push(\"event_suggestion\");\n\nreturn {\n  summary: summaryText || \"No findings or tool execution issues detected\",\n  keywords: keywordsText,\n  tool_count: toolCount,\n  normalized_findings: normalizedFindings,\n  raw_tool_outputs: rawToolOutputs,\n  tags: [...new Set(tags)]\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        544,
+        -80
+      ],
+      "id": "6b9257d5-0a3f-40a6-b2ab-3235e20bc653",
+      "name": " ChainGPT check Result aggregation and deduplication"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "GPT-4O"
+        },
+        "responses": {
+          "values": [
+            {
+              "content": "=You are a smart contract security evidence extractor for ChainGPT outputs.\n\nYou will receive text that may contain potential security findings, recommendations, summaries, and non-security suggestions.\n\nYour job:\n1. Extract candidate security findings only.\n2. Ignore formatting explanations, workflow descriptions, and unrelated commentary.\n3. Keep engineering suggestions only if they are clearly security-relevant.\n4. Return valid JSON only.\n\nOutput schema:\n{\n  \"candidate_findings\": [\n    {\n      \"tool\": \"ChainGPT\",\n      \"category\": \"candidate_vulnerability\",\n      \"claim\": \"...\",\n      \"evidence_from_tool\": \"...\",\n      \"confidence\": \"low|medium|high\",\n      \"needs_verification\": true\n    }\n  ]\n}\n\nRules:\n- Do not produce a final audit report.\n- Do not invent findings that are not supported by the input.\n- If no valid security findings exist, return {\"candidate_findings\":[]}.\n- Output JSON only.\n- Do not wrap in markdown fences.\n"
+            },
+            {
+              "content": "=Extract candidate security findings from the following ChainGPT output:\n\n{{ JSON.stringify($json, null, 2) }}\n"
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.1,
+      "position": [
+        1024,
+        -80
+      ],
+      "id": "87966bbe-56f7-4cd8-aa16-0e51533a19c6",
+      "name": "ChainGPT check Evidence Extractor",
+      "credentials": {
+        "openAiApi": {
+          "id": "V15jQqgbAfjIAiR0",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "GPT-4O"
+        },
+        "responses": {
+          "values": [
+            {
+              "content": "=You are the final adjudicator for ChainGPT smart contract findings.\n\nYou will receive a JSON object with:\n- candidate_findings\n- raw_total_findings\n- retained_findings\n- filtered_findings\n- filtering_rate\n\nYour task:\n1. Classify the retained findings into:\n   - confirmed\n   - plausible_but_unverified\n   - unsupported_or_false_positive\n2. Preserve each finding title exactly as provided.\n3. Do not rename, rewrite, generalize, merge, normalize, or replace titles.\n4. Preserve the numeric summary fields from input unless they are obviously inconsistent.\n5. Return valid JSON only.\n\nOutput schema:\n{\n  \"confirmed\": [],\n  \"plausible_but_unverified\": [],\n  \"unsupported_or_false_positive\": [],\n  \"adjudication_summary\": \"...\",\n  \"raw_total_findings\": 0,\n  \"retained_findings\": 0,\n  \"filtered_findings\": 0,\n  \"filtering_rate\": 0\n}\n\nRules:\n- Keep title strings unchanged from input.\n- Do not invent any new titles.\n- Do not convert titles into broader security labels.\n- Use only the provided input.\n- Output JSON only.\n- Do not wrap in markdown fences.\n"
+            },
+            {
+              "content": "=Adjudicate the following retained findings.\n\nKeep every title exactly unchanged and preserve the numeric summary fields.\n\n{{ JSON.stringify($json, null, 2) }}\n"
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.1,
+      "position": [
+        1968,
+        -80
+      ],
+      "id": "7e41542b-9707-448d-877c-ab962fba2349",
+      "name": "ChainGPT check Final Adjudicator",
+      "credentials": {
+        "openAiApi": {
+          "id": "V15jQqgbAfjIAiR0",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $input.item.json || {};\n\nconst rawData = input.data || {};\nconst rawIssues = Array.isArray(rawData.issues)\n  ? rawData.issues\n  : Array.isArray(input.issues)\n    ? input.issues\n    : [];\n\nconst toolName = input.tool || 'Mythril';\nconst status = input.status || (rawData.success ? 'success' : 'unknown');\nconst toolCount = 1;\n\nfunction norm(v) {\n  return String(v || '').trim();\n}\n\nfunction lower(v) {\n  return norm(v).toLowerCase();\n}\n\nfunction buildTitle(issue) {\n  if (issue.title) return norm(issue.title);\n\n  const description = norm(issue.description);\n  if (!description) return 'Untitled Mythril Finding';\n\n  return description.split('\\n')[0].slice(0, 120);\n}\n\nfunction buildContent(issue) {\n  const parts = [\n    issue.address !== undefined ? `\"address\": ${JSON.stringify(issue.address)}` : null,\n    issue.code ? `\"code\": ${JSON.stringify(issue.code)}` : null,\n    issue.contract ? `\"contract\": ${JSON.stringify(issue.contract)}` : null,\n    issue.function ? `\"function\": ${JSON.stringify(issue.function)}` : null,\n    issue.description ? `\"description\": ${JSON.stringify(issue.description)}` : null,\n    issue.severity ? `\"severity\": ${JSON.stringify(issue.severity)}` : null,\n    issue.swc_id ? `\"swc_id\": ${JSON.stringify(issue.swc_id)}` : null\n  ].filter(Boolean);\n\n  return `{ ${parts.join(', ')} }`;\n}\n\nconst normalizedFindings = rawIssues.map((issue, index) => {\n  const title = buildTitle(issue);\n  const severity = norm(issue.severity || 'Unknown');\n  const confidence = norm(issue.confidence || 'high');\n  const description = norm(issue.description || '');\n  const contract = norm(issue.contract || '');\n  const fn = norm(issue.function || '');\n  const code = norm(issue.code || '');\n  const swcId = norm(issue.swc_id || '');\n\n  return {\n    tool: toolName,\n    type: 'scanner_finding',\n    status: 'reported',\n    confidence: confidence.toLowerCase(),\n    issue_index: index,\n    title,\n    content: buildContent(issue),\n    severity,\n    contract,\n    function: fn,\n    code,\n    swc_id: swcId,\n    raw: issue\n  };\n});\n\nconst summaryText = normalizedFindings.length\n  ? normalizedFindings.map((f, idx) => {\n      return [\n        `Finding #${idx + 1}`,\n        `tool: ${f.tool}`,\n        `type: ${f.type}`,\n        `status: ${f.status}`,\n        `confidence: ${f.confidence}`,\n        `title: ${f.title}`,\n        `content: ${f.content}`\n      ].join('\\n');\n    }).join('\\n\\n')\n  : `${toolName} executed successfully and reported zero findings.`;\n\nconst keywordsText = normalizedFindings.length\n  ? normalizedFindings.map(f => {\n      return [\n        f.title,\n        f.content,\n        f.contract,\n        f.function,\n        f.code,\n        f.swc_id,\n        f.severity\n      ].filter(Boolean).join(' ');\n    }).join(' ')\n  : `${toolName} executed successfully and reported zero findings.`;\n\nconst tags = [];\nconst keywordsLower = lower(keywordsText);\n\nif (!normalizedFindings.length) {\n  tags.push('no_findings');\n}\n\nif (\n  keywordsLower.includes('reentrancy') ||\n  keywordsLower.includes('re-enter')\n) {\n  tags.push('reentrancy');\n}\n\nif (\n  keywordsLower.includes('external call') ||\n  keywordsLower.includes('user-supplied address') ||\n  keywordsLower.includes('call to a user-supplied address')\n) {\n  tags.push('external_call');\n}\n\nif (\n  keywordsLower.includes('call return value') ||\n  keywordsLower.includes('unchecked') ||\n  keywordsLower.includes('return value')\n) {\n  tags.push('unchecked_call');\n}\n\nif (\n  keywordsLower.includes('overflow') ||\n  keywordsLower.includes('underflow') ||\n  keywordsLower.includes('integer') ||\n  keywordsLower.includes('arithmetic')\n) {\n  tags.push('arithmetic');\n}\n\nif (\n  keywordsLower.includes('access control') ||\n  keywordsLower.includes('authorization') ||\n  keywordsLower.includes('owner') ||\n  keywordsLower.includes('onlyowner') ||\n  keywordsLower.includes('role')\n) {\n  tags.push('access_control');\n}\n\nif (keywordsLower.includes('tx.origin')) {\n  tags.push('tx_origin');\n}\n\nif (keywordsLower.includes('delegatecall')) {\n  tags.push('delegatecall');\n}\n\nif (\n  keywordsLower.includes('selfdestruct') ||\n  keywordsLower.includes('suicide')\n) {\n  tags.push('selfdestruct');\n}\n\nif (\n  keywordsLower.includes('timestamp') ||\n  keywordsLower.includes('block.timestamp')\n) {\n  tags.push('timestamp_dependence');\n}\n\nif (\n  keywordsLower.includes('file not found') ||\n  keywordsLower.includes('parsererror') ||\n  keywordsLower.includes('fatal error') ||\n  status === 'failed' ||\n  rawData.error\n) {\n  tags.push('tool_failure');\n}\n\nreturn [{\n  json: {\n    summary: summaryText || 'No Mythril output detected',\n    keywords: keywordsText,\n    tool_count: toolCount,\n    normalized_findings: normalizedFindings,\n    raw_tool_outputs: {\n      Mythril: input\n    },\n    tags: [...new Set(tags)]\n  }\n}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        512,
+        160
+      ],
+      "id": "235f8cad-490e-4c54-b93a-4e2174d9af46",
+      "name": " Mythril check Result aggregation and deduplication1"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "GPT-4O"
+        },
+        "responses": {
+          "values": [
+            {
+              "content": "=You are a smart contract security evidence extractor for Mythril outputs.\n\nYou will receive structured Mythril findings.\n\nYour task:\n1. Extract candidate security findings faithfully from the provided input.\n2. Preserve the original finding title exactly as provided.\n3. Do not rename, rewrite, generalize, merge, or replace titles.\n4. If findings are present in the input, do not say that no findings were provided.\n5. Return valid JSON only.\n\nOutput schema:\n{\n  \"candidate_findings\": [\n    {\n      \"title\": \"...\",\n      \"severity\": \"...\",\n      \"description\": \"...\",\n      \"tool\": \"Mythril\",\n      \"needs_verification\": true\n    }\n  ],\n  \"raw_total_findings\": 0\n}\n\nRules:\n- The output title must exactly match the input title text.\n- Use only the provided input.\n- Do not invent new findings.\n- Output JSON only.\n- Do not wrap in markdown fences.\n"
+            },
+            {
+              "content": "=Extract candidate security findings from the following Mythril output.\n\nIf normalized_findings is non-empty, preserve them as candidate_findings.\nKeep every title exactly unchanged.\n\n{{ JSON.stringify({\n  normalized_findings: $json.normalized_findings || [],\n  raw_total_findings: ($json.normalized_findings || []).length\n}, null, 2) }}\n"
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.1,
+      "position": [
+        1056,
+        160
+      ],
+      "id": "d995e784-8b92-4665-be8e-c79f24abb139",
+      "name": "Mythril check Evidence Extractor1",
+      "credentials": {
+        "openAiApi": {
+          "id": "V15jQqgbAfjIAiR0",
+          "name": "OpenAi account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "GPT-4O"
+        },
+        "responses": {
+          "values": [
+            {
+              "content": "=You are a smart contract audit report formatter for Mythril adjudicated findings.\n\nYour only task is to format the adjudicated result into a final report.\n\nYou are NOT an auditor.\nYou are NOT allowed to invent any new issue, any new tool name, any new contract name, any new function name, any new evidence, or any new remediation detail.\n\nThis report must be a strict formatting of the adjudicated input only.\n\nHARD RULES:\n1. Use ONLY the adjudicated input.\n2. Do NOT invent any vulnerability.\n3. Do NOT invent any finding title.\n4. Do NOT invent any unsupported claim.\n5. Do NOT invent any example.\n6. Do NOT transform generic summary language into explicit findings.\n7. If a finding is not explicitly present in the adjudicated input arrays, it must NOT appear in the final report.\n8. If all adjudicated arrays are empty, keep all finding sections empty except for the required empty-section statements.\n9. If the adjudicated summary indicates that Mythril executed successfully with zero findings, preserve that fact explicitly in the Executive Summary.\n10. Do NOT say that no input was provided if the adjudicated input clearly contains a result.\n11. Distinguish carefully between:\n   - no input provided\n   - tool execution failed\n   - tool executed successfully with zero findings\n   - tool reported findings\n12. Never output markdown code fences.\n13. Never output JSON.\n14. Output plain text only.\n\nIMPORTANT ACCURACY RULE:\nIf the adjudicated input indicates that Mythril succeeded and reported zero findings, the report must explicitly state that Mythril executed successfully and reported zero findings.\nDo NOT replace that with wording such as:\n- \"No detailed input was provided\"\n- \"No findings were available for evaluation\"\nunless that wording is explicitly supported by the adjudicated input.\n\nREQUIRED EMPTY-SECTION WORDING:\n- For an empty confirmed section, write exactly:\n  No confirmed vulnerability based on current evidence.\n- For an empty plausible_but_unverified section, write exactly:\n  No plausible but unverified issue was preserved in the adjudicated input.\n- For an empty unsupported_or_false_positive section, write exactly:\n  No explicitly enumerated unsupported findings were preserved in the adjudicated input.\n\nREQUIRED REPORT STRUCTURE:\n1. Executive Summary\n2. Confirmed Vulnerabilities\n3. Plausible but Unverified Issues\n4. Unsupported or False Positive Claims\n5. Remediation Advice\n\nSECTION RULES:\n\nExecutive Summary:\n- Write a concise summary based only on the adjudicated input.\n- If the adjudicated input shows successful Mythril execution with zero findings, explicitly say:\n  \"Mythril executed successfully and reported zero findings.\"\n- If the adjudicated input shows tool failure, explicitly say that Mythril execution failed.\n- If findings are present, summarize that findings were reported.\n- Do NOT say that no input was provided unless the adjudicated input explicitly supports that.\n\nConfirmed Vulnerabilities:\n- Only list items explicitly present in the \"confirmed\" array.\n- For each confirmed item, include:\n  - Title\n  - Severity\n  - Tool Basis\n  - Evidence\n  - Why it is vulnerable\n  - Impact\n  - Remediation\n- If the \"confirmed\" array is empty, use the exact required empty wording.\n\nPlausible but Unverified Issues:\n- Only list items explicitly present in the \"plausible_but_unverified\" array.\n- For each item, include:\n  - Title\n  - Reason\n- If the array is empty, use the exact required empty wording.\n\nUnsupported or False Positive Claims:\n- Only list items explicitly present in the \"unsupported_or_false_positive\" array.\n- For each item, include:\n  - Title\n  - Originating Tool\n  - Rejection Reason\n- If the array is empty, use the exact required empty wording.\n\nRemediation Advice:\n- If confirmed findings exist, provide remediation only for those confirmed findings.\n- If Mythril executed successfully with zero findings and no confirmed findings exist, write a minimal sentence such as:\n  \"No remediation is necessary based on the current Mythril result.\"\n- If the tool failed, recommend resolving the tool execution issue before drawing security conclusions.\n- Do NOT derive remediation from non-existent findings.\n\nSPECIAL FAILURE-SAFE RULE:\nIf the adjudicated input is empty, malformed, or unclear, do NOT reconstruct missing content.\nInstead, produce a minimal report that preserves the required structure and only states what is explicitly supported.\n\nAdjudicated input:\n{{ $json.output[0].content[0].text }}"
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.1,
+      "position": [
+        1888,
+        160
+      ],
+      "id": "34196794-03b4-4bf0-86f1-7a3943be6f6b",
+      "name": "Mythril check Report Formatter1",
+      "credentials": {
+        "openAiApi": {
+          "id": "V15jQqgbAfjIAiR0",
+          "name": "OpenAi account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "jsCode": "const raw =\n  $input.item.json.output?.[0]?.content?.[0]?.text ||\n  $input.item.json.text ||\n  '';\n\nfunction cleanJsonText(text) {\n  return String(text || '')\n    .replace(/^```json\\s*/i, '')\n    .replace(/^```\\s*/i, '')\n    .replace(/\\s*```$/, '')\n    .trim();\n}\n\nlet parsed;\ntry {\n  parsed = JSON.parse(cleanJsonText(raw));\n} catch (e) {\n  parsed = {\n    candidate_findings: [],\n    notes: 'Failed to parse Claim Evaluator output.',\n    raw_total_findings: 0,\n    retained_findings: 0,\n    filtered_findings: 0,\n    filtering_rate: 0\n  };\n}\n\nif (!Array.isArray(parsed.candidate_findings)) {\n  parsed.candidate_findings = [];\n}\n\nconst rawTotal = Number(parsed.raw_total_findings || 0);\nconst retained = Number(parsed.retained_findings || parsed.candidate_findings.length || 0);\nconst filtered = Number(\n  parsed.filtered_findings ??\n  Math.max(rawTotal - retained, 0)\n);\nconst filteringRate = rawTotal > 0 ? filtered / rawTotal : 0;\n\nreturn [{\n  json: {\n    candidate_findings: parsed.candidate_findings,\n    notes: parsed.notes || '',\n    raw_total_findings: rawTotal,\n    retained_findings: retained,\n    filtered_findings: filtered,\n    filtering_rate: filteringRate\n  }\n}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1792,
+        -80
+      ],
+      "id": "90c7df8d-c8dc-4133-aa15-e57168233ad2",
+      "name": "ChainGPT Claim Parse"
+    },
+    {
+      "parameters": {
+        "jsCode": "const raw =\n  $input.item.json.output?.[0]?.content?.[0]?.text ||\n  $input.item.json.text ||\n  '';\n\nfunction cleanJsonText(text) {\n  return String(text || '')\n    .replace(/^```json\\s*/i, '')\n    .replace(/^```\\s*/i, '')\n    .replace(/\\s*```$/, '')\n    .trim();\n}\n\nlet data;\ntry {\n  data = JSON.parse(cleanJsonText(raw));\n} catch (e) {\n  data = {\n    confirmed: [],\n    plausible_but_unverified: [],\n    unsupported_or_false_positive: [],\n    adjudication_summary: 'Failed to parse ChainGPT adjudication JSON.'\n  };\n}\n\nfunction renderItems(items) {\n  if (!items.length) return 'None';\n\n  return items.map((item, i) => {\n    const lines = [\n      `${i + 1}. ${item.title || 'Untitled'}`,\n      item.severity ? `   Severity: ${item.severity}` : null,\n      item.description ? `   Description: ${item.description}` : null,\n      item.reason ? `   Reason: ${item.reason}` : null\n    ].filter(Boolean);\n\n    return lines.join('\\n');\n  }).join('\\n\\n');\n}\n\nconst sections = [\n  '# ChainGPT Smart Contract Audit Report',\n  '**Tool**: ChainGPT',\n  '**Status**: Completed',\n  '---',\n  data.adjudication_summary\n    ? `## Adjudication Summary\\n${data.adjudication_summary}`\n    : '',\n  data.confirmed?.length\n    ? `## Confirmed Vulnerabilities\\n\\n${renderItems(data.confirmed)}`\n    : '',\n  data.plausible_but_unverified?.length\n    ? `## Plausible but Unverified Issues\\n\\n${renderItems(data.plausible_but_unverified)}`\n    : '',\n  data.unsupported_or_false_positive?.length\n    ? `## Unsupported or False Positive Claims\\n\\n${renderItems(data.unsupported_or_false_positive)}`\n    : ''\n].filter(Boolean);\n\nconst markdownContent = sections.join('\\n\\n');\n\nreturn [{\n  json: {\n    success: true,\n    preview: 'ChainGPT markdown report generated'\n  },\n  binary: {\n    data: {\n      data: Buffer.from(markdownContent, 'utf8').toString('base64'),\n      mimeType: 'text/markdown',\n      fileName: 'ChainGPT_Final_Audit_Report.md'\n    }\n  }\n}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2208,
+        -384
+      ],
+      "id": "8a48130a-0883-4cd5-9dd4-7a9a53333ed8",
+      "name": "ChainGPT check Report Formatter"
+    },
+    {
+      "parameters": {
+        "jsCode": "const raw =\n  $input.item.json.output?.[0]?.content?.[0]?.text ||\n  $input.item.json.text ||\n  '';\n\nfunction cleanJsonText(text) {\n  return String(text || '')\n    .replace(/^```json\\s*/i, '')\n    .replace(/^```\\s*/i, '')\n    .replace(/\\s*```$/, '')\n    .trim();\n}\n\nlet parsed;\ntry {\n  parsed = JSON.parse(cleanJsonText(raw));\n} catch (e) {\n  parsed = {\n    candidate_findings: [],\n    notes: 'Failed to parse evidence extractor output.'\n  };\n}\n\nif (!Array.isArray(parsed.candidate_findings)) {\n  parsed.candidate_findings = [];\n}\n\nreturn [{\n  json: {\n    candidate_findings: parsed.candidate_findings,\n    notes: parsed.notes || ''\n  }\n}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1328,
+        -80
+      ],
+      "id": "26b6b46b-3756-4aec-b4c7-e6c9f9319ca8",
+      "name": "Evidence Parse"
+    },
+    {
+      "parameters": {
+        "jsCode": "const raw =\n  $input.item.json.output?.[0]?.content?.[0]?.text ||\n  $input.item.json.text ||\n  '';\n\nfunction cleanJsonText(text) {\n  return String(text || '')\n    .replace(/^```json\\s*/i, '')\n    .replace(/^```\\s*/i, '')\n    .replace(/\\s*```$/, '')\n    .trim();\n}\n\nlet data;\ntry {\n  data = JSON.parse(cleanJsonText(raw));\n} catch (e) {\n  data = {\n    confirmed: [],\n    plausible_but_unverified: [],\n    unsupported_or_false_positive: [],\n    adjudication_summary: 'Failed to parse ChainGPT adjudication JSON.',\n    raw_total_findings: 0,\n    retained_findings: 0,\n    filtered_findings: 0,\n    filtering_rate: 0\n  };\n}\n\nconst rawTotal = Number(data.raw_total_findings || 0);\nconst retained = Number(\n  data.retained_findings ||\n  ((data.confirmed || []).length + (data.plausible_but_unverified || []).length)\n);\nconst filtered = Number(\n  data.filtered_findings ??\n  Math.max(rawTotal - retained, 0)\n);\nconst filteringRate = rawTotal > 0 ? filtered / rawTotal : 0;\n\nconst result = {\n  title: 'ChainGPT Final Audit Report',\n  tool: 'ChainGPT',\n  status: 'Completed',\n  reduction_summary: {\n    original_findings: rawTotal,\n    retained_findings_after_ai_review: retained,\n    filtered_findings: filtered,\n    filtering_rate: `${(filteringRate * 100).toFixed(2)}%`\n  },\n  adjudication_summary: data.adjudication_summary || '',\n  findings: {\n    confirmed: data.confirmed || [],\n    plausible_but_unverified: data.plausible_but_unverified || [],\n    unsupported_or_false_positive: data.unsupported_or_false_positive || []\n  }\n};\n\nconst jsonText = JSON.stringify(result, null, 2);\n\nreturn [{\n  json: {\n    success: true,\n    preview: 'ChainGPT JSON report generated'\n  },\n  binary: {\n    data: {\n      data: Buffer.from(jsonText, 'utf8').toString('base64'),\n      mimeType: 'application/json',\n      fileName: 'ChainGPT_Final_Audit_Report.json'\n    }\n  }\n}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2320,
+        -80
+      ],
+      "id": "ea96a1e0-56f3-4cf2-aaca-074a6a5b9c42",
+      "name": "ChainGPT check report Json file"
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $input.first().json;\nconst findings = Array.isArray(input.normalized_findings) ? input.normalized_findings : [];\n\nconst report = {\n  title: \"Mythril Final Audit Report\",\n  tool: \"Mythril\",\n  status: \"Completed\",\n  reduction_summary: {\n    original_findings: findings.length,\n    retained_findings_after_ai_review: findings.length,\n    filtered_findings: 0,\n    filtering_rate: \"0.00%\",\n  },\n  adjudication_summary: findings.length\n    ? \"No findings were removed. Report is based directly on Mythril normalized findings.\"\n    : \"No findings reported by Mythril.\",\n  engine_error: null,\n  findings: {\n    confirmed: findings.map((f, index) => ({\n      id: `${f.swc_id || \"swc\"}-${index + 1}`,\n      title: f.title || \"Unnamed finding\",\n      swc_id: f.swc_id || null,\n      severity: f.severity || \"Unknown\",\n      contract: f.contract || null,\n      function: f.function || null,\n      line: f.raw?.lineno || null,\n      code: f.code || \"\",\n      description: f.raw?.description || f.content || \"\",\n    })),\n    plausible_but_unverified: [],\n    unsupported_or_false_positive: [],\n  },\n  raw_findings_count: findings.length,\n  raw_findings_preserved: true,\n};\n\nconst jsonString = JSON.stringify(report, null, 2);\n\nreturn [\n  {\n    json: report,\n    binary: {\n      data: {\n        data: Buffer.from(jsonString, \"utf8\").toString(\"base64\"),\n        mimeType: \"application/json\",\n        fileName: \"Mythril_Final_Audit_Report.json\",\n      },\n    },\n  },\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        896,
+        496
+      ],
+      "id": "c4f3f011-c404-4de4-a1a1-c0c10b43ac4e",
+      "name": "Mythril check report Json file"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1552,
+        -352
+      ],
+      "id": "7eb86dd2-209d-4e19-879e-7e7db3731a12",
+      "name": "ChainGPT check Claim Evaluator"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "GPT-4O"
+        },
+        "responses": {
+          "values": [
+            {
+              "content": "=You are a smart contract finding evaluator.\n\nYou will receive a JSON object containing candidate findings.\n\nYour job:\n1. Review candidate_findings.\n2. Keep findings that are security-relevant.\n3. Remove clearly irrelevant engineering suggestions.\n4. Return valid JSON only.\n\nOutput schema:\n{\n  \"candidate_findings\": [\n    {\n      \"title\": \"...\",\n      \"severity\": \"...\",\n      \"description\": \"...\",\n      \"reason\": \"...\"\n    }\n  ],\n  \"notes\": \"...\"\n}\n\nRules:\n- If candidate_findings is non-empty, do not claim that no input was provided.\n- Use only the provided input.\n- Preserve real security issues even if confidence is low.\n- Remove clearly irrelevant suggestions such as style-only or gas-only comments unless they are directly security-related.\n- Output JSON only.\n- Do not wrap in markdown fences.\n"
+            },
+            {
+              "content": "=Here is the parsed evidence extracted from the previous step:\n\n{{ JSON.stringify($json, null, 2) }}\n"
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.1,
+      "position": [
+        1488,
+        -80
+      ],
+      "id": "e8c219d3-2a1e-4fe0-9e9f-d995bb92ba29",
+      "name": "ChainGPT check Claim Evaluator",
+      "credentials": {
+        "openAiApi": {
+          "id": "V15jQqgbAfjIAiR0",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "GPT-4O"
+        },
+        "responses": {
+          "values": [
+            {
+              "content": "=You are reviewing raw Mythril findings for annotation only.\n\nYour task is to add concise explanatory notes to each Mythril finding, such as:\n- what the issue means,\n- why it may matter,\n- what a developer should manually verify next,\n- and any caveats about exploitability or context.\n\nStrict rules:\n1. Do not remove any finding from the source Mythril log.\n2. Do not suppress, discard, filter, or downgrade any Mythril issue.\n3. Do not reclassify findings into false positive / unsupported / rejected categories.\n4. Do not change the total number of findings.\n5. Do not overwrite or contradict the original Mythril fields.\n6. Treat Mythril issues as authoritative raw detections.\n7. Your role is annotation only, not adjudication.\n\nOutput requirements:\n- Preserve every original finding.\n- Add only supplemental notes.\n- If a finding seems weak or context-dependent, say that in the note, but still keep the finding.\n- If there are no Mythril findings, explicitly say: \"No Mythril findings to annotate.\"\n\nReturn JSON in this structure:\n{\n  \"general_note\": \"short overall note\",\n  \"confidence\": \"short confidence note\",\n  \"details\": [\n    {\n      \"title\": \"finding title\",\n      \"note\": \"annotation for this finding\"\n    }\n  ]\n}\n"
+            },
+            {
+              "content": "=Adjudicate the following retained Mythril findings.\n\nKeep every title exactly unchanged and preserve the numeric summary fields.\n\n{{\n(() => {\n  const raw =\n    $json.output?.[0]?.content?.[0]?.text ||\n    $json.text ||\n    '';\n\n  function cleanJsonText(text) {\n    return String(text || '')\n      .replace(/^```json\\s*/i, '')\n      .replace(/^```\\s*/i, '')\n      .replace(/\\s*```$/, '')\n      .trim();\n  }\n\n  let parsed = {};\n  try {\n    parsed = JSON.parse(cleanJsonText(raw));\n  } catch (e) {\n    parsed = {};\n  }\n\n  return JSON.stringify(parsed, null, 2);\n})()\n}}\n"
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.1,
+      "position": [
+        1600,
+        160
+      ],
+      "id": "cd14fef8-af9d-4244-b941-6ba22a0eb894",
+      "name": "Mythril check Final Adjudicator1",
+      "credentials": {
+        "openAiApi": {
+          "id": "V15jQqgbAfjIAiR0",
+          "name": "OpenAi account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "GPT-4O"
+        },
+        "responses": {
+          "values": [
+            {
+              "content": "=You are a Mythril finding evaluator, but you are not allowed to remove, suppress, filter, or discard any finding.\n\nYou will receive Mythril-derived candidate findings.\n\nYour task:\n1. Preserve every candidate finding exactly as provided.\n2. Do not filter findings based on severity.\n3. Do not drop Low severity findings.\n4. Do not mark findings as removed, rejected, unsupported, or false positive.\n5. You may only add brief comments or cautionary notes.\n6. The retained_findings count must always equal raw_total_findings when candidate_findings is non-empty.\n7. filtered_findings must be 0 unless the input candidate_findings is actually empty.\n\nReturn JSON in this exact structure:\n{\n  \"candidate_findings\": [...copy all original findings unchanged...],\n  \"notes\": \"Short annotation-only note.\",\n  \"raw_total_findings\": 0,\n  \"retained_findings\": 0,\n  \"filtered_findings\": 0,\n  \"filtering_rate\": \"0.00%\"\n}\n"
+            },
+            {
+              "content": "=Evaluate the following Mythril candidate findings.\n\nFilter out only lower-value findings, especially low-severity findings, but preserve each original title exactly as given.\n\n{{\n(() => {\n  const raw =\n    $json.output?.[0]?.content?.[0]?.text ||\n    $json.text ||\n    '';\n\n  function cleanJsonText(text) {\n    return String(text || '')\n      .replace(/^```json\\s*/i, '')\n      .replace(/^```\\s*/i, '')\n      .replace(/\\s*```$/, '')\n      .trim();\n  }\n\n  let parsed = {};\n  try {\n    parsed = JSON.parse(cleanJsonText(raw));\n  } catch (e) {\n    parsed = {};\n  }\n\n  const findings = (parsed.candidate_findings || []).map(f => ({\n    title: f.title || f.claim || '',\n    severity: f.severity || f.confidence || '',\n    description: f.description || f.evidence_from_tool || ''\n  }));\n\n  return JSON.stringify({\n    candidate_findings: findings,\n    raw_total_findings: parsed.raw_total_findings || findings.length\n  }, null, 2);\n})()\n}}\n"
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.1,
+      "position": [
+        1328,
+        160
+      ],
+      "id": "1538cd64-a818-42c1-ae8e-345da260ce0d",
+      "name": "Mythril check Claim Evaluator1",
+      "credentials": {
+        "openAiApi": {
+          "id": "V15jQqgbAfjIAiR0",
+          "name": "OpenAi account"
+        }
+      },
+      "disabled": true
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "ChainGPT check Evidence Extractor",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "ChainGPT check Evidence Extractor",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "ChainGPT check Evidence Extractor",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "ChainGPT check Evidence Extractor",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "ChainGPT check Evidence Extractor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ChainGPT check": {
+      "main": [
+        [
+          {
+            "node": " ChainGPT check Result aggregation and deduplication",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "ChainGpt log",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mythril check": {
+      "main": [
+        [
+          {
+            "node": "Mythril log",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": " Mythril check Result aggregation and deduplication1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Mythril check report Json file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Data Preprocessing & Aggregation": {
+      "main": [
+        [
+          {
+            "node": "ChainGPT check",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Mythril check",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Data Preprocessing & Aggregation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ChainGpt log": {
+      "main": [
+        [
+          {
+            "node": "download chaingpt log",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mythril log": {
+      "main": [
+        [
+          {
+            "node": "download Mythril log",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch1": {
+      "main": [
+        [
+          {
+            "node": "Mythril check Evidence Extractor1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Mythril check Evidence Extractor1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Mythril check Evidence Extractor1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Mythril check Evidence Extractor1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Mythril check Evidence Extractor1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Mythril check Evidence Extractor1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Mythril check Evidence Extractor1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    " ChainGPT check Result aggregation and deduplication": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ChainGPT check Evidence Extractor": {
+      "main": [
+        [
+          {
+            "node": "Evidence Parse",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ChainGPT check Final Adjudicator": {
+      "main": [
+        [
+          {
+            "node": "ChainGPT check Report Formatter",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "ChainGPT check report Json file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    " Mythril check Result aggregation and deduplication1": {
+      "main": [
+        [
+          {
+            "node": "Switch1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Mythril check report Json file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mythril check Evidence Extractor1": {
+      "main": [
+        [
+          {
+            "node": "Mythril check Claim Evaluator1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mythril check Report Formatter1": {
+      "main": [
+        []
+      ]
+    },
+    "ChainGPT Claim Parse": {
+      "main": [
+        [
+          {
+            "node": "ChainGPT check Final Adjudicator",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ChainGPT check Report Formatter": {
+      "main": [
+        []
+      ]
+    },
+    "Evidence Parse": {
+      "main": [
+        [
+          {
+            "node": "ChainGPT check Claim Evaluator",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ChainGPT check report Json file": {
+      "main": [
+        []
+      ]
+    },
+    "ChainGPT check Claim Evaluator": {
+      "main": [
+        [
+          {
+            "node": "ChainGPT Claim Parse",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mythril check Final Adjudicator1": {
+      "main": [
+        [
+          {
+            "node": "Mythril check Report Formatter1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mythril check Claim Evaluator1": {
+      "main": [
+        [
+          {
+            "node": "Mythril check Final Adjudicator1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "versionId": "c2a272d7-33d8-4be9-bb35-a1f26dcca047",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "3f3ea8ac169d063a17f38d145112a69e193af0e725aa75642445c49299872971"
+  },
+  "id": "NnEwpRaDPB_loBEN8JUdQ",
+  "tags": []
+}

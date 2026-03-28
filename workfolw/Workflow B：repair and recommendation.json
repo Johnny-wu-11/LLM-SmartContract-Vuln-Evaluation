@@ -1,0 +1,362 @@
+{
+  "name": "Workflow B：自动化对比与评估流",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Upload File",
+        "formFields": {
+          "values": [
+            {
+              "fieldName": "file",
+              "fieldLabel": "File",
+              "fieldType": "file"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.4,
+      "position": [
+        -432,
+        -64
+      ],
+      "id": "ea6a0ab5-051d-4829-99aa-91f683e35db9",
+      "name": "File Input",
+      "webhookId": "5423cb99-eb58-4e48-9af4-6b6b2974b89e"
+    },
+    {
+      "parameters": {
+        "jsCode": "async function parseBinaryJson(itemIndex, binaryKey) {\n  const buffer = await this.helpers.getBinaryDataBuffer(itemIndex, binaryKey);\n  let text = buffer.toString(\"utf8\");\n\n  // 清理 UTF-8 BOM\n  text = text.replace(/^\\uFEFF/, \"\");\n\n  // 清理 JSON 前可能混入的乱码/不可见字符\n  text = text.replace(/^[^\\{\\[]+/, \"\");\n\n  return JSON.parse(text);\n}\n\nfunction asArray(value) {\n  return Array.isArray(value) ? value : [];\n}\n\nfunction normalizeName(name) {\n  return String(name || \"\").toLowerCase().trim();\n}\n\nfunction pickFirstNonEmpty(...values) {\n  for (const value of values) {\n    if (value == null) continue;\n    if (typeof value === \"string\" && value.trim() === \"\") continue;\n    return value;\n  }\n  return null;\n}\n\nfunction normalizeText(value) {\n  return String(value ?? \"\")\n    .toLowerCase()\n    .replace(/\\s+/g, \" \")\n    .trim();\n}\n\nfunction makeKey(item) {\n  return [\n    normalizeText(item?.title),\n    normalizeText(item?.contract),\n    normalizeText(item?.severity),\n  ].join(\"||\");\n}\n\nfunction uniqBy(list, getKey) {\n  const map = new Map();\n\n  for (const item of list) {\n    const key = getKey(item);\n    if (!key) continue;\n\n    if (!map.has(key)) {\n      map.set(key, item);\n      continue;\n    }\n\n    const existing = map.get(key);\n    map.set(key, {\n      ...existing,\n      ...item,\n      my_finding: {\n        ...existing.my_finding,\n        ...item.my_finding,\n        function: pickFirstNonEmpty(item?.my_finding?.function, existing?.my_finding?.function),\n        confidence: pickFirstNonEmpty(item?.my_finding?.confidence, existing?.my_finding?.confidence),\n        description: pickFirstNonEmpty(item?.my_finding?.description, existing?.my_finding?.description),\n        remediation: pickFirstNonEmpty(item?.my_finding?.remediation, existing?.my_finding?.remediation),\n        line: pickFirstNonEmpty(item?.my_finding?.line, existing?.my_finding?.line),\n      },\n      raw: item.raw ?? existing.raw ?? item,\n    });\n  }\n\n  return Array.from(map.values());\n}\n\nfunction wrapFinding(source, finding) {\n  return {\n    source,\n    my_finding: {\n      title: pickFirstNonEmpty(finding.title, \"Unnamed finding\"),\n      contract: pickFirstNonEmpty(finding.contract, \"Unknown\"),\n      function: pickFirstNonEmpty(finding.function, \"\"),\n      severity: pickFirstNonEmpty(finding.severity, \"Unknown\"),\n      confidence: pickFirstNonEmpty(finding.confidence, \"\"),\n      description: pickFirstNonEmpty(finding.description, \"\"),\n      remediation: pickFirstNonEmpty(\n        finding.remediation,\n        finding.fix_recommendation,\n        finding.recommendation,\n        finding.suggestion,\n        finding.fix\n      ),\n      line: pickFirstNonEmpty(finding.line, finding.lineno, null),\n    },\n    raw: finding.raw ?? finding,\n  };\n}\n\nfunction inferContractNameFromFiles(files) {\n  for (const name of files) {\n    const n = String(name || \"\");\n\n    let m =\n      n.match(/gptscan[_-]([^.]+)\\.json/i) ||\n      n.match(/slither[_-]([^.]+)\\.json/i);\n\n    if (m && m[1]) {\n      return m[1];\n    }\n  }\n  return null;\n}\n\nconst allItems = $input.all();\nconst seenFiles = [];\nconst parseErrors = [];\n\nlet chaingptReport = null;\nlet mythrilReport = null;\nlet gptscan = null;\nlet slither = null;\nlet smartbugs = null;\n\nfor (let itemIndex = 0; itemIndex < allItems.length; itemIndex++) {\n  const item = allItems[itemIndex];\n  const binary = item.binary || {};\n\n  for (const key of Object.keys(binary)) {\n    const file = binary[key];\n    const fileName = file.fileName || \"\";\n    const normalized = normalizeName(fileName);\n\n    seenFiles.push(fileName);\n\n    let parsed = null;\n    try {\n      parsed = await parseBinaryJson.call(this, itemIndex, key);\n    } catch (error) {\n      parseErrors.push(`${fileName}: ${error.message}`);\n      continue;\n    }\n\n    if (normalized.includes(\"chaingpt\") && normalized.includes(\"final_audit_report\")) {\n      chaingptReport = parsed;\n      continue;\n    }\n\n    if (normalized.includes(\"mythril\") && normalized.includes(\"final_audit_report\")) {\n      mythrilReport = parsed;\n      continue;\n    }\n\n    if (normalized.includes(\"gptscan\")) {\n      gptscan = parsed;\n      continue;\n    }\n\n    if (normalized.includes(\"slither\")) {\n      slither = parsed;\n      continue;\n    }\n\n    if (normalized.includes(\"smartbugs\")) {\n      smartbugs = parsed;\n      continue;\n    }\n  }\n}\n\nconst inferredFromFiles = inferContractNameFromFiles(seenFiles);\n\nconst contractName =\n  gptscan?.contract ||\n  slither?.contract ||\n  mythrilReport?.findings?.confirmed?.[0]?.contract ||\n  mythrilReport?.findings?.plausible_but_unverified?.[0]?.contract ||\n  inferredFromFiles ||\n  \"Unknown\";\n\nconst chainConfirmed = asArray(chaingptReport?.findings?.confirmed).map(title =>\n  wrapFinding(\"chaingpt\", {\n    title,\n    contract: contractName,\n    severity: \"Medium\",\n    description: title,\n  })\n);\n\nconst chainPlausible = asArray(chaingptReport?.findings?.plausible_but_unverified).map(title =>\n  wrapFinding(\"chaingpt\", {\n    title,\n    contract: contractName,\n    severity: \"Medium\",\n    description: title,\n  })\n);\n\nconst chainUnsupported = asArray(chaingptReport?.findings?.unsupported_or_false_positive).map(title =>\n  wrapFinding(\"chaingpt\", {\n    title,\n    contract: contractName,\n    severity: \"Low\",\n    description: title,\n  })\n);\n\nconst mythrilConfirmed = asArray(mythrilReport?.findings?.confirmed).map(item =>\n  typeof item === \"string\"\n    ? wrapFinding(\"mythril\", {\n        title: item,\n        contract: contractName,\n        severity: \"Medium\",\n        description: item,\n      })\n    : wrapFinding(\"mythril\", {\n        title: item.title,\n        contract: item.contract || contractName,\n        function: item.function,\n        severity: item.severity,\n        confidence: item.confidence,\n        description: item.description,\n        remediation: item.remediation,\n        line: item.line || item.lineno,\n        raw: item,\n      })\n);\n\nconst mythrilPlausible = asArray(mythrilReport?.findings?.plausible_but_unverified).map(item =>\n  typeof item === \"string\"\n    ? wrapFinding(\"mythril\", {\n        title: item,\n        contract: contractName,\n        severity: \"Medium\",\n        description: item,\n      })\n    : wrapFinding(\"mythril\", {\n        title: item.title,\n        contract: item.contract || contractName,\n        function: item.function,\n        severity: item.severity,\n        confidence: item.confidence,\n        description: item.description,\n        remediation: item.remediation,\n        line: item.line || item.lineno,\n        raw: item,\n      })\n);\n\nconst mythrilUnsupported = asArray(mythrilReport?.findings?.unsupported_or_false_positive).map(item =>\n  typeof item === \"string\"\n    ? wrapFinding(\"mythril\", {\n        title: item,\n        contract: contractName,\n        severity: \"Low\",\n        description: item,\n      })\n    : wrapFinding(\"mythril\", {\n        title: item.title,\n        contract: item.contract || contractName,\n        function: item.function,\n        severity: item.severity,\n        confidence: item.confidence,\n        description: item.description,\n        remediation: item.remediation,\n        line: item.line || item.lineno,\n        raw: item,\n      })\n);\n\nconst gptscanFindings = asArray(gptscan?.results).map(item =>\n  wrapFinding(\"gptscan\", {\n    title: item.title,\n    contract: gptscan?.contract || contractName,\n    severity: item.severity,\n    description: item.description,\n    remediation: item.recommendation,\n    line: item?.affectedFiles?.[0]?.range?.start?.line,\n    raw: item,\n  })\n);\n\nconst slitherFindings = asArray(slither?.results).map(item =>\n  wrapFinding(\"slither\", {\n    title: item.check || item.title,\n    contract: slither?.contract || contractName,\n    severity: item.impact || item.severity,\n    confidence: item.confidence,\n    description: item.description || item.message,\n    line: item?.elements?.[0]?.source_mapping?.lines?.[0],\n    raw: item,\n  })\n);\n\nconst confirmed = uniqBy(\n  [...chainConfirmed, ...mythrilConfirmed],\n  item => makeKey(item.my_finding)\n);\n\nconst plausible = uniqBy(\n  [...chainPlausible, ...mythrilPlausible, ...gptscanFindings, ...slitherFindings],\n  item => makeKey(item.my_finding)\n).filter(item =>\n  !confirmed.some(c => makeKey(c.my_finding) === makeKey(item.my_finding))\n);\n\nconst unsupported = uniqBy(\n  [...chainUnsupported, ...mythrilUnsupported],\n  item => makeKey(item.my_finding)\n).filter(item =>\n  !confirmed.some(c => makeKey(c.my_finding) === makeKey(item.my_finding)) &&\n  !plausible.some(p => makeKey(p.my_finding) === makeKey(item.my_finding))\n);\n\nconst rawTotal = confirmed.length + plausible.length + unsupported.length;\nconst retained = confirmed.length + plausible.length;\nconst filteredOut = unsupported.length;\n\nreturn [{\n  json: {\n    metrics: {\n      raw_total_findings: rawTotal,\n      deduped_confirmed_count: confirmed.length,\n      deduped_plausible_count: plausible.length,\n      deduped_unsupported_count: unsupported.length,\n      deduped_total_findings: rawTotal,\n      retained_findings: retained,\n      redundant_removed: 0,\n      filtered_out_count: filteredOut,\n      redundancy_reduction_rate: 0,\n      total_reduction: filteredOut,\n      total_reduction_rate: rawTotal > 0 ? filteredOut / rawTotal : 0,\n    },\n    adjudication: {\n      confirmed,\n      plausible_but_unverified: plausible,\n      unsupported_or_false_positive: unsupported,\n    },\n    matched: [],\n    missed_by_peer: [],\n    debug: {\n      seen_files: seenFiles,\n      parse_errors: parseErrors,\n      contract_name: contractName,\n      chaingpt_found: !!chaingptReport,\n      mythril_found: !!mythrilReport,\n      gptscan_found: !!gptscan,\n      slither_found: !!slither,\n      smartbugs_found: !!smartbugs,\n      chaingpt_confirmed_count: chainConfirmed.length,\n      chaingpt_plausible_count: chainPlausible.length,\n      gptscan_count: gptscanFindings.length,\n      slither_count: slitherFindings.length,\n      mythril_confirmed_count: mythrilConfirmed.length,\n    },\n  }\n}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -208,
+        -64
+      ],
+      "id": "d0923a26-ac2c-4fc1-9140-c0228e5d9c02",
+      "name": "Input Normalizer"
+    },
+    {
+      "parameters": {
+        "jsCode": "function asArray(value) {\n  return Array.isArray(value) ? value : [];\n}\n\nconst input = $input.first().json;\nconst existingMetrics = input.metrics || {};\nconst adjudication = input.adjudication || {};\n\nconst confirmed = asArray(adjudication.confirmed);\nconst plausible = asArray(adjudication.plausible_but_unverified);\nconst unsupported = asArray(adjudication.unsupported_or_false_positive);\n\nconst currentRawTotal = confirmed.length + plausible.length + unsupported.length;\nconst hasCurrentCounts = currentRawTotal > 0;\n\nconst rawTotalFindings = hasCurrentCounts\n  ? currentRawTotal\n  : (existingMetrics.raw_total_findings ?? 0);\n\nconst dedupedConfirmed = confirmed.length;\nconst dedupedPlausible = plausible.length;\nconst dedupedUnsupported = unsupported.length;\nconst dedupedTotal = currentRawTotal;\n\nconst retainedFindings = confirmed.length + plausible.length;\nconst filteredOutCount = unsupported.length;\nconst redundantRemoved = existingMetrics.redundant_removed ?? 0;\nconst redundancyReductionRate = existingMetrics.redundancy_reduction_rate ?? 0;\nconst totalReduction = filteredOutCount;\n\nconst totalReductionRate =\n  rawTotalFindings > 0\n    ? (filteredOutCount / rawTotalFindings)\n    : 0;\n\nreturn [\n  {\n    json: {\n      ...input,\n      metrics: {\n        raw_total_findings: rawTotalFindings,\n        deduped_confirmed_count: dedupedConfirmed,\n        deduped_plausible_count: dedupedPlausible,\n        deduped_unsupported_count: dedupedUnsupported,\n        deduped_total_findings: dedupedTotal,\n        retained_findings: retainedFindings,\n        redundant_removed: redundantRemoved,\n        filtered_out_count: filteredOutCount,\n        redundancy_reduction_rate: redundancyReductionRate,\n        total_reduction: totalReduction,\n        total_reduction_rate: totalReductionRate,\n      },\n      debug_metrics: {\n        current_confirmed_count: confirmed.length,\n        current_plausible_count: plausible.length,\n        current_unsupported_count: unsupported.length,\n      },\n    },\n  },\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        752,
+        -64
+      ],
+      "id": "0ed0bcb1-5012-497c-ab83-d7f42c790b83",
+      "name": "Metrics Calculator"
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $input.first().json;\n\nreturn [\n  {\n    json: {\n      metrics: input.metrics || {},\n      adjudication: input.adjudication || {},\n      matched: input.matched || [],\n      missed_by_peer: input.missed_by_peer || input.unmatched_my_results || [],\n      my_result: input.my_result || [],\n      peer_result: input.peer_result || [],\n    },\n  },\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1056,
+        -64
+      ],
+      "id": "e84282e2-82ed-4565-8f05-ba6bf96bc865",
+      "name": "Evaluation JSON Export"
+    },
+    {
+      "parameters": {
+        "jsCode": "const myResults = $input.item.json.my_result || [];\nconst peerResults = $input.item.json.peer_result || [];\nconst reports = $input.item.json.reports || [];\n\nfunction normalizeText(text) {\n  return String(text || '')\n    .toLowerCase()\n    .replace(/[`\"'*_#()[\\]{}]/g, ' ')\n    .replace(/\\s+/g, ' ')\n    .trim();\n}\n\nfunction isPeerMatch(a, b) {\n  const aTitle = normalizeText(a.title);\n  const bTitle = normalizeText(b.title);\n  const aDesc = normalizeText(a.description);\n  const bDesc = normalizeText(b.description);\n  const sameContract = (a.contract || '') === (b.contract || '');\n\n  if (sameContract && aTitle && bTitle && (aTitle.includes(bTitle) || bTitle.includes(aTitle))) {\n    return true;\n  }\n\n  if (sameContract && aDesc && bDesc && (aDesc.includes(bDesc) || bDesc.includes(aDesc))) {\n    return true;\n  }\n\n  return false;\n}\n\nfunction reportMentionsFinding(content, finding) {\n  const text = normalizeText(content);\n  const title = normalizeText(finding.title);\n  const desc = normalizeText(finding.description);\n  const contract = normalizeText(finding.contract);\n\n  return (\n    (title && text.includes(title)) ||\n    (desc && desc.length > 20 && text.includes(desc.slice(0, 40))) ||\n    (contract && text.includes(contract))\n  );\n}\n\nconst matched = [];\nconst unmatched_my_results = [];\n\nfor (const myF of myResults) {\n  const peerHit = peerResults.find(peerF => isPeerMatch(myF, peerF));\n  const reportHit = reports.find(r => reportMentionsFinding(r.content, myF));\n\n  if (peerHit || reportHit) {\n    matched.push({\n      my: myF,\n      peer: peerHit || null,\n      report: reportHit ? reportHit.title : null,\n      match_source: peerHit ? 'peer_result' : 'report_text'\n    });\n  } else {\n    unmatched_my_results.push({\n      my: myF,\n      reason: 'present_in_raw_input_but_not_reflected_in_peer_or_reports'\n    });\n  }\n}\n\nreturn [{\n  json: {\n    my_result: myResults,\n    peer_result: peerResults,\n    reports,\n    matched,\n    unmatched_my_results\n  }\n}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        256,
+        -64
+      ],
+      "id": "cc5856b2-256d-4882-aa69-9e22bd839f59",
+      "name": "Finding Matcher"
+    },
+    {
+      "parameters": {
+        "jsCode": "function asArray(value) {\n  return Array.isArray(value) ? value : [];\n}\n\nfunction normalizeSeverity(value) {\n  return String(value || \"\")\n    .trim()\n    .toLowerCase();\n}\n\nconst input = $input.first().json;\n\nconst myResult = asArray(input.my_result);\nconst peerResult = asArray(input.peer_result);\n\nconst matched = [];\nconst confirmed = [];\nconst plausible = [];\nconst unsupported = [];\nconst unmatchedMyResults = [];\n\nfunction isLowSeverity(item) {\n  const severity =\n    item?.severity ||\n    item?.my_finding?.severity ||\n    item?.impact ||\n    \"\";\n  return normalizeSeverity(severity) === \"low\";\n}\n\n// my_result 先放 confirmed，但 low 级别过滤到 unsupported\nfor (const item of myResult) {\n  if (isLowSeverity(item)) {\n    unsupported.push({\n      source: item.source || \"my_result\",\n      my_finding: item,\n      reason: \"filtered_out_due_to_low_severity\",\n    });\n  } else {\n    confirmed.push({\n      source: item.source || \"my_result\",\n      my_finding: item,\n      reason: \"from_my_result\",\n    });\n  }\n}\n\n// peer_result 先放 plausible，但 low 级别过滤到 unsupported\nfor (const item of peerResult) {\n  if (isLowSeverity(item)) {\n    unsupported.push({\n      source: item.source || \"peer_result\",\n      my_finding: item,\n      reason: \"filtered_out_due_to_low_severity\",\n    });\n  } else {\n    plausible.push({\n      source: \"raw_detector_only\",\n      my_finding: item,\n      reason: \"from_peer_result\",\n    });\n  }\n}\n\nreturn [\n  {\n    json: {\n      metrics: input.metrics || {},\n      adjudication: {\n        confirmed,\n        plausible_but_unverified: plausible,\n        unsupported_or_false_positive: unsupported,\n      },\n      my_result: myResult,\n      peer_result: peerResult,\n      reports: input.reports || [],\n      matched,\n      unmatched_my_results: unmatchedMyResults,\n      debug: {\n        inherited_raw_total_findings: input.metrics?.raw_total_findings ?? null,\n        my_result_count: myResult.length,\n        peer_result_count: peerResult.length,\n        confirmed_count: confirmed.length,\n        plausible_count: plausible.length,\n        unsupported_count: unsupported.length,\n      },\n    },\n  },\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        544,
+        -64
+      ],
+      "id": "467a8075-2a81-4c0d-b576-010bf74f9cdd",
+      "name": "Detection Adjudicator"
+    },
+    {
+      "parameters": {
+        "jsCode": "function asArray(value) {\n  return Array.isArray(value) ? value : [];\n}\n\nfunction pickFirstNonEmpty(...values) {\n  for (const value of values) {\n    if (value == null) continue;\n    if (typeof value === \"string\" && value.trim() === \"\") continue;\n    return value;\n  }\n  return null;\n}\n\nconst input = $input.first().json;\n\nconst confirmed = asArray(input?.adjudication?.confirmed);\nconst plausible = asArray(input?.adjudication?.plausible_but_unverified);\nconst unsupported = asArray(input?.adjudication?.unsupported_or_false_positive);\n\nfunction normalizeWrappedFinding(entry) {\n  const finding = entry?.my_finding || entry || {};\n\n  return {\n    source: entry?.source || \"unknown\",\n    title: pickFirstNonEmpty(finding.title, \"Unnamed finding\"),\n    contract: pickFirstNonEmpty(finding.contract, \"Unknown\"),\n    function: pickFirstNonEmpty(finding.function, \"\"),\n    severity: pickFirstNonEmpty(finding.severity, \"Unknown\"),\n    confidence: pickFirstNonEmpty(finding.confidence, \"\"),\n    description: pickFirstNonEmpty(finding.description, \"\"),\n    remediation: pickFirstNonEmpty(\n      finding.remediation,\n      finding.fix_recommendation,\n      finding.recommendation,\n      finding.suggestion,\n      finding.fix\n    ),\n    line: pickFirstNonEmpty(finding.line, finding.lineno, null),\n    raw: entry?.raw || entry || {},\n  };\n}\n\nconst myResult = confirmed.map(normalizeWrappedFinding);\nconst peerResult = plausible.map(normalizeWrappedFinding);\nconst droppedResult = unsupported.map(normalizeWrappedFinding);\n\nconst reports = [\n  {\n    title: \"Confirmed Findings\",\n    status: \"completed\",\n    content: myResult,\n    raw: confirmed,\n  },\n  {\n    title: \"Plausible But Unverified\",\n    status: \"completed\",\n    content: peerResult,\n    raw: plausible,\n  },\n  {\n    title: \"Unsupported Or False Positive\",\n    status: \"completed\",\n    content: droppedResult,\n    raw: unsupported,\n  },\n];\n\nreturn [{\n  json: {\n    my_result: myResult,\n    peer_result: peerResult,\n    dropped_result: droppedResult,\n    reports,\n    metrics: input.metrics || {},\n    debug: {\n      confirmed_count: myResult.length,\n      plausible_count: peerResult.length,\n      unsupported_count: droppedResult.length,\n    },\n  }\n}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        0,
+        -64
+      ],
+      "id": "c9f77b80-a2a5-4954-9ea3-68ebb2b89a6c",
+      "name": "Result Normalizer"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "GPT-4O"
+        },
+        "responses": {
+          "values": [
+            {
+              "content": "=You are a smart contract security remediation assistant.\n\nYour task is to read adjudicated smart contract findings in JSON format and produce a concise machine-readable summary.\n\nRules:\n- Return strict JSON only\n- Do not wrap the answer in markdown\n- Do not include explanations outside JSON\n- Be technically accurate and practical\n- Base the summary only on the provided input\n- Preserve the existing output structure and existing fields whenever possible\n- Do not remove, rename, or repurpose fields that downstream nodes may rely on\n- Only add new fields if needed for remediation advice and false-positive statistics\n- If plausible_but_unverified findings exist, do not claim there are no actionable findings\n- Do not invent counts, rates, findings, code locations, exploitability, or remediation details not supported by the input\n- If a rate cannot be computed from the input, return null for that rate instead of guessing\n\nOutput requirements:\n- Keep the current summary behavior unchanged unless required by the new fields below\n- Add a top-level field `false_positive_rate`\n- `false_positive_rate` should reflect the proportion of findings classified as false positives / unsupported out of total adjudicated findings\n- If the input distinguishes categories such as `unsupported_or_false_positive`, use that category to compute the rate\n- Express `false_positive_rate` as a percentage string like `15.38%`, or null if not computable from the input\n- For each finding in `confirmed`, include a `remediation` field\n- For each finding in `plausible_but_unverified`, include a `remediation` field when supported by the input\n- Each `remediation` must correspond only to that specific finding\n- Do not create a separate remediation section\n- `unsupported_or_false_positive` findings may omit remediation or set it to null\n- Do not let the added remediation field change existing counts, retained findings, reduction metrics, or any other downstream-consumed content\n\nRemediation style:\n- Write 1 to 2 complete sentences per finding\n- Be specific enough to be useful for a developer fixing the issue\n- Prefer concrete code-level guidance over generic advice\n- Mention the safer pattern, validation, or check that should be added when possible\n- Keep it concise but more informative than a short phrase\n- Do not use bullet lists inside `remediation`\n"
+            },
+            {
+              "content": "=Please summarize the adjudicated findings from the provided input JSON.\n\nRequirements:\n- Preserve the existing JSON structure unless adding the requested new fields\n- Add `false_positive_rate` when it can be computed from the input; otherwise use null\n- For every item in `confirmed`, include a non-empty string field named `remediation`\n- For every item in `plausible_but_unverified`, include a non-empty string field named `remediation`\n- Each `remediation` must belong only to that specific finding\n- Each `remediation` must be 1 to 2 complete sentences\n- Each `remediation` should be practical, slightly detailed, and developer-oriented\n- Prefer concrete corrective action such as checking return values, adding validation, using safer patterns, renaming identifiers, or upgrading compiler/tooling versions where applicable\n- Do not create a separate remediation section\n- Do not omit `remediation` for confirmed or plausible findings\n- Do not change existing counts, retained findings, reduction metrics, or other downstream-consumed fields\n- If plausible_but_unverified findings exist, do not say that no actionable findings were identified\n- If a finding is low quality or uncertain, still provide a cautious best-effort remediation based only on the finding description\n\nInput JSON:\n{{ JSON.stringify($json, null, 2) }}\n"
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.1,
+      "position": [
+        848,
+        176
+      ],
+      "id": "a65c93e6-85ac-403f-b0be-ffddc6e68b1a",
+      "name": "AI Summary",
+      "credentials": {
+        "openAiApi": {
+          "id": "V15jQqgbAfjIAiR0",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "function asArray(value) {\n  return Array.isArray(value) ? value : [];\n}\n\nfunction escapeText(value) {\n  if (value == null || value === \"\") return \"Unknown\";\n  return String(value);\n}\n\nfunction normalizeRate(value) {\n  if (value == null || value === \"\") return null;\n  return String(value);\n}\n\nfunction renderFindingList(items) {\n  if (!items.length) {\n    return \"None\\n\";\n  }\n\n  return items\n    .map((finding, index) => {\n      const remediation =\n        finding.remediation ||\n        finding.fix_recommendation ||\n        finding.recommendation ||\n        finding.suggestion ||\n        finding.fix ||\n        \"No specific recommendation provided.\";\n\n      const lines = [\n        `${index + 1}. **${escapeText(finding.title)}**`,\n        `   - Contract: ${escapeText(finding.contract)}`,\n        `   - Severity: ${escapeText(finding.severity)}`,\n      ];\n\n      if (finding.function != null && String(finding.function).trim() !== \"\") {\n        lines.push(`   - Function: ${escapeText(finding.function)}`);\n      }\n\n      if (finding.confidence != null && String(finding.confidence).trim() !== \"\") {\n        lines.push(`   - Confidence: ${escapeText(finding.confidence)}`);\n      }\n\n      if (finding.line != null && String(finding.line).trim() !== \"\") {\n        lines.push(`   - Line: ${escapeText(finding.line)}`);\n      }\n\n      lines.push(`   - Description: ${escapeText(finding.description)}`);\n      lines.push(`   - Recommendation: ${escapeText(remediation)}`);\n\n      return `${lines.join(\"\\n\")}\\n`;\n    })\n    .join(\"\\n\");\n}\n\nconst input = $input.first().json;\nconst metrics = input.metrics || {};\n\nconst confirmed = asArray(input.confirmed);\nconst plausible = asArray(input.plausible_but_unverified);\nconst unsupported = asArray(input.unsupported_or_false_positive);\n\nconst rawTotal =\n  metrics.raw_total_findings ??\n  confirmed.length + plausible.length + unsupported.length;\n\nconst retained =\n  metrics.retained_findings ??\n  confirmed.length + plausible.length;\n\nconst filteredOut =\n  metrics.filtered_out_count ??\n  unsupported.length;\n\nconst reductionRate =\n  normalizeRate(metrics.total_reduction_rate) ||\n  \"0.00%\";\n\nconst falsePositiveRate =\n  normalizeRate(input.false_positive_rate) ||\n  \"0.00%\";\n\nlet report = \"\";\n\nreport += \"# Smart Contract Audit Report\\n\\n\";\nreport += `**Status**: ${escapeText(input.status || \"Completed\")}\\n\\n`;\n\nreport += \"## Total Findings\\n\";\nreport += `- Raw Total Findings: ${rawTotal}\\n`;\nreport += `- Retained Findings: ${retained}\\n`;\nreport += `- Filtered Out: ${filteredOut}\\n`;\nreport += `- Total Reduction Rate: ${reductionRate}\\n`;\nreport += `- False Positive Rate: ${falsePositiveRate}\\n\\n`;\n\nreport += \"## Confirmed Findings\\n\\n\";\nreport += renderFindingList(confirmed);\nreport += \"\\n\";\n\nreport += \"## Plausible But Unverified Findings\\n\\n\";\nreport += renderFindingList(plausible);\nreport += \"\\n\";\n\nreport += \"## Unsupported Or False Positive\\n\\n\";\nreport += renderFindingList(unsupported);\n\nconst fileName = \"Final_Audit_Report.md\";\nconst base64Data = Buffer.from(report, \"utf8\").toString(\"base64\");\n\nreturn [\n  {\n    json: {\n      markdown: report,\n      report,\n      fileName,\n    },\n    binary: {\n      data: {\n        data: base64Data,\n        mimeType: \"text/markdown\",\n        fileName,\n      },\n    },\n  },\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1872,
+        64
+      ],
+      "id": "9ce5c88a-a18a-4d5d-a3ff-52111c84378f",
+      "name": "Formatter"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        1424,
+        64
+      ],
+      "id": "ce1a2515-e1fc-411e-9fcc-7f7ddd810a11",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $input.item.json || {};\nconst metrics = input.metrics || {};\nconst adjudication = input.adjudication || {};\n\nfunction compactFinding(item) {\n  const f = item.my_finding || {};\n  return {\n    title: f.title || '',\n    contract: f.contract || '',\n    function: f.function || '',\n    severity: f.severity || '',\n    confidence: f.confidence || '',\n    description: (f.description || '').slice(0, 300)\n  };\n}\n\nreturn [{\n  json: {\n    metrics: {\n      raw_total_findings: metrics.raw_total_findings || 0,\n      retained_findings: metrics.retained_findings || 0,\n      filtered_out_count: metrics.filtered_out_count || 0,\n      total_reduction_rate: metrics.total_reduction_rate || 0\n    },\n    confirmed: (adjudication.confirmed || []).slice(0, 10).map(compactFinding),\n    plausible_but_unverified: (adjudication.plausible_but_unverified || []).slice(0, 10).map(compactFinding),\n    unsupported_or_false_positive: (adjudication.unsupported_or_false_positive || []).slice(0, 10).map(compactFinding)\n  }\n}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        672,
+        176
+      ],
+      "id": "f5ef77b2-9464-4ab4-8b4c-405d81794ed6",
+      "name": "AI Summary Input Prep"
+    },
+    {
+      "parameters": {
+        "jsCode": "function asArray(value) {\n  return Array.isArray(value) ? value : [];\n}\n\nfunction pickFirstNonEmpty(...values) {\n  for (const value of values) {\n    if (value == null) continue;\n    if (typeof value === \"string\" && value.trim() === \"\") continue;\n    return value;\n  }\n  return null;\n}\n\nfunction normalizeText(value) {\n  return String(value ?? \"\")\n    .toLowerCase()\n    .replace(/\\s+/g, \" \")\n    .trim();\n}\n\nfunction makeKey(item) {\n  const f = item?.my_finding || item || {};\n  return [\n    normalizeText(f.title),\n    normalizeText(f.contract),\n    normalizeText(f.severity),\n  ].join(\"||\");\n}\n\nfunction toPercent(value) {\n  if (value == null || value === \"\") return \"0.00%\";\n  const num = Number(value);\n  if (Number.isNaN(num)) return String(value);\n  return `${(num * 100).toFixed(2)}%`;\n}\n\nfunction wrapAiFinding(item) {\n  return {\n    source: \"ai_summary\",\n    my_finding: {\n      title: pickFirstNonEmpty(item.title, \"Unnamed finding\"),\n      contract: pickFirstNonEmpty(item.contract, \"Unknown\"),\n      function: pickFirstNonEmpty(item.function, \"\"),\n      severity: pickFirstNonEmpty(item.severity, \"Unknown\"),\n      confidence: pickFirstNonEmpty(item.confidence, \"\"),\n      description: pickFirstNonEmpty(item.description, \"\"),\n      remediation: pickFirstNonEmpty(\n        item.remediation,\n        item.fix_recommendation,\n        item.recommendation,\n        item.suggestion,\n        item.fix\n      ),\n      line: pickFirstNonEmpty(item.line, item.lineno, null),\n    },\n    raw: item,\n  };\n}\n\nfunction enrichList(baseList, aiList) {\n  const aiMap = new Map(aiList.map(item => [makeKey(item), item]));\n\n  return baseList.map(item => {\n    const key = makeKey(item);\n    const ai = aiMap.get(key);\n    if (!ai) return item;\n\n    return {\n      ...item,\n      my_finding: {\n        ...item.my_finding,\n        function: pickFirstNonEmpty(ai?.my_finding?.function, item?.my_finding?.function),\n        confidence: pickFirstNonEmpty(ai?.my_finding?.confidence, item?.my_finding?.confidence),\n        description: pickFirstNonEmpty(ai?.my_finding?.description, item?.my_finding?.description),\n        remediation: pickFirstNonEmpty(ai?.my_finding?.remediation, item?.my_finding?.remediation),\n        line: pickFirstNonEmpty(ai?.my_finding?.line, item?.my_finding?.line),\n      },\n      raw: {\n        detector: item.raw || item,\n        ai: ai.raw || ai,\n      },\n    };\n  });\n}\n\nfunction unwrapFinding(entry) {\n  const finding = entry?.my_finding || {};\n  return {\n    source: entry?.source || \"unknown\",\n    title: pickFirstNonEmpty(finding.title, \"Unnamed finding\"),\n    contract: pickFirstNonEmpty(finding.contract, \"Unknown\"),\n    function: pickFirstNonEmpty(finding.function, \"\"),\n    severity: pickFirstNonEmpty(finding.severity, \"Unknown\"),\n    confidence: pickFirstNonEmpty(finding.confidence, \"\"),\n    description: pickFirstNonEmpty(finding.description, \"\"),\n    remediation: pickFirstNonEmpty(\n      finding.remediation,\n      finding.fix_recommendation,\n      finding.recommendation,\n      finding.suggestion,\n      finding.fix\n    ),\n    line: pickFirstNonEmpty(finding.line, finding.lineno, null),\n    raw: entry?.raw || entry || {},\n  };\n}\n\nconst inputs = $input.all().map(i => i.json);\n\n// 上半支路：Evaluation JSON Export\nconst evalSource =\n  inputs.find(i => i.metrics && i.adjudication) || {};\n\n// 下半支路：AI Summary JSON Parser\nconst aiSource =\n  inputs.find(i =>\n    Array.isArray(i.confirmed) ||\n    Array.isArray(i.plausible_but_unverified) ||\n    Array.isArray(i.unsupported_or_false_positive)\n  ) || {};\n\nconst baseConfirmed = asArray(evalSource?.adjudication?.confirmed);\nconst basePlausible = asArray(evalSource?.adjudication?.plausible_but_unverified);\nconst baseUnsupported = asArray(evalSource?.adjudication?.unsupported_or_false_positive);\n\nconst aiConfirmed = asArray(aiSource.confirmed).map(wrapAiFinding);\nconst aiPlausible = asArray(aiSource.plausible_but_unverified).map(wrapAiFinding);\nconst aiUnsupported = asArray(aiSource.unsupported_or_false_positive).map(wrapAiFinding);\n\nconst mergedConfirmed = enrichList(baseConfirmed, aiConfirmed);\nconst mergedPlausible = enrichList(basePlausible, aiPlausible);\nconst mergedUnsupported = enrichList(baseUnsupported, aiUnsupported);\n\nconst confirmed = mergedConfirmed.map(unwrapFinding);\nconst plausible = mergedPlausible.map(unwrapFinding);\nconst unsupported = mergedUnsupported.map(unwrapFinding);\n\nconst metrics = evalSource.metrics || {};\n\nconst rawTotal =\n  metrics.raw_total_findings ??\n  metrics.deduped_total_findings ??\n  confirmed.length + plausible.length + unsupported.length;\n\nconst retained =\n  metrics.retained_findings ??\n  confirmed.length + plausible.length;\n\nconst filteredOut =\n  metrics.filtered_out_count ??\n  unsupported.length;\n\nconst totalReductionRate =\n  metrics.total_reduction_rate != null\n    ? toPercent(metrics.total_reduction_rate)\n    : rawTotal > 0\n      ? toPercent(filteredOut / rawTotal)\n      : \"0.00%\";\n\nconst falsePositiveRate =\n  rawTotal > 0\n    ? toPercent(unsupported.length / rawTotal)\n    : \"0.00%\";\n\nreturn [\n  {\n    json: {\n      status: \"Completed\",\n      metrics: {\n        raw_total_findings: rawTotal,\n        retained_findings: retained,\n        filtered_out_count: filteredOut,\n        total_reduction_rate: totalReductionRate,\n      },\n      confirmed,\n      plausible_but_unverified: plausible,\n      unsupported_or_false_positive: unsupported,\n      false_positive_rate: falsePositiveRate,\n      debug: {\n        eval_confirmed_count: baseConfirmed.length,\n        eval_plausible_count: basePlausible.length,\n        ai_confirmed_count: aiConfirmed.length,\n        ai_plausible_count: aiPlausible.length,\n        first_plausible_remediation: plausible[0]?.remediation || null,\n      },\n    },\n  },\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1648,
+        64
+      ],
+      "id": "85ddaa9f-579c-4b72-902f-eaad9cf87eac",
+      "name": "Combine Audit Data"
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $input.first().json;\n\nfunction extractText(payload) {\n  if (typeof payload?.output_text === \"string\") {\n    return payload.output_text;\n  }\n\n  if (Array.isArray(payload?.output)) {\n    for (const item of payload.output) {\n      if (Array.isArray(item?.content)) {\n        for (const part of item.content) {\n          if (typeof part?.text === \"string\" && part.text.trim()) {\n            return part.text;\n          }\n        }\n      }\n    }\n  }\n\n  if (typeof payload?.text === \"string\") {\n    return payload.text;\n  }\n\n  return null;\n}\n\nconst rawText = extractText(input);\n\nif (!rawText) {\n  throw new Error(\"AI Summary JSON text not found in node output.\");\n}\n\nlet parsed;\ntry {\n  parsed = JSON.parse(rawText);\n} catch (error) {\n  throw new Error(`Failed to parse AI Summary JSON: ${error.message}\\nRaw text:\\n${rawText}`);\n}\n\nreturn [\n  {\n    json: parsed,\n  },\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1152,
+        176
+      ],
+      "id": "38f7fd62-a495-441b-b890-bf1b15cb4f18",
+      "name": "AI Summary JSON Parser"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "File Input": {
+      "main": [
+        [
+          {
+            "node": "Input Normalizer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Input Normalizer": {
+      "main": [
+        [
+          {
+            "node": "Result Normalizer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Metrics Calculator": {
+      "main": [
+        [
+          {
+            "node": "Evaluation JSON Export",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Evaluation JSON Export": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "AI Summary Input Prep",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Finding Matcher": {
+      "main": [
+        [
+          {
+            "node": "Detection Adjudicator",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Detection Adjudicator": {
+      "main": [
+        [
+          {
+            "node": "Metrics Calculator",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Result Normalizer": {
+      "main": [
+        [
+          {
+            "node": "Finding Matcher",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Summary": {
+      "main": [
+        [
+          {
+            "node": "AI Summary JSON Parser",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Combine Audit Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Summary Input Prep": {
+      "main": [
+        [
+          {
+            "node": "AI Summary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Combine Audit Data": {
+      "main": [
+        [
+          {
+            "node": "Formatter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Summary JSON Parser": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "versionId": "8a079fff-f15a-430b-8947-3b8a88152fc3",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "3f3ea8ac169d063a17f38d145112a69e193af0e725aa75642445c49299872971"
+  },
+  "id": "W7P5izPsdeTg11mqDKs8u",
+  "tags": []
+}
