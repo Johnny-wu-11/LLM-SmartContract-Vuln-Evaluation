@@ -42,10 +42,14 @@ We utilized the official [GPTScan repository](https://github.com/GPTScan/GPTScan
   python3.10 main.py -s /sourcecode -o /sourcecode/output.json -k OPEN_AI_API_KEY_xxxxxxxxxxxxx
   ```
 
-### 4. ChainGPT & Mythril
-* **ChainGPT:** Web UI / API v1.0
-* **Mythril Version:** 0.24.x (Docker environment)
+## 4. ChainGPT & Mythril
 
-### 5. AI Summary & Deduplication (n8n Workflow)
-* **Platform:** n8n (Local/Cloud instance)
-* **Core Logic:** Aggregates JSON outputs from the 5 tools above, utilizes an LLM node to cross-reference vulnerability signatures, and removes duplicate/false-positive alerts based on overlapping line numbers and CWE types.
+- **ChainGPT:** Integrated through the ChainGPT Web API in the n8n workflow. Each Solidity contract is submitted via an HTTP `POST` request to `https://api.chaingpt.org/chat/stream` using bearer-token authentication. The request uses the `smart_contract_auditor` model and passes the Solidity source code as the audit query.
+
+- **Mythril:** Deployed in a Docker-based local analysis environment and exposed as a self-hosted REST API. Each contract is analyzed via an HTTP `POST` request to `http://192.168.153.5000/api/v1/analyze`. The request payload includes the Solidity source code, the contract name, and runtime-control parameters such as `executionTimeout = 30`, `createTimeout = 15`, and `solverTimeout = 10000`.
+
+## 5. AI Summary & Deduplication (n8n Workflow)
+
+- **Platform:** n8n (local/cloud instance)
+
+- **Core Logic:** Aggregates JSON outputs from ChainGPT, Mythril, and other analysis tools, then applies an LLM-based validation and summarization workflow to normalize vulnerability descriptions, cross-reference overlapping findings, remove duplicates, and filter likely false positives. The final output is a more concise and higher-confidence audit report with retained findings, explanations, and fix-oriented guidance.
