@@ -1,0 +1,290 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 34 Code Findings │
+└──────────────────┘
+                        
+    /sb/MISOLauncher.sol
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+          119┆ constructor() public {
+          120┆ }
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          129┆ require(_WETH != address(0), "initMISOLauncher: WETH cannot be set to zero");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          129┆ require(_WETH != address(0), "initMISOLauncher: WETH cannot be set to zero");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          130┆ require(_accessControls != address(0), "initMISOLauncher: accessControls cannot be set to
+               zero");                                                                                  
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          130┆ require(_accessControls != address(0), "initMISOLauncher: accessControls cannot be set to
+               zero");                                                                                  
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          131┆ require(_bentoBox != address(0), "initMISOLauncher: bentoBox cannot be set to zero");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          131┆ require(_bentoBox != address(0), "initMISOLauncher: bentoBox cannot be set to zero");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          147┆ require(
+          148┆     accessControls.hasAdminRole(msg.sender),
+          149┆     "MISOLauncher: Sender must be operator"
+          150┆ );
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          147┆ require(
+          148┆     accessControls.hasAdminRole(msg.sender),
+          149┆     "MISOLauncher: Sender must be operator"
+          150┆ );
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          159┆ require(
+          160┆     accessControls.hasAdminRole(msg.sender),
+          161┆     "MISOLauncher: Sender must be operator"
+          162┆ );
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          159┆ require(
+          160┆     accessControls.hasAdminRole(msg.sender),
+          161┆     "MISOLauncher: Sender must be operator"
+          162┆ );
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          164┆ require(_amount <= 1000, "MISOLauncher: Percentage is out of 1000");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          164┆ require(_amount <= 1000, "MISOLauncher: Percentage is out of 1000");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          173┆ require(accessControls.hasAdminRole(msg.sender), "MISOLauncher.setDev: Sender must be
+               operator");                                                                          
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          173┆ require(accessControls.hasAdminRole(msg.sender), "MISOLauncher.setDev: Sender must be
+               operator");                                                                          
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          182┆ require(
+          183┆     accessControls.hasAdminRole(msg.sender),
+          184┆     "MISOLauncher: Sender must be admin"
+          185┆ );
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          182┆ require(
+          183┆     accessControls.hasAdminRole(msg.sender),
+          184┆     "MISOLauncher: Sender must be admin"
+          185┆ );
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          195┆ require(
+          196┆     accessControls.hasAdminRole(msg.sender) ||
+          197┆     accessControls.hasOperatorRole(msg.sender),
+          198┆     "MISOLauncher: Sender must be admin"
+          199┆ );
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          195┆ require(
+          196┆     accessControls.hasAdminRole(msg.sender) ||
+          197┆     accessControls.hasOperatorRole(msg.sender),
+          198┆     "MISOLauncher: Sender must be admin"
+          199┆ );
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          228┆ require(accessControls.hasAdminRole(msg.sender)
+          229┆         || accessControls.hasMinterRole(msg.sender)
+          230┆         || hasLauncherMinterRole(msg.sender),
+          231┆     "MISOLauncher: Sender must be minter if locked"
+          232┆ );
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          228┆ require(accessControls.hasAdminRole(msg.sender)
+          229┆         || accessControls.hasMinterRole(msg.sender)
+          230┆         || hasLauncherMinterRole(msg.sender),
+          231┆     "MISOLauncher: Sender must be minter if locked"
+          232┆ );
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          237┆ require(msg.value >= uint256(_launcherFees.minimumFee), "MISOLauncher: Failed to transfer
+               minimumFee");                                                                            
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          237┆ require(msg.value >= uint256(_launcherFees.minimumFee), "MISOLauncher: Failed to transfer
+               minimumFee");                                                                            
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          238┆ require(launcherTemplate != address(0), "MISOLauncher: Launcher template doesn't exist");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          238┆ require(launcherTemplate != address(0), "MISOLauncher: Launcher template doesn't exist");
+   
+     ❱ solidity.performance.use-nested-if
+          Using nested is cheaper than using && multiple check combinations.  There are more advantages, such
+          as easier to read code and better coverage reports.                                                
+                                                                                                             
+          241┆ if (_integratorFeeAccount != address(0) && _integratorFeeAccount != misoDiv) {
+          242┆     integratorFee = misoFee * uint256(_launcherFees.integratorFeePct) / 1000;
+          243┆     misoFee = misoFee - integratorFee;
+          244┆ }
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          282┆ require(IERC20(_token).approve(newLauncher, _tokenSupply), "1");
+            ⋮┆----------------------------------------
+          302┆ require(
+          303┆     accessControls.hasAdminRole(msg.sender) ||
+          304┆     accessControls.hasOperatorRole(msg.sender),
+          305┆     "MISOLauncher: Sender must be operator"
+          306┆ );
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          302┆ require(
+          303┆     accessControls.hasAdminRole(msg.sender) ||
+          304┆     accessControls.hasOperatorRole(msg.sender),
+          305┆     "MISOLauncher: Sender must be operator"
+          306┆ );
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          308┆ require(templateType > 0, "MISOLauncher: Incorrect template code ");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          308┆ require(templateType > 0, "MISOLauncher: Incorrect template code ");
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          309┆ launcherTemplateId++;
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          324┆ require(
+          325┆     accessControls.hasAdminRole(msg.sender) ||
+          326┆     accessControls.hasOperatorRole(msg.sender),
+          327┆     "MISOLauncher: Sender must be operator"
+          328┆ );
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          324┆ require(
+          325┆     accessControls.hasAdminRole(msg.sender) ||
+          326┆     accessControls.hasOperatorRole(msg.sender),
+          327┆     "MISOLauncher: Sender must be operator"
+          328┆ );
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 34 (34 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 34 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading
+
+📢 Too many findings? Try Semgrep Pro for more powerful queries and less noise.
+   See https://sg.run/false-positives.

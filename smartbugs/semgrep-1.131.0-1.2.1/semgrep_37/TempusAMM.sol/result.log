@@ -1,0 +1,145 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 23 Code Findings │
+└──────────────────┘
+                     
+    /sb/TempusAMM.sol
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           94┆ constructor(
+           95┆     IVault vault,
+           96┆     string memory name,
+           97┆     string memory symbol,
+           98┆     ITempusPool pool,
+           99┆     uint256 amplificationParameter,
+          100┆     uint256 swapFeePercentage,
+          101┆     uint256 pauseWindowDuration,
+          102┆     uint256 bufferPeriodDuration,
+          103┆     address owner
+             [hid 40 additional lines, adjust with --max-lines-per-finding] 
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          127┆ require(
+          128┆     ERC20(address(principalShare)).decimals() == ERC20(address(yieldShare)).decimals(),
+          129┆     "Principals and Yields need same precision."
+          130┆ );
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          127┆ require(
+          128┆     ERC20(address(principalShare)).decimals() == ERC20(address(yieldShare)).decimals(),
+          129┆     "Principals and Yields need same precision."
+          130┆ );
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          146┆ require(!tempusPool.matured(), "Pool already finalized!");
+   
+   ❯❯❱ solidity.security.balancer-readonly-reentrancy-getpooltokens
+          getVault().getPoolTokens() call on a Balancer pool is not protected from the read-only reentrancy.
+                                                                                                            
+          156┆ (, uint256[] memory balances, ) = getVault().getPoolTokens(getPoolId());
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+          179┆ ? (principals - yields, false)
+            ⋮┆----------------------------------------
+          180┆ : (yields - principals, true);
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          189┆ for (uint8 i = 0; i < 32; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          189┆ for (uint8 i = 0; i < 32; i++) {
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+          193┆ uint256 newPrincipals = yieldsIn ? (principals + amountOut) : (principals - amountIn);
+            ⋮┆----------------------------------------
+          194┆ uint256 newYields = yieldsIn ? (yields - amountIn) : (yields + amountOut);
+            ⋮┆----------------------------------------
+          196┆ ? (newPrincipals - newYields)
+            ⋮┆----------------------------------------
+          197┆ : (newYields - newPrincipals);
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          204┆ revert("getSwapAmountToEndWithEqualShares did not converge.");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          204┆ revert("getSwapAmountToEndWithEqualShares did not converge.");
+   
+   ❯❯❱ solidity.security.balancer-readonly-reentrancy-getpooltokens
+          getVault().getPoolTokens() call on a Balancer pool is not protected from the read-only reentrancy.
+                                                                                                            
+          214┆ (IERC20[] memory ammTokens, uint256[] memory balances, ) =
+               getVault().getPoolTokens(getPoolId());                    
+            ⋮┆----------------------------------------
+          251┆ (, uint256[] memory balances, ) = getVault().getPoolTokens(getPoolId());
+            ⋮┆----------------------------------------
+          259┆ (, uint256[] memory balances, ) = getVault().getPoolTokens(getPoolId());
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          308┆ revert("Unsupported swap type");
+            ⋮┆----------------------------------------
+          332┆ revert("Unsupported swap type");
+            ⋮┆----------------------------------------
+          548┆ revert("Unhandled exit kind.");
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          629┆ for (uint256 i = 1; i < _TOTAL_TOKENS; ++i) {
+   
+   ❯❯❱ solidity.security.balancer-readonly-reentrancy-getpooltokens
+          getVault().getPoolTokens() call on a Balancer pool is not protected from the read-only reentrancy.
+                                                                                                            
+          694┆ (, uint256[] memory balances, ) = getVault().getPoolTokens(getPoolId());
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 23 (23 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 23 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

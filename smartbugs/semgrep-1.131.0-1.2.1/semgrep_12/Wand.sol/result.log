@@ -1,0 +1,57 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                   
+                   
+┌─────────────────┐
+│ 8 Code Findings │
+└─────────────────┘
+                
+    /sb/Wand.sol
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           34┆ constructor (ICauldronGov cauldron_, ILadleGov ladle_, IPoolFactory poolFactory_,
+               IJoinFactory joinFactory_) {                                                     
+           35┆     cauldron = cauldron_;
+           36┆     ladle = ladle_;
+           37┆     poolFactory = poolFactory_;
+           38┆     joinFactory = joinFactory_;
+           39┆ }
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           51┆ require (address(asset) != address(0), "Asset required");
+            ⋮┆----------------------------------------
+           66┆ require (address(oracle) != address(0), "Oracle required");
+            ⋮┆----------------------------------------
+           67┆ require (rateSource != address(0), "Rate source required");
+            ⋮┆----------------------------------------
+           68┆ require (chiSource != address(0), "Chi source required");
+            ⋮┆----------------------------------------
+           93┆ require(base != address(0), "Base not found");
+            ⋮┆----------------------------------------
+           96┆ require(address(baseJoin) != address(0), "Join not found");
+            ⋮┆----------------------------------------
+           99┆ require(address(oracle) != address(0), "Chi oracle not found");
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 8 (8 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 8 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

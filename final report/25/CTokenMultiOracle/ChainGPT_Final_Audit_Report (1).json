@@ -1,0 +1,22 @@
+{
+  "title": "ChainGPT Final Audit Report",
+  "tool": "ChainGPT",
+  "status": "Completed",
+  "reduction_summary": {
+    "original_findings": 0,
+    "retained_findings_after_ai_review": 3,
+    "filtered_findings": 0,
+    "filtering_rate": "0.00%"
+  },
+  "adjudication_summary": "The `Role Management` finding is confirmed due to the clear risk associated with self-granting and revoking capabilities of the `ROOT` role. The `Price Retrieval` and `Timestamp Handling` findings are plausible but require further verification to establish the extent of their impact.",
+  "findings": {
+    "confirmed": [
+      "Role Management"
+    ],
+    "plausible_but_unverified": [
+      "Price Retrieval",
+      "Timestamp Handling"
+    ],
+    "unsupported_or_false_positive": []
+  }
+}

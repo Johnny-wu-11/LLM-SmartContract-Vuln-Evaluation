@@ -1,0 +1,345 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 53 Code Findings │
+└──────────────────┘
+                         
+    /sb/TridentRouter.sol
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           26┆ constructor(
+           27┆     IBentoBoxMinimal _bento,
+           28┆     MasterDeployer _masterDeployer,
+           29┆     address _wETH
+           30┆ ) TridentHelper(_wETH) {
+           31┆     _bento.registerProtocol();
+           32┆     bento = _bento;
+           33┆     masterDeployer = _masterDeployer;
+           34┆ }
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           50┆ require(amountOut >= params.amountOutMinimum, "TOO_LITTLE_RECEIVED");
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+           65┆ for (uint256 i; i < params.path.length; i++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+           65┆ for (uint256 i; i < params.path.length; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+           65┆ for (uint256 i; i < params.path.length; i++) {
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           71┆ require(amountOut >= params.amountOutMinimum, "TOO_LITTLE_RECEIVED");
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+           83┆ for (uint256 i; i < path.length; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+           83┆ for (uint256 i; i < path.length; i++) {
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+           86┆ cachedMsgSender = msg.sender;
+            ⋮┆----------------------------------------
+           88┆ cachedPool = path[i].pool;
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           95┆ require(amountOut >= amountOutMinimum, "TOO_LITTLE_RECEIVED");
+            ⋮┆----------------------------------------
+          109┆ require(amountOut >= params.amountOutMinimum, "TOO_LITTLE_RECEIVED");
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          123┆ for (uint256 i; i < params.path.length; i++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          123┆ for (uint256 i; i < params.path.length; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          123┆ for (uint256 i; i < params.path.length; i++) {
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          128┆ require(amountOut >= params.amountOutMinimum, "TOO_LITTLE_RECEIVED");
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          139┆ for (uint256 i; i < params.initialPath.length; i++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          139┆ for (uint256 i; i < params.initialPath.length; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          139┆ for (uint256 i; i < params.initialPath.length; i++) {
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          149┆ for (uint256 i; i < params.percentagePath.length; i++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          149┆ for (uint256 i; i < params.percentagePath.length; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          149┆ for (uint256 i; i < params.percentagePath.length; i++) {
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          157┆ for (uint256 i; i < params.output.length; i++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          157┆ for (uint256 i; i < params.output.length; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          157┆ for (uint256 i; i < params.output.length; i++) {
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          159┆ require(balanceShares >= params.output[i].minAmount, "TOO_LITTLE_RECEIVED");
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          181┆ for (uint256 i; i < tokenInput.length; i++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          181┆ for (uint256 i; i < tokenInput.length; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          181┆ for (uint256 i; i < tokenInput.length; i++) {
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          189┆ require(liquidity >= minLiquidity, "NOT_ENOUGH_LIQUIDITY_MINTED");
+            ⋮┆----------------------------------------
+          206┆ require(liquidity >= minLiquidity, "NOT_ENOUGH_LIQUIDITY_MINTED");
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          223┆ for (uint256 i; i < minWithdrawals.length; i++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          223┆ for (uint256 i; i < minWithdrawals.length; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          223┆ for (uint256 i; i < minWithdrawals.length; i++) {
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          225┆ for (; j < withdrawnLiquidity.length; j++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          225┆ for (; j < withdrawnLiquidity.length; j++) {
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          227┆ require(withdrawnLiquidity[j].amount >= minWithdrawals[i].amount, "TOO_LITTLE_RECEIVED");
+            ⋮┆----------------------------------------
+          232┆ require(j < withdrawnLiquidity.length, "INCORRECT_TOKEN_WITHDRAWN");
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          232┆ require(j < withdrawnLiquidity.length, "INCORRECT_TOKEN_WITHDRAWN");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          252┆ require(withdrawn >= minWithdrawal, "TOO_LITTLE_RECEIVED");
+            ⋮┆----------------------------------------
+          257┆ require(msg.sender == cachedPool, "UNAUTHORIZED_CALLBACK");
+            ⋮┆----------------------------------------
+          271┆ require(msg.sender == cachedPool, "UNAUTHORIZED_CALLBACK");
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          274┆ for (uint256 i; i < tokenInput.length; i++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          274┆ for (uint256 i; i < tokenInput.length; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          274┆ for (uint256 i; i < tokenInput.length; i++) {
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          276┆ _depositFromUserToBentoBox(tokenInput[i].token, cachedMsgSender, msg.sender,
+               tokenInput[i].amount);                                                      
+            ⋮┆----------------------------------------
+          278┆ bento.transfer(tokenInput[i].token, cachedMsgSender, msg.sender, tokenInput[i].amount);
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          311┆ require(balanceWETH >= amountMinimum, "INSUFFICIENT_WETH");
+   
+     ❱ solidity.performance.use-nested-if
+          Using nested is cheaper than using && multiple check combinations.  There are more advantages, such
+          as easier to read code and better coverage reports.                                                
+                                                                                                             
+          323┆ if (token == wETH && address(this).balance != 0) {
+          324┆     uint256 underlyingAmount = bento.toAmount(wETH, amount, true);
+          325┆     if (address(this).balance >= underlyingAmount) {
+          326┆         // @dev Deposit ETH into `recipient` `bento` account.
+          327┆         bento.deposit{value: underlyingAmount}(address(0), address(this), recipient, 0,
+               amount);                                                                               
+          328┆         return;
+          329┆     }
+          330┆ }
+   
+    ❯❱ solidity.security.exact-balance-check
+          Testing the balance of an account as a basis for some action has risks associated with unexpected 
+          receipt of ether or another token, including tokens deliberately transfered to cause such tests to
+          fail, as an MEV attack.                                                                           
+                                                                                                            
+          323┆ if (token == wETH && address(this).balance != 0) {
+   
+     ❱ solidity.performance.use-nested-if
+          Using nested is cheaper than using && multiple check combinations.  There are more advantages, such
+          as easier to read code and better coverage reports.                                                
+                                                                                                             
+          341┆ if (token == wETH && address(this).balance != 0) {
+          342┆     uint256 underlyingAmount = bento.toAmount(wETH, amount, true);
+          343┆     if (address(this).balance >= underlyingAmount) {
+          344┆         // @dev Deposit ETH into `recipient` `bento` account.
+          345┆         bento.deposit{value: underlyingAmount}(address(0), address(this), recipient, 0,
+               amount);                                                                               
+          346┆         return;
+          347┆     }
+          348┆ }
+   
+    ❯❱ solidity.security.exact-balance-check
+          Testing the balance of an account as a basis for some action has risks associated with unexpected 
+          receipt of ether or another token, including tokens deliberately transfered to cause such tests to
+          fail, as an MEV attack.                                                                           
+                                                                                                            
+          341┆ if (token == wETH && address(this).balance != 0) {
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          355┆ require(masterDeployer.pools(pool), "INVALID POOL");
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 53 (53 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 53 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading
+
+📢 Too many findings? Try Semgrep Pro for more powerful queries and less noise.
+   See https://sg.run/false-positives.

@@ -1,0 +1,120 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 16 Code Findings │
+└──────────────────┘
+                          
+    /sb/BadgerSettPeak.sol
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           40┆ constructor(address _core) public {
+           41┆     core = ICore(_core);
+           42┆ }
+   
+   ❯❯❱ solidity.security.curve-readonly-reentrancy
+          pool.swap.get_virtual_price() call on a Curve pool is not protected from the read-only reentrancy.
+                                                                                                            
+          118┆ .mul(pool.swap.get_virtual_price())
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          132┆ for (uint i = 0; i < _numPools; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          132┆ for (uint i = 0; i < _numPools; i++) {
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          133┆ pool = pools[i];
+   
+   ❯❯❱ solidity.security.curve-readonly-reentrancy
+          pool.swap.get_virtual_price() call on a Curve pool is not protected from the read-only reentrancy.
+                                                                                                            
+          156┆ .div(pool.swap.get_virtual_price())
+            ⋮┆----------------------------------------
+          173┆ .mul(pool.swap.get_virtual_price())
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          189┆ for (uint i = 0; i < _pools.length; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          189┆ for (uint i = 0; i < _pools.length; i++) {
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          191┆ require(
+          192┆     address(pool.swap) != address(0)
+          193┆     && address(pool.sett) != address(0),
+          194┆     "NULL_ADDRESS"
+          195┆ );
+   
+     ❱ solidity.performance.use-multiple-require
+          Using multiple require statements is cheaper than using && multiple check combinations.  There are
+          more advantages, such as easier to read code and better coverage reports.                         
+                                                                                                            
+          191┆ require(
+          192┆     address(pool.swap) != address(0)
+          193┆     && address(pool.sett) != address(0),
+          194┆     "NULL_ADDRESS"
+          195┆ );
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          196┆ pools[i] = pool;
+            ⋮┆----------------------------------------
+          201┆ for (uint i = _pools.length; i < numPools; i++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          201┆ for (uint i = _pools.length; i < numPools; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          201┆ for (uint i = _pools.length; i < numPools; i++) {
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          202┆ delete pools[i];
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 16 (16 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 16 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

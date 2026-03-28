@@ -1,0 +1,74 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                   
+                   
+┌─────────────────┐
+│ 7 Code Findings │
+└─────────────────┘
+                             
+    /sb/MerkleDistributor.sol
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           16┆ constructor(address token_, bytes32 merkleRoot_) public {
+           17┆     token = token_;
+           18┆     merkleRoot = merkleRoot_;
+           19┆ }
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           36┆ require(!isClaimed(index), 'MerkleDistributor: Drop already claimed.');
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+           36┆ require(!isClaimed(index), 'MerkleDistributor: Drop already claimed.');
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           40┆ require(MerkleProof.verify(merkleProof, merkleRoot, node), 'MerkleDistributor: Invalid
+               proof.');                                                                             
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+           40┆ require(MerkleProof.verify(merkleProof, merkleRoot, node), 'MerkleDistributor: Invalid
+               proof.');                                                                             
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           44┆ require(IERC20(token).transfer(account, amount), 'MerkleDistributor: Transfer failed.');
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+           44┆ require(IERC20(token).transfer(account, amount), 'MerkleDistributor: Transfer failed.');
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 7 (7 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 7 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

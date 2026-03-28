@@ -1,0 +1,18 @@
+{
+    "tool":  "mythril",
+    "contract":  "Manager.sol",
+    "source":  "C:\\Users\\ASUS\\Desktop\\blockchain\\Web3Bugs-main\\contracts\\21\\contracts\\facets\\Manager.sol",
+    "working_copy":  "C:\\Users\\ASUS\\Desktop\\blockchain\\help\\mythril_tmp\\libpool21\\contracts\\facets\\Manager.sol",
+    "docker_image":  "mythril/myth:latest",
+    "command":  "docker run --rm -v \"C:\\Users\\ASUS\\Desktop\\blockchain\\help\\mythril_tmp\\libpool21:/src\" -w /src mythril/myth:latest analyze contracts/facets/Manager.sol --solv 0.7.4 --solc-args \"--allow-paths /src\" --execution-timeout 180 --solver-timeout 10000 --create-timeout 90 --parallel-solving -o jsonv2",
+    "started_at":  "2026-03-28T02:03:05.8259426+08:00",
+    "finished_at":  "2026-03-28T02:06:37.7192859+08:00",
+    "exit_code":  1,
+    "issue_count":  2,
+    "status":  "completed_with_findings",
+    "notes":  [
+                  "Analysis executed against a temporary local working copy to satisfy missing OpenZeppelin imports and compiler compatibility.",
+                  "Temporary compatibility rewrite was applied only in the working copy: pragma abicoder v2 -\u003e pragma experimental ABIEncoderV2.",
+                  "Original source file was not modified."
+              ]
+}

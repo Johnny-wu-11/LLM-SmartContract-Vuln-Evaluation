@@ -1,0 +1,54 @@
+﻿{
+    "source":  "GPTScan",
+    "contract":  "CTokenMultiOracle",
+    "source_file":  "C:\\Users\\ASUS\\Desktop\\blockchain\\output_all\\GPTScan_output\\test_25.json",
+    "match_count":  2,
+    "results":  [
+                    {
+                        "code":  "price-manipulation",
+                        "severity":  "HIGH",
+                        "title":  "MWE-200: Insecure LP Token Value Calculation",
+                        "description":  "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+                        "recommendation":  "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+                        "affectedFiles":  [
+                                              {
+                                                  "filePath":  "/Users/mac/Web3Bugs/contracts/25/contracts/oracles/compound/CTokenMultiOracle.sol",
+                                                  "range":  {
+                                                                "start":  {
+                                                                              "line":  73
+                                                                          },
+                                                                "end":  {
+                                                                            "line":  89
+                                                                        }
+                                                            },
+                                                  "highlights":  [
+
+                                                                 ]
+                                              }
+                                          ]
+                    },
+                    {
+                        "code":  "price-manipulation",
+                        "severity":  "HIGH",
+                        "title":  "MWE-200: Insecure LP Token Value Calculation",
+                        "description":  "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+                        "recommendation":  "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+                        "affectedFiles":  [
+                                              {
+                                                  "filePath":  "/Users/mac/Web3Bugs/contracts/25/contracts/oracles/compound/CTokenMultiOracle.sol",
+                                                  "range":  {
+                                                                "start":  {
+                                                                              "line":  91
+                                                                          },
+                                                                "end":  {
+                                                                            "line":  107
+                                                                        }
+                                                            },
+                                                  "highlights":  [
+
+                                                                 ]
+                                              }
+                                          ]
+                    }
+                ]
+}

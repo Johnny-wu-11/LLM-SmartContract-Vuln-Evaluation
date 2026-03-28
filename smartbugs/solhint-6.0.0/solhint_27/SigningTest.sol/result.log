@@ -1,0 +1,28 @@
+A new version of Solhint is available: 6.1.0
+Please consider updating your Solhint package.
+/sb/SigningTest.sol:1:1: Compiler version ^0.6.6 does not satisfy the ^0.8.24 semver requirement [Error/compiler-version]
+/sb/SigningTest.sol:3:1: Unexpected import of console file [Error/no-console]
+/sb/SigningTest.sol:3:1: global import of path hardhat/console.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/SigningTest.sol:3:1: Import in /sb/SigningTest.sol doesn't exist in: hardhat/console.sol [Warning/import-path-check]
+/sb/SigningTest.sol:5:1: Missing @title tag in contract 'SigningTest' [Warning/use-natspec]
+/sb/SigningTest.sol:5:1: Missing @author tag in contract 'SigningTest' [Warning/use-natspec]
+/sb/SigningTest.sol:5:1: Missing @notice tag in contract 'SigningTest' [Warning/use-natspec]
+/sb/SigningTest.sol:6:2: Missing @notice tag in function 'checkSignature' [Warning/use-natspec]
+/sb/SigningTest.sol:6:2: Missing @param tag in function 'checkSignature' [Warning/use-natspec]
+/sb/SigningTest.sol:6:2: Mismatch in @param names for function 'checkSignature'. Expected: [_signer, _theHash, _v, _r, _s], Found: [] [Warning/use-natspec]
+/sb/SigningTest.sol:15:3: Unexpected console statement [Error/no-console]
+/sb/SigningTest.sol:16:3: Unexpected console statement [Error/no-console]
+/sb/SigningTest.sol:17:3: Unexpected console statement [Error/no-console]
+/sb/SigningTest.sol:18:3: Unexpected console statement [Error/no-console]
+/sb/SigningTest.sol:19:3: Unexpected console statement [Error/no-console]
+/sb/SigningTest.sol:20:3: Unexpected console statement [Error/no-console]
+/sb/SigningTest.sol:21:3: Unexpected console statement [Error/no-console]
+/sb/SigningTest.sol:22:3: Unexpected console statement [Error/no-console]
+/sb/SigningTest.sol:23:3: Unexpected console statement [Error/no-console]
+/sb/SigningTest.sol:24:3: Unexpected console statement [Error/no-console]
+/sb/SigningTest.sol:25:3: Unexpected console statement [Error/no-console]
+/sb/SigningTest.sol:26:3: Unexpected console statement [Error/no-console]
+/sb/SigningTest.sol:27:3: Unexpected console statement [Error/no-console]
+/sb/SigningTest.sol:28:3: Unexpected console statement [Error/no-console]
+
+24 problem/s (16 error/s, 8 warning/s)

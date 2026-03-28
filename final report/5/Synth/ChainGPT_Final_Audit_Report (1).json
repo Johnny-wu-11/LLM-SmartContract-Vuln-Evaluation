@@ -1,0 +1,23 @@
+{
+  "title": "ChainGPT Final Audit Report",
+  "tool": "ChainGPT",
+  "status": "Completed",
+  "reduction_summary": {
+    "original_findings": 0,
+    "retained_findings_after_ai_review": 5,
+    "filtered_findings": 0,
+    "filtering_rate": "0.00%"
+  },
+  "adjudication_summary": "The retained findings are considered plausible but unverified; they describe potential security issues that warrant further investigation.",
+  "findings": {
+    "confirmed": [],
+    "plausible_but_unverified": [
+      "Transfer to `this` Address",
+      "Use of `tx.origin`",
+      "Unchecked Arithmetic",
+      "Burn Functionality",
+      "Potential for Reentrancy"
+    ],
+    "unsupported_or_false_positive": []
+  }
+}

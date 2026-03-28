@@ -1,0 +1,45 @@
+﻿{
+    "source":  "GPTScan",
+    "contract":  "Pool",
+    "source_file":  "C:\\Users\\ASUS\\Desktop\\blockchain\\output_all\\GPTScan_output\\test_12.json",
+    "match_count":  1,
+    "results":  [
+                    {
+                        "code":  "price-manipulation",
+                        "severity":  "HIGH",
+                        "title":  "MWE-200: Insecure LP Token Value Calculation",
+                        "description":  "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+                        "recommendation":  "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+                        "affectedFiles":  [
+                                              {
+                                                  "filePath":  "/Users/mac/Web3Bugs/contracts/12/contracts/FYToken.sol",
+                                                  "range":  {
+                                                                "start":  {
+                                                                              "line":  165
+                                                                          },
+                                                                "end":  {
+                                                                            "line":  178
+                                                                        }
+                                                            },
+                                                  "highlights":  [
+
+                                                                 ]
+                                              },
+                                              {
+                                                  "filePath":  "/Users/mac/Web3Bugs/contracts/12/contracts/yieldspace/Pool.sol",
+                                                  "range":  {
+                                                                "start":  {
+                                                                              "line":  329
+                                                                          },
+                                                                "end":  {
+                                                                            "line":  377
+                                                                        }
+                                                            },
+                                                  "highlights":  [
+
+                                                                 ]
+                                              }
+                                          ]
+                    }
+                ]
+}

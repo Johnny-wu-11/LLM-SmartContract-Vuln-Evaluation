@@ -1,0 +1,95 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 11 Code Findings │
+└──────────────────┘
+                  
+    /sb/Vether.sol
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           24┆ constructor() {
+           25┆     name = "Vether";
+           26┆     symbol  = "VETH";
+           27┆     _balances[msg.sender] = totalSupply;
+           28┆     emit Transfer(address(0), msg.sender, totalSupply);
+           29┆ }
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+           52┆ _approve(msg.sender, spender, _allowances[msg.sender][spender] - subtractedValue);
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           56┆ require(owner != address(0), "iERC20: approve from the zero address");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+           56┆ require(owner != address(0), "iERC20: approve from the zero address");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           57┆ require(spender != address(0), "iERC20: approve to the zero address");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+           57┆ require(spender != address(0), "iERC20: approve to the zero address");
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+           65┆ _approve(sender, msg.sender, _allowances[sender][msg.sender] - amount);
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           71┆ require(_balances[_from] >= _value, 'Must not send more than balance');
+            ⋮┆----------------------------------------
+           72┆ require(_balances[_to] + _value >= _balances[_to], 'Balance overflow');
+   
+     ❱ solidity.performance.inefficient-state-variable-increment
+          <x> += <y> costs more gas than <x> = <x> + <y> for state variables.
+                                                                             
+           77┆ totalFees += _fee;                                                                  //
+               Track fees collected                                                                  
+   
+     ❱ solidity.performance.use-nested-if
+          Using nested is cheaper than using && multiple check combinations.  There are more advantages, such
+          as easier to read code and better coverage reports.                                                
+                                                                                                             
+           79┆ if (!mapAddress_Excluded[_from] && !mapAddress_Excluded[_to]) {
+           80┆     emit Transfer(_from, address(this), _fee);                                      // Fee
+               Transfer event                                                                            
+           81┆ }
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 11 (11 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 11 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

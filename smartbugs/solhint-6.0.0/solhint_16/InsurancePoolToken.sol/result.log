@@ -1,0 +1,24 @@
+A new version of Solhint is available: 6.1.0
+Please consider updating your Solhint package.
+/sb/InsurancePoolToken.sol:2:1: Compiler version ^0.8.0 does not satisfy the ^0.8.24 semver requirement [Error/compiler-version]
+/sb/InsurancePoolToken.sol:3:1: global import of path @openzeppelin/contracts/token/ERC20/ERC20.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/InsurancePoolToken.sol:3:1: Import in /sb/InsurancePoolToken.sol doesn't exist in: @openzeppelin/contracts/token/ERC20/ERC20.sol [Warning/import-path-check]
+/sb/InsurancePoolToken.sol:4:1: global import of path @openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/InsurancePoolToken.sol:4:1: Import in /sb/InsurancePoolToken.sol doesn't exist in: @openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol [Warning/import-path-check]
+/sb/InsurancePoolToken.sol:5:1: global import of path @openzeppelin/contracts/access/Ownable.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/InsurancePoolToken.sol:5:1: Import in /sb/InsurancePoolToken.sol doesn't exist in: @openzeppelin/contracts/access/Ownable.sol [Warning/import-path-check]
+/sb/InsurancePoolToken.sol:7:1: Missing @title tag in contract 'InsurancePoolToken' [Warning/use-natspec]
+/sb/InsurancePoolToken.sol:7:1: Missing @author tag in contract 'InsurancePoolToken' [Warning/use-natspec]
+/sb/InsurancePoolToken.sol:7:1: Missing @notice tag in contract 'InsurancePoolToken' [Warning/use-natspec]
+/sb/InsurancePoolToken.sol:8:5: Missing @notice tag in function '<anonymous>' [Warning/use-natspec]
+/sb/InsurancePoolToken.sol:8:5: Missing @param tag in function '<anonymous>' [Warning/use-natspec]
+/sb/InsurancePoolToken.sol:8:5: Mismatch in @param names for function '<anonymous>'. Expected: [name, symbol], Found: [] [Warning/use-natspec]
+/sb/InsurancePoolToken.sol:8:5: Explicitly mark visibility in function (Set ignoreConstructors to true if using solidity >=0.7.0) [Warning/func-visibility]
+/sb/InsurancePoolToken.sol:10:5: Missing @notice tag in function 'mint' [Warning/use-natspec]
+/sb/InsurancePoolToken.sol:10:5: Missing @param tag in function 'mint' [Warning/use-natspec]
+/sb/InsurancePoolToken.sol:10:5: Mismatch in @param names for function 'mint'. Expected: [to, amount], Found: [] [Warning/use-natspec]
+/sb/InsurancePoolToken.sol:14:5: Missing @notice tag in function 'burnFrom' [Warning/use-natspec]
+/sb/InsurancePoolToken.sol:14:5: Missing @param tag in function 'burnFrom' [Warning/use-natspec]
+/sb/InsurancePoolToken.sol:14:5: Mismatch in @param names for function 'burnFrom'. Expected: [from, amount], Found: [] [Warning/use-natspec]
+
+20 problem/s (1 error/s, 19 warning/s)

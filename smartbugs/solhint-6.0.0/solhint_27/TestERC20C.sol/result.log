@@ -1,0 +1,11 @@
+A new version of Solhint is available: 6.1.0
+Please consider updating your Solhint package.
+/sb/TestERC20C.sol:1:1: Compiler version ^0.6.6 does not satisfy the ^0.8.24 semver requirement [Error/compiler-version]
+/sb/TestERC20C.sol:2:1: global import of path @openzeppelin/contracts/token/ERC20/ERC20.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/TestERC20C.sol:2:1: Import in /sb/TestERC20C.sol doesn't exist in: @openzeppelin/contracts/token/ERC20/ERC20.sol [Warning/import-path-check]
+/sb/TestERC20C.sol:5:1: Missing @title tag in contract 'TestERC20C' [Warning/use-natspec]
+/sb/TestERC20C.sol:5:1: Missing @author tag in contract 'TestERC20C' [Warning/use-natspec]
+/sb/TestERC20C.sol:5:1: Missing @notice tag in contract 'TestERC20C' [Warning/use-natspec]
+/sb/TestERC20C.sol:6:2: Missing @notice tag in function '<anonymous>' [Warning/use-natspec]
+
+7 problem/s (1 error/s, 6 warning/s)

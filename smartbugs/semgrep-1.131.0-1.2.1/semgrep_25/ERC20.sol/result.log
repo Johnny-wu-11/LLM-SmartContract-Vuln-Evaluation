@@ -1,0 +1,47 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                   
+                   
+┌─────────────────┐
+│ 4 Code Findings │
+└─────────────────┘
+                 
+    /sb/ERC20.sol
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           39┆ constructor(string memory name_, string memory symbol_, uint8 decimals_) {
+           40┆     name = name_;
+           41┆     symbol = symbol_;
+           42┆     decimals = decimals_;
+           43┆ }
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          116┆ require(_balanceOf[src] >= wad, "ERC20: Insufficient balance");
+            ⋮┆----------------------------------------
+          152┆ require(allowed >= wad, "ERC20: Insufficient approval");
+            ⋮┆----------------------------------------
+          189┆ require(_balanceOf[src] >= wad, "ERC20: Insufficient balance");
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 4 (4 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 4 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

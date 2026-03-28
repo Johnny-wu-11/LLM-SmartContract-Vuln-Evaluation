@@ -1,0 +1,14 @@
+A new version of Solhint is available: 6.1.0
+Please consider updating your Solhint package.
+/sb/ControlledToken.sol:3:1: Compiler version >=0.6.0 <0.7.0 does not satisfy the ^0.8.24 semver requirement [Error/compiler-version]
+/sb/ControlledToken.sol:5:1: global import of path @openzeppelin/contracts-upgradeable/drafts/ERC20PermitUpgradeable.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/ControlledToken.sol:5:1: Import in /sb/ControlledToken.sol doesn't exist in: @openzeppelin/contracts-upgradeable/drafts/ERC20PermitUpgradeable.sol [Warning/import-path-check]
+/sb/ControlledToken.sol:7:1: global import of path ./TokenControllerInterface.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/ControlledToken.sol:7:1: Import in /sb/ControlledToken.sol doesn't exist in: ./TokenControllerInterface.sol [Warning/import-path-check]
+/sb/ControlledToken.sol:8:1: global import of path ./ControlledTokenInterface.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/ControlledToken.sol:8:1: Import in /sb/ControlledToken.sol doesn't exist in: ./ControlledTokenInterface.sol [Warning/import-path-check]
+/sb/ControlledToken.sol:12:1: Missing @author tag in contract 'ControlledToken' [Warning/use-natspec]
+/sb/ControlledToken.sol:61:36: GC: String exceeds 32 bytes [Warning/gas-small-strings]
+/sb/ControlledToken.sol:79:3: Missing @notice tag in function '_beforeTokenTransfer' [Warning/use-natspec]
+
+10 problem/s (1 error/s, 9 warning/s)

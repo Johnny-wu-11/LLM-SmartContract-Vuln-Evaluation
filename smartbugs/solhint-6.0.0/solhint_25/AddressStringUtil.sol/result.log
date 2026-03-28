@@ -1,0 +1,20 @@
+A new version of Solhint is available: 6.1.0
+Please consider updating your Solhint package.
+/sb/AddressStringUtil.sol:3:1: Compiler version >=0.5.0 does not satisfy the ^0.8.24 semver requirement [Error/compiler-version]
+/sb/AddressStringUtil.sol:5:1: Missing @title tag in contract 'AddressStringUtil' [Warning/use-natspec]
+/sb/AddressStringUtil.sol:5:1: Missing @author tag in contract 'AddressStringUtil' [Warning/use-natspec]
+/sb/AddressStringUtil.sol:5:1: Missing @notice tag in contract 'AddressStringUtil' [Warning/use-natspec]
+/sb/AddressStringUtil.sol:7:5: Missing @notice tag in function 'toAsciiString' [Warning/use-natspec]
+/sb/AddressStringUtil.sol:7:5: Missing @param tag in function 'toAsciiString' [Warning/use-natspec]
+/sb/AddressStringUtil.sol:7:5: Mismatch in @param names for function 'toAsciiString'. Expected: [addr, len], Found: [] [Warning/use-natspec]
+/sb/AddressStringUtil.sol:7:5: Missing @return tag in function 'toAsciiString' [Warning/use-natspec]
+/sb/AddressStringUtil.sol:7:5: Mismatch in @return count for function 'toAsciiString'. Expected: 1, Found: 0 [Warning/use-natspec]
+/sb/AddressStringUtil.sol:8:9: GC: Use Custom Errors instead of require statements [Warning/gas-custom-errors]
+/sb/AddressStringUtil.sol:8:44: GC: Non strict inequality found. Try converting to a strict one [Warning/gas-strict-inequalities]
+/sb/AddressStringUtil.sol:22:5: Missing @notice tag in function 'char' [Warning/use-natspec]
+/sb/AddressStringUtil.sol:22:5: Missing @param tag in function 'char' [Warning/use-natspec]
+/sb/AddressStringUtil.sol:22:5: Mismatch in @param names for function 'char'. Expected: [b], Found: [] [Warning/use-natspec]
+/sb/AddressStringUtil.sol:22:5: Missing @return tag in function 'char' [Warning/use-natspec]
+/sb/AddressStringUtil.sol:22:5: Mismatch in @return names for function 'char'. Expected: [c], Found: [] [Warning/use-natspec]
+
+16 problem/s (1 error/s, 15 warning/s)

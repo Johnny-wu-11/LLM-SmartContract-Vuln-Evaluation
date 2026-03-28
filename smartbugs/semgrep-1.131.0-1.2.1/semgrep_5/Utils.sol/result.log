@@ -1,0 +1,209 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 28 Code Findings │
+└──────────────────┘
+                 
+    /sb/Utils.sol
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           28┆ constructor () {}
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           31┆ require(inited == false,  "inited");
+            ⋮┆----------------------------------------
+           47┆ require(iPOOLS(POOLS).isAnchor(debtAsset), "Bad Combo"); // Can borrow Anchor with
+               VADER/ANCHOR-SYNTH                                                                
+            ⋮┆----------------------------------------
+           49┆ require(iPOOLS(POOLS).isAsset(debtAsset), "Bad Combo"); // Can borrow Asset with
+               VADER/ASSET-SYNTH                                                               
+   
+     ❱ solidity.performance.use-nested-if
+          Using nested is cheaper than using && multiple check combinations.  There are more advantages, such
+          as easier to read code and better coverage reports.                                                
+                                                                                                             
+           50┆ } else if(iPOOLS(POOLS).isSynth(collateralAsset) &&      
+               iPOOLS(POOLS).isAnchor(iSYNTH(collateralAsset).TOKEN())){
+           51┆     require(iPOOLS(POOLS).isAnchor(debtAsset), "Bad Combo"); // Can borrow Anchor with
+               VADER/ANCHOR-SYNTH                                                                    
+           52┆ } else if(iPOOLS(POOLS).isSynth(collateralAsset) &&     
+               iPOOLS(POOLS).isAsset(iSYNTH(collateralAsset).TOKEN())){
+           53┆     require(iPOOLS(POOLS).isAsset(debtAsset), "Bad Combo"); // Can borrow Anchor with
+               VADER/ANCHOR-SYNTH                                                                   
+           54┆ }
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           51┆ require(iPOOLS(POOLS).isAnchor(debtAsset), "Bad Combo"); // Can borrow Anchor with
+               VADER/ANCHOR-SYNTH                                                                
+   
+     ❱ solidity.performance.use-nested-if
+          Using nested is cheaper than using && multiple check combinations.  There are more advantages, such
+          as easier to read code and better coverage reports.                                                
+                                                                                                             
+           52┆ } else if(iPOOLS(POOLS).isSynth(collateralAsset) &&     
+               iPOOLS(POOLS).isAsset(iSYNTH(collateralAsset).TOKEN())){
+           53┆     require(iPOOLS(POOLS).isAsset(debtAsset), "Bad Combo"); // Can borrow Anchor with
+               VADER/ANCHOR-SYNTH                                                                   
+           54┆ }
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           53┆ require(iPOOLS(POOLS).isAsset(debtAsset), "Bad Combo"); // Can borrow Anchor with
+               VADER/ANCHOR-SYNTH                                                               
+   
+     ❱ solidity.performance.use-nested-if
+          Using nested is cheaper than using && multiple check combinations.  There are more advantages, such
+          as easier to read code and better coverage reports.                                                
+                                                                                                             
+           72┆ if(_baseAmt > 0 && _tokenAmt > 0){
+           73┆      return (amount * _baseAmt) / _tokenAmt;
+           74┆ }
+            ⋮┆----------------------------------------
+           79┆  if(_baseAmt > 0 && _tokenAmt > 0){
+           80┆      return (amount * _tokenAmt) / _baseAmt;
+           81┆ }
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+           98┆ uint _lower = calcPart((_10k - bound), targetPrice);                // ie 98% of price
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          101┆ require((_testingPrice >= _lower && _testingPrice <= _upper), "Not inside");
+   
+     ❱ solidity.performance.use-multiple-require
+          Using multiple require statements is cheaper than using && multiple check combinations.  There are
+          more advantages, such as easier to read code and better coverage reports.                         
+                                                                                                            
+          101┆ require((_testingPrice >= _lower && _testingPrice <= _upper), "Not inside");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          103┆ require((_testingPrice <= _lower || _testingPrice >= _upper), "Not outside");
+   
+     ❱ solidity.performance.use-nested-if
+          Using nested is cheaper than using && multiple check combinations.  There are more advantages, such
+          as easier to read code and better coverage reports.                                                
+                                                                                                             
+          110┆ if(iVADER(VADER).emitting() && iROUTER(ROUTER).isCurated(token)){
+          111┆     uint _baseAmount = iPOOLS(POOLS).getBaseAmount(token);
+          112┆     if (iPOOLS(POOLS).isAsset(token)) {
+          113┆         uint _share = calcShare(_baseAmount, iPOOLS(POOLS).pooledUSDV(),
+               iROUTER(ROUTER).reserveUSDV());                                         
+          114┆         rewardShare = getReducedShare(_share, rewardReductionFactor);
+          115┆     } else if(iPOOLS(POOLS).isAnchor(token)) {
+          116┆         uint _share = calcShare(_baseAmount, iPOOLS(POOLS).pooledVADER(),
+               iROUTER(ROUTER).reserveVADER());                                         
+          117┆         rewardShare = getReducedShare(_share, rewardReductionFactor);
+          118┆     }
+          119┆ }
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          197┆ require((bp <= 10000) && (bp >= 0), "Must be correct BP");
+   
+     ❱ solidity.performance.use-multiple-require
+          Using multiple require statements is cheaper than using && multiple check combinations.  There are
+          more advantages, such as easier to read code and better coverage reports.                         
+                                                                                                            
+          197┆ require((bp <= 10000) && (bp >= 0), "Must be correct BP");
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+          253┆ numerator = (part1 - part2);
+            ⋮┆----------------------------------------
+          255┆ numerator = (part2 - part1);
+            ⋮┆----------------------------------------
+          258┆ return one - (numerator * one) / denominator; // Multiply by 10**18
+            ⋮┆----------------------------------------
+          273┆ uint numerator = ((part1 * part2) - part3) + part4;
+   
+     ❱ solidity.performance.use-nested-if
+          Using nested is cheaper than using && multiple check combinations.  There are more advantages, such
+          as easier to read code and better coverage reports.                                                
+                                                                                                             
+          278┆ if(B0 > 0 && T1 > 0){
+          279┆     uint _depositValue = B0 + (T0 * B1) / T1; // B0+(T0*B1/T1)
+          280┆     uint _redemptionValue = B1 + (T1 * B1) / T1; // B1+(T1*B1/T1)
+          281┆     if(_redemptionValue <= _depositValue){
+          282┆         coverage = (_depositValue - _redemptionValue);
+          283┆     }
+          284┆ }
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+          282┆ coverage = (_depositValue - _redemptionValue);
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          290┆ for(uint i = 0; i < l; i++){
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          290┆ for(uint i = 0; i < l; i++){
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          291┆ for(uint j = i+1; j < l; j++){
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          291┆ for(uint j = i+1; j < l; j++){
+   
+     ❱ solidity.performance.non-optimal-variables-swap
+          Consider swapping variables using `(array[i], array[j]) = (array[j], array[i])` to save gas
+                                                                                                     
+          293┆ uint temp = array[i];
+          294┆ array[i] = array[j];
+          295┆ array[j] = temp;
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 28 (28 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 28 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading
+
+📢 Too many findings? Try Semgrep Pro for more powerful queries and less noise.
+   See https://sg.run/false-positives.

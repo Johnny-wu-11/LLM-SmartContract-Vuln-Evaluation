@@ -1,0 +1,144 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 22 Code Findings │
+└──────────────────┘
+                  
+    /sb/Sparta.sol
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           44┆ require(msg.sender == DAO || msg.sender == DEPLOYER, "!DAO");
+   
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           50┆ constructor(address _baseV1) {
+           51┆     _100m = 100 * 10**6 * 10**decimals; // 100m
+           52┆     maxSupply = 300 * 10**6 * 10**decimals; // 300m
+           53┆     emissionCurve = 2048;
+           54┆     BASEv1 = _baseV1;
+           55┆     secondsPerEra =  800; // 1 day
+           56┆     nextEraTime = block.timestamp + secondsPerEra;
+           57┆     DEPLOYER = msg.sender;
+           58┆     _balances[msg.sender] = 1 * 10**6 * 10**decimals;
+           59┆     totalSupply = 1 * 10**6 * 10**decimals;
+             [hid 2 additional lines, adjust with --max-lines-per-finding] 
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           86┆ require(currentAllowance >= subtractedValue, "allowance err");
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+           87┆ _approve(msg.sender, spender, currentAllowance - subtractedValue);
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           92┆ require(owner != address(0), "sender");
+            ⋮┆----------------------------------------
+           93┆ require(spender != address(0), "spender");
+            ⋮┆----------------------------------------
+          106┆ require(currentAllowance >= amount, "allowance err");
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+          107┆ _approve(sender, msg.sender, currentAllowance - amount);
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          129┆ require(sender != address(0), "transfer err");
+            ⋮┆----------------------------------------
+          130┆ require(recipient != address(this), "recipient"); // Don't allow transfers here
+            ⋮┆----------------------------------------
+          132┆ require(senderBalance >= amount, "balance err");
+            ⋮┆----------------------------------------
+          146┆ require(account != address(0), "address err");
+   
+     ❱ solidity.performance.inefficient-state-variable-increment
+          <x> += <y> costs more gas than <x> = <x> + <y> for state variables.
+                                                                             
+          147┆ totalSupply += amount;
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          148┆ require(totalSupply <= maxSupply, "Maxxed");
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+          157┆ uint256 decreasedAllowance = allowance(account, msg.sender) - (amount);
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          162┆ require(account != address(0), "address err");
+            ⋮┆----------------------------------------
+          163┆ require(_balances[account] >= amount, "balance err");
+            ⋮┆----------------------------------------
+          185┆ require(!savedSpartans, 'spartans saved'); // only one time
+            ⋮┆----------------------------------------
+          191┆ require(newDAO != address(0), "address err");
+   
+     ❱ solidity.performance.use-nested-if
+          Using nested is cheaper than using && multiple check combinations.  There are more advantages, such
+          as easier to read code and better coverage reports.                                                
+                                                                                                             
+          206┆ if ((block.timestamp >= nextEraTime) && emitting) {    // If new Era and allowed to emit
+          207┆     nextEraTime = block.timestamp + secondsPerEra; // Set next Era time
+          208┆     uint256 _emission = getDailyEmission(); // Get Daily Dmission
+          209┆     _mint(RESERVE(), _emission); // Mint to the RESERVE Address
+          210┆     feeOnTransfer = iUTILS(UTILS()).getFeeOnTransfer(totalSupply, maxSupply);
+          211┆     if (feeOnTransfer > 500) { // Ensure utils isn't ever rogue
+          212┆         feeOnTransfer = 500; // Max 5% FoT
+          213┆     }
+          214┆     emit NewEra(nextEraTime, _emission); // Emit Event
+          215┆ }
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          237┆ require(amount <= 5 * 10**6 * 10**decimals, '!5m'); //5m at a time
+   
+     ❱ solidity.performance.use-nested-if
+          Using nested is cheaper than using && multiple check combinations.  There are more advantages, such
+          as easier to read code and better coverage reports.                                                
+                                                                                                             
+          238┆ if(minting && (totalSupply <=  150 * 10**6 * 10**decimals)){ // Only can mint up to 150m
+          239┆      _mint(recipient, amount);
+          240┆ }
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 22 (22 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 22 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

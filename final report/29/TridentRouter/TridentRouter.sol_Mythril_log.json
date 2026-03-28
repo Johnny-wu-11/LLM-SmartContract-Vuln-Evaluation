@@ -1,0 +1,15 @@
+{
+    "tool":  "mythril",
+    "contract":  "TridentRouter.sol",
+    "source":  "C:\\Users\\ASUS\\Desktop\\blockchain\\Web3Bugs-main\\contracts\\29\\trident\\contracts\\TridentRouter.sol",
+    "docker_image":  "mythril/myth:latest",
+    "command":  "docker run --rm -v \"C:\\Users\\ASUS\\Desktop\\blockchain\\Web3Bugs-main\\contracts\\29\\trident\\contracts:/src\" -w /src mythril/myth:latest analyze TridentRouter.sol --solv 0.8.17 --solc-args \"--allow-paths /src --base-path /src\" --execution-timeout 180 --solver-timeout 10000 --create-timeout 90 --parallel-solving -o jsonv2",
+    "started_at":  "2026-03-28T02:25:38.4906510+08:00",
+    "finished_at":  "2026-03-28T02:29:20.6621983+08:00",
+    "exit_code":  0,
+    "issue_count":  0,
+    "status":  "success",
+    "notes":  [
+                  "Analysis executed directly against the local trident project source tree."
+              ]
+}

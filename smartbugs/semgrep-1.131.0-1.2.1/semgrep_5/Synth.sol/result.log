@@ -1,0 +1,85 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 11 Code Findings │
+└──────────────────┘
+                 
+    /sb/Synth.sol
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           24┆ require(msg.sender == FACTORY, "!FACTORY");
+   
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           29┆ constructor(address _token){
+           30┆     TOKEN = _token;
+           31┆     FACTORY = msg.sender;
+           32┆     string memory synthName = " - vSynth";
+           33┆     string memory synthSymbol = ".v";
+           34┆     name = string(abi.encodePacked(iERC20(_token).name(), synthName));
+           35┆     symbol = string(abi.encodePacked(iERC20(_token).symbol(), synthSymbol));
+           36┆ }
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           57┆ require(owner != address(0), "sender");
+            ⋮┆----------------------------------------
+           58┆ require(spender != address(0), "spender");
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+           66┆ _approve(sender, msg.sender, _allowances[sender][msg.sender] - amount);
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           79┆ require(sender != address(0), "sender");
+            ⋮┆----------------------------------------
+           80┆ require(recipient != address(this), "recipient");
+            ⋮┆----------------------------------------
+           87┆ require(account != address(0), "recipient");
+   
+     ❱ solidity.performance.inefficient-state-variable-increment
+          <x> += <y> costs more gas than <x> = <x> + <y> for state variables.
+                                                                             
+           88┆ totalSupply += amount;
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+           97┆ uint decreasedAllowance = allowance(account, msg.sender) - amount;
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          102┆ require(account != address(0), "address err");
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 11 (11 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 11 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

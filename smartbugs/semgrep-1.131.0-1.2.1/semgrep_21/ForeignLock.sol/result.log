@@ -1,0 +1,40 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                  
+                  
+┌────────────────┐
+│ 1 Code Finding │
+└────────────────┘
+                       
+    /sb/ForeignLock.sol
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           16┆ constructor(
+           17┆   string memory _name,
+           18┆   string memory _symbol,
+           19┆   IERC20 _sherlock,
+           20┆   IERC20 _underlying
+           21┆ ) NativeLock(_name, _symbol, _sherlock) {
+           22┆   underlying = _underlying;
+           23┆ }
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 1 (1 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 1 finding.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

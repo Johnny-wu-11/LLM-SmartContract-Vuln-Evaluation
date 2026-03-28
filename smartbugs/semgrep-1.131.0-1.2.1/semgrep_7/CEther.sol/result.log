@@ -1,0 +1,65 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                   
+                   
+┌─────────────────┐
+│ 6 Code Findings │
+└─────────────────┘
+                  
+    /sb/CEther.sol
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           23┆ constructor(ComptrollerInterface comptroller_,
+           24┆             InterestRateModel interestRateModel_,
+           25┆             uint initialExchangeRateMantissa_,
+           26┆             string memory name_,
+           27┆             string memory symbol_,
+           28┆             uint8 decimals_,
+           29┆             address payable admin_) public {
+           30┆     // Creator of the contract is admin during initialization
+           31┆     admin = msg.sender;
+           32┆
+             [hid 5 additional lines, adjust with --max-lines-per-finding] 
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          140┆ require(msg.sender == from, "sender mismatch");
+            ⋮┆----------------------------------------
+          141┆ require(msg.value == amount, "value mismatch");
+            ⋮┆----------------------------------------
+          147┆ require(success, "doTransferOut failed");
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          158┆ for (i = 0; i < bytes(message).length; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          158┆ for (i = 0; i < bytes(message).length; i++) {
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 6 (6 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 6 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

@@ -1,0 +1,18 @@
+A new version of Solhint is available: 6.1.0
+Please consider updating your Solhint package.
+/sb/YaxisToken.sol:2:1: Compiler version 0.6.12 does not satisfy the ^0.8.24 semver requirement [Error/compiler-version]
+/sb/YaxisToken.sol:4:1: global import of path ../vendor/LinkToken/token/LinkERC20.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/YaxisToken.sol:4:1: Import in /sb/YaxisToken.sol doesn't exist in: ../vendor/LinkToken/token/LinkERC20.sol [Warning/import-path-check]
+/sb/YaxisToken.sol:5:1: global import of path ../vendor/LinkToken/ERC677Token.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/YaxisToken.sol:5:1: Import in /sb/YaxisToken.sol doesn't exist in: ../vendor/LinkToken/ERC677Token.sol [Warning/import-path-check]
+/sb/YaxisToken.sol:14:1: Missing @title tag in contract 'YaxisToken' [Warning/use-natspec]
+/sb/YaxisToken.sol:14:1: Missing @author tag in contract 'YaxisToken' [Warning/use-natspec]
+/sb/YaxisToken.sol:19:5: Missing @notice tag in function '<anonymous>' [Warning/use-natspec]
+/sb/YaxisToken.sol:52:5: Missing @notice tag in function '_transfer' [Warning/use-natspec]
+/sb/YaxisToken.sol:52:5: Missing @param tag in function '_transfer' [Warning/use-natspec]
+/sb/YaxisToken.sol:52:5: Mismatch in @param names for function '_transfer'. Expected: [sender, recipient, amount], Found: [] [Warning/use-natspec]
+/sb/YaxisToken.sol:74:5: Missing @notice tag in function '_approve' [Warning/use-natspec]
+/sb/YaxisToken.sol:74:5: Missing @param tag in function '_approve' [Warning/use-natspec]
+/sb/YaxisToken.sol:74:5: Mismatch in @param names for function '_approve'. Expected: [owner, spender, amount], Found: [] [Warning/use-natspec]
+
+14 problem/s (1 error/s, 13 warning/s)

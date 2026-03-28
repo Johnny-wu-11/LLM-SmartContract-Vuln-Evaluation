@@ -1,0 +1,461 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 98 Code Findings │
+└──────────────────┘
+                       
+    /sb/RCOrderbook.sol
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           89┆ require(
+           90┆     treasury.checkPermission(MARKET, msgSender()),
+           91┆     "Not authorised"
+           92┆ );
+            ⋮┆----------------------------------------
+           97┆ require(
+           98┆     treasury.checkPermission(UBER_OWNER, msgSender()),
+           99┆     "Extremely Verboten"
+          100┆ );
+            ⋮┆----------------------------------------
+          105┆ require(
+          106┆     treasury.checkPermission(FACTORY, msgSender()),
+          107┆     "Extremely Verboten"
+          108┆ );
+   
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+          136┆ constructor(IRCTreasury _treasury) {
+          137┆     treasury = _treasury;
+          138┆ }
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          203┆ for (uint64 i = 0; i < _cardCount; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          203┆ for (uint64 i = 0; i < _cardCount; i++) {
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          212┆ index[_market][_market][i] = user[_market].length;
+            ⋮┆----------------------------------------
+          212┆ index[_market][_market][i] = user[_market].length;
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          212┆ index[_market][_market][i] = user[_market].length;
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          213┆ user[_market].push(_newBid);
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          248┆ require(
+          249┆     user[_prevUserAddress][index[_prevUserAddress][_market][_card]]
+          250┆         .price >= _price,
+          251┆     "Location too low"
+          252┆ );
+            ⋮┆----------------------------------------
+          254┆ require(
+          255┆     bidExists(_prevUserAddress, _market, _card),
+          256┆     "Invalid starting location"
+          257┆ );
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          308┆ i < maxSearchIterations
+            ⋮┆----------------------------------------
+          311┆ _nextUser = user[_prevUser.next][
+            ⋮┆----------------------------------------
+          312┆ index[_prevUser.next][_market][_card]
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          315┆ i++;
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          317┆ require(i < maxSearchIterations, "Position not found");
+   
+     ❱ solidity.performance.use-nested-if
+          Using nested is cheaper than using && multiple check combinations.  There are more advantages, such
+          as easier to read code and better coverage reports.                                                
+                                                                                                             
+          322┆ if (_prevUser.price != 0 && _prevUser.price < _price) {
+          323┆     _price = _prevUser.price;
+          324┆ }
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          375┆ nonce++;
+            ⋮┆----------------------------------------
+          442┆ nonce++;
+   
+     ❱ solidity.performance.use-nested-if
+          Using nested is cheaper than using && multiple check combinations.  There are more advantages, such
+          as easier to read code and better coverage reports.                                                
+                                                                                                             
+          447┆ if (_wasOwner && _currUser.prev == _market) {
+          448┆     // if owner before and after, update the price difference
+          449┆     transferCard(_market, _card, _user, _user, _currUser.price);
+          450┆     treasury.updateRentalRate(
+          451┆         _user,
+          452┆         _user,
+          453┆         _price,
+          454┆         _currUser.price,
+          455┆         block.timestamp
+          456┆     );
+             [hid 30 additional lines, adjust with --max-lines-per-finding] 
+          457┆ } else if (_wasOwner && _currUser.prev != _market) {
+          458┆     // if owner before and not after, remove the old price
+          459┆     address _newOwner = user[_market][index[_market][_market][_card]]
+          460┆         .next;
+          461┆     uint256 _newPrice = user[_newOwner][
+          462┆         index[_newOwner][_market][_card]
+          463┆     ].price;
+          464┆     treasury.updateRentalRate(
+          465┆         _user,
+          466┆         _newOwner,
+             [hid 20 additional lines, adjust with --max-lines-per-finding] 
+          472┆ } else if (!_wasOwner && _currUser.prev == _market) {
+          473┆     // if not owner before but is owner after, add new price
+          474┆     address _oldOwner = _currUser.next;
+          475┆     uint256 _oldPrice = user[_oldOwner][
+          476┆         index[_oldOwner][_market][_card]
+          477┆     ].price;
+          478┆     treasury.updateRentalRate(
+          479┆         _oldOwner,
+          480┆         _user,
+          481┆         _oldPrice,
+             [hid 5 additional lines, adjust with --max-lines-per-finding] 
+          536┆ if (user[_user].length != 0 && _index != _lastRecord) {
+          537┆     index[_user][user[_user][_index].market][
+          538┆         user[_user][_index].card
+          539┆     ] = _index;
+          540┆ }
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          581┆ _loopCounter++;
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          615┆ require(treasury.isForeclosed(_user), "User must be foreclosed");
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+          620┆ _limit = i - maxDeletions;
+   
+     ❱ solidity.performance.use-prefix-decrement-not-postfix
+          Consider using the prefix decrement expression whenever the return value is not needed. The prefix
+          decrement expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          624┆ i--;
+            ⋮┆----------------------------------------
+          652┆ i--;
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          716┆ userClosedMarketIndex[_user] < closedMarkets.length &&
+            ⋮┆----------------------------------------
+          716┆ userClosedMarketIndex[_user] < closedMarkets.length &&
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          716┆ userClosedMarketIndex[_user] < closedMarkets.length &&
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          717┆ _loopCounter + _cardCount < maxDeletions
+            ⋮┆----------------------------------------
+          719┆ _market = closedMarkets[userClosedMarketIndex[_user]];
+            ⋮┆----------------------------------------
+          719┆ _market = closedMarkets[userClosedMarketIndex[_user]];
+            ⋮┆----------------------------------------
+          721┆ _cardCount = market[_market].cardCount;
+   
+     ❱ solidity.performance.use-prefix-decrement-not-postfix
+          Consider using the prefix decrement expression whenever the return value is not needed. The prefix
+          decrement expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          724┆ i--;
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          726┆ uint256 _index = index[_user][_market][i];
+            ⋮┆----------------------------------------
+          728┆ uint256 _price = user[_user][_index].price;
+            ⋮┆----------------------------------------
+          731┆ address _tempPrev = user[_user][_index].prev;
+            ⋮┆----------------------------------------
+          732┆ address _tempNext = user[_user][_index].next;
+            ⋮┆----------------------------------------
+          734┆ user[_tempNext][index[_tempNext][_market][i]]
+            ⋮┆----------------------------------------
+          734┆ user[_tempNext][index[_tempNext][_market][i]]
+            ⋮┆----------------------------------------
+          736┆ user[_tempPrev][index[_tempPrev][_market][i]]
+            ⋮┆----------------------------------------
+          736┆ user[_tempPrev][index[_tempPrev][_market][i]]
+            ⋮┆----------------------------------------
+          739┆ uint256 _lastRecord = user[_user].length - 1;
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          739┆ uint256 _lastRecord = user[_user].length - 1;
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+          739┆ uint256 _lastRecord = user[_user].length - 1;
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          743┆ user[_user][_index] = user[_user][_lastRecord];
+            ⋮┆----------------------------------------
+          743┆ user[_user][_index] = user[_user][_lastRecord];
+            ⋮┆----------------------------------------
+          745┆ user[_user].pop();
+            ⋮┆----------------------------------------
+          748┆ index[_user][_market][i] = 0;
+   
+     ❱ solidity.performance.use-nested-if
+          Using nested is cheaper than using && multiple check combinations.  There are more advantages, such
+          as easier to read code and better coverage reports.                                                
+                                                                                                             
+          749┆ if (user[_user].length != 0 && _index != _lastRecord) {
+          750┆     index[_user][user[_user][_index].market][
+          751┆         user[_user][_index].card
+          752┆     ] = _index;
+          753┆ }
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          749┆ if (user[_user].length != 0 && _index != _lastRecord) {
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          749┆ if (user[_user].length != 0 && _index != _lastRecord) {
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          750┆ index[_user][user[_user][_index].market][
+            ⋮┆----------------------------------------
+          750┆ index[_user][user[_user][_index].market][
+            ⋮┆----------------------------------------
+          751┆ user[_user][_index].card
+            ⋮┆----------------------------------------
+          755┆ treasury.decreaseBidRate(_user, _price);
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          757┆ _loopCounter++;
+            ⋮┆----------------------------------------
+          761┆ _subLoopCounter++;
+            ⋮┆----------------------------------------
+          764┆ _loopCounter++;
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          768┆ userClosedMarketIndex[_user]++;
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          768┆ userClosedMarketIndex[_user]++;
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          776┆ while (i < cleaningLoops && user[address(this)].length > 0) {
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          776┆ while (i < cleaningLoops && user[address(this)].length > 0) {
+            ⋮┆----------------------------------------
+          776┆ while (i < cleaningLoops && user[address(this)].length > 0) {
+            ⋮┆----------------------------------------
+          777┆ uint256 _pileHeight = user[address(this)].length - 1;
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          777┆ uint256 _pileHeight = user[address(this)].length - 1;
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          778┆ address _market = user[address(this)][_pileHeight].market;
+            ⋮┆----------------------------------------
+          779┆ uint256 _card = user[address(this)][_pileHeight].card;
+            ⋮┆----------------------------------------
+          780┆ address _user = user[address(this)][_pileHeight].next;
+            ⋮┆----------------------------------------
+          782┆ if (user[address(this)][_pileHeight].next == address(this)) {
+            ⋮┆----------------------------------------
+          783┆ index[address(this)][_market][_card] = 0;
+            ⋮┆----------------------------------------
+          784┆ user[address(this)].pop();
+            ⋮┆----------------------------------------
+          786┆ uint256 _index = index[_user][_market][_card];
+            ⋮┆----------------------------------------
+          787┆ address _tempNext = user[_user][_index].next;
+            ⋮┆----------------------------------------
+          789┆ treasury.decreaseBidRate(_user, user[_user][_index].price);
+            ⋮┆----------------------------------------
+          789┆ treasury.decreaseBidRate(_user, user[_user][_index].price);
+            ⋮┆----------------------------------------
+          792┆ user[address(this)][_pileHeight].next = _tempNext;
+            ⋮┆----------------------------------------
+          793┆ user[_tempNext][index[_tempNext][_market][_card]]
+            ⋮┆----------------------------------------
+          793┆ user[_tempNext][index[_tempNext][_market][_card]]
+            ⋮┆----------------------------------------
+          797┆ uint256 _lastRecord = user[_user].length - 1;
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          797┆ uint256 _lastRecord = user[_user].length - 1;
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          800┆ user[_user][_index] = user[_user][_lastRecord];
+            ⋮┆----------------------------------------
+          800┆ user[_user][_index] = user[_user][_lastRecord];
+            ⋮┆----------------------------------------
+          802┆ user[_user].pop();
+            ⋮┆----------------------------------------
+          805┆ index[_user][_market][_card] = 0;
+   
+     ❱ solidity.performance.use-nested-if
+          Using nested is cheaper than using && multiple check combinations.  There are more advantages, such
+          as easier to read code and better coverage reports.                                                
+                                                                                                             
+          806┆ if (user[_user].length != 0 && _index != _lastRecord) {
+          807┆     index[_user][user[_user][_index].market][
+          808┆         user[_user][_index].card
+          809┆     ] = _index;
+          810┆ }
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          806┆ if (user[_user].length != 0 && _index != _lastRecord) {
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          806┆ if (user[_user].length != 0 && _index != _lastRecord) {
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          807┆ index[_user][user[_user][_index].market][
+            ⋮┆----------------------------------------
+          807┆ index[_user][user[_user][_index].market][
+            ⋮┆----------------------------------------
+          808┆ user[_user][_index].card
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          812┆ i++;
+   
+     ❱ solidity.performance.use-nested-if
+          Using nested is cheaper than using && multiple check combinations.  There are more advantages, such
+          as easier to read code and better coverage reports.                                                
+                                                                                                             
+          837┆ if (
+          838┆     user[_user][0].market == _market &&
+          839┆     user[_user][0].card == _card
+          840┆ ) {
+          841┆     return true;
+          842┆ }
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          900┆ require(bidExists(_user, _market, _card), "Bid doesn't exist");
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+          910┆ user[_user][index[_user][msgSender()][_card]].timeHeldLimit -= SafeCast
+          911┆     .toUint64(_timeToReduce);
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 98 (98 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 98 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading
+
+📢 Too many findings? Try Semgrep Pro for more powerful queries and less noise.
+   See https://sg.run/false-positives.

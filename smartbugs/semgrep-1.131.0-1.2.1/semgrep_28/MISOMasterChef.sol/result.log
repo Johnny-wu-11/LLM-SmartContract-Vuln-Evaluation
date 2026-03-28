@@ -1,0 +1,120 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 14 Code Findings │
+└──────────────────┘
+                          
+    /sb/MISOMasterChef.sol
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          164┆ require(
+          165┆     hasAdminRole(msg.sender),
+          166┆     "MasterChef.setBonus: Sender must be admin"
+          167┆ );
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          164┆ require(
+          165┆     hasAdminRole(msg.sender),
+          166┆     "MasterChef.setBonus: Sender must be admin"
+          167┆ );
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          180┆ require(
+          181┆     hasAdminRole(msg.sender),
+          182┆     "MasterChef.addToken: Sender must be admin"
+          183┆ );
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          180┆ require(
+          181┆     hasAdminRole(msg.sender),
+          182┆     "MasterChef.addToken: Sender must be admin"
+          183┆ );
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          199┆ require(
+          200┆     hasOperatorRole(msg.sender) ,
+          201┆     "MasterChef.set: Sender must be admin"
+          202┆ );
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          199┆ require(
+          200┆     hasOperatorRole(msg.sender) ,
+          201┆     "MasterChef.set: Sender must be admin"
+          202┆ );
+   
+     ❱ solidity.performance.use-nested-if
+          Using nested is cheaper than using && multiple check combinations.  There are more advantages, such
+          as easier to read code and better coverage reports.                                                
+                                                                                                             
+          240┆ if (block.number > pool.lastRewardBlock && lpSupply != 0) {
+          241┆     uint256 multiplier = getMultiplier(pool.lastRewardBlock, block.number);
+          242┆     uint256 rewardsAccum =                                                
+               multiplier.mul(rewardsPerBlock).mul(pool.allocPoint).div(totalAllocPoint);
+          243┆     accRewardsPerShare = accRewardsPerShare.add(rewardsAccum.mul(1e12).div(lpSupply));
+          244┆ }
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          251┆ for (uint256 pid = 0; pid < length; ++pid) {
+   
+    ❯❱ solidity.security.exact-balance-check
+          Testing the balance of an account as a basis for some action has risks associated with unexpected 
+          receipt of ether or another token, including tokens deliberately transfered to cause such tests to
+          fail, as an MEV attack.                                                                           
+                                                                                                            
+          263┆ if (lpSupply == 0) {
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          301┆ require(user.amount >= _amount, "withdraw: not good");
+            ⋮┆----------------------------------------
+          364┆ require(msg.sender == devaddr, "dev: wut?");
+            ⋮┆----------------------------------------
+          365┆ require(tips > 0, "dev: broke");
+            ⋮┆----------------------------------------
+          374┆ require(msg.sender == devaddr, "dev: wut?");
+            ⋮┆----------------------------------------
+          380┆ require(msg.sender == devaddr, "dev: wut?");
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 14 (14 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 14 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

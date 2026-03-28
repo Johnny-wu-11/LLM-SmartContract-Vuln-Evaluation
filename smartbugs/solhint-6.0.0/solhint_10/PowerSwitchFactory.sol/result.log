@@ -1,0 +1,24 @@
+A new version of Solhint is available: 6.0.3
+Please consider updating your Solhint package.
+/sb/PowerSwitchFactory.sol:2:1: Compiler version 0.7.6 does not satisfy the ^0.8.24 semver requirement [Error/compiler-version]
+/sb/PowerSwitchFactory.sol:4:1: Import in /sb/PowerSwitchFactory.sol doesn't exist in: @openzeppelin/contracts/utils/EnumerableSet.sol [Warning/import-path-check]
+/sb/PowerSwitchFactory.sol:4:9: imported name EnumerableSet is not used [Warning/no-unused-import]
+/sb/PowerSwitchFactory.sol:6:1: Import in /sb/PowerSwitchFactory.sol doesn't exist in: ./factory/IFactory.sol [Warning/import-path-check]
+/sb/PowerSwitchFactory.sol:7:1: Import in /sb/PowerSwitchFactory.sol doesn't exist in: ./factory/InstanceRegistry.sol [Warning/import-path-check]
+/sb/PowerSwitchFactory.sol:8:1: Import in /sb/PowerSwitchFactory.sol doesn't exist in: ./PowerSwitch.sol [Warning/import-path-check]
+/sb/PowerSwitchFactory.sol:11:1: Missing @author tag in contract 'PowerSwitchFactory' [Warning/use-natspec]
+/sb/PowerSwitchFactory.sol:11:1: Missing @notice tag in contract 'PowerSwitchFactory' [Warning/use-natspec]
+/sb/PowerSwitchFactory.sol:12:5: Missing @notice tag in function 'create' [Warning/use-natspec]
+/sb/PowerSwitchFactory.sol:12:5: Missing @param tag in function 'create' [Warning/use-natspec]
+/sb/PowerSwitchFactory.sol:12:5: Mismatch in @param names for function 'create'. Expected: [args], Found: [] [Warning/use-natspec]
+/sb/PowerSwitchFactory.sol:12:5: Missing @return tag in function 'create' [Warning/use-natspec]
+/sb/PowerSwitchFactory.sol:12:5: Mismatch in @return count for function 'create'. Expected: 1, Found: 0 [Warning/use-natspec]
+/sb/PowerSwitchFactory.sol:19:5: Missing @notice tag in function 'create2' [Warning/use-natspec]
+/sb/PowerSwitchFactory.sol:19:5: Missing @param tag in function 'create2' [Warning/use-natspec]
+/sb/PowerSwitchFactory.sol:19:5: Mismatch in @param count for function 'create2'. Expected: 2, Found: 0 [Warning/use-natspec]
+/sb/PowerSwitchFactory.sol:19:5: Missing @return tag in function 'create2' [Warning/use-natspec]
+/sb/PowerSwitchFactory.sol:19:5: Mismatch in @return count for function 'create2'. Expected: 1, Found: 0 [Warning/use-natspec]
+/sb/PowerSwitchFactory.sol:20:9: Error message for revert is too long: 35 counted / 32 allowed [Warning/reason-string]
+/sb/PowerSwitchFactory.sol:20:9: GC: String exceeds 32 bytes [Warning/gas-small-strings]
+
+20 problem/s (1 error/s, 19 warning/s)

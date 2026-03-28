@@ -1,0 +1,32 @@
+{
+  "title": "Mythril Final Audit Report",
+  "tool": "Mythril",
+  "status": "Completed",
+  "reduction_summary": {
+    "original_findings": 1,
+    "retained_findings_after_ai_review": 1,
+    "filtered_findings": 0,
+    "filtering_rate": "0.00%"
+  },
+  "adjudication_summary": "No findings were removed. Report is based directly on Mythril normalized findings.",
+  "engine_error": null,
+  "findings": {
+    "confirmed": [
+      {
+        "id": "swc-1",
+        "title": "Dependence on predictable environment variable",
+        "swc_id": null,
+        "severity": "Low",
+        "contract": "Vault",
+        "function": "calcCurrentReward(address,address)",
+        "line": 372,
+        "code": "if",
+        "description": "A control flow decision is made based on The block.timestamp environment variable.\nThe block.timestamp environment variable is used to determine a control flow decision. Note that the values of variables like coinbase, gaslimit, block number and timestamp are predictable and can be manipulated by a malicious miner. Also keep in mind that attackers know hashes of earlier blocks. Don't use any of those environment variables as sources of randomness and be aware that use of these variables introduces a certain level of trust into miners."
+      }
+    ],
+    "plausible_but_unverified": [],
+    "unsupported_or_false_positive": []
+  },
+  "raw_findings_count": 1,
+  "raw_findings_preserved": true
+}

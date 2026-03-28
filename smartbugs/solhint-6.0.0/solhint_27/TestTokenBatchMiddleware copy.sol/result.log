@@ -1,0 +1,18 @@
+A new version of Solhint is available: 6.1.0
+Please consider updating your Solhint package.
+/sb/TestTokenBatchMiddleware copy.sol:1:1: Compiler version ^0.6.6 does not satisfy the ^0.8.24 semver requirement [Error/compiler-version]
+/sb/TestTokenBatchMiddleware copy.sol:3:1: global import of path @openzeppelin/contracts/access/Ownable.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/TestTokenBatchMiddleware copy.sol:3:1: Import in /sb/TestTokenBatchMiddleware copy.sol doesn't exist in: @openzeppelin/contracts/access/Ownable.sol [Warning/import-path-check]
+/sb/TestTokenBatchMiddleware copy.sol:4:1: global import of path @openzeppelin/contracts/token/ERC20/IERC20.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/TestTokenBatchMiddleware copy.sol:4:1: Import in /sb/TestTokenBatchMiddleware copy.sol doesn't exist in: @openzeppelin/contracts/token/ERC20/IERC20.sol [Warning/import-path-check]
+/sb/TestTokenBatchMiddleware copy.sol:5:1: global import of path @openzeppelin/contracts/token/ERC20/SafeERC20.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/TestTokenBatchMiddleware copy.sol:5:1: Import in /sb/TestTokenBatchMiddleware copy.sol doesn't exist in: @openzeppelin/contracts/token/ERC20/SafeERC20.sol [Warning/import-path-check]
+/sb/TestTokenBatchMiddleware copy.sol:7:1: Missing @title tag in contract 'TestTokenBatchMiddleware' [Warning/use-natspec]
+/sb/TestTokenBatchMiddleware copy.sol:7:1: Missing @author tag in contract 'TestTokenBatchMiddleware' [Warning/use-natspec]
+/sb/TestTokenBatchMiddleware copy.sol:7:1: Missing @notice tag in contract 'TestTokenBatchMiddleware' [Warning/use-natspec]
+/sb/TestTokenBatchMiddleware copy.sol:10:2: Missing @notice tag in function 'submitBatch' [Warning/use-natspec]
+/sb/TestTokenBatchMiddleware copy.sol:10:2: Missing @param tag in function 'submitBatch' [Warning/use-natspec]
+/sb/TestTokenBatchMiddleware copy.sol:10:2: Mismatch in @param names for function 'submitBatch'. Expected: [_amounts, _destinations, _tokenContract], Found: [] [Warning/use-natspec]
+/sb/TestTokenBatchMiddleware copy.sol:16:44: GC: For [ i ] variable, increment/decrement by 1 using: [ ++variable ] to save gas [Warning/gas-increment-by-one]
+
+14 problem/s (1 error/s, 13 warning/s)

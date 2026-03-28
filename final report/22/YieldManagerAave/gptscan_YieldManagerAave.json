@@ -1,0 +1,31 @@
+﻿{
+    "source":  "GPTScan",
+    "contract":  "YieldManagerAave",
+    "source_file":  "C:\\Users\\ASUS\\Desktop\\blockchain\\output_all\\GPTScan_output\\test_22.json",
+    "match_count":  1,
+    "results":  [
+                    {
+                        "code":  "unauthorized-transfer",
+                        "severity":  "HIGH",
+                        "title":  "MWE-207: Unauthorized Transfer",
+                        "description":  "The contract allows transferring tokens from an address different from the message sender without checking the approval of the address owner.",
+                        "recommendation":  "Check the business logic about the transfer and add the approval check if necessary.",
+                        "affectedFiles":  [
+                                              {
+                                                  "filePath":  "/Users/mac/Web3Bugs/contracts/22/contracts/contracts/YieldManagerAave.sol",
+                                                  "range":  {
+                                                                "start":  {
+                                                                              "line":  131
+                                                                          },
+                                                                "end":  {
+                                                                            "line":  143
+                                                                        }
+                                                            },
+                                                  "highlights":  [
+
+                                                                 ]
+                                              }
+                                          ]
+                    }
+                ]
+}

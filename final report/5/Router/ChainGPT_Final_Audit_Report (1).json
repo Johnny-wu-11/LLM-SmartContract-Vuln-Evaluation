@@ -1,0 +1,26 @@
+{
+  "title": "ChainGPT Final Audit Report",
+  "tool": "ChainGPT",
+  "status": "Completed",
+  "reduction_summary": {
+    "original_findings": 0,
+    "retained_findings_after_ai_review": 6,
+    "filtered_findings": 0,
+    "filtering_rate": "0.00%"
+  },
+  "adjudication_summary": "The findings were adjudicated based on typical relevance and evidence strength. 'Unchecked External Calls' and 'Lack of Access Control' are confirmed as they are evident risks. 'Reentrancy Vulnerability', 'Denial of Service (DoS)', and 'Timestamp Dependence' are plausible but require further verification. 'Integer Overflow/Underflow' is considered unsupported due to Solidity 0.8.x's built-in checks reducing such risks.",
+  "findings": {
+    "confirmed": [
+      "Unchecked External Calls",
+      "Lack of Access Control"
+    ],
+    "plausible_but_unverified": [
+      "Reentrancy Vulnerability",
+      "Denial of Service (DoS)",
+      "Timestamp Dependence"
+    ],
+    "unsupported_or_false_positive": [
+      "Integer Overflow/Underflow"
+    ]
+  }
+}

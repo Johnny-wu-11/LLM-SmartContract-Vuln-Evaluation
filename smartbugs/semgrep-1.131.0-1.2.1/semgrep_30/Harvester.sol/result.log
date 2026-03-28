@@ -1,0 +1,105 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 14 Code Findings │
+└──────────────────┘
+                     
+    /sb/Harvester.sol
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           68┆ constructor(
+           69┆     address _manager,
+           70┆     address _controller,
+           71┆     address _legacyController
+           72┆ )
+           73┆     public
+           74┆ {
+           75┆     manager = IManager(_manager);
+           76┆     controller = IController(_controller);
+           77┆     legacyController = ILegacyController(_legacyController);
+             [hid 1 additional lines, adjust with --max-lines-per-finding] 
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          122┆ for (uint i; i < tail; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          122┆ for (uint i; i < tail; i++) {
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          123┆ if (strategies[_vault].addresses[i] == _strategy) {
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          160┆ require(_slippage < ONE_HUNDRED_PERCENT, "!_slippage");
+            ⋮┆----------------------------------------
+          210┆ require(canHarvest(_vault), "!canHarvest");
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+          216┆ for (uint i; i < k-1; i++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          216┆ for (uint i; i < k-1; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          216┆ for (uint i; i < k-1; i++) {
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          217┆ _strategies[i] = strategies[_vault].addresses[i+1];
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+          219┆ _strategies[k-1] = strategy;
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          317┆ require(manager.allowedControllers(msg.sender), "!controller");
+            ⋮┆----------------------------------------
+          322┆ require(isHarvester[msg.sender], "!harvester");
+            ⋮┆----------------------------------------
+          327┆ require(msg.sender == manager.strategist(), "!strategist");
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 14 (14 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 14 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

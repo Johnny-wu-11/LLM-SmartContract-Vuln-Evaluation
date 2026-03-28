@@ -1,0 +1,15 @@
+A new version of Solhint is available: 6.0.3
+Please consider updating your Solhint package.
+/sb/RewardsToken.sol:2:1: Compiler version ^0.7.0 does not satisfy the ^0.8.24 semver requirement [Error/compiler-version]
+/sb/RewardsToken.sol:4:1: global import of path @openzeppelin/contracts/token/ERC20/ERC20.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/RewardsToken.sol:4:1: Import in /sb/RewardsToken.sol doesn't exist in: @openzeppelin/contracts/token/ERC20/ERC20.sol [Warning/import-path-check]
+/sb/RewardsToken.sol:6:1: Missing @title tag in contract 'RewardToken' [Warning/use-natspec]
+/sb/RewardsToken.sol:6:1: Missing @author tag in contract 'RewardToken' [Warning/use-natspec]
+/sb/RewardsToken.sol:6:1: Missing @notice tag in contract 'RewardToken' [Warning/use-natspec]
+/sb/RewardsToken.sol:7:5: Missing @notice tag in variable 'INITIAL_SUPPLY' [Warning/use-natspec]
+/sb/RewardsToken.sol:9:5: Missing @notice tag in function '<anonymous>' [Warning/use-natspec]
+/sb/RewardsToken.sol:9:5: Missing @param tag in function '<anonymous>' [Warning/use-natspec]
+/sb/RewardsToken.sol:9:5: Mismatch in @param names for function '<anonymous>'. Expected: [tokenHolder], Found: [] [Warning/use-natspec]
+/sb/RewardsToken.sol:9:5: Explicitly mark visibility in function (Set ignoreConstructors to true if using solidity >=0.7.0) [Warning/func-visibility]
+
+11 problem/s (1 error/s, 10 warning/s)

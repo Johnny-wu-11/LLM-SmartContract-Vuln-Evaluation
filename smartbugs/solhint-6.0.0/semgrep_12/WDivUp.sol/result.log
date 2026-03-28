@@ -1,0 +1,14 @@
+A new version of Solhint is available: 6.1.0
+Please consider updating your Solhint package.
+/sb/WDivUp.sol:2:1: Compiler version ^0.8.0 does not satisfy the ^0.8.24 semver requirement [Error/compiler-version]
+/sb/WDivUp.sol:5:1: Missing @title tag in contract 'WDivUp' [Warning/use-natspec]
+/sb/WDivUp.sol:5:1: Missing @author tag in contract 'WDivUp' [Warning/use-natspec]
+/sb/WDivUp.sol:5:1: Missing @notice tag in contract 'WDivUp' [Warning/use-natspec]
+/sb/WDivUp.sol:8:5: Missing @notice tag in function 'wdivup' [Warning/use-natspec]
+/sb/WDivUp.sol:8:5: Missing @param tag in function 'wdivup' [Warning/use-natspec]
+/sb/WDivUp.sol:8:5: Mismatch in @param names for function 'wdivup'. Expected: [x, y], Found: [] [Warning/use-natspec]
+/sb/WDivUp.sol:8:5: Missing @return tag in function 'wdivup' [Warning/use-natspec]
+/sb/WDivUp.sol:8:5: Mismatch in @return names for function 'wdivup'. Expected: [z], Found: [] [Warning/use-natspec]
+/sb/WDivUp.sol:10:21: GC: For [ z ] variable, increment/decrement by 1 using: [ ++variable ] to save gas [Warning/gas-increment-by-one]
+
+10 problem/s (1 error/s, 9 warning/s)

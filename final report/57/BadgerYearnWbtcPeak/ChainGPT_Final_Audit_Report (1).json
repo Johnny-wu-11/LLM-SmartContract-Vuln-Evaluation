@@ -1,0 +1,22 @@
+{
+  "title": "ChainGPT Final Audit Report",
+  "tool": "ChainGPT",
+  "status": "Completed",
+  "reduction_summary": {
+    "original_findings": 0,
+    "retained_findings_after_ai_review": 3,
+    "filtered_findings": 0,
+    "filtering_rate": "0.00%"
+  },
+  "adjudication_summary": "The 'Reentrancy Vulnerability' finding is confirmed as it's a well-documented issue. The 'Access Control' and 'Potential Denial of Service (DoS)' findings are plausible based on their descriptions but lack specific verification.",
+  "findings": {
+    "confirmed": [
+      "Reentrancy Vulnerability"
+    ],
+    "plausible_but_unverified": [
+      "Access Control",
+      "Potential Denial of Service (DoS)"
+    ],
+    "unsupported_or_false_positive": []
+  }
+}

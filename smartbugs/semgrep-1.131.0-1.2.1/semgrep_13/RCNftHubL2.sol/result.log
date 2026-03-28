@@ -1,0 +1,153 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 22 Code Findings │
+└──────────────────┘
+                      
+    /sb/RCNftHubL2.sol
+     ❱ solidity.best-practice.use-ownable2step
+          By demanding that the receiver of the owner permissions actively accept via a contract call of its 
+          own,  `Ownable2Step` and `Ownable2StepUpgradeable` prevent the contract ownership from accidentally
+          being transferred  to an address that cannot handle it.                                            
+                                                                                                             
+           16┆ Ownable,
+   
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           49┆ constructor(address _factoryAddress, address childChainManager)
+           50┆     ERC721("RealityCards", "RC")
+           51┆ {
+           52┆     // initialise MetaTransactions
+           53┆     _initializeEIP712("RealityCardsNftHubL2", "1");
+           54┆     _setupRole(DEFAULT_ADMIN_ROLE, _msgSender());
+           55┆     _setupRole(DEPOSITOR_ROLE, childChainManager);
+           56┆     setFactoryAddress(_factoryAddress);
+           57┆ }
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           65┆ require(msgSender() == factoryAddress, "Not factory");
+            ⋮┆----------------------------------------
+           75┆ require(_newAddress != address(0), "Must set an address");
+            ⋮┆----------------------------------------
+           89┆ require(
+           90┆     !withdrawnTokens[_tokenId],
+           91┆     "ChildMintableERC721: TOKEN_EXISTS_ON_ROOT_CHAIN"
+           92┆ );
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+           89┆ require(
+           90┆     !withdrawnTokens[_tokenId],
+           91┆     "ChildMintableERC721: TOKEN_EXISTS_ON_ROOT_CHAIN"
+           92┆ );
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           93┆ require(msgSender() == factoryAddress, "Not factory");
+            ⋮┆----------------------------------------
+          106┆ require(isMarket[msgSender()], "Not market");
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          150┆ for (uint256 i; i < length; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          150┆ for (uint256 i; i < length; i++) {
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          151┆ withdrawnTokens[tokenIds[i]] = false;
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          158┆ require(isMarket[msgSender()], "Not market");
+            ⋮┆----------------------------------------
+          159┆ require(
+          160┆     _msgSender() == ownerOf(tokenId),
+          161┆     "ChildMintableERC721: INVALID_TOKEN_OWNER"
+          162┆ );
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          159┆ require(
+          160┆     _msgSender() == ownerOf(tokenId),
+          161┆     "ChildMintableERC721: INVALID_TOKEN_OWNER"
+          162┆ );
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          168┆ require(isMarket[msgSender()], "Not market");
+            ⋮┆----------------------------------------
+          169┆ require(
+          170┆     msgSender() == ownerOf(tokenId),
+          171┆     "ChildMintableERC721: INVALID_TOKEN_OWNER"
+          172┆ );
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          169┆ require(
+          170┆     msgSender() == ownerOf(tokenId),
+          171┆     "ChildMintableERC721: INVALID_TOKEN_OWNER"
+          172┆ );
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          218┆ require(market.state() == IRCMarket.States.WITHDRAW, "Incorrect state");
+            ⋮┆----------------------------------------
+          219┆ require(ownerOf(tokenId) == msgSender(), "Not owner");
+            ⋮┆----------------------------------------
+          230┆ require(market.state() == IRCMarket.States.WITHDRAW, "Incorrect state");
+            ⋮┆----------------------------------------
+          231┆ require(ownerOf(tokenId) == msgSender(), "Not owner");
+   
+    ❯❱ solidity.security.missing-assignment
+          Meaningless statement that does not change any values could be a sign of missed security checks or
+          other important changes.                                                                          
+                                                                                                            
+          233┆ _data;
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 22 (22 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 22 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

@@ -1,0 +1,61 @@
+{
+    "version": "1.1.0",
+    "success": true,
+    "message": null,
+    "results": [
+        {
+            "code": "price-manipulation",
+            "severity": "HIGH",
+            "title": "MWE-200: Insecure LP Token Value Calculation",
+            "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+            "recommendation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/18/contracts/RewardDistribution.sol",
+                    "range": {
+                        "start": {
+                            "line": 269
+                        },
+                        "end": {
+                            "line": 279
+                        }
+                    },
+                    "highlights": []
+                },
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/18/contracts/RewardDistribution.sol",
+                    "range": {
+                        "start": {
+                            "line": 222
+                        },
+                        "end": {
+                            "line": 228
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        },
+        {
+            "code": "wrong-order-interest",
+            "severity": "HIGH",
+            "title": "MWE-209: Wrong Order for Interest or ExchangeRate",
+            "description": "Update of interest or exchange rate should be executed before calculating new balance, share, stake, loan or fee.",
+            "recommendation": "Check the business logic and move the statements about updating exchange rate or interest forward.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/18/contracts/LendingPair.sol",
+                    "range": {
+                        "start": {
+                            "line": 386
+                        },
+                        "end": {
+                            "line": 397
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,75 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                   
+                   
+┌─────────────────┐
+│ 9 Code Findings │
+└─────────────────┘
+                  
+    /sb/Token1.sol
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           21┆ constructor(){
+           22┆     _balances[msg.sender] = totalSupply;
+           23┆     name = "Token1";
+           24┆     symbol  = "TKN1";
+           25┆     emit Transfer(address(0), msg.sender, totalSupply);
+           26┆ }
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           46┆ require(owner != address(0), "sender");
+            ⋮┆----------------------------------------
+           47┆ require(spender != address(0), "spender");
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+           55┆ _approve(sender, msg.sender, _allowances[sender][msg.sender] - amount);
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           68┆ require(sender != address(0), "sender");
+            ⋮┆----------------------------------------
+           75┆ require(account != address(0), "recipient");
+   
+     ❱ solidity.performance.inefficient-state-variable-increment
+          <x> += <y> costs more gas than <x> = <x> + <y> for state variables.
+                                                                             
+           76┆ totalSupply += amount;
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+           85┆ uint decreasedAllowance = allowance(account, msg.sender) - amount;
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           90┆ require(account != address(0), "address err");
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 9 (9 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 9 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

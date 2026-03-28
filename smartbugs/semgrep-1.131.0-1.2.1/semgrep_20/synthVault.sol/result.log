@@ -1,0 +1,125 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 19 Code Findings │
+└──────────────────┘
+                      
+    /sb/synthVault.sol
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           35┆ constructor(address _base) {
+           36┆     BASE = _base;
+           37┆     DEPLOYER = msg.sender;
+           38┆     erasToEarn = 30;
+           39┆     minimumDepositTime = 3600; // 1 hour
+           40┆     vaultClaim = 1000;
+           41┆     genesis = block.timestamp;
+           42┆     lastMonth = 0;
+           43┆ }
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           96┆ require(iSYNTHFACTORY(_DAO().SYNTHFACTORY()).isSynth(synth), "!synth"); // Must be a valid
+               synth                                                                                     
+   
+     ❱ solidity.performance.inefficient-state-variable-increment
+          <x> += <y> costs more gas than <x> = <x> + <y> for state variables.
+                                                                             
+          113┆ totalWeight += _weight; // Add to the total weight (scope: vault)
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          122┆ for(uint i = 0; i < stakedSynthAssets.length; i++){
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          122┆ for(uint i = 0; i < stakedSynthAssets.length; i++){
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          122┆ for(uint i = 0; i < stakedSynthAssets.length; i++){
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          122┆ for(uint i = 0; i < stakedSynthAssets.length; i++){
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          123┆ if((block.timestamp > mapMemberSynth_lastTime[msg.sender][stakedSynthAssets[i]])){
+            ⋮┆----------------------------------------
+          123┆ if((block.timestamp > mapMemberSynth_lastTime[msg.sender][stakedSynthAssets[i]])){
+            ⋮┆----------------------------------------
+          124┆ uint256 reward = calcCurrentReward(stakedSynthAssets[i], msg.sender);
+            ⋮┆----------------------------------------
+          126┆ harvestSingle(stakedSynthAssets[i]);
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          136┆ require(iSYNTHFACTORY(_DAO().SYNTHFACTORY()).isSynth(synth), "!synth"); // Must be valid
+               synth                                                                                   
+            ⋮┆----------------------------------------
+          137┆ require(iRESERVE(_DAO().RESERVE()).emissions(), "!emissions"); // RESERVE emissions must be
+               on                                                                                         
+   
+     ❱ solidity.performance.inefficient-state-variable-increment
+          <x> += <y> costs more gas than <x> = <x> + <y> for state variables.
+                                                                             
+          148┆ totalWeight += _weight; // Add to the total weight (scope: vault)
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          157┆ require((block.timestamp > mapMemberSynth_lastTime[member][synth]), "!unlocked"); // Must
+               not harvest before lockup period passed                                                  
+            ⋮┆----------------------------------------
+          183┆ require((block.timestamp > mapMember_depositTime[_member]), "lockout"); // Must not
+               withdraw before lockup period passed                                               
+   
+     ❱ solidity.performance.use-prefix-decrement-not-postfix
+          Consider using the prefix decrement expression whenever the return value is not needed. The prefix
+          decrement expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          251┆ for (uint i = _n - 1; i > 0; i--) {
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          252┆ revenueArray[i] = revenueArray[i - 1];
+            ⋮┆----------------------------------------
+          252┆ revenueArray[i] = revenueArray[i - 1];
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 19 (19 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 19 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

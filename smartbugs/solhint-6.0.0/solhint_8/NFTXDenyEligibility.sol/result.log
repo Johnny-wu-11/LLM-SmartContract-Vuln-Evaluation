@@ -1,0 +1,22 @@
+A new version of Solhint is available: 6.1.0
+Please consider updating your Solhint package.
+/sb/NFTXDenyEligibility.sol:3:1: Compiler version 0.6.8 does not satisfy the ^0.8.24 semver requirement [Error/compiler-version]
+/sb/NFTXDenyEligibility.sol:5:1: global import of path ./NFTXUniqueEligibility.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/NFTXDenyEligibility.sol:5:1: Import in /sb/NFTXDenyEligibility.sol doesn't exist in: ./NFTXUniqueEligibility.sol [Warning/import-path-check]
+/sb/NFTXDenyEligibility.sol:7:1: Missing @title tag in contract 'NFTXDenyEligibility' [Warning/use-natspec]
+/sb/NFTXDenyEligibility.sol:7:1: Missing @author tag in contract 'NFTXDenyEligibility' [Warning/use-natspec]
+/sb/NFTXDenyEligibility.sol:7:1: Missing @notice tag in contract 'NFTXDenyEligibility' [Warning/use-natspec]
+/sb/NFTXDenyEligibility.sol:9:5: Missing @notice tag in function 'name' [Warning/use-natspec]
+/sb/NFTXDenyEligibility.sol:9:5: Missing @return tag in function 'name' [Warning/use-natspec]
+/sb/NFTXDenyEligibility.sol:9:5: Mismatch in @return count for function 'name'. Expected: 1, Found: 0 [Warning/use-natspec]
+/sb/NFTXDenyEligibility.sol:13:5: Missing @notice tag in function '_checkIfEligible' [Warning/use-natspec]
+/sb/NFTXDenyEligibility.sol:13:5: Missing @param tag in function '_checkIfEligible' [Warning/use-natspec]
+/sb/NFTXDenyEligibility.sol:13:5: Mismatch in @param names for function '_checkIfEligible'. Expected: [_tokenId], Found: [] [Warning/use-natspec]
+/sb/NFTXDenyEligibility.sol:13:5: Missing @return tag in function '_checkIfEligible' [Warning/use-natspec]
+/sb/NFTXDenyEligibility.sol:13:5: Mismatch in @return count for function '_checkIfEligible'. Expected: 1, Found: 0 [Warning/use-natspec]
+/sb/NFTXDenyEligibility.sol:19:5: Missing @notice tag in function 'afterRedeemHook' [Warning/use-natspec]
+/sb/NFTXDenyEligibility.sol:19:5: Missing @param tag in function 'afterRedeemHook' [Warning/use-natspec]
+/sb/NFTXDenyEligibility.sol:19:5: Mismatch in @param names for function 'afterRedeemHook'. Expected: [tokenIds], Found: [] [Warning/use-natspec]
+/sb/NFTXDenyEligibility.sol:20:9: Provide an error message for require [Warning/reason-string]
+
+18 problem/s (1 error/s, 17 warning/s)

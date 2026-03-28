@@ -1,0 +1,16 @@
+A new version of Solhint is available: 6.1.0
+Please consider updating your Solhint package.
+/sb/IVaultTokenUpgradeable.sol:3:1: Compiler version 0.6.8 does not satisfy the ^0.8.24 semver requirement [Error/compiler-version]
+/sb/IVaultTokenUpgradeable.sol:5:1: global import of path ../token/IERC20Upgradeable.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/IVaultTokenUpgradeable.sol:5:1: Import in /sb/IVaultTokenUpgradeable.sol doesn't exist in: ../token/IERC20Upgradeable.sol [Warning/import-path-check]
+/sb/IVaultTokenUpgradeable.sol:7:1: Missing @title tag in contract 'IVaultTokenUpgradeable' [Warning/use-natspec]
+/sb/IVaultTokenUpgradeable.sol:7:1: Missing @author tag in contract 'IVaultTokenUpgradeable' [Warning/use-natspec]
+/sb/IVaultTokenUpgradeable.sol:7:1: Missing @notice tag in contract 'IVaultTokenUpgradeable' [Warning/use-natspec]
+/sb/IVaultTokenUpgradeable.sol:8:5: Missing @notice tag in function 'mint' [Warning/use-natspec]
+/sb/IVaultTokenUpgradeable.sol:8:5: Missing @param tag in function 'mint' [Warning/use-natspec]
+/sb/IVaultTokenUpgradeable.sol:8:5: Mismatch in @param names for function 'mint'. Expected: [to, amount], Found: [] [Warning/use-natspec]
+/sb/IVaultTokenUpgradeable.sol:10:5: Missing @notice tag in function 'burnFrom' [Warning/use-natspec]
+/sb/IVaultTokenUpgradeable.sol:10:5: Missing @param tag in function 'burnFrom' [Warning/use-natspec]
+/sb/IVaultTokenUpgradeable.sol:10:5: Mismatch in @param names for function 'burnFrom'. Expected: [account, amount], Found: [] [Warning/use-natspec]
+
+12 problem/s (1 error/s, 11 warning/s)

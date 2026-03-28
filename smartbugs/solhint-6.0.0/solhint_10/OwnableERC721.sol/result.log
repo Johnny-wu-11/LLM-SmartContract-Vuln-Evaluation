@@ -1,0 +1,18 @@
+A new version of Solhint is available: 6.0.3
+Please consider updating your Solhint package.
+/sb/OwnableERC721.sol:2:1: Compiler version 0.7.6 does not satisfy the ^0.8.24 semver requirement [Error/compiler-version]
+/sb/OwnableERC721.sol:4:1: Import in /sb/OwnableERC721.sol doesn't exist in: @openzeppelin/contracts/token/ERC721/IERC721.sol [Warning/import-path-check]
+/sb/OwnableERC721.sol:8:1: Missing @author tag in contract 'OwnableERC721' [Warning/use-natspec]
+/sb/OwnableERC721.sol:12:9: Error message for require is too long: 38 counted / 32 allowed [Warning/reason-string]
+/sb/OwnableERC721.sol:12:9: GC: String exceeds 32 bytes [Warning/gas-small-strings]
+/sb/OwnableERC721.sol:16:5: Missing @notice tag in function '_setNFT' [Warning/use-natspec]
+/sb/OwnableERC721.sol:16:5: Missing @param tag in function '_setNFT' [Warning/use-natspec]
+/sb/OwnableERC721.sol:16:5: Mismatch in @param names for function '_setNFT'. Expected: [nftAddress], Found: [] [Warning/use-natspec]
+/sb/OwnableERC721.sol:20:5: Missing @notice tag in function 'nft' [Warning/use-natspec]
+/sb/OwnableERC721.sol:20:5: Missing @return tag in function 'nft' [Warning/use-natspec]
+/sb/OwnableERC721.sol:20:5: Mismatch in @return names for function 'nft'. Expected: [nftAddress], Found: [] [Warning/use-natspec]
+/sb/OwnableERC721.sol:24:5: Missing @notice tag in function 'owner' [Warning/use-natspec]
+/sb/OwnableERC721.sol:24:5: Missing @return tag in function 'owner' [Warning/use-natspec]
+/sb/OwnableERC721.sol:24:5: Mismatch in @return names for function 'owner'. Expected: [ownerAddress], Found: [] [Warning/use-natspec]
+
+14 problem/s (1 error/s, 13 warning/s)

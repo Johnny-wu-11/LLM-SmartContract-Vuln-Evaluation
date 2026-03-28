@@ -1,0 +1,21 @@
+A new version of Solhint is available: 6.1.0
+Please consider updating your Solhint package.
+/sb/Oracle.sol:2:1: Compiler version ^0.8.0 does not satisfy the ^0.8.24 semver requirement [Error/compiler-version]
+/sb/Oracle.sol:4:1: global import of path ../Interfaces/IOracle.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/Oracle.sol:4:1: Import in /sb/Oracle.sol doesn't exist in: ../Interfaces/IOracle.sol [Warning/import-path-check]
+/sb/Oracle.sol:13:1: Missing @title tag in contract 'Oracle' [Warning/use-natspec]
+/sb/Oracle.sol:13:1: Missing @author tag in contract 'Oracle' [Warning/use-natspec]
+/sb/Oracle.sol:13:1: Missing @notice tag in contract 'Oracle' [Warning/use-natspec]
+/sb/Oracle.sol:14:5: Missing @notice tag in variable 'price' [Warning/use-natspec]
+/sb/Oracle.sol:15:5: Missing @notice tag in variable 'decimals' [Warning/use-natspec]
+/sb/Oracle.sol:17:5: Missing @notice tag in function 'latestAnswer' [Warning/use-natspec]
+/sb/Oracle.sol:17:5: Missing @return tag in function 'latestAnswer' [Warning/use-natspec]
+/sb/Oracle.sol:17:5: Mismatch in @return count for function 'latestAnswer'. Expected: 1, Found: 0 [Warning/use-natspec]
+/sb/Oracle.sol:21:5: Missing @notice tag in function 'setPrice' [Warning/use-natspec]
+/sb/Oracle.sol:21:5: Missing @param tag in function 'setPrice' [Warning/use-natspec]
+/sb/Oracle.sol:21:5: Mismatch in @param names for function 'setPrice'. Expected: [_price], Found: [] [Warning/use-natspec]
+/sb/Oracle.sol:25:5: Missing @notice tag in function 'setDecimals' [Warning/use-natspec]
+/sb/Oracle.sol:25:5: Missing @param tag in function 'setDecimals' [Warning/use-natspec]
+/sb/Oracle.sol:25:5: Mismatch in @param names for function 'setDecimals'. Expected: [_decimals], Found: [] [Warning/use-natspec]
+
+17 problem/s (1 error/s, 16 warning/s)

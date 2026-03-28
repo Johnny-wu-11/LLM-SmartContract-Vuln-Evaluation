@@ -1,0 +1,397 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 55 Code Findings │
+└──────────────────┘
+                         
+    /sb/GovernorAlpha.sol
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+          132┆ constructor(address timelock_, address comp_, address guardian_) public {
+          133┆     timelock = TimelockInterface(timelock_);
+          134┆     comp = CompInterface(comp_);
+          135┆     guardian = guardian_;
+          136┆ }
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          139┆ require(comp.getPriorVotes(msg.sender, sub256(block.number, 1)) > proposalThreshold(),
+               "GovernorAlpha::propose: proposer votes below proposal threshold");                   
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          139┆ require(comp.getPriorVotes(msg.sender, sub256(block.number, 1)) > proposalThreshold(),
+               "GovernorAlpha::propose: proposer votes below proposal threshold");                   
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          140┆ require(targets.length == values.length && targets.length == signatures.length &&         
+               targets.length == calldatas.length, "GovernorAlpha::propose: proposal function information
+               arity mismatch");                                                                         
+   
+     ❱ solidity.performance.use-multiple-require
+          Using multiple require statements is cheaper than using && multiple check combinations.  There are
+          more advantages, such as easier to read code and better coverage reports.                         
+                                                                                                            
+          140┆ require(targets.length == values.length && targets.length == signatures.length &&         
+               targets.length == calldatas.length, "GovernorAlpha::propose: proposal function information
+               arity mismatch");                                                                         
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          140┆ require(targets.length == values.length && targets.length == signatures.length &&         
+               targets.length == calldatas.length, "GovernorAlpha::propose: proposal function information
+               arity mismatch");                                                                         
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          141┆ require(targets.length != 0, "GovernorAlpha::propose: must provide actions");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          141┆ require(targets.length != 0, "GovernorAlpha::propose: must provide actions");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          142┆ require(targets.length <= proposalMaxOperations(), "GovernorAlpha::propose: too many
+               actions");                                                                          
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          142┆ require(targets.length <= proposalMaxOperations(), "GovernorAlpha::propose: too many
+               actions");                                                                          
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          147┆ require(proposersLatestProposalState != ProposalState.Active, "GovernorAlpha::propose: one
+               live proposal per proposer, found an already active proposal");                           
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          147┆ require(proposersLatestProposalState != ProposalState.Active, "GovernorAlpha::propose: one
+               live proposal per proposer, found an already active proposal");                           
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          148┆ require(proposersLatestProposalState != ProposalState.Pending, "GovernorAlpha::propose: one
+               live proposal per proposer, found an already pending proposal");                           
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          148┆ require(proposersLatestProposalState != ProposalState.Pending, "GovernorAlpha::propose: one
+               live proposal per proposer, found an already pending proposal");                           
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          154┆ proposalCount++;
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          179┆ require(state(proposalId) == ProposalState.Succeeded, "GovernorAlpha::queue: proposal can
+               only be queued if it is succeeded");                                                     
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          179┆ require(state(proposalId) == ProposalState.Succeeded, "GovernorAlpha::queue: proposal can
+               only be queued if it is succeeded");                                                     
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          182┆ for (uint i = 0; i < proposal.targets.length; i++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          182┆ for (uint i = 0; i < proposal.targets.length; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          182┆ for (uint i = 0; i < proposal.targets.length; i++) {
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          190┆ require(!timelock.queuedTransactions(keccak256(abi.encode(target, value, signature, data,
+               eta))), "GovernorAlpha::_queueOrRevert: proposal action already queued at eta");         
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          190┆ require(!timelock.queuedTransactions(keccak256(abi.encode(target, value, signature, data,
+               eta))), "GovernorAlpha::_queueOrRevert: proposal action already queued at eta");         
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          195┆ require(state(proposalId) == ProposalState.Queued, "GovernorAlpha::execute: proposal can
+               only be executed if it is queued");                                                     
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          195┆ require(state(proposalId) == ProposalState.Queued, "GovernorAlpha::execute: proposal can
+               only be executed if it is queued");                                                     
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          198┆ for (uint i = 0; i < proposal.targets.length; i++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          198┆ for (uint i = 0; i < proposal.targets.length; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          198┆ for (uint i = 0; i < proposal.targets.length; i++) {
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          199┆ timelock.executeTransaction.value(proposal.values[i])(proposal.targets[i],       
+               proposal.values[i], proposal.signatures[i], proposal.calldatas[i], proposal.eta);
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          206┆ require(state != ProposalState.Executed, "GovernorAlpha::cancel: cannot cancel executed
+               proposal");                                                                            
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          206┆ require(state != ProposalState.Executed, "GovernorAlpha::cancel: cannot cancel executed
+               proposal");                                                                            
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          209┆ require(msg.sender == guardian || comp.getPriorVotes(proposal.proposer,               
+               sub256(block.number, 1)) < proposalThreshold(), "GovernorAlpha::cancel: proposer above
+               threshold");                                                                          
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          209┆ require(msg.sender == guardian || comp.getPriorVotes(proposal.proposer,               
+               sub256(block.number, 1)) < proposalThreshold(), "GovernorAlpha::cancel: proposer above
+               threshold");                                                                          
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          212┆ for (uint i = 0; i < proposal.targets.length; i++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          212┆ for (uint i = 0; i < proposal.targets.length; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          212┆ for (uint i = 0; i < proposal.targets.length; i++) {
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          213┆ timelock.cancelTransaction(proposal.targets[i], proposal.values[i], proposal.signatures[i],
+               proposal.calldatas[i], proposal.eta);                                                      
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          229┆ require(proposalCount >= proposalId && proposalId > 0, "GovernorAlpha::state: invalid
+               proposal id");                                                                       
+   
+     ❱ solidity.performance.use-multiple-require
+          Using multiple require statements is cheaper than using && multiple check combinations.  There are
+          more advantages, such as easier to read code and better coverage reports.                         
+                                                                                                            
+          229┆ require(proposalCount >= proposalId && proposalId > 0, "GovernorAlpha::state: invalid
+               proposal id");                                                                       
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          229┆ require(proposalCount >= proposalId && proposalId > 0, "GovernorAlpha::state: invalid
+               proposal id");                                                                       
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          259┆ require(signatory != address(0), "GovernorAlpha::castVoteBySig: invalid signature");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          259┆ require(signatory != address(0), "GovernorAlpha::castVoteBySig: invalid signature");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          264┆ require(state(proposalId) == ProposalState.Active, "GovernorAlpha::_castVote: voting is
+               closed");                                                                              
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          264┆ require(state(proposalId) == ProposalState.Active, "GovernorAlpha::_castVote: voting is
+               closed");                                                                              
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          267┆ require(receipt.hasVoted == false, "GovernorAlpha::_castVote: voter already voted");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          267┆ require(receipt.hasVoted == false, "GovernorAlpha::_castVote: voter already voted");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          284┆ require(msg.sender == guardian, "GovernorAlpha::__acceptAdmin: sender must be gov
+               guardian");                                                                      
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          284┆ require(msg.sender == guardian, "GovernorAlpha::__acceptAdmin: sender must be gov
+               guardian");                                                                      
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          289┆ require(msg.sender == guardian, "GovernorAlpha::__abdicate: sender must be gov guardian");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          289┆ require(msg.sender == guardian, "GovernorAlpha::__abdicate: sender must be gov guardian");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          294┆ require(msg.sender == guardian, "GovernorAlpha::__queueSetTimelockPendingAdmin: sender must
+               be gov guardian");                                                                         
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          294┆ require(msg.sender == guardian, "GovernorAlpha::__queueSetTimelockPendingAdmin: sender must
+               be gov guardian");                                                                         
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          299┆ require(msg.sender == guardian, "GovernorAlpha::__executeSetTimelockPendingAdmin: sender
+               must be gov guardian");                                                                 
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          299┆ require(msg.sender == guardian, "GovernorAlpha::__executeSetTimelockPendingAdmin: sender
+               must be gov guardian");                                                                 
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          305┆ require(c >= a, "addition overflow");
+            ⋮┆----------------------------------------
+          310┆ require(b <= a, "subtraction underflow");
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 55 (55 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 55 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading
+
+📢 Too many findings? Try Semgrep Pro for more powerful queries and less noise.
+   See https://sg.run/false-positives.

@@ -1,0 +1,20 @@
+A new version of Solhint is available: 6.1.0
+Please consider updating your Solhint package.
+/sb/AMMBalancesHelper.sol:2:1: Compiler version 0.8.6 does not satisfy the ^0.8.24 semver requirement [Error/compiler-version]
+/sb/AMMBalancesHelper.sol:4:1: global import of path ../math/Fixed256xVar.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/AMMBalancesHelper.sol:4:1: Import in /sb/AMMBalancesHelper.sol doesn't exist in: ../math/Fixed256xVar.sol [Warning/import-path-check]
+/sb/AMMBalancesHelper.sol:6:1: Missing @title tag in contract 'AMMBalancesHelper' [Warning/use-natspec]
+/sb/AMMBalancesHelper.sol:6:1: Missing @author tag in contract 'AMMBalancesHelper' [Warning/use-natspec]
+/sb/AMMBalancesHelper.sol:6:1: Missing @notice tag in contract 'AMMBalancesHelper' [Warning/use-natspec]
+/sb/AMMBalancesHelper.sol:11:5: Missing @notice tag in function 'getLiquidityProvisionSharesAmounts' [Warning/use-natspec]
+/sb/AMMBalancesHelper.sol:11:5: Missing @param tag in function 'getLiquidityProvisionSharesAmounts' [Warning/use-natspec]
+/sb/AMMBalancesHelper.sol:11:5: Mismatch in @param names for function 'getLiquidityProvisionSharesAmounts'. Expected: [ammBalances, shares], Found: [] [Warning/use-natspec]
+/sb/AMMBalancesHelper.sol:11:5: Missing @return tag in function 'getLiquidityProvisionSharesAmounts' [Warning/use-natspec]
+/sb/AMMBalancesHelper.sol:11:5: Mismatch in @return count for function 'getLiquidityProvisionSharesAmounts'. Expected: 1, Found: 0 [Warning/use-natspec]
+/sb/AMMBalancesHelper.sol:27:5: Missing @notice tag in function 'getAMMBalancesRatio' [Warning/use-natspec]
+/sb/AMMBalancesHelper.sol:27:5: Missing @param tag in function 'getAMMBalancesRatio' [Warning/use-natspec]
+/sb/AMMBalancesHelper.sol:27:5: Mismatch in @param names for function 'getAMMBalancesRatio'. Expected: [ammBalances], Found: [] [Warning/use-natspec]
+/sb/AMMBalancesHelper.sol:27:5: Missing @return tag in function 'getAMMBalancesRatio' [Warning/use-natspec]
+/sb/AMMBalancesHelper.sol:27:5: Mismatch in @return names for function 'getAMMBalancesRatio'. Expected: [balancesRatio], Found: [] [Warning/use-natspec]
+
+16 problem/s (1 error/s, 15 warning/s)

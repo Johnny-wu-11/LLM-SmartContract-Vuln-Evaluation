@@ -1,0 +1,28 @@
+A new version of Solhint is available: 6.1.0
+Please consider updating your Solhint package.
+/sb/ClonesUpgradeable.sol:3:1: Compiler version >=0.6.0 <0.8.0 does not satisfy the ^0.8.24 semver requirement [Error/compiler-version]
+/sb/ClonesUpgradeable.sol:18:1: Missing @title tag in contract 'ClonesUpgradeable' [Warning/use-natspec]
+/sb/ClonesUpgradeable.sol:18:1: Missing @author tag in contract 'ClonesUpgradeable' [Warning/use-natspec]
+/sb/ClonesUpgradeable.sol:18:1: Missing @notice tag in contract 'ClonesUpgradeable' [Warning/use-natspec]
+/sb/ClonesUpgradeable.sol:24:5: Missing @notice tag in function 'clone' [Warning/use-natspec]
+/sb/ClonesUpgradeable.sol:24:5: Missing @param tag in function 'clone' [Warning/use-natspec]
+/sb/ClonesUpgradeable.sol:24:5: Mismatch in @param names for function 'clone'. Expected: [master], Found: [] [Warning/use-natspec]
+/sb/ClonesUpgradeable.sol:24:5: Missing @return tag in function 'clone' [Warning/use-natspec]
+/sb/ClonesUpgradeable.sol:24:5: Mismatch in @return names for function 'clone'. Expected: [instance], Found: [] [Warning/use-natspec]
+/sb/ClonesUpgradeable.sol:43:5: Missing @notice tag in function 'cloneDeterministic' [Warning/use-natspec]
+/sb/ClonesUpgradeable.sol:43:5: Missing @param tag in function 'cloneDeterministic' [Warning/use-natspec]
+/sb/ClonesUpgradeable.sol:43:5: Mismatch in @param names for function 'cloneDeterministic'. Expected: [master, salt], Found: [] [Warning/use-natspec]
+/sb/ClonesUpgradeable.sol:43:5: Missing @return tag in function 'cloneDeterministic' [Warning/use-natspec]
+/sb/ClonesUpgradeable.sol:43:5: Mismatch in @return names for function 'cloneDeterministic'. Expected: [instance], Found: [] [Warning/use-natspec]
+/sb/ClonesUpgradeable.sol:58:5: Missing @notice tag in function 'predictDeterministicAddress' [Warning/use-natspec]
+/sb/ClonesUpgradeable.sol:58:5: Missing @param tag in function 'predictDeterministicAddress' [Warning/use-natspec]
+/sb/ClonesUpgradeable.sol:58:5: Mismatch in @param names for function 'predictDeterministicAddress'. Expected: [master, salt, deployer], Found: [] [Warning/use-natspec]
+/sb/ClonesUpgradeable.sol:58:5: Missing @return tag in function 'predictDeterministicAddress' [Warning/use-natspec]
+/sb/ClonesUpgradeable.sol:58:5: Mismatch in @return names for function 'predictDeterministicAddress'. Expected: [predicted], Found: [] [Warning/use-natspec]
+/sb/ClonesUpgradeable.sol:75:5: Missing @notice tag in function 'predictDeterministicAddress' [Warning/use-natspec]
+/sb/ClonesUpgradeable.sol:75:5: Missing @param tag in function 'predictDeterministicAddress' [Warning/use-natspec]
+/sb/ClonesUpgradeable.sol:75:5: Mismatch in @param names for function 'predictDeterministicAddress'. Expected: [master, salt], Found: [] [Warning/use-natspec]
+/sb/ClonesUpgradeable.sol:75:5: Missing @return tag in function 'predictDeterministicAddress' [Warning/use-natspec]
+/sb/ClonesUpgradeable.sol:75:5: Mismatch in @return names for function 'predictDeterministicAddress'. Expected: [predicted], Found: [] [Warning/use-natspec]
+
+24 problem/s (1 error/s, 23 warning/s)

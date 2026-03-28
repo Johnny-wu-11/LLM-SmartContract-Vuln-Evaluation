@@ -1,0 +1,48 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                   
+                   
+┌─────────────────┐
+│ 8 Code Findings │
+└─────────────────┘
+                        
+    /sb/PoolStrategy.sol
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           29┆ require(address(ps.strategy) != address(0), 'STRATEGY');
+            ⋮┆----------------------------------------
+           33┆ require(ps.govPool == msg.sender, 'GOV');
+            ⋮┆----------------------------------------
+           43┆ require(address(ps.strategy) != address(0), 'ZERO');
+            ⋮┆----------------------------------------
+           52┆ require(_strategy.want() == _token, 'WANT');
+            ⋮┆----------------------------------------
+           55┆ require(ps.strategy.balanceOf() == 0, 'NOT_EMPTY');
+            ⋮┆----------------------------------------
+           62┆ require(_amount > 0, 'AMOUNT');
+            ⋮┆----------------------------------------
+           74┆ require(_amount > 0, 'AMOUNT');
+            ⋮┆----------------------------------------
+           94┆ require(ps.govPool != address(0), 'INVALID_TOKEN');
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 8 (8 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 8 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

@@ -1,0 +1,177 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 31 Code Findings │
+└──────────────────┘
+                                
+    /sb/NFTXVaultUpgradeable.sol
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           93┆ constructor() public {
+           94┆     __Pausable_init();
+           95┆     __ERC20_init("", "");
+           96┆     __ERC20Burnable_init_unchained();
+           97┆     __ERC20FlashMint_init();
+           98┆ }
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          183┆ require(
+          184┆     address(eligibilityStorage) == address(0),
+          185┆     "NFTXVault: eligibility already set"
+          186┆ );
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          183┆ require(
+          184┆     address(eligibilityStorage) == address(0),
+          185┆     "NFTXVault: eligibility already set"
+          186┆ );
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          213┆ require(enableMint, "Minting not enabled");
+            ⋮┆----------------------------------------
+          214┆ require(allValidNFTs(tokenIds), "NFTXVault: not eligible");
+            ⋮┆----------------------------------------
+          240┆ require(enableRedeem, "Redeeming not enabled");
+            ⋮┆----------------------------------------
+          241┆ require(
+          242┆     specificIds.length == 0 || enableDirectRedeem,
+          243┆     "Direct redeem not enabled"
+          244┆ );
+            ⋮┆----------------------------------------
+          274┆ require(enableSwap, "Swapping not enabled");
+            ⋮┆----------------------------------------
+          275┆ require(
+          276┆     specificIds.length == 0 || enableDirectRedeem,
+          277┆     "Direct redeem not enabled"
+          278┆ );
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          343┆ for (uint256 i = 0; i < tokenIds.length; i++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          343┆ for (uint256 i = 0; i < tokenIds.length; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          343┆ for (uint256 i = 0; i < tokenIds.length; i++) {
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          346┆ if (quantity1155[tokenId] == 0) {
+            ⋮┆----------------------------------------
+          347┆ holdings.add(tokenId);
+            ⋮┆----------------------------------------
+          349┆ quantity1155[tokenId] = quantity1155[tokenId].add(amount);
+            ⋮┆----------------------------------------
+          349┆ quantity1155[tokenId] = quantity1155[tokenId].add(amount);
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          355┆ for (uint256 i = 0; i < tokenIds.length; i++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          355┆ for (uint256 i = 0; i < tokenIds.length; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          355┆ for (uint256 i = 0; i < tokenIds.length; i++) {
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          358┆ holdings.add(tokenId);
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          373┆ for (uint256 i = 0; i < amount; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          373┆ for (uint256 i = 0; i < amount; i++) {
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          374┆ uint256 tokenId = i < specificIds.length
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          388┆ quantity1155[tokenId] = quantity1155[tokenId].sub(1);
+            ⋮┆----------------------------------------
+          388┆ quantity1155[tokenId] = quantity1155[tokenId].sub(1);
+            ⋮┆----------------------------------------
+          389┆ if (quantity1155[tokenId] == 0) {
+            ⋮┆----------------------------------------
+          390┆ holdings.remove(tokenId);
+            ⋮┆----------------------------------------
+          398┆ holdings.remove(tokenId);
+   
+     ❱ solidity.performance.inefficient-state-variable-increment
+          <x> += <y> costs more gas than <x> = <x> + <y> for state variables.
+                                                                             
+          419┆ randNonce += 1;
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          431┆ require(msg.sender == owner(), "Not owner");
+            ⋮┆----------------------------------------
+          433┆ require(msg.sender == manager, "Not manager");
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 31 (31 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 31 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading
+
+📢 Too many findings? Try Semgrep Pro for more powerful queries and less noise.
+   See https://sg.run/false-positives.

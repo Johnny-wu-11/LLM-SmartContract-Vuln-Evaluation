@@ -1,0 +1,23 @@
+A new version of Solhint is available: 6.1.0
+Please consider updating your Solhint package.
+/sb/SushiYieldSource.sol:3:1: Compiler version 0.6.12 does not satisfy the ^0.8.24 semver requirement [Error/compiler-version]
+/sb/SushiYieldSource.sol:5:1: Import in /sb/SushiYieldSource.sol doesn't exist in: @pooltogether/yield-source-interface/contracts/IYieldSource.sol [Warning/import-path-check]
+/sb/SushiYieldSource.sol:6:1: global import of path @openzeppelin/contracts/math/SafeMath.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/SushiYieldSource.sol:6:1: Import in /sb/SushiYieldSource.sol doesn't exist in: @openzeppelin/contracts/math/SafeMath.sol [Warning/import-path-check]
+/sb/SushiYieldSource.sol:8:1: global import of path ./ISushiBar.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/SushiYieldSource.sol:8:1: Import in /sb/SushiYieldSource.sol doesn't exist in: ./ISushiBar.sol [Warning/import-path-check]
+/sb/SushiYieldSource.sol:9:1: global import of path ./ISushi.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/SushiYieldSource.sol:9:1: Import in /sb/SushiYieldSource.sol doesn't exist in: ./ISushi.sol [Warning/import-path-check]
+/sb/SushiYieldSource.sol:13:1: Missing @notice tag in contract 'SushiYieldSource' [Warning/use-natspec]
+/sb/SushiYieldSource.sol:17:5: Missing @notice tag in variable 'sushiBar' [Warning/use-natspec]
+/sb/SushiYieldSource.sol:17:5: Immutable variables name are set to be in capitalized SNAKE_CASE [Warning/immutable-vars-naming]
+/sb/SushiYieldSource.sol:18:5: Missing @notice tag in variable 'sushiAddr' [Warning/use-natspec]
+/sb/SushiYieldSource.sol:18:5: Immutable variables name are set to be in capitalized SNAKE_CASE [Warning/immutable-vars-naming]
+/sb/SushiYieldSource.sol:20:5: Missing @notice tag in variable 'balances' [Warning/use-natspec]
+/sb/SushiYieldSource.sol:22:5: Missing @notice tag in function '<anonymous>' [Warning/use-natspec]
+/sb/SushiYieldSource.sol:22:5: Missing @param tag in function '<anonymous>' [Warning/use-natspec]
+/sb/SushiYieldSource.sol:22:5: Mismatch in @param names for function '<anonymous>'. Expected: [_sushiBar, _sushiAddr], Found: [] [Warning/use-natspec]
+/sb/SushiYieldSource.sol:35:5: Missing @param tag in function 'balanceOfToken' [Warning/use-natspec]
+/sb/SushiYieldSource.sol:35:5: Mismatch in @param names for function 'balanceOfToken'. Expected: [addr], Found: [] [Warning/use-natspec]
+
+19 problem/s (1 error/s, 18 warning/s)

@@ -1,0 +1,80 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 16 Code Findings │
+└──────────────────┘
+                 
+    /sb/Ladle.sol
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           31┆ constructor (ICauldron cauldron, IWETH9 weth_) LadleStorage(cauldron) {
+           32┆     weth = weth_;
+           33┆ }
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           41┆ require (vault.owner == msg.sender, "Only vault owner");
+            ⋮┆----------------------------------------
+           49┆ require (series.fyToken != IFYToken(address(0)), "Series not found");
+            ⋮┆----------------------------------------
+           57┆ require (join != IJoin(address(0)), "Join not found");
+            ⋮┆----------------------------------------
+           65┆ require (pool != IPool(address(0)), "Pool not found");
+            ⋮┆----------------------------------------
+           77┆ require (asset != address(0), "Asset not found");
+            ⋮┆----------------------------------------
+           78┆ require (join.asset() == asset, "Mismatched asset and join");
+            ⋮┆----------------------------------------
+           90┆ require (fyToken == pool.fyToken(), "Mismatched pool fyToken and series");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+           90┆ require (fyToken == pool.fyToken(), "Mismatched pool fyToken and series");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           91┆ require (fyToken.underlying() == address(pool.base()), "Mismatched pool base and series");
+            ⋮┆----------------------------------------
+          124┆ require(operations.length == data.length, "Mismatched operation data");
+            ⋮┆----------------------------------------
+          288┆ if (ink > 0) require (cauldron.vaults(from).owner == msg.sender, "Only origin vault
+               owner");                                                                           
+            ⋮┆----------------------------------------
+          289┆ if (art > 0) require (cauldron.vaults(to).owner == msg.sender, "Only destination vault
+               owner");                                                                              
+            ⋮┆----------------------------------------
+          346┆ require (art < 0, "Only repay debt");                                          // When
+               repaying debt in `frob`, art is a negative value. Here is the same for consistency.   
+            ⋮┆----------------------------------------
+          500┆ require (token != address(0), "Token not found");
+            ⋮┆----------------------------------------
+          592┆ require (modules[module], "Unregistered module");
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 16 (16 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 16 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

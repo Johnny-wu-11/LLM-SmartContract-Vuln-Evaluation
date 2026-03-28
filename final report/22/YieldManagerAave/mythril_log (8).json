@@ -1,0 +1,56 @@
+{
+  "tool": "Mythril",
+  "file_name": "YieldManagerAave.sol",
+  "status": "success",
+  "error": null,
+  "issues": [],
+  "raw_output": {
+    "args": [
+      "mythril/myth",
+      "analyze",
+      "/work/tmp2lz4v40i.sol:YieldManagerAave",
+      "-o",
+      "json",
+      "--execution-timeout",
+      "30",
+      "--create-timeout",
+      "15",
+      "--solver-timeout",
+      "10000",
+      "--max-depth",
+      "12",
+      "--transaction-count",
+      "1",
+      "--no-onchain-data"
+    ],
+    "availableContractNames": [
+      "is",
+      "Context",
+      "using",
+      "ERC20",
+      "IYieldManager",
+      "function",
+      "DataTypes",
+      "and",
+      "receiving",
+      "YieldManagerAave",
+      "address",
+      "ILendingPool",
+      "IAaveIncentivesController",
+      "to"
+    ],
+    "data": {
+      "error": null,
+      "issues": [],
+      "success": true
+    },
+    "durationSec": 10.06,
+    "requestedContractName": "YieldManagerAave",
+    "returncode": 0,
+    "selectedContractName": "YieldManagerAave",
+    "status": "success",
+    "stderr": "",
+    "tool": "Mythril"
+  },
+  "timestamp": "2026-03-27T12:51:02.206Z"
+}

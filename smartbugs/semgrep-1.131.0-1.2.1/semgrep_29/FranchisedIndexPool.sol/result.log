@@ -1,0 +1,320 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 58 Code Findings │
+└──────────────────┘
+                               
+    /sb/FranchisedIndexPool.sol
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           49┆ require(unlocked == 1, "LOCKED");
+   
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           61┆ constructor(bytes memory _deployData, address _masterDeployer) {
+           62┆     (address[] memory _tokens, uint136[] memory _weights, uint256 _swapFee, address
+               _whiteListManager, address _operator, bool _level2) = abi.decode(                  
+           63┆         _deployData,
+           64┆         (address[], uint136[], uint256, address, address, bool)
+           65┆     );
+           66┆     // @dev Factory ensures that the tokens are sorted.
+           67┆     require(_tokens.length == _weights.length, "INVALID_ARRAYS");
+           68┆     require(MIN_FEE <= _swapFee && _swapFee <= MAX_FEE, "INVALID_SWAP_FEE");
+           69┆     require(MIN_TOKENS <= _tokens.length && _tokens.length <= MAX_TOKENS,
+               "INVALID_TOKENS_LENGTH");                                                
+           70┆
+             [hid 25 additional lines, adjust with --max-lines-per-finding] 
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           67┆ require(_tokens.length == _weights.length, "INVALID_ARRAYS");
+            ⋮┆----------------------------------------
+           68┆ require(MIN_FEE <= _swapFee && _swapFee <= MAX_FEE, "INVALID_SWAP_FEE");
+   
+     ❱ solidity.performance.use-multiple-require
+          Using multiple require statements is cheaper than using && multiple check combinations.  There are
+          more advantages, such as easier to read code and better coverage reports.                         
+                                                                                                            
+           68┆ require(MIN_FEE <= _swapFee && _swapFee <= MAX_FEE, "INVALID_SWAP_FEE");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           69┆ require(MIN_TOKENS <= _tokens.length && _tokens.length <= MAX_TOKENS,
+               "INVALID_TOKENS_LENGTH");                                            
+   
+     ❱ solidity.performance.use-multiple-require
+          Using multiple require statements is cheaper than using && multiple check combinations.  There are
+          more advantages, such as easier to read code and better coverage reports.                         
+                                                                                                            
+           69┆ require(MIN_TOKENS <= _tokens.length && _tokens.length <= MAX_TOKENS,
+               "INVALID_TOKENS_LENGTH");                                            
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+           73┆ for (uint256 i = 0; i < _tokens.length; i++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+           73┆ for (uint256 i = 0; i < _tokens.length; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+           73┆ for (uint256 i = 0; i < _tokens.length; i++) {
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           74┆ require(_tokens[i] != address(0), "ZERO_ADDRESS");
+            ⋮┆----------------------------------------
+           75┆ require(MIN_WEIGHT <= _weights[i] && _weights[i] <= MAX_WEIGHT, "INVALID_WEIGHT");
+   
+     ❱ solidity.performance.use-multiple-require
+          Using multiple require statements is cheaper than using && multiple check combinations.  There are
+          more advantages, such as easier to read code and better coverage reports.                         
+                                                                                                            
+           75┆ require(MIN_WEIGHT <= _weights[i] && _weights[i] <= MAX_WEIGHT, "INVALID_WEIGHT");
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+           76┆ records[_tokens[i]] = Record({reserve: 0, weight: _weights[i]});
+            ⋮┆----------------------------------------
+           77┆ tokens.push(_tokens[i]);
+            ⋮┆----------------------------------------
+           78┆ totalWeight += _weights[i];
+   
+     ❱ solidity.performance.inefficient-state-variable-increment
+          <x> += <y> costs more gas than <x> = <x> + <y> for state variables.
+                                                                             
+           78┆ totalWeight += _weights[i];
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           81┆ require(totalWeight <= MAX_TOTAL_WEIGHT, "MAX_TOTAL_WEIGHT");
+   
+     ❱ solidity.best-practice.use-abi-encodecall-instead-of-encodewithselector
+          To guarantee arguments type safety it is recommended to use `abi.encodeCall` instead of
+          `abi.encodeWithSelector`.                                                              
+                                                                                                 
+           85┆ (, bytes memory _barFee) =                                                          
+               _masterDeployer.staticcall(abi.encodeWithSelector(IMasterDeployer.barFee.selector));
+            ⋮┆----------------------------------------
+           86┆ (, bytes memory _barFeeTo) =                                                          
+               _masterDeployer.staticcall(abi.encodeWithSelector(IMasterDeployer.barFeeTo.selector));
+            ⋮┆----------------------------------------
+           87┆ (, bytes memory _bento) =                                                          
+               _masterDeployer.staticcall(abi.encodeWithSelector(IMasterDeployer.bento.selector));
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          104┆ for (uint256 i = 0; i < tokens.length; i++) {
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          104┆ for (uint256 i = 0; i < tokens.length; i++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          104┆ for (uint256 i = 0; i < tokens.length; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          104┆ for (uint256 i = 0; i < tokens.length; i++) {
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          105┆ address tokenIn = tokens[i];
+            ⋮┆----------------------------------------
+          106┆ uint120 reserve = records[tokenIn].reserve;
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          109┆ require(amountIn >= MIN_BALANCE, "MIN_BALANCE");
+            ⋮┆----------------------------------------
+          113┆ require(_balance(tokenIn) >= amountIn + reserve, "NOT_RECEIVED");
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          114┆ records[tokenIn].reserve += amountIn;
+            ⋮┆----------------------------------------
+          132┆ for (uint256 i = 0; i < tokens.length; i++) {
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          132┆ for (uint256 i = 0; i < tokens.length; i++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          132┆ for (uint256 i = 0; i < tokens.length; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          132┆ for (uint256 i = 0; i < tokens.length; i++) {
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          133┆ address tokenOut = tokens[i];
+            ⋮┆----------------------------------------
+          134┆ uint256 balance = records[tokenOut].reserve;
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          136┆ require(amountOut != 0, "ZERO_OUT");
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          139┆ records[tokenOut].reserve -= amountOut;
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          156┆ require(amountOut <= _mul(outRecord.reserve, MAX_OUT_RATIO), "MAX_OUT_RATIO");
+            ⋮┆----------------------------------------
+          176┆ require(amountIn <= _mul(inRecord.reserve, MAX_IN_RATIO), "MAX_IN_RATIO");
+            ⋮┆----------------------------------------
+          182┆ require(_balance(tokenIn) >= amountIn + inRecord.reserve, "NOT_RECEIVED");
+            ⋮┆----------------------------------------
+          200┆ require(amountIn <= _mul(inRecord.reserve, MAX_IN_RATIO), "MAX_IN_RATIO");
+            ⋮┆----------------------------------------
+          208┆ require(_balance(tokenIn) >= amountIn + inRecord.reserve, "NOT_RECEIVED");
+   
+     ❱ solidity.best-practice.use-abi-encodecall-instead-of-encodewithselector
+          To guarantee arguments type safety it is recommended to use `abi.encodeCall` instead of
+          `abi.encodeWithSelector`.                                                              
+                                                                                                 
+          218┆ (, bytes memory _barFee) =                                                         
+               masterDeployer.staticcall(abi.encodeWithSelector(IMasterDeployer.barFee.selector));
+            ⋮┆----------------------------------------
+          223┆ (, bytes memory data) =                                                            
+               bento.staticcall(abi.encodeWithSelector(IBentoBoxMinimal.balanceOf.selector, token,
+               address(this)));                                                                   
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          246┆ require(MIN_POW_BASE <= base && base <= MAX_POW_BASE, "INVALID_BASE");
+   
+     ❱ solidity.performance.use-multiple-require
+          Using multiple require statements is cheaper than using && multiple check combinations.  There are
+          more advantages, such as easier to read code and better coverage reports.                         
+                                                                                                            
+          246┆ require(MIN_POW_BASE <= base && base <= MAX_POW_BASE, "INVALID_BASE");
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          293┆ for (uint256 i = 1; term >= precision; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          293┆ for (uint256 i = 1; term >= precision; i++) {
+   
+     ❱ solidity.best-practice.use-abi-encodecall-instead-of-encodewithselector
+          To guarantee arguments type safety it is recommended to use `abi.encodeCall` instead of
+          `abi.encodeWithSelector`.                                                              
+                                                                                                 
+          339┆ (bool success, ) = bento.call(abi.encodeWithSelector(IBentoBoxMinimal.withdraw.selector,
+               token, address(this), to, 0, shares));                                                  
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          340┆ require(success, "WITHDRAW_FAILED");
+   
+     ❱ solidity.best-practice.use-abi-encodecall-instead-of-encodewithselector
+          To guarantee arguments type safety it is recommended to use `abi.encodeCall` instead of
+          `abi.encodeWithSelector`.                                                              
+                                                                                                 
+          342┆ (bool success, ) = bento.call(abi.encodeWithSelector(IBentoBoxMinimal.transfer.selector,
+               token, address(this), to, shares));                                                     
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          343┆ require(success, "TRANSFER_FAILED");
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          365┆ for (uint256 i = 0; i < length; i++) {
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          366┆ reserves[i] = records[tokens[i]].reserve;
+            ⋮┆----------------------------------------
+          366┆ reserves[i] = records[tokens[i]].reserve;
+            ⋮┆----------------------------------------
+          367┆ weights[i] = records[tokens[i]].weight;
+            ⋮┆----------------------------------------
+          367┆ weights[i] = records[tokens[i]].weight;
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 58 (58 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 58 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading
+
+📢 Too many findings? Try Semgrep Pro for more powerful queries and less noise.
+   See https://sg.run/false-positives.

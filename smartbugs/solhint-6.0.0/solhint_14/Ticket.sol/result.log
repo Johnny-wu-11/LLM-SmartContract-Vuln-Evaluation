@@ -1,0 +1,19 @@
+A new version of Solhint is available: 6.1.0
+Please consider updating your Solhint package.
+/sb/Ticket.sol:3:1: Compiler version >=0.6.0 <0.7.0 does not satisfy the ^0.8.24 semver requirement [Error/compiler-version]
+/sb/Ticket.sol:5:1: global import of path sortition-sum-tree-factory/contracts/SortitionSumTreeFactory.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/Ticket.sol:5:1: Import in /sb/Ticket.sol doesn't exist in: sortition-sum-tree-factory/contracts/SortitionSumTreeFactory.sol [Warning/import-path-check]
+/sb/Ticket.sol:6:1: global import of path @pooltogether/uniform-random-number/contracts/UniformRandomNumber.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/Ticket.sol:6:1: Import in /sb/Ticket.sol doesn't exist in: @pooltogether/uniform-random-number/contracts/UniformRandomNumber.sol [Warning/import-path-check]
+/sb/Ticket.sol:8:1: global import of path ./ControlledToken.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/Ticket.sol:8:1: Import in /sb/Ticket.sol doesn't exist in: ./ControlledToken.sol [Warning/import-path-check]
+/sb/Ticket.sol:10:1: Missing @title tag in contract 'Ticket' [Warning/use-natspec]
+/sb/Ticket.sol:10:1: Missing @author tag in contract 'Ticket' [Warning/use-natspec]
+/sb/Ticket.sol:10:1: Missing @notice tag in contract 'Ticket' [Warning/use-natspec]
+/sb/Ticket.sol:40:3: Missing @param tag in function 'chanceOf' [Warning/use-natspec]
+/sb/Ticket.sol:40:3: Mismatch in @param names for function 'chanceOf'. Expected: [user], Found: [] [Warning/use-natspec]
+/sb/Ticket.sol:40:3: Missing @return tag in function 'chanceOf' [Warning/use-natspec]
+/sb/Ticket.sol:40:3: Mismatch in @return count for function 'chanceOf'. Expected: 1, Found: 0 [Warning/use-natspec]
+/sb/Ticket.sol:65:3: Missing @notice tag in function '_beforeTokenTransfer' [Warning/use-natspec]
+
+15 problem/s (1 error/s, 14 warning/s)

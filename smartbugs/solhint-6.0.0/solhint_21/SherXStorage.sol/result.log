@@ -1,0 +1,17 @@
+A new version of Solhint is available: 6.1.0
+Please consider updating your Solhint package.
+/sb/SherXStorage.sol:2:1: Compiler version ^0.7.0 does not satisfy the ^0.8.24 semver requirement [Error/compiler-version]
+/sb/SherXStorage.sol:9:1: global import of path @openzeppelin/contracts/token/ERC20/IERC20.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/SherXStorage.sol:9:1: Import in /sb/SherXStorage.sol doesn't exist in: @openzeppelin/contracts/token/ERC20/IERC20.sol [Warning/import-path-check]
+/sb/SherXStorage.sol:9:8: Use double quotes for string literals [Error/quotes]
+/sb/SherXStorage.sol:11:1: Missing @title tag in contract 'SherXStorage' [Warning/use-natspec]
+/sb/SherXStorage.sol:11:1: Missing @author tag in contract 'SherXStorage' [Warning/use-natspec]
+/sb/SherXStorage.sol:11:1: Missing @notice tag in contract 'SherXStorage' [Warning/use-natspec]
+/sb/SherXStorage.sol:12:3: Explicitly mark visibility of state [Warning/state-visibility]
+/sb/SherXStorage.sol:12:55: Use double quotes for string literals [Error/quotes]
+/sb/SherXStorage.sol:24:3: Missing @notice tag in function 'sx' [Warning/use-natspec]
+/sb/SherXStorage.sol:24:3: Missing @return tag in function 'sx' [Warning/use-natspec]
+/sb/SherXStorage.sol:24:3: Mismatch in @return names for function 'sx'. Expected: [sxx], Found: [] [Warning/use-natspec]
+/sb/SherXStorage.sol:26:5: Avoid to use inline assembly. It is acceptable only in rare cases [Warning/no-inline-assembly]
+
+13 problem/s (3 error/s, 10 warning/s)

@@ -1,0 +1,21 @@
+A new version of Solhint is available: 6.1.0
+Please consider updating your Solhint package.
+/sb/DaiMockup.sol:2:1: Compiler version 0.8.7 does not satisfy the ^0.8.24 semver requirement [Error/compiler-version]
+/sb/DaiMockup.sol:4:1: Unexpected import of console file [Error/no-console]
+/sb/DaiMockup.sol:4:1: global import of path hardhat/console.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/DaiMockup.sol:4:1: Import in /sb/DaiMockup.sol doesn't exist in: hardhat/console.sol [Warning/import-path-check]
+/sb/DaiMockup.sol:6:1: Missing @title tag in contract 'DaiMockup' [Warning/use-natspec]
+/sb/DaiMockup.sol:6:1: Missing @author tag in contract 'DaiMockup' [Warning/use-natspec]
+/sb/DaiMockup.sol:6:1: Missing @notice tag in contract 'DaiMockup' [Warning/use-natspec]
+/sb/DaiMockup.sol:7:5: Missing @notice tag in function 'approve' [Warning/use-natspec]
+/sb/DaiMockup.sol:7:5: Missing @param tag in function 'approve' [Warning/use-natspec]
+/sb/DaiMockup.sol:7:5: Mismatch in @param names for function 'approve'. Expected: [_address, _amount], Found: [] [Warning/use-natspec]
+/sb/DaiMockup.sol:7:5: Missing @return tag in function 'approve' [Warning/use-natspec]
+/sb/DaiMockup.sol:7:5: Mismatch in @return count for function 'approve'. Expected: 1, Found: 0 [Warning/use-natspec]
+/sb/DaiMockup.sol:17:5: Missing @notice tag in function 'transferFrom' [Warning/use-natspec]
+/sb/DaiMockup.sol:17:5: Missing @param tag in function 'transferFrom' [Warning/use-natspec]
+/sb/DaiMockup.sol:17:5: Mismatch in @param count for function 'transferFrom'. Expected: 3, Found: 0 [Warning/use-natspec]
+/sb/DaiMockup.sol:17:5: Missing @return tag in function 'transferFrom' [Warning/use-natspec]
+/sb/DaiMockup.sol:17:5: Mismatch in @return count for function 'transferFrom'. Expected: 1, Found: 0 [Warning/use-natspec]
+
+17 problem/s (2 error/s, 15 warning/s)

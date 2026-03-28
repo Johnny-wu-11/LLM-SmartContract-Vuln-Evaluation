@@ -1,0 +1,24 @@
+{
+  "title": "ChainGPT Final Audit Report",
+  "tool": "ChainGPT",
+  "status": "Completed",
+  "reduction_summary": {
+    "original_findings": 0,
+    "retained_findings_after_ai_review": 4,
+    "filtered_findings": 0,
+    "filtering_rate": "0.00%"
+  },
+  "adjudication_summary": "Reentrancy attack vectors are well-known and preventive measures like reentrancy guards are standard practice, confirming its risk. Unchecked External Call and Denial of Service are plausible risks without specific instances of exploitation, hence plausible but unverified. Timestamp Dependence is considered a low severity issue that often proves unsubstantial in practical attack scenarios, marking it unsupported or false positive.",
+  "findings": {
+    "confirmed": [
+      "Reentrancy"
+    ],
+    "plausible_but_unverified": [
+      "Unchecked External Call",
+      "Denial of Service"
+    ],
+    "unsupported_or_false_positive": [
+      "Timestamp Dependence"
+    ]
+  }
+}

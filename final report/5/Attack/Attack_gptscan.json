@@ -1,0 +1,11 @@
+{
+  "contract": "Attack",
+  "contractFile": "Attack.sol",
+  "source": "gptscan",
+  "report": {
+    "version": "1.1.0",
+    "success": true,
+    "message": null,
+    "results": []
+  }
+}

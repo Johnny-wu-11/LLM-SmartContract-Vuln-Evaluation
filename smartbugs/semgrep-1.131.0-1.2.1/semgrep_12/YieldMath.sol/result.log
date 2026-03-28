@@ -1,0 +1,142 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 23 Code Findings │
+└──────────────────┘
+                     
+    /sb/YieldMath.sol
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          362┆ require(zx <= MAX, "YieldMath: Too much base in");
+            ⋮┆----------------------------------------
+          369┆ require(sum <= MAX, "YieldMath: Insufficient fyToken reserves");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          369┆ require(sum <= MAX, "YieldMath: Insufficient fyToken reserves");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          373┆ require(result <= MAX, "YieldMath: Rounding induced error");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          373┆ require(result <= MAX, "YieldMath: Rounding induced error");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          407┆ require(yx <= MAX, "YieldMath: Too much fyToken in");
+            ⋮┆----------------------------------------
+          414┆ require(sum <= MAX, "YieldMath: Insufficient base reserves");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          414┆ require(sum <= MAX, "YieldMath: Insufficient base reserves");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          418┆ require(result <= MAX, "YieldMath: Rounding induced error");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          418┆ require(result <= MAX, "YieldMath: Rounding induced error");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          452┆ require(zx <= MAX, "YieldMath: Too much base out");
+            ⋮┆----------------------------------------
+          459┆ require(sum <= MAX, "YieldMath: Resulting fyToken reserves too high");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          459┆ require(sum <= MAX, "YieldMath: Resulting fyToken reserves too high");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          463┆ require(result <= MAX, "YieldMath: Rounding induced error");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          463┆ require(result <= MAX, "YieldMath: Rounding induced error");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          498┆ require(yx <= MAX, "YieldMath: Too much fyToken out");
+            ⋮┆----------------------------------------
+          505┆ require(sum <= MAX, "YieldMath: Resulting base reserves too high");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          505┆ require(sum <= MAX, "YieldMath: Resulting base reserves too high");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          509┆ require(result <= MAX, "YieldMath: Rounding induced error");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          509┆ require(result <= MAX, "YieldMath: Rounding induced error");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          521┆ require(t >= 0, "YieldMath: t must be positive"); // Meaning neither T or k can be negative
+            ⋮┆----------------------------------------
+          525┆ require(a > 0, "YieldMath: Too far from maturity");
+            ⋮┆----------------------------------------
+          526┆ require(a <= int128(ONE), "YieldMath: g must be positive");
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 23 (23 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 23 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

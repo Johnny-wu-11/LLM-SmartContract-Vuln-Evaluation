@@ -1,0 +1,169 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 25 Code Findings │
+└──────────────────┘
+                  
+    /sb/Router.sol
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           69┆ require(msg.sender == DAO(), "Not DAO");
+   
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           75┆ constructor() {}
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           78┆ require(inited == false,  "inited");
+   
+     ❱ solidity.performance.use-nested-if
+          Using nested is cheaper than using && multiple check combinations.  There are more advantages, such
+          as easier to read code and better coverage reports.                                                
+                                                                                                             
+          162┆ } else if (!isBase(inputToken) && !isBase(outputToken)) {
+          163┆     // Token||Synth -> Token||Synth
+          164┆     require(iUTILS(UTILS()).calcSwapSlip(inputAmount,   
+               iPOOLS(POOLS).getTokenAmount(inputToken)) <= slipLimit);
+          165┆     if(!inSynth){
+          166┆         iPOOLS(POOLS).swap(_base, inputToken, POOLS, true);
+          167┆     } else {
+          168┆         iPOOLS(POOLS).burnSynth(_base, inputToken, POOLS);
+          169┆     }
+          170┆     require(iUTILS(UTILS()).calcSwapSlip(inputAmount,   
+               iPOOLS(POOLS).getBaseAmount(outputToken)) <= slipLimit);
+          171┆     if(!outSynth){
+             [hid 5 additional lines, adjust with --max-lines-per-finding] 
+   
+     ❱ solidity.performance.inefficient-state-variable-increment
+          <x> += <y> costs more gas than <x> = <x> + <y> for state variables.
+                                                                             
+          229┆ curatedPoolCount += 1;
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          255┆ require(iPOOLS(POOLS).isAnchor(newToken), "Not anchor");
+            ⋮┆----------------------------------------
+          256┆ require((iPOOLS(POOLS).getBaseAmount(newToken) > iPOOLS(POOLS).getBaseAmount(oldToken)),
+               "Not deeper");                                                                          
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          261┆ for(uint i = 0; i<arrayAnchors.length; i++){
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          261┆ for(uint i = 0; i<arrayAnchors.length; i++){
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          261┆ for(uint i = 0; i<arrayAnchors.length; i++){
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          261┆ for(uint i = 0; i<arrayAnchors.length; i++){
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          262┆ if(arrayAnchors[i] == oldToken){
+            ⋮┆----------------------------------------
+          263┆ arrayAnchors[i] = newToken;
+            ⋮┆----------------------------------------
+          271┆ for(uint i = 0; i<arrayAnchors.length; i++){
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          271┆ for(uint i = 0; i<arrayAnchors.length; i++){
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          271┆ for(uint i = 0; i<arrayAnchors.length; i++){
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          271┆ for(uint i = 0; i<arrayAnchors.length; i++){
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          272┆ if(arrayAnchors[i] == token){
+            ⋮┆----------------------------------------
+          273┆ arrayPrices[i] = iUTILS(UTILS()).calcValueInBase(arrayAnchors[i], one);
+            ⋮┆----------------------------------------
+          273┆ arrayPrices[i] = iUTILS(UTILS()).calcValueInBase(arrayAnchors[i], one);
+            ⋮┆----------------------------------------
+          273┆ arrayPrices[i] = iUTILS(UTILS()).calcValueInBase(arrayAnchors[i], one);
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+          347┆ mapCollateralDebt_Collateral[collateralAsset][debtAsset] -= _collateralUnlocked;
+               // Update collateral                                                            
+            ⋮┆----------------------------------------
+          348┆ mapCollateralDebt_Debt[collateralAsset][debtAsset] -= _debt;                   // Update
+               debt                                                                                    
+            ⋮┆----------------------------------------
+          349┆ mapCollateralDebt_interestPaid[collateralAsset][debtAsset] -= _memberInterestShare;
+   
+     ❱ solidity.performance.use-nested-if
+          Using nested is cheaper than using && multiple check combinations.  There are more advantages, such
+          as easier to read code and better coverage reports.                                                
+                                                                                                             
+          359┆ if (block.timestamp >= getNextEraTime(collateralAsset, debtAsset) && emitting()) {
+               // If new Era                                                                     
+          360┆     uint _timeElapsed = block.timestamp -              
+               mapCollateralAsset_NextEra[collateralAsset][debtAsset];
+          361┆     mapCollateralAsset_NextEra[collateralAsset][debtAsset] = block.timestamp +
+               iVADER(VADER).secondsPerEra();                                                
+          362┆     uint _interestOwed = iUTILS(UTILS()).getInterestOwed(collateralAsset, debtAsset,
+               _timeElapsed);                                                                      
+          363┆     mapCollateralDebt_interestPaid[collateralAsset][debtAsset] += _interestOwed;
+          364┆     _removeCollateral(_interestOwed, collateralAsset, debtAsset);
+          365┆     if(isBase(collateralAsset)){
+          366┆         iERC20(collateralAsset).transfer(POOLS, _interestOwed);
+          367┆         iPOOLS(POOLS).sync(collateralAsset, debtAsset);
+          368┆     } else if(iPOOLS(POOLS).isSynth(collateralAsset)){
+             [hid 4 additional lines, adjust with --max-lines-per-finding] 
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 25 (25 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 25 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

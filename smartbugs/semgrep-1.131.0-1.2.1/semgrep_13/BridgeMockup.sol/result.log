@@ -1,0 +1,45 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                   
+                   
+┌─────────────────┐
+│ 3 Code Findings │
+└─────────────────┘
+                        
+    /sb/BridgeMockup.sol
+    ❯❱ solidity.security.missing-assignment
+          Meaningless statement that does not change any values could be a sign of missed security checks or
+          other important changes.                                                                          
+                                                                                                            
+           17┆ _gasLimit;
+   
+   ❯❯❱ solidity.security.arbitrary-low-level-call
+          An attacker may perform call() to an arbitrary address with controlled calldata
+                                                                                         
+           18┆ (bool _success, ) = _RCProxyAddress.call{value: (0)}(_data);
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           25┆ require(_success, "Bridge failed");
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 3 (3 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 3 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

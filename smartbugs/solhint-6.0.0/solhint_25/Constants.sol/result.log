@@ -1,0 +1,12 @@
+A new version of Solhint is available: 6.1.0
+Please consider updating your Solhint package.
+/sb/Constants.sol:2:1: Compiler version 0.8.1 does not satisfy the ^0.8.24 semver requirement [Error/compiler-version]
+/sb/Constants.sol:4:1: Missing @title tag in contract 'Constants' [Warning/use-natspec]
+/sb/Constants.sol:4:1: Missing @author tag in contract 'Constants' [Warning/use-natspec]
+/sb/Constants.sol:4:1: Missing @notice tag in contract 'Constants' [Warning/use-natspec]
+/sb/Constants.sol:5:5: Explicitly mark visibility of state [Warning/state-visibility]
+/sb/Constants.sol:5:5: Variable name must be in mixedCase CHI [Warning/var-name-mixedcase]
+/sb/Constants.sol:6:5: Explicitly mark visibility of state [Warning/state-visibility]
+/sb/Constants.sol:6:5: Variable name must be in mixedCase RATE [Warning/var-name-mixedcase]
+
+8 problem/s (1 error/s, 7 warning/s)

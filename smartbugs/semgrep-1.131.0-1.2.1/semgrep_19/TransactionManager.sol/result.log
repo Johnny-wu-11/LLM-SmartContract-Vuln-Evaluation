@@ -1,0 +1,289 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 58 Code Findings │
+└──────────────────┘
+                              
+    /sb/TransactionManager.sol
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           78┆ constructor(uint256 _chainId) {
+           79┆   chainId = _chainId;
+           80┆ }
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           90┆ require(amount > 0, "addLiquidity: AMOUNT_IS_ZERO");
+            ⋮┆----------------------------------------
+           94┆ require(msg.value == amount, "addLiquidity: VALUE_MISMATCH");
+            ⋮┆----------------------------------------
+           96┆ require(msg.value == 0, "addLiquidity: ETH_WITH_ERC_TRANSFER");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+           96┆ require(msg.value == 0, "addLiquidity: ETH_WITH_ERC_TRANSFER");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           97┆ require(LibERC20.transferFrom(assetId, router, address(this), amount), "addLiquidity:
+               ERC20_TRANSFER_FAILED");                                                             
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+           97┆ require(LibERC20.transferFrom(assetId, router, address(this), amount), "addLiquidity:
+               ERC20_TRANSFER_FAILED");                                                             
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          119┆ require(amount > 0, "removeLiquidity: AMOUNT_IS_ZERO");
+            ⋮┆----------------------------------------
+          122┆ require(routerBalances[msg.sender][assetId] >= amount, "removeLiquidity:
+               INSUFFICIENT_FUNDS");                                                   
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          122┆ require(routerBalances[msg.sender][assetId] >= amount, "removeLiquidity:
+               INSUFFICIENT_FUNDS");                                                   
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+          125┆ routerBalances[msg.sender][assetId] -= amount;
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          128┆ require(LibAsset.transferAsset(assetId, recipient, amount), "removeLiquidity:
+               TRANSFER_FAILED");                                                           
+            ⋮┆----------------------------------------
+          173┆ require(invariantData.user != address(0), "prepare: USER_EMPTY");
+            ⋮┆----------------------------------------
+          176┆ require(invariantData.router != address(0), "prepare: ROUTER_EMPTY");
+            ⋮┆----------------------------------------
+          179┆ require(invariantData.receivingAddress != address(0), "prepare: RECEIVING_ADDRESS_EMPTY");
+            ⋮┆----------------------------------------
+          182┆ require(invariantData.sendingChainId != invariantData.receivingChainId, "prepare:
+               SAME_CHAINIDS");                                                                 
+            ⋮┆----------------------------------------
+          185┆ require(invariantData.sendingChainId == chainId || invariantData.receivingChainId ==
+               chainId, "prepare: INVALID_CHAINIDS");                                              
+            ⋮┆----------------------------------------
+          188┆ require((expiry - block.timestamp) >= MIN_TIMEOUT, "prepare: TIMEOUT_TOO_LOW");
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+          188┆ require((expiry - block.timestamp) >= MIN_TIMEOUT, "prepare: TIMEOUT_TOO_LOW");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          192┆ require(variantTransactionData[digest] == bytes32(0), "prepare: DIGEST_EXISTS");
+            ⋮┆----------------------------------------
+          217┆ require(amount > 0, "prepare: AMOUNT_IS_ZERO");
+            ⋮┆----------------------------------------
+          228┆ require(msg.value == amount, "prepare: VALUE_MISMATCH");
+            ⋮┆----------------------------------------
+          230┆ require(msg.value == 0, "prepare: ETH_WITH_ERC_TRANSFER");
+            ⋮┆----------------------------------------
+          231┆ require(
+          232┆   LibERC20.transferFrom(invariantData.sendingAssetId, msg.sender, address(this), amount),
+          233┆   "prepare: ERC20_TRANSFER_FAILED"
+          234┆ );
+            ⋮┆----------------------------------------
+          248┆ require(msg.sender == invariantData.router, "prepare: ROUTER_MISMATCH");
+            ⋮┆----------------------------------------
+          251┆ require(msg.value == 0, "prepare: ETH_WITH_ROUTER_PREPARE");
+            ⋮┆----------------------------------------
+          254┆ require(
+          255┆   routerBalances[invariantData.router][invariantData.receivingAssetId] >= amount,
+          256┆   "prepare: INSUFFICIENT_LIQUIDITY"
+          257┆ );
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+          260┆ routerBalances[invariantData.router][invariantData.receivingAssetId] -= amount;
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          315┆ require(variantTransactionData[digest] == hashVariantTransactionData(txData), "fulfill:
+               INVALID_VARIANT_DATA");                                                                
+            ⋮┆----------------------------------------
+          318┆ require(txData.expiry > block.timestamp, "fulfill: EXPIRED");
+            ⋮┆----------------------------------------
+          321┆ require(txData.preparedBlockNumber > 0, "fulfill: ALREADY_COMPLETED");
+            ⋮┆----------------------------------------
+          324┆ require(recoverFulfillSignature(txData, relayerFee, signature) == txData.user, "fulfill:
+               INVALID_SIGNATURE");                                                                    
+            ⋮┆----------------------------------------
+          328┆ require(relayerFee <= txData.amount, "fulfill: INVALID_RELAYER_FEE");
+            ⋮┆----------------------------------------
+          331┆ require(keccak256(callData) == txData.callDataHash, "fulfill: INVALID_CALL_DATA");
+            ⋮┆----------------------------------------
+          355┆ require(msg.sender == txData.router, "fulfill: ROUTER_MISMATCH");
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+          364┆ uint256 toSend = txData.amount - relayerFee;
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          368┆ require(
+          369┆   LibAsset.transferAsset(txData.receivingAssetId, payable(msg.sender), relayerFee),
+          370┆   "fulfill: FEE_TRANSFER_FAILED"
+          371┆ );
+            ⋮┆----------------------------------------
+          377┆ require(
+          378┆   LibAsset.transferAsset(txData.receivingAssetId, payable(txData.receivingAddress),
+               toSend),                                                                           
+          379┆   "fulfill: TRANSFER_FAILED"
+          380┆ );
+   
+     ❱ solidity.performance.use-nested-if
+          Using nested is cheaper than using && multiple check combinations.  There are more advantages, such
+          as easier to read code and better coverage reports.                                                
+                                                                                                             
+          387┆ if (!LibAsset.isEther(txData.receivingAssetId) && toSend > 0) {
+          388┆   require(LibERC20.approve(txData.receivingAssetId, txData.callTo, toSend), "fulfill:
+               APPROVAL_FAILED");                                                                   
+          389┆ }
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          388┆ require(LibERC20.approve(txData.receivingAssetId, txData.callTo, toSend), "fulfill:
+               APPROVAL_FAILED");                                                                 
+            ⋮┆----------------------------------------
+          405┆ require(
+          406┆   LibAsset.transferAsset(txData.receivingAssetId, payable(txData.receivingAddress),
+               toSend),                                                                           
+          407┆   "fulfill: TRANSFER_FAILED"
+          408┆ );
+            ⋮┆----------------------------------------
+          424┆ require(
+          425┆   LibAsset.transferAsset(txData.receivingAssetId, payable(txData.receivingAddress),
+               toSend),                                                                           
+          426┆   "fulfill: TRANSFER_FAILED"
+          427┆ );
+            ⋮┆----------------------------------------
+          468┆ require(variantTransactionData[digest] == hashVariantTransactionData(txData), "cancel:
+               INVALID_VARIANT_DATA");                                                               
+            ⋮┆----------------------------------------
+          471┆ require(txData.preparedBlockNumber > 0, "cancel: ALREADY_COMPLETED");
+            ⋮┆----------------------------------------
+          475┆ require(relayerFee <= txData.amount, "cancel: INVALID_RELAYER_FEE");
+            ⋮┆----------------------------------------
+          500┆ require(msg.sender == txData.router, "cancel: ROUTER_MUST_CANCEL");
+            ⋮┆----------------------------------------
+          503┆ require(
+          504┆   LibAsset.transferAsset(txData.sendingAssetId, payable(txData.sendingChainFallback),
+               txData.amount),                                                                      
+          505┆   "cancel: TRANSFER_FAILED"
+          506┆ );
+            ⋮┆----------------------------------------
+          511┆ require(recoverCancelSignature(txData, relayerFee, signature) == txData.user, "cancel:
+               INVALID_SIGNATURE");                                                                  
+            ⋮┆----------------------------------------
+          513┆ require(
+          514┆   LibAsset.transferAsset(txData.receivingAssetId, payable(msg.sender), relayerFee),
+          515┆   "cancel: FEE_TRANSFER_FAILED"
+          516┆ );
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+          520┆ uint256 toRefund = txData.amount - relayerFee;
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          524┆ require(
+          525┆   LibAsset.transferAsset(txData.sendingAssetId, payable(txData.sendingChainFallback),
+               toRefund),                                                                           
+          526┆   "cancel: TRANSFER_FAILED"
+          527┆ );
+            ⋮┆----------------------------------------
+          536┆ require(recoverCancelSignature(txData, relayerFee, signature) == txData.user, "cancel:
+               INVALID_SIGNATURE");                                                                  
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          573┆ for (uint256 i; i < newLength + 1; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          573┆ for (uint256 i; i < newLength + 1; i++) {
+   
+     ❱ solidity.performance.use-nested-if
+          Using nested is cheaper than using && multiple check combinations.  There are more advantages, such
+          as easier to read code and better coverage reports.                                                
+                                                                                                             
+          576┆ if (!removed && activeTransactionBlocks[user][i] == preparedBlock) {
+          577┆   removed = true;
+          578┆   continue;
+          579┆ }
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          576┆ if (!removed && activeTransactionBlocks[user][i] == preparedBlock) {
+            ⋮┆----------------------------------------
+          580┆ updated[updatedIdx] = activeTransactionBlocks[user][i];
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          581┆ updatedIdx++;
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 58 (58 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 58 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading
+
+📢 Too many findings? Try Semgrep Pro for more powerful queries and less noise.
+   See https://sg.run/false-positives.

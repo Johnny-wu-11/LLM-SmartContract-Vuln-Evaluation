@@ -1,0 +1,17 @@
+A new version of Solhint is available: 6.1.0
+Please consider updating your Solhint package.
+/sb/IERC3156Upgradeable.sol:3:1: Compiler version 0.6.8 does not satisfy the ^0.8.24 semver requirement [Error/compiler-version]
+/sb/IERC3156Upgradeable.sol:9:1: Missing @title tag in contract 'IERC3156FlashBorrowerUpgradeable' [Warning/use-natspec]
+/sb/IERC3156Upgradeable.sol:9:1: Missing @author tag in contract 'IERC3156FlashBorrowerUpgradeable' [Warning/use-natspec]
+/sb/IERC3156Upgradeable.sol:9:1: Missing @notice tag in contract 'IERC3156FlashBorrowerUpgradeable' [Warning/use-natspec]
+/sb/IERC3156Upgradeable.sol:19:5: Missing @notice tag in function 'onFlashLoan' [Warning/use-natspec]
+/sb/IERC3156Upgradeable.sol:32:1: Missing @title tag in contract 'IERC3156FlashLenderUpgradeable' [Warning/use-natspec]
+/sb/IERC3156Upgradeable.sol:32:1: Missing @author tag in contract 'IERC3156FlashLenderUpgradeable' [Warning/use-natspec]
+/sb/IERC3156Upgradeable.sol:32:1: Missing @notice tag in contract 'IERC3156FlashLenderUpgradeable' [Warning/use-natspec]
+/sb/IERC3156Upgradeable.sol:38:5: Missing @notice tag in function 'maxFlashLoan' [Warning/use-natspec]
+/sb/IERC3156Upgradeable.sol:48:5: Missing @notice tag in function 'flashFee' [Warning/use-natspec]
+/sb/IERC3156Upgradeable.sol:60:5: Missing @notice tag in function 'flashLoan' [Warning/use-natspec]
+/sb/IERC3156Upgradeable.sol:60:5: Missing @return tag in function 'flashLoan' [Warning/use-natspec]
+/sb/IERC3156Upgradeable.sol:60:5: Mismatch in @return count for function 'flashLoan'. Expected: 1, Found: 0 [Warning/use-natspec]
+
+13 problem/s (1 error/s, 12 warning/s)

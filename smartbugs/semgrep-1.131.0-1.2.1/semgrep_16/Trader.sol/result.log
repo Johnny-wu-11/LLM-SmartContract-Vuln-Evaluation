@@ -1,0 +1,82 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 13 Code Findings │
+└──────────────────┘
+                  
+    /sb/Trader.sol
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           40┆ constructor() {
+           41┆     // Construct the EIP712 Domain
+           42┆     EIP712_DOMAIN = keccak256(
+           43┆         abi.encode(
+           44┆             EIP712_DOMAIN_SEPERATOR,
+           45┆             keccak256(bytes(EIP712_DOMAIN_NAME)),
+           46┆             keccak256(bytes(EIP712_DOMAIN_VERSION)),
+           47┆             chainId,
+           48┆             address(this)
+           49┆         )
+             [hid 2 additional lines, adjust with --max-lines-per-finding] 
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           71┆ require(makers.length == takers.length, "TDR: Lengths differ");
+            ⋮┆----------------------------------------
+           76┆ require(n > 0, "TDR: Received empty arrays");
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+           78┆ for (uint256 i = 0; i < n; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+           78┆ for (uint256 i = 0; i < n; i++) {
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+           97┆ uint256 makeOrderFilled = filled[makerOrderId];
+            ⋮┆----------------------------------------
+           98┆ uint256 takeOrderFilled = filled[takerOrderId];
+            ⋮┆----------------------------------------
+          105┆ averageExecutionPrice[makerOrderId],
+            ⋮┆----------------------------------------
+          111┆ averageExecutionPrice[takerOrderId],
+            ⋮┆----------------------------------------
+          132┆ filled[makerOrderId] = makeOrderFilled + fillAmount;
+            ⋮┆----------------------------------------
+          133┆ filled[takerOrderId] = takeOrderFilled + fillAmount;
+            ⋮┆----------------------------------------
+          134┆ averageExecutionPrice[makerOrderId] = newMakeAverage;
+            ⋮┆----------------------------------------
+          135┆ averageExecutionPrice[takerOrderId] = newTakeAverage;
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 13 (13 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 13 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

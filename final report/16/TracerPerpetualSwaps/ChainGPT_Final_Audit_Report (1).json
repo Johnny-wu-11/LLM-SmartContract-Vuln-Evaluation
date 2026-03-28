@@ -1,0 +1,26 @@
+{
+  "title": "ChainGPT Final Audit Report",
+  "tool": "ChainGPT",
+  "status": "Completed",
+  "reduction_summary": {
+    "original_findings": 0,
+    "retained_findings_after_ai_review": 6,
+    "filtered_findings": 0,
+    "filtering_rate": "0.00%"
+  },
+  "adjudication_summary": "The adjudication focused on retaining high-severity security issues as 'confirmed', while some medium-severity issues were deemed 'plausible_but_unverified'. Low-severity findings were less supported.",
+  "findings": {
+    "confirmed": [
+      "Unrestricted Access to Critical Functions",
+      "Reentrancy Attack Vulnerability",
+      "Oracle Manipulation Risk"
+    ],
+    "plausible_but_unverified": [
+      "Potential ERC20 Token Withdrawal Misuse",
+      "DoS Attack from External Oracle Dependence"
+    ],
+    "unsupported_or_false_positive": [
+      "Potential Arithmetic Issues in LibMath"
+    ]
+  }
+}

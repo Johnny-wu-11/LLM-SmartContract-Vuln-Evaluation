@@ -1,0 +1,44 @@
+{
+  "tool": "Mythril",
+  "file_name": "Router.sol",
+  "status": "success",
+  "error": null,
+  "issues": [],
+  "raw_output": {
+    "args": [
+      "mythril/myth",
+      "analyze",
+      "/work/tmpmrig9a3a.sol:Router",
+      "-o",
+      "json",
+      "--execution-timeout",
+      "30",
+      "--create-timeout",
+      "15",
+      "--solver-timeout",
+      "10000",
+      "--max-depth",
+      "12",
+      "--transaction-count",
+      "1",
+      "--no-onchain-data"
+    ],
+    "availableContractNames": [
+      "console",
+      "Router"
+    ],
+    "data": {
+      "error": null,
+      "issues": [],
+      "success": true
+    },
+    "durationSec": 58.72,
+    "requestedContractName": "Router",
+    "returncode": 0,
+    "selectedContractName": "Router",
+    "status": "success",
+    "stderr": "",
+    "tool": "Mythril"
+  },
+  "timestamp": "2026-03-27T11:11:11.996Z"
+}

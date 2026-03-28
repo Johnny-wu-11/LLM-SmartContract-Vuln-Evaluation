@@ -1,0 +1,84 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                   
+                   
+┌─────────────────┐
+│ 8 Code Findings │
+└─────────────────┘
+                       
+    /sb/PairFactory.sol
+     ❱ solidity.best-practice.use-ownable2step
+          By demanding that the receiver of the owner permissions actively accept via a contract call of its 
+          own,  `Ownable2Step` and `Ownable2StepUpgradeable` prevent the contract ownership from accidentally
+          being transferred  to an address that cannot handle it.                                            
+                                                                                                             
+           17┆ contract PairFactory is IPairFactory, Ownable {
+   
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           32┆ constructor(
+           33┆   address _lendingPairMaster,
+           34┆   address _lpTokenMaster,
+           35┆   address _uniV3Helper,
+           36┆   address _feeRecipient,
+           37┆   ILendingController _lendingController
+           38┆ ) {
+           39┆   lendingPairMaster = _lendingPairMaster;
+           40┆   lpTokenMaster     = _lpTokenMaster;
+           41┆   uniV3Helper       = _uniV3Helper;
+             [hid 3 additional lines, adjust with --max-lines-per-finding] 
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           51┆ require(_token0 != _token1, 'PairFactory: duplicate tokens');
+            ⋮┆----------------------------------------
+           52┆ require(_token0 != address(0) && _token1 != address(0), 'PairFactory: zero address');
+   
+     ❱ solidity.performance.use-multiple-require
+          Using multiple require statements is cheaper than using && multiple check combinations.  There are
+          more advantages, such as easier to read code and better coverage reports.                         
+                                                                                                            
+           52┆ require(_token0 != address(0) && _token1 != address(0), 'PairFactory: zero address');
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           53┆ require(pairByTokens[_token0][_token1] == address(0), 'PairFactory: already exists');
+            ⋮┆----------------------------------------
+           57┆ require(
+           58┆   lendingController.tokenSupported(tokenA) && lendingController.tokenSupported(tokenB),
+           59┆   "PairFactory: token not supported"
+           60┆ );
+   
+     ❱ solidity.performance.use-multiple-require
+          Using multiple require statements is cheaper than using && multiple check combinations.  There are
+          more advantages, such as easier to read code and better coverage reports.                         
+                                                                                                            
+           57┆ require(
+           58┆   lendingController.tokenSupported(tokenA) && lendingController.tokenSupported(tokenB),
+           59┆   "PairFactory: token not supported"
+           60┆ );
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 8 (8 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 8 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

@@ -1,0 +1,111 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 16 Code Findings │
+└──────────────────┘
+                 
+    /sb/Vault.sol
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           47┆ constructor(
+           48┆     string memory _name,
+           49┆     string memory _symbol,
+           50┆     address _manager
+           51┆ )
+           52┆     public
+           53┆     VaultToken(_name, _symbol)
+           54┆ {
+           55┆     manager = IManager(_manager);
+           56┆     min = 9500;
+             [hid 2 additional lines, adjust with --max-lines-per-finding] 
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           91┆ require(_min <= MAX, "!_min");
+            ⋮┆----------------------------------------
+          151┆ require(manager.allowedStrategies(_strategy), "!_strategy");
+            ⋮┆----------------------------------------
+          180┆ require(_amount > 0, "!_amount");
+            ⋮┆----------------------------------------
+          200┆ require(totalSupply() <= totalDepositCap, ">totalDepositCap");
+            ⋮┆----------------------------------------
+          219┆ require(_tokens.length == _amounts.length, "!length");
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          221┆ for (uint8 i; i < _amounts.length; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          221┆ for (uint8 i; i < _amounts.length; i++) {
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          321┆ for (uint8 i; i < _tokens.length; i++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          321┆ for (uint8 i; i < _tokens.length; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          321┆ for (uint8 i; i < _tokens.length; i++) {
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          390┆ require(manager.allowedTokens(_token) && manager.vaults(_token) == address(this),
+               "!_token");                                                                      
+   
+     ❱ solidity.performance.use-multiple-require
+          Using multiple require statements is cheaper than using && multiple check combinations.  There are
+          more advantages, such as easier to read code and better coverage reports.                         
+                                                                                                            
+          390┆ require(manager.allowedTokens(_token) && manager.vaults(_token) == address(this),
+               "!_token");                                                                      
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          395┆ require(!manager.halted(), "halted");
+            ⋮┆----------------------------------------
+          400┆ require(msg.sender == manager.harvester(), "!harvester");
+            ⋮┆----------------------------------------
+          405┆ require(msg.sender == manager.strategist(), "!strategist");
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 16 (16 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 16 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

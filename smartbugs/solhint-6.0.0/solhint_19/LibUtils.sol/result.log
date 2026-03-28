@@ -1,0 +1,8 @@
+A new version of Solhint is available: 6.1.0
+Please consider updating your Solhint package.
+/sb/LibUtils.sol:2:1: Compiler version 0.8.4 does not satisfy the ^0.8.24 semver requirement [Error/compiler-version]
+/sb/LibUtils.sol:10:5: Missing @param tag in function 'revertIfCallFailed' [Warning/use-natspec]
+/sb/LibUtils.sol:10:5: Mismatch in @param names for function 'revertIfCallFailed'. Expected: [success, returnData], Found: [] [Warning/use-natspec]
+/sb/LibUtils.sol:15:13: Avoid to use inline assembly. It is acceptable only in rare cases [Warning/no-inline-assembly]
+
+4 problem/s (1 error/s, 3 warning/s)

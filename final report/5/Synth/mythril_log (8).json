@@ -1,0 +1,43 @@
+{
+  "tool": "Mythril",
+  "file_name": "Synth.sol",
+  "status": "success",
+  "error": null,
+  "issues": [],
+  "raw_output": {
+    "args": [
+      "mythril/myth",
+      "analyze",
+      "/work/tmp0_kykl4e.sol:Synth",
+      "-o",
+      "json",
+      "--execution-timeout",
+      "30",
+      "--create-timeout",
+      "15",
+      "--solver-timeout",
+      "10000",
+      "--max-depth",
+      "12",
+      "--transaction-count",
+      "1",
+      "--no-onchain-data"
+    ],
+    "availableContractNames": [
+      "Synth"
+    ],
+    "data": {
+      "error": null,
+      "issues": [],
+      "success": true
+    },
+    "durationSec": 7.6,
+    "requestedContractName": "Synth",
+    "returncode": 0,
+    "selectedContractName": "Synth",
+    "status": "success",
+    "stderr": "",
+    "tool": "Mythril"
+  },
+  "timestamp": "2026-03-27T11:12:23.662Z"
+}

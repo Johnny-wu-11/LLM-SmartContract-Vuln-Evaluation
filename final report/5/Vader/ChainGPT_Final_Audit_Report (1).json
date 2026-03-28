@@ -1,0 +1,25 @@
+{
+  "title": "ChainGPT Final Audit Report",
+  "tool": "ChainGPT",
+  "status": "Completed",
+  "reduction_summary": {
+    "original_findings": 0,
+    "retained_findings_after_ai_review": 7,
+    "filtered_findings": 0,
+    "filtering_rate": "0.00%"
+  },
+  "adjudication_summary": "All identified issues are low confidence and need verification. They present potential risks that should be analyzed further.",
+  "findings": {
+    "confirmed": [],
+    "plausible_but_unverified": [
+      "TransferTo Function Risks",
+      "Unchecked External Calls",
+      "Reentrancy Vulnerability",
+      "Integer Underflow/Overflow",
+      "Fee Calculation",
+      "DAO Control Risks",
+      "Burn Address"
+    ],
+    "unsupported_or_false_positive": []
+  }
+}

@@ -1,0 +1,138 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 22 Code Findings │
+└──────────────────┘
+                       
+    /sb/Liquidation.sol
+     ❱ solidity.best-practice.use-ownable2step
+          By demanding that the receiver of the owner permissions actively accept via a contract call of its 
+          own,  `Ownable2Step` and `Ownable2StepUpgradeable` prevent the contract ownership from accidentally
+          being transferred  to an address that cannot handle it.                                            
+                                                                                                             
+           20┆ contract Liquidation is ILiquidation, Ownable {
+   
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           56┆ constructor(
+           57┆     address _pricing,
+           58┆     address _tracer,
+           59┆     address _insuranceContract,
+           60┆     address _fastGasOracle,
+           61┆     uint256 _maxSlippage
+           62┆ ) Ownable() {
+           63┆     pricing = IPricing(_pricing);
+           64┆     tracer = ITracerPerpetualSwaps(_tracer);
+           65┆     insuranceContract = _insuranceContract;
+             [hid 3 additional lines, adjust with --max-lines-per-finding] 
+   
+     ❱ solidity.performance.inefficient-state-variable-increment
+          <x> += <y> costs more gas than <x> = <x> + <y> for state variables.
+                                                                             
+          102┆ currentLiquidationId += 1;
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          111┆ require(!receipt.escrowClaimed, "LIQ: Escrow claimed");
+            ⋮┆----------------------------------------
+          112┆ require(block.timestamp > receipt.releaseTime, "LIQ: Not released");
+            ⋮┆----------------------------------------
+          155┆ require(amount > 0, "LIQ: Liquidation amount <= 0");
+            ⋮┆----------------------------------------
+          156┆ require(tx.gasprice <= IOracle(fastGasOracle).latestAnswer(), "LIQ: GasPrice > FGasPrice");
+            ⋮┆----------------------------------------
+          162┆ require(
+          163┆     currentMargin <= 0 ||
+          164┆         uint256(currentMargin) < Balances.minimumMargin(pos, price, gasCost,
+               tracer.trueMaxLeverage()),                                                  
+          165┆     "LIQ: Account above margin"
+          166┆ );
+            ⋮┆----------------------------------------
+          167┆ require(amount <= base.abs(), "LIQ: Liquidate Amount > Position");
+            ⋮┆----------------------------------------
+          241┆ require(
+          242┆     checkPartialLiquidation(updatedPosition, liquidatedBalance.lastUpdatedGasPrice),
+          243┆     "LIQ: leaves too little left over"
+          244┆ );
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          281┆ for (uint256 i; i < orders.length; i++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          281┆ for (uint256 i; i < orders.length; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          281┆ for (uint256 i; i < orders.length; i++) {
+   
+     ❱ solidity.performance.use-nested-if
+          Using nested is cheaper than using && multiple check combinations.  There are more advantages, such
+          as easier to read code and better coverage reports.                                                
+                                                                                                             
+          293┆ if (
+          294┆     (receipt.liquidationSide == Perpetuals.Side.Long && order.price >= receipt.price) ||
+          295┆     (receipt.liquidationSide == Perpetuals.Side.Short && order.price <= receipt.price)
+          296┆ ) {
+          297┆     // Liquidation position was long
+          298┆     // Price went up, so not a slippage order
+          299┆     // or
+          300┆     // Liquidation position was short
+          301┆     // Price went down, so not a slippage order
+          302┆     emit InvalidClaimOrder(receiptId);
+             [hid 2 additional lines, adjust with --max-lines-per-finding] 
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          336┆ require(unitsSold <= uint256(receipt.amountLiquidated.abs()), "LIQ: Unit mismatch");
+            ⋮┆----------------------------------------
+          401┆ require(receipt.liquidator == msg.sender, "LIQ: Liquidator mismatch");
+            ⋮┆----------------------------------------
+          403┆ require(!receipt.liquidatorRefundClaimed, "LIQ: Already claimed");
+            ⋮┆----------------------------------------
+          406┆ require(block.timestamp < receipt.releaseTime, "LIQ: claim time passed");
+            ⋮┆----------------------------------------
+          407┆ require(tracer.tradingWhitelist(traderContract), "LIQ: Trader is not whitelisted");
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+          414┆ liquidationReceipts[receiptId].escrowedAmount = receipt.escrowedAmount - amountToReturn;
+            ⋮┆----------------------------------------
+          425┆ uint256 amountWantedFromInsurance = amountToReturn - receipt.escrowedAmount;
+            ⋮┆----------------------------------------
+          432┆ amountToGiveToLiquidatee = receipt.escrowedAmount - amountToReturn;
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 22 (22 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 22 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

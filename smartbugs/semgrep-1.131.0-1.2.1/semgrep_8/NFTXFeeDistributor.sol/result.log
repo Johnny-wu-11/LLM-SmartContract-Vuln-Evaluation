@@ -1,0 +1,82 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 10 Code Findings │
+└──────────────────┘
+                              
+    /sb/NFTXFeeDistributor.sol
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+           57┆ tokenBalance -= 1000;
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+           74┆ for (uint256 i = 0; i < _feeReceivers.length; i++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+           74┆ for (uint256 i = 0; i < _feeReceivers.length; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+           74┆ for (uint256 i = 0; i < _feeReceivers.length; i++) {
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           84┆ require(msg.sender == nftxVaultFactory, "FeeReceiver: not factory");
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+           91┆ allocTotal[_vaultId] -= feeReceiver.allocPoint;
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          106┆ require(_receiverIdx < arrLength, "FeeDistributor: Out of bounds");
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+          108┆ allocTotal[_vaultId] -= feeReceiversForVault[_receiverIdx].allocPoint;
+            ⋮┆----------------------------------------
+          109┆ feeReceiversForVault[_receiverIdx] = feeReceiversForVault[arrLength-1];
+   
+     ❱ solidity.best-practice.use-abi-encodecall-instead-of-encodewithselector
+          To guarantee arguments type safety it is recommended to use `abi.encodeCall` instead of
+          `abi.encodeWithSelector`.                                                              
+                                                                                                 
+          162┆ bytes memory payload = abi.encodeWithSelector(INFTXLPStaking.receiveRewards.selector,
+               _vaultId, amountToSend);                                                             
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 10 (10 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 10 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

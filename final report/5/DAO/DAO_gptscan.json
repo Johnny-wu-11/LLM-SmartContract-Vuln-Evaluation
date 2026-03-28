@@ -1,0 +1,45 @@
+{
+  "contract": "DAO",
+  "contractFile": "DAO.sol",
+  "source": "gptscan",
+  "report": {
+    "version": "1.1.0",
+    "success": true,
+    "message": null,
+    "results": [
+      {
+        "code": "insecure-vote-calculation",
+        "severity": "HIGH",
+        "title": "MWE-201: Insecure Vote Calculation",
+        "description": "Calculating vote amount can be manipulated to cause flashloan attacks.",
+        "recommendation": "In vote calculation, add a check for tokens that may come from a flash loan.",
+        "affectedFiles": [
+          {
+            "filePath": "/Users/mac/Web3Bugs/contracts/5/vader-protocol/contracts/DAO.sol",
+            "range": {
+              "start": {
+                "line": 158
+              },
+              "end": {
+                "line": 163
+              }
+            },
+            "highlights": []
+          },
+          {
+            "filePath": "/Users/mac/Web3Bugs/contracts/5/vader-protocol/contracts/DAO.sol",
+            "range": {
+              "start": {
+                "line": 79
+              },
+              "end": {
+                "line": 92
+              }
+            },
+            "highlights": []
+          }
+        ]
+      }
+    ]
+  }
+}

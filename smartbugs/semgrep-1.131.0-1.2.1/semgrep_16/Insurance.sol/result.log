@@ -1,0 +1,63 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                   
+                   
+┌─────────────────┐
+│ 7 Code Findings │
+└─────────────────┘
+                     
+    /sb/Insurance.sol
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           31┆ constructor(address _tracer) {
+           32┆     tracer = ITracerPerpetualSwaps(_tracer);
+           33┆     InsurancePoolToken _token = new InsurancePoolToken("Tracer Pool Token", "TPT");
+           34┆     token = address(_token);
+           35┆     collateralAsset = tracer.tracerQuoteToken();
+           36┆
+           37┆     emit InsurancePoolDeployed(_tracer, tracer.tracerQuoteToken());
+           38┆ }
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           77┆ require(balance >= amount, "INS: balance < amount");
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+           93┆ publicCollateralAmount = publicCollateralAmount - wadTokensToSend;
+            ⋮┆----------------------------------------
+          155┆ } else if (poolHoldings - amount < 10**18) {
+            ⋮┆----------------------------------------
+          162┆ publicCollateralAmount = publicCollateralAmount - (amount - bufferCollateralAmount);
+            ⋮┆----------------------------------------
+          169┆ bufferCollateralAmount = bufferCollateralAmount - amount;
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          229┆ require(msg.sender == tracer.liquidationContract(), "INS: sender not LIQ contract");
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 7 (7 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 7 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

@@ -1,0 +1,24 @@
+A new version of Solhint is available: 6.1.0
+Please consider updating your Solhint package.
+/sb/ReentrantERC20.sol:1:1: Compiler version ^0.6.6 does not satisfy the ^0.8.24 semver requirement [Error/compiler-version]
+/sb/ReentrantERC20.sol:2:1: global import of path @openzeppelin/contracts/token/ERC20/ERC20.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/ReentrantERC20.sol:2:1: Import in /sb/ReentrantERC20.sol doesn't exist in: @openzeppelin/contracts/token/ERC20/ERC20.sol [Warning/import-path-check]
+/sb/ReentrantERC20.sol:3:1: global import of path ./Gravity.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/ReentrantERC20.sol:3:1: Import in /sb/ReentrantERC20.sol doesn't exist in: ./Gravity.sol [Warning/import-path-check]
+/sb/ReentrantERC20.sol:8:1: Missing @title tag in contract 'ReentrantERC20' [Warning/use-natspec]
+/sb/ReentrantERC20.sol:8:1: Missing @author tag in contract 'ReentrantERC20' [Warning/use-natspec]
+/sb/ReentrantERC20.sol:8:1: Missing @notice tag in contract 'ReentrantERC20' [Warning/use-natspec]
+/sb/ReentrantERC20.sol:9:5: Explicitly mark visibility of state [Warning/state-visibility]
+/sb/ReentrantERC20.sol:9:5: Variable name must be in mixedCase state_gravityAddress [Warning/var-name-mixedcase]
+/sb/ReentrantERC20.sol:11:5: Missing @notice tag in function '<anonymous>' [Warning/use-natspec]
+/sb/ReentrantERC20.sol:11:5: Missing @param tag in function '<anonymous>' [Warning/use-natspec]
+/sb/ReentrantERC20.sol:11:5: Mismatch in @param names for function '<anonymous>'. Expected: [_gravityAddress], Found: [] [Warning/use-natspec]
+/sb/ReentrantERC20.sol:15:5: Missing @notice tag in function 'transfer' [Warning/use-natspec]
+/sb/ReentrantERC20.sol:15:5: Missing @param tag in function 'transfer' [Warning/use-natspec]
+/sb/ReentrantERC20.sol:15:5: Mismatch in @param names for function 'transfer'. Expected: [recipient, amount], Found: [] [Warning/use-natspec]
+/sb/ReentrantERC20.sol:15:5: Missing @return tag in function 'transfer' [Warning/use-natspec]
+/sb/ReentrantERC20.sol:15:5: Mismatch in @return count for function 'transfer'. Expected: 1, Found: 0 [Warning/use-natspec]
+/sb/ReentrantERC20.sol:15:23: Variable "recipient" is unused [Warning/no-unused-vars]
+/sb/ReentrantERC20.sol:15:42: Variable "amount" is unused [Warning/no-unused-vars]
+
+20 problem/s (1 error/s, 19 warning/s)

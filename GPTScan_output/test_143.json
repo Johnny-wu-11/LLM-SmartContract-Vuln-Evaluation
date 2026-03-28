@@ -1,0 +1,193 @@
+{
+    "version": "1.1.0",
+    "success": true,
+    "message": null,
+    "results": [
+        {
+            "code": "price-manipulation",
+            "severity": "HIGH",
+            "title": "MWE-200: Insecure LP Token Value Calculation",
+            "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+            "recommendation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/143/juice-contracts-v2-code4rena/contracts/JBTokenStore.sol",
+                    "range": {
+                        "start": {
+                            "line": 135
+                        },
+                        "end": {
+                            "line": 149
+                        }
+                    },
+                    "highlights": []
+                },
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/143/juice-contracts-v2-code4rena/contracts/system_tests/TestReconfigure.sol",
+                    "range": {
+                        "start": {
+                            "line": 303
+                        },
+                        "end": {
+                            "line": 434
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        },
+        {
+            "code": "price-manipulation",
+            "severity": "HIGH",
+            "title": "MWE-200: Insecure LP Token Value Calculation",
+            "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+            "recommendation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/143/juice-contracts-v2-code4rena/contracts/JBController.sol",
+                    "range": {
+                        "start": {
+                            "line": 1069
+                        },
+                        "end": {
+                            "line": 1091
+                        }
+                    },
+                    "highlights": []
+                },
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/143/juice-contracts-v2-code4rena/contracts/JBController.sol",
+                    "range": {
+                        "start": {
+                            "line": 841
+                        },
+                        "end": {
+                            "line": 887
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        },
+        {
+            "code": "price-manipulation",
+            "severity": "HIGH",
+            "title": "MWE-200: Insecure LP Token Value Calculation",
+            "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+            "recommendation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/143/juice-contracts-v2-code4rena/contracts/JBETHERC20ProjectPayer.sol",
+                    "range": {
+                        "start": {
+                            "line": 394
+                        },
+                        "end": {
+                            "line": 419
+                        }
+                    },
+                    "highlights": []
+                },
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/143/juice-contracts-v2-code4rena/contracts/JBETHERC20SplitsPayer.sol",
+                    "range": {
+                        "start": {
+                            "line": 335
+                        },
+                        "end": {
+                            "line": 403
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        },
+        {
+            "code": "price-manipulation",
+            "severity": "HIGH",
+            "title": "MWE-200: Insecure LP Token Value Calculation",
+            "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+            "recommendation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/143/juice-contracts-v2-code4rena/contracts/JBSingleTokenPaymentTerminalStore.sol",
+                    "range": {
+                        "start": {
+                            "line": 804
+                        },
+                        "end": {
+                            "line": 835
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        },
+        {
+            "code": "price-manipulation",
+            "severity": "HIGH",
+            "title": "MWE-200: Insecure LP Token Value Calculation",
+            "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+            "recommendation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/143/juice-contracts-v2-code4rena/contracts/JBToken.sol",
+                    "range": {
+                        "start": {
+                            "line": 49
+                        },
+                        "end": {
+                            "line": 59
+                        }
+                    },
+                    "highlights": []
+                },
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/143/juice-contracts-v2-code4rena/contracts/system_tests/TestReconfigure.sol",
+                    "range": {
+                        "start": {
+                            "line": 303
+                        },
+                        "end": {
+                            "line": 434
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        },
+        {
+            "code": "price-manipulation",
+            "severity": "HIGH",
+            "title": "MWE-200: Insecure LP Token Value Calculation",
+            "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+            "recommendation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/143/juice-contracts-v2-code4rena/contracts/abstract/JBPayoutRedemptionPaymentTerminal.sol",
+                    "range": {
+                        "start": {
+                            "line": 994
+                        },
+                        "end": {
+                            "line": 1174
+                        }
+                    },
+                    "highlights": []
+                },
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/143/juice-contracts-v2-code4rena/contracts/abstract/JBPayoutRedemptionPaymentTerminal.sol",
+                    "range": {
+                        "start": {
+                            "line": 809
+                        },
+                        "end": {
+                            "line": 900
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,50 @@
+{
+    "docker": {
+        "command": "'/sb/bin/do_solidity.sh' '/sb/StakingToken_flat.sol' '300' '/sb/bin' '0'",
+        "detach": true,
+        "entrypoint": null,
+        "image": "smartbugs/confuzzius:4315fb7",
+        "user": 0,
+        "volumes": {
+            "/var/folders/28/kcb98y_d7xg6c06t7q3pxdh00000gn/T/tmpus7oq95u": {
+                "bind": "/sb",
+                "mode": "rw"
+            }
+        }
+    },
+    "filename": "/Users/mac/Web3Bugs-2/contracts/10/contracts/flattened_out/StakingToken_flat.sol",
+    "platform": {
+        "cpu": "Apple M1",
+        "python": "3.13.5.final.0 (64 bit)",
+        "release": "24.6.0",
+        "smartbugs": "2.0.15",
+        "system": "Darwin",
+        "version": "Darwin Kernel Version 24.6.0: Mon Jul 14 11:30:34 PDT 2025; root:xnu-11417.140.69~1/RELEASE_ARM64_T8103"
+    },
+    "result": {
+        "duration": 2.85455322265625,
+        "exit_code": 254,
+        "logs": "result.log",
+        "output": null,
+        "start": 1773485448.2892458
+    },
+    "runid": "20260314_1041",
+    "solc": "0.7.6",
+    "tool": {
+        "bin": "scripts",
+        "command": "'$BIN/do_solidity.sh' '$FILENAME' '$TIMEOUT' '$BIN' '$MAIN'",
+        "cpu_quota": null,
+        "entrypoint": null,
+        "id": "confuzzius",
+        "image": "smartbugs/confuzzius:4315fb7",
+        "info": "A data dependency-aware hybrid fuzzer for Ethereum smart contracts",
+        "mem_limit": null,
+        "mode": "solidity",
+        "name": "ConFuzzius",
+        "origin": "https://github.com/christoftorres/ConFuzzius",
+        "output": "/root/results.json",
+        "parser": "parser.py",
+        "solc": true,
+        "version": "#4315fb7 v0.0.1"
+    }
+}

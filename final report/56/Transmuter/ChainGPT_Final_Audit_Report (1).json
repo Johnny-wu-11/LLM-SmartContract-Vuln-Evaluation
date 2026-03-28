@@ -1,0 +1,26 @@
+{
+  "title": "ChainGPT Final Audit Report",
+  "tool": "ChainGPT",
+  "status": "Completed",
+  "reduction_summary": {
+    "original_findings": 0,
+    "retained_findings_after_ai_review": 7,
+    "filtered_findings": 0,
+    "filtering_rate": "0.00%"
+  },
+  "adjudication_summary": "The retained findings include confirmed vulnerabilities related to potential reentrancy, access control, and governance risks. Some findings are plausible but require further verification, such as issues with arithmetic operations, gas limits, address handling, and potential abuse in function calls.",
+  "findings": {
+    "confirmed": [
+      "Reentrancy Vulnerability",
+      "Access Control",
+      "Pending Governance"
+    ],
+    "plausible_but_unverified": [
+      "Integer Underflow/Overflow",
+      "Gas Limit and Loops",
+      "Zero Address Handling",
+      "Potential for Forced Transmute Abuse"
+    ],
+    "unsupported_or_false_positive": []
+  }
+}

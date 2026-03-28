@@ -1,0 +1,114 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 22 Code Findings │
+└──────────────────┘
+                 
+    /sb/Ladle.sol
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           33┆ constructor (ICauldron cauldron, IWETH9 weth_) LadleStorage(cauldron) {
+           34┆     weth = weth_;
+           35┆ }
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           45┆ require (cachedVaultId != bytes12(0), "Vault not cached");
+            ⋮┆----------------------------------------
+           51┆ require (vault.owner == msg.sender, "Only vault owner");
+            ⋮┆----------------------------------------
+           58┆ require (series.fyToken != IFYToken(address(0)), "Series not found");
+            ⋮┆----------------------------------------
+           66┆ require (join != IJoin(address(0)), "Join not found");
+            ⋮┆----------------------------------------
+           74┆ require (pool != IPool(address(0)), "Pool not found");
+            ⋮┆----------------------------------------
+           86┆ require (asset != address(0), "Asset not found");
+            ⋮┆----------------------------------------
+           87┆ require (join.asset() == asset, "Mismatched asset and join");
+            ⋮┆----------------------------------------
+           99┆ require (fyToken == pool.fyToken(), "Mismatched pool fyToken and series");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+           99┆ require (fyToken == pool.fyToken(), "Mismatched pool fyToken and series");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          100┆ require (fyToken.underlying() == address(pool.base()), "Mismatched pool base and series");
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          129┆ for (uint256 i = 0; i < calls.length; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          129┆ for (uint256 i = 0; i < calls.length; i++) {
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          203┆ if (ink > 0) require (cauldron.vaults(from).owner == msg.sender, "Only origin vault
+               owner");                                                                           
+            ⋮┆----------------------------------------
+          204┆ if (art > 0) require (cauldron.vaults(to).owner == msg.sender, "Only destination vault
+               owner");                                                                              
+            ⋮┆----------------------------------------
+          271┆ require (art < 0, "Only repay debt");                                          // When
+               repaying debt in `frob`, art is a negative value. Here is the same for consistency.   
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+          353┆ fyToken.burn(address(fyToken), (base * loan) - newDebt);    // Burn the surplus
+            ⋮┆----------------------------------------
+          356┆ newDebt += ((newSeries.maturity - block.timestamp) *                                     
+               uint256(newDebt).wmul(borrowingFee)).u128();  // Add borrowing fee, also stops users form
+               rolling to a mature series                                                               
+            ⋮┆----------------------------------------
+          358┆ (vault,) = cauldron.roll(vaultId, newSeriesId, newDebt.i128() - balances.art.i128()); //
+               Change the series and debt for the vault                                                
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          399┆ require (token != address(0), "Token not found");
+            ⋮┆----------------------------------------
+          422┆ require (msg.sender == address(weth), "Only receive from WETH");
+            ⋮┆----------------------------------------
+          500┆ require (modules[module], "Unregistered module");
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 22 (22 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 22 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

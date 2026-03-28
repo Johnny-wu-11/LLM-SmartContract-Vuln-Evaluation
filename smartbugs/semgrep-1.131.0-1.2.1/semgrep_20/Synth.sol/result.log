@@ -1,0 +1,112 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 18 Code Findings │
+└──────────────────┘
+                 
+    /sb/Synth.sol
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           26┆ require(msg.sender == DEPLOYER, "!DAO");
+            ⋮┆----------------------------------------
+           32┆ require(iPOOLFACTORY(_DAO().POOLFACTORY()).isCuratedPool(msg.sender) == true, "!curated");
+   
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           36┆ constructor (address _base, address _token) {
+           37┆     BASE = _base;
+           38┆     LayerONE = _token;
+           39┆     string memory synthName = "-SpartanProtocolSynthetic";
+           40┆     string memory synthSymbol = "-SPS";
+           41┆     _name = string(abi.encodePacked(iBEP20(_token).name(), synthName));
+           42┆     _symbol = string(abi.encodePacked(iBEP20(_token).symbol(), synthSymbol));
+           43┆     decimals = iBEP20(_token).decimals();
+           44┆     DEPLOYER = msg.sender;
+           45┆     genesis = block.timestamp;
+             [hid 1 additional lines, adjust with --max-lines-per-finding] 
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           85┆ require(currentAllowance >= subtractedValue, "!approval");
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+           86┆ _approve(msg.sender, spender, currentAllowance - subtractedValue);
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           91┆ require(owner != address(0), "!owner");
+            ⋮┆----------------------------------------
+           92┆ require(spender != address(0), "!spender");
+            ⋮┆----------------------------------------
+          105┆ require(currentAllowance >= amount, "!approval");
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+          106┆ _approve(sender, msg.sender, currentAllowance - amount);
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          127┆ require(sender != address(0), "!sender");
+            ⋮┆----------------------------------------
+          129┆ require(senderBalance >= amount, "!balance");
+            ⋮┆----------------------------------------
+          137┆ require(account != address(0), "!account");
+   
+     ❱ solidity.performance.inefficient-state-variable-increment
+          <x> += <y> costs more gas than <x> = <x> + <y> for state variables.
+                                                                             
+          138┆ totalSupply += amount;
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+          149┆ uint256 decreasedAllowance = allowance(account, msg.sender) - (amount);
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          155┆ require(account != address(0), "!account");
+            ⋮┆----------------------------------------
+          156┆ require(_balances[account] >= amount, "!balance");
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+          191┆ uint premium = baseValueLP - baseValueSynth; // Get the premium between the two values
+            ⋮┆----------------------------------------
+          194┆ mapSynth_LPBalance[pool] -= premiumLP; // Reduce the LP balance
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 18 (18 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 18 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

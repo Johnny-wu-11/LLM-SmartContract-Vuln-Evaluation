@@ -1,0 +1,281 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 49 Code Findings │
+└──────────────────┘
+                   
+    /sb/Manager.sol
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           25┆ require(msg.sender == GovStorage.gs().govMain, 'NOT_GOV_MAIN');
+            ⋮┆----------------------------------------
+           31┆ require(address(_token) != address(this), 'SHERX');
+            ⋮┆----------------------------------------
+           32┆ require(ps.premiums, 'WHITELIST');
+            ⋮┆----------------------------------------
+           51┆ require(_token.length == _newUsd.length, 'LENGTH');
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+           54┆ for (uint256 i; i < _token.length; i++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+           54┆ for (uint256 i; i < _token.length; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+           54┆ for (uint256 i; i < _token.length; i++) {
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           77┆ require(_token.length == _premium.length, 'LENGTH');
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+           81┆ for (uint256 i; i < _token.length; i++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+           81┆ for (uint256 i; i < _token.length; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+           81┆ for (uint256 i; i < _token.length; i++) {
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           99┆ require(_protocol.length == _token.length, 'LENGTH_1');
+            ⋮┆----------------------------------------
+          100┆ require(_protocol.length == _premium.length, 'LENGTH_2');
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          104┆ for (uint256 i; i < _protocol.length; i++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          104┆ for (uint256 i; i < _protocol.length; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          104┆ for (uint256 i; i < _protocol.length; i++) {
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          105┆ require(_token[i].length == _premium[i].length, 'LENGTH_3');
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          105┆ require(_token[i].length == _premium[i].length, 'LENGTH_3');
+            ⋮┆----------------------------------------
+          105┆ require(_token[i].length == _premium[i].length, 'LENGTH_3');
+            ⋮┆----------------------------------------
+          106┆ for (uint256 j; j < _token[i].length; j++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          106┆ for (uint256 j; j < _token[i].length; j++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          106┆ for (uint256 j; j < _token[i].length; j++) {
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          146┆ require(_token.length == _premium.length, 'LENGTH_1');
+            ⋮┆----------------------------------------
+          147┆ require(_token.length == _newUsd.length, 'LENGTH_2');
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          151┆ for (uint256 i; i < _token.length; i++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          151┆ for (uint256 i; i < _token.length; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          151┆ for (uint256 i; i < _token.length; i++) {
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          171┆ require(_protocol.length == _premium.length, 'LENGTH');
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          182┆ for (uint256 i; i < _protocol.length; i++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          182┆ for (uint256 i; i < _protocol.length; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          182┆ for (uint256 i; i < _protocol.length; i++) {
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          183┆ require(ps.isProtocol[_protocol[i]], 'NON_PROTOCOL');
+            ⋮┆----------------------------------------
+          209┆ require(_protocol.length == _token.length, 'LENGTH_1');
+            ⋮┆----------------------------------------
+          210┆ require(_protocol.length == _premium.length, 'LENGTH_2');
+            ⋮┆----------------------------------------
+          211┆ require(_protocol.length == _newUsd.length, 'LENGTH_3');
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          213┆ for (uint256 i; i < _protocol.length; i++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          213┆ for (uint256 i; i < _protocol.length; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          213┆ for (uint256 i; i < _protocol.length; i++) {
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          214┆ require(_token[i].length == _premium[i].length, 'LENGTH_4');
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          214┆ require(_token[i].length == _premium[i].length, 'LENGTH_4');
+            ⋮┆----------------------------------------
+          214┆ require(_token[i].length == _premium[i].length, 'LENGTH_4');
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          215┆ require(_token[i].length == _newUsd[i].length, 'LENGTH_5');
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          215┆ require(_token[i].length == _newUsd[i].length, 'LENGTH_5');
+            ⋮┆----------------------------------------
+          215┆ require(_token[i].length == _newUsd[i].length, 'LENGTH_5');
+            ⋮┆----------------------------------------
+          216┆ for (uint256 j; j < _token[i].length; j++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          216┆ for (uint256 j; j < _token[i].length; j++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          216┆ for (uint256 j; j < _token[i].length; j++) {
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          320┆ require(ps.isProtocol[_protocol], 'NON_PROTOCOL');
+   
+     ❱ solidity.performance.use-nested-if
+          Using nested is cheaper than using && multiple check combinations.  There are more advantages, such
+          as easier to read code and better coverage reports.                                                
+                                                                                                             
+          439┆ if (usdPerBlock > 0 && _currentTotalSupply == 0) {
+          440┆   // initial accrue, mint 1 SHERX per block
+          441┆   sx.sherXPerBlock = 10**18;
+          442┆ } else if (usdPool > 0) {
+          443┆   // Calculate new sherXPerBlock based on the updated usdPerBlock and usdPool values
+          444┆   sx.sherXPerBlock = _currentTotalSupply.mul(usdPerBlock).div(usdPool);
+          445┆ } else {
+          446┆   sx.sherXPerBlock = 0;
+          447┆ }
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 49 (49 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 49 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading
+
+📢 Too many findings? Try Semgrep Pro for more powerful queries and less noise.
+   See https://sg.run/false-positives.

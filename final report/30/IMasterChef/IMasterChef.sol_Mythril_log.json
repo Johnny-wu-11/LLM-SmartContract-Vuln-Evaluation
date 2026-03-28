@@ -1,0 +1,16 @@
+{
+    "tool":  "mythril",
+    "contract":  "IMasterChef.sol",
+    "source":  "C:\\Users\\ASUS\\Desktop\\blockchain\\Web3Bugs-main\\contracts\\30\\contracts\\governance\\interfaces\\IMasterChef.sol",
+    "docker_image":  "mythril/myth:latest",
+    "command":  "docker run --rm -v \"C:\\Users\\ASUS\\Desktop\\blockchain\\Web3Bugs-main\\contracts\\30\\contracts:/src\" -w /src mythril/myth:latest analyze governance/interfaces/IMasterChef.sol --solv 0.6.12 --solc-args \"--allow-paths /src --base-path /src\" --execution-timeout 120 --solver-timeout 10000 --create-timeout 60 --parallel-solving -o jsonv2",
+    "started_at":  "2026-03-28T02:33:19.5843174+08:00",
+    "finished_at":  "2026-03-28T02:33:26.0607837+08:00",
+    "exit_code":  0,
+    "issue_count":  0,
+    "status":  "no_valid_contract_bytecode",
+    "notes":  [
+                  "Analysis executed directly against the local project source tree.",
+                  "Mythril reported that the file does not contain any valid deployable contracts, which is expected for a pure interface file."
+              ]
+}

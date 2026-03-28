@@ -1,0 +1,19 @@
+{
+  "title": "ChainGPT Final Audit Report",
+  "tool": "ChainGPT",
+  "status": "Completed",
+  "reduction_summary": {
+    "original_findings": 0,
+    "retained_findings_after_ai_review": 1,
+    "filtered_findings": 0,
+    "filtering_rate": "0.00%"
+  },
+  "adjudication_summary": "The finding 'Unrestricted Minting and Burning' is classified as plausible_but_unverified due to its potential financial impact, pending further verification.",
+  "findings": {
+    "confirmed": [],
+    "plausible_but_unverified": [
+      "Unrestricted Minting and Burning"
+    ],
+    "unsupported_or_false_positive": []
+  }
+}

@@ -1,0 +1,27 @@
+A new version of Solhint is available: 6.1.0
+Please consider updating your Solhint package.
+/sb/BridgeMockup.sol:2:1: Compiler version 0.8.4 does not satisfy the ^0.8.24 semver requirement [Error/compiler-version]
+/sb/BridgeMockup.sol:4:1: Unexpected import of console file [Error/no-console]
+/sb/BridgeMockup.sol:4:1: global import of path hardhat/console.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/BridgeMockup.sol:4:1: Import in /sb/BridgeMockup.sol doesn't exist in: hardhat/console.sol [Warning/import-path-check]
+/sb/BridgeMockup.sol:8:1: Missing @title tag in contract 'BridgeMockup' [Warning/use-natspec]
+/sb/BridgeMockup.sol:8:1: Missing @author tag in contract 'BridgeMockup' [Warning/use-natspec]
+/sb/BridgeMockup.sol:8:1: Missing @notice tag in contract 'BridgeMockup' [Warning/use-natspec]
+/sb/BridgeMockup.sol:9:5: Missing @notice tag in variable 'oracleProxyMainnetAddress' [Warning/use-natspec]
+/sb/BridgeMockup.sol:10:5: Missing @notice tag in variable 'oracleProxyXdaiAddress' [Warning/use-natspec]
+/sb/BridgeMockup.sol:12:5: Missing @notice tag in function 'requireToPassMessage' [Warning/use-natspec]
+/sb/BridgeMockup.sol:12:5: Missing @param tag in function 'requireToPassMessage' [Warning/use-natspec]
+/sb/BridgeMockup.sol:12:5: Mismatch in @param names for function 'requireToPassMessage'. Expected: [_RCProxyAddress, _data, _gasLimit], Found: [] [Warning/use-natspec]
+/sb/BridgeMockup.sol:13:9: Variable name must be in mixedCase _RCProxyAddress [Warning/var-name-mixedcase]
+/sb/BridgeMockup.sol:25:13: GC: Use Custom Errors instead of require statements [Warning/gas-custom-errors]
+/sb/BridgeMockup.sol:29:5: Missing @notice tag in function 'messageSender' [Warning/use-natspec]
+/sb/BridgeMockup.sol:29:5: Missing @return tag in function 'messageSender' [Warning/use-natspec]
+/sb/BridgeMockup.sol:29:5: Mismatch in @return count for function 'messageSender'. Expected: 1, Found: 0 [Warning/use-natspec]
+/sb/BridgeMockup.sol:38:5: Missing @notice tag in function 'setProxyL1Address' [Warning/use-natspec]
+/sb/BridgeMockup.sol:38:5: Missing @param tag in function 'setProxyL1Address' [Warning/use-natspec]
+/sb/BridgeMockup.sol:38:5: Mismatch in @param names for function 'setProxyL1Address'. Expected: [_newAddress], Found: [] [Warning/use-natspec]
+/sb/BridgeMockup.sol:42:5: Missing @notice tag in function 'setProxyL2Address' [Warning/use-natspec]
+/sb/BridgeMockup.sol:42:5: Missing @param tag in function 'setProxyL2Address' [Warning/use-natspec]
+/sb/BridgeMockup.sol:42:5: Mismatch in @param names for function 'setProxyL2Address'. Expected: [_newAddress], Found: [] [Warning/use-natspec]
+
+23 problem/s (2 error/s, 21 warning/s)

@@ -1,0 +1,23 @@
+{
+  "title": "ChainGPT Final Audit Report",
+  "tool": "ChainGPT",
+  "status": "Completed",
+  "reduction_summary": {
+    "original_findings": 0,
+    "retained_findings_after_ai_review": 5,
+    "filtered_findings": 0,
+    "filtering_rate": "0.00%"
+  },
+  "adjudication_summary": "All retained findings are security-relevant but have low confidence and need further verification.",
+  "findings": {
+    "confirmed": [],
+    "plausible_but_unverified": [
+      "Reentrancy Vulnerability",
+      "Gas Limit in Rage Quit",
+      "Unchecked External Calls",
+      "Access Control",
+      "Timestamp Dependence"
+    ],
+    "unsupported_or_false_positive": []
+  }
+}

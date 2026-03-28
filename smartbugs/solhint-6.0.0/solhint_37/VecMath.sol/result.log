@@ -1,0 +1,12 @@
+A new version of Solhint is available: 6.1.0
+Please consider updating your Solhint package.
+/sb/VecMath.sol:2:1: Compiler version 0.7.6 does not satisfy the ^0.8.24 semver requirement [Error/compiler-version]
+/sb/VecMath.sol:4:1: global import of path @balancer-labs/v2-solidity-utils/contracts/math/FixedPoint.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/VecMath.sol:4:1: Import in /sb/VecMath.sol doesn't exist in: @balancer-labs/v2-solidity-utils/contracts/math/FixedPoint.sol [Warning/import-path-check]
+/sb/VecMath.sol:7:1: Missing @title tag in contract 'VecMath' [Warning/use-natspec]
+/sb/VecMath.sol:7:1: Missing @author tag in contract 'VecMath' [Warning/use-natspec]
+/sb/VecMath.sol:7:1: Missing @notice tag in contract 'VecMath' [Warning/use-natspec]
+/sb/VecMath.sol:37:5: Mismatch in @param names for function 'mul'. Expected: [vec1, vec2, one], Found: [vec1, vec2] [Warning/use-natspec]
+/sb/VecMath.sol:53:5: Mismatch in @param names for function 'div'. Expected: [vec1, vec2, one], Found: [vec1, vec2] [Warning/use-natspec]
+
+8 problem/s (1 error/s, 7 warning/s)

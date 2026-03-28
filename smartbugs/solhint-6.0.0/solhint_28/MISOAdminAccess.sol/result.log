@@ -1,0 +1,16 @@
+A new version of Solhint is available: 6.1.0
+Please consider updating your Solhint package.
+/sb/MISOAdminAccess.sol:1:1: Compiler version 0.6.12 does not satisfy the ^0.8.24 semver requirement [Error/compiler-version]
+/sb/MISOAdminAccess.sol:3:1: global import of path ../OpenZeppelin/access/AccessControl.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/MISOAdminAccess.sol:3:1: Import in /sb/MISOAdminAccess.sol doesn't exist in: ../OpenZeppelin/access/AccessControl.sol [Warning/import-path-check]
+/sb/MISOAdminAccess.sol:6:1: Missing @title tag in contract 'MISOAdminAccess' [Warning/use-natspec]
+/sb/MISOAdminAccess.sol:6:1: Missing @author tag in contract 'MISOAdminAccess' [Warning/use-natspec]
+/sb/MISOAdminAccess.sol:6:1: Missing @notice tag in contract 'MISOAdminAccess' [Warning/use-natspec]
+/sb/MISOAdminAccess.sol:12:5: Missing @param tag in event 'AdminRoleGranted' [Warning/use-natspec]
+/sb/MISOAdminAccess.sol:12:5: Mismatch in @param names for event 'AdminRoleGranted'. Expected: [beneficiary, caller], Found: [] [Warning/use-natspec]
+/sb/MISOAdminAccess.sol:17:5: Missing @notice tag in event 'AdminRoleRemoved' [Warning/use-natspec]
+/sb/MISOAdminAccess.sol:17:5: Missing @param tag in event 'AdminRoleRemoved' [Warning/use-natspec]
+/sb/MISOAdminAccess.sol:17:5: Mismatch in @param names for event 'AdminRoleRemoved'. Expected: [beneficiary, caller], Found: [] [Warning/use-natspec]
+/sb/MISOAdminAccess.sol:24:26: Code contains empty blocks [Warning/no-empty-blocks]
+
+12 problem/s (1 error/s, 11 warning/s)

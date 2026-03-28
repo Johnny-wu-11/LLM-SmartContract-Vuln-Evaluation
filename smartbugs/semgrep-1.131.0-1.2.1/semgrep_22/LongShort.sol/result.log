@@ -1,0 +1,135 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 14 Code Findings │
+└──────────────────┘
+                     
+    /sb/LongShort.sol
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          151┆ require(msg.sender == admin, "only admin");
+            ⋮┆----------------------------------------
+          160┆ require(marketExists[marketIndex], "market doesn't exist");
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          261┆ latestMarket++;
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          305┆ require(
+          306┆   // You require at least 1e18 (1 payment token with 18 decimal places) of the underlying
+               payment token to seed the market.                                                        
+          307┆   initialMarketSeedForEachMarketSide >= 1e18,
+          308┆   "Insufficient market seed"
+          309┆ );
+            ⋮┆----------------------------------------
+          351┆ require(!marketExists[marketIndex], "already initialized");
+            ⋮┆----------------------------------------
+          352┆ require(marketIndex <= latestMarket, "index too high");
+   
+     ❱ solidity.performance.use-nested-if
+          Using nested is cheaper than using && multiple check combinations.  There are more advantages, such
+          as easier to read code and better coverage reports.                                                
+                                                                                                             
+          515┆ if (
+          516┆   userNextPrice_currentUpdateIndex[marketIndex][user] != 0 &&
+          517┆   userNextPrice_currentUpdateIndex[marketIndex][user] <= currentMarketUpdateIndex
+          518┆ ) {
+          519┆   uint256 amountPaymentTokenDeposited =                             
+               userNextPrice_paymentToken_depositAmount[marketIndex][isLong][user];
+          520┆
+          521┆   if (amountPaymentTokenDeposited > 0) {
+          522┆     uint256 syntheticTokenPrice =                                           
+               syntheticToken_priceSnapshot[marketIndex][isLong][currentMarketUpdateIndex];
+          523┆
+          524┆     confirmedButNotSettledBalance = _getAmountSyntheticToken(amountPaymentTokenDeposited,
+               syntheticTokenPrice);                                                                    
+             [hid 21 additional lines, adjust with --max-lines-per-finding] 
+          685┆ if (
+          686┆   userNextPrice_currentUpdateIndex[marketIndex][staker] == marketUpdateIndex[marketIndex] +
+               1 &&                                                                                       
+          687┆   assetPriceHasChanged
+          688┆ ) {
+          689┆   IStaker(staker).pushUpdatedMarketPricesToUpdateFloatIssuanceCalculations(
+          690┆     marketIndex,
+          691┆     syntheticTokenPrice_inPaymentTokens_long,
+          692┆     syntheticTokenPrice_inPaymentTokens_short,
+          693┆     marketSideValueInPaymentToken[marketIndex][true],
+          694┆     marketSideValueInPaymentToken[marketIndex][false],
+             [hid 13 additional lines, adjust with --max-lines-per-finding] 
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          776┆ for (uint256 i = 0; i < marketIndexes.length; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          776┆ for (uint256 i = 0; i < marketIndexes.length; i++) {
+   
+     ❱ solidity.performance.use-nested-if
+          Using nested is cheaper than using && multiple check combinations.  There are more advantages, such
+          as easier to read code and better coverage reports.                                                
+                                                                                                             
+          1037┆ if (userCurrentUpdateIndex != 0 && userCurrentUpdateIndex <=
+               marketUpdateIndex[marketIndex]) {                            
+          1038┆   _executeOutstandingNextPriceMints(marketIndex, user, true);
+          1039┆   _executeOutstandingNextPriceMints(marketIndex, user, false);
+          1040┆   _executeOutstandingNextPriceRedeems(marketIndex, user, true);
+          1041┆   _executeOutstandingNextPriceRedeems(marketIndex, user, false);
+          1042┆   _executeOutstandingNextPriceTokenShifts(marketIndex, user, true);
+          1043┆   _executeOutstandingNextPriceTokenShifts(marketIndex, user, false);
+          1044┆
+          1045┆   userNextPrice_currentUpdateIndex[marketIndex][user] = 0;
+          1046┆
+             [hid 2 additional lines, adjust with --max-lines-per-finding] 
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          1062┆ for (uint256 i = 0; i < marketIndexes.length; i++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          1062┆ for (uint256 i = 0; i < marketIndexes.length; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          1062┆ for (uint256 i = 0; i < marketIndexes.length; i++) {
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 14 (14 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 14 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

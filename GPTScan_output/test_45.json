@@ -1,0 +1,115 @@
+{
+    "version": "1.1.0",
+    "success": true,
+    "message": null,
+    "results": [
+        {
+            "code": "price-manipulation",
+            "severity": "HIGH",
+            "title": "MWE-200: Insecure LP Token Value Calculation",
+            "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+            "recommendation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/45/contracts/asset/CompoundAdapter.sol",
+                    "range": {
+                        "start": {
+                            "line": 131
+                        },
+                        "end": {
+                            "line": 143
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        },
+        {
+            "code": "price-manipulation",
+            "severity": "HIGH",
+            "title": "MWE-200: Insecure LP Token Value Calculation",
+            "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+            "recommendation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/45/contracts/asset/CompoundAdapter.sol",
+                    "range": {
+                        "start": {
+                            "line": 131
+                        },
+                        "end": {
+                            "line": 143
+                        }
+                    },
+                    "highlights": []
+                },
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/45/contracts/asset/AssetManager.sol",
+                    "range": {
+                        "start": {
+                            "line": 133
+                        },
+                        "end": {
+                            "line": 147
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        },
+        {
+            "code": "price-manipulation",
+            "severity": "HIGH",
+            "title": "MWE-200: Insecure LP Token Value Calculation",
+            "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+            "recommendation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/45/contracts/market/UToken.sol",
+                    "range": {
+                        "start": {
+                            "line": 357
+                        },
+                        "end": {
+                            "line": 364
+                        }
+                    },
+                    "highlights": []
+                },
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/45/contracts/market/UToken.sol",
+                    "range": {
+                        "start": {
+                            "line": 620
+                        },
+                        "end": {
+                            "line": 659
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        },
+        {
+            "code": "price-manipulation",
+            "severity": "HIGH",
+            "title": "MWE-200: Insecure LP Token Value Calculation",
+            "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+            "recommendation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/45/contracts/treasury/Treasury.sol",
+                    "range": {
+                        "start": {
+                            "line": 44
+                        },
+                        "end": {
+                            "line": 74
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        }
+    ]
+}

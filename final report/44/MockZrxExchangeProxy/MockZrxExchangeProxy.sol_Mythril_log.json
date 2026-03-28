@@ -1,0 +1,17 @@
+{
+    "tool":  "mythril",
+    "contract":  "MockZrxExchangeProxy.sol",
+    "source":  "C:\\Users\\ASUS\\Desktop\\blockchain\\Web3Bugs-main\\contracts\\44\\contracts\\test\\MockZrxExchangeProxy.sol",
+    "working_copy":  "C:\\Users\\ASUS\\Desktop\\blockchain\\help\\mythril_tmp\\swap44\\test\\MockZrxExchangeProxy.sol",
+    "docker_image":  "mythril/myth:latest",
+    "command":  "docker run --rm -v \"C:\\Users\\ASUS\\Desktop\\blockchain\\help\\mythril_tmp\\swap44:/src\" -w /src mythril/myth:latest analyze test/MockZrxExchangeProxy.sol --solv 0.8.17 --solc-args \"--allow-paths /src\" --execution-timeout 180 --solver-timeout 10000 --create-timeout 90 --parallel-solving -o jsonv2",
+    "started_at":  "2026-03-28T02:46:38.1517591+08:00",
+    "finished_at":  "2026-03-28T02:49:47.9235710+08:00",
+    "exit_code":  1,
+    "issue_count":  4,
+    "status":  "completed_with_findings",
+    "notes":  [
+                  "Analysis executed against a temporary local working copy to satisfy OpenZeppelin import resolution.",
+                  "Original source file was not modified."
+              ]
+}

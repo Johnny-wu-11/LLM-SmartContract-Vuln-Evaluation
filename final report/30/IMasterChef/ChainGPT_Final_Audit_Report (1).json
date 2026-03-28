@@ -1,0 +1,21 @@
+{
+  "title": "ChainGPT Final Audit Report",
+  "tool": "ChainGPT",
+  "status": "Completed",
+  "reduction_summary": {
+    "original_findings": 0,
+    "retained_findings_after_ai_review": 3,
+    "filtered_findings": 0,
+    "filtering_rate": "0.00%"
+  },
+  "adjudication_summary": "All retained findings are plausible but unverified. They are recommendations for best practices and improvements but lack specific evidence of existing vulnerabilities.",
+  "findings": {
+    "confirmed": [],
+    "plausible_but_unverified": [
+      "Upgrade Solidity Version",
+      "Error Handling in MasterChef Contract",
+      "Potential Security Considerations for Interfaces"
+    ],
+    "unsupported_or_false_positive": []
+  }
+}

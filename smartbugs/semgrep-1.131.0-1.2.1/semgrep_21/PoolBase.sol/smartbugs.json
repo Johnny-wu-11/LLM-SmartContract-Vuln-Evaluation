@@ -1,0 +1,50 @@
+{
+    "docker": {
+        "command": null,
+        "detach": true,
+        "entrypoint": "'/sb/bin/do_solidity.sh' '/sb/PoolBase.sol' '0' '/sb/bin'",
+        "image": "smartbugs/semgrep:1.131.0-1.2.1",
+        "user": 0,
+        "volumes": {
+            "/var/folders/28/kcb98y_d7xg6c06t7q3pxdh00000gn/T/tmp8xus3tjz": {
+                "bind": "/sb",
+                "mode": "rw"
+            }
+        }
+    },
+    "filename": "/Users/mac/Web3Bugs-2/contracts/21/contracts/PoolBase.sol",
+    "platform": {
+        "cpu": "Apple M1",
+        "python": "3.13.5.final.0 (64 bit)",
+        "release": "24.6.0",
+        "smartbugs": "2.0.15",
+        "system": "Darwin",
+        "version": "Darwin Kernel Version 24.6.0: Mon Jul 14 11:30:34 PDT 2025; root:xnu-11417.140.69~1/RELEASE_ARM64_T8103"
+    },
+    "result": {
+        "duration": 17.317007780075073,
+        "exit_code": 0,
+        "logs": "result.log",
+        "output": null,
+        "start": 1774359659.1433442
+    },
+    "runid": "20260324_1340",
+    "solc": null,
+    "tool": {
+        "bin": "scripts",
+        "command": null,
+        "cpu_quota": null,
+        "entrypoint": "'$BIN/do_solidity.sh' '$FILENAME' '$TIMEOUT' '$BIN'",
+        "id": "semgrep-1.131.0-1.2.1",
+        "image": "smartbugs/semgrep:1.131.0-1.2.1",
+        "info": "Find patterns of vulnerabilities in smart contracts based on actual DeFi exploits as well as gas optimization rules that can be used as a part of the CI pipeline.",
+        "mem_limit": null,
+        "mode": "solidity",
+        "name": "semgrep",
+        "origin": "https://github.com/semgrep/semgrep, https://github.com/Decurity/semgrep-smart-contracts",
+        "output": null,
+        "parser": "parser.py",
+        "solc": null,
+        "version": "semgrep 1.131.0, Decurity SC rules 1.2.1"
+    }
+}

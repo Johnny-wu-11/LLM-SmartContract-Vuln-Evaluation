@@ -1,0 +1,23 @@
+{
+  "title": "ChainGPT Final Audit Report",
+  "tool": "ChainGPT",
+  "status": "Completed",
+  "reduction_summary": {
+    "original_findings": 0,
+    "retained_findings_after_ai_review": 4,
+    "filtered_findings": 0,
+    "filtering_rate": "0.00%"
+  },
+  "adjudication_summary": "The incorrect access control finding is confirmed, while other findings like reentrancy, unchecked external calls, and DoS are considered plausible but require further verification.",
+  "findings": {
+    "confirmed": [
+      "Incorrect Access Control"
+    ],
+    "plausible_but_unverified": [
+      "Reentrancy Vulnerability",
+      "Unchecked External Calls",
+      "Denial of Service (DoS)"
+    ],
+    "unsupported_or_false_positive": []
+  }
+}

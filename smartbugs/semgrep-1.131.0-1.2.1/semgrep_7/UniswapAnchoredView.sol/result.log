@@ -1,0 +1,156 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 24 Code Findings │
+└──────────────────┘
+                               
+    /sb/UniswapAnchoredView.sol
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           52┆ constructor(uint anchorPeriod_, string memory nativeTokenSymbol_) public {
+           53┆     anchorPeriod = anchorPeriod_;
+           54┆     nativeTokenHash = keccak256(abi.encodePacked(nativeTokenSymbol_));
+           55┆ }
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+           58┆ for (uint i = 0; i < configs.length; i++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+           58┆ for (uint i = 0; i < configs.length; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+           58┆ for (uint i = 0; i < configs.length; i++) {
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           61┆ require(config.baseUnit > 0, "baseUnit must be greater than zero");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+           61┆ require(config.baseUnit > 0, "baseUnit must be greater than zero");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           62┆ require(newObservations[symbolHash].timestamp == uint(0), "cannot change current token");
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+           62┆ require(newObservations[symbolHash].timestamp == uint(0), "cannot change current token");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           65┆ require(uniswapMarket != address(0), "reported prices must have an anchor");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+           65┆ require(uniswapMarket != address(0), "reported prices must have an anchor");
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+           67┆ oldObservations[symbolHash].timestamp = block.timestamp;
+            ⋮┆----------------------------------------
+           68┆ newObservations[symbolHash].timestamp = block.timestamp;
+            ⋮┆----------------------------------------
+           69┆ oldObservations[symbolHash].acc = cumulativePrice;
+            ⋮┆----------------------------------------
+           70┆ newObservations[symbolHash].acc = cumulativePrice;
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           73┆ require(uniswapMarket == address(0), "only reported prices utilize an anchor");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+           73┆ require(uniswapMarket == address(0), "only reported prices utilize an anchor");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           91┆ require(usdPerEth > 0, "ETH price not set, cannot convert to dollars");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+           91┆ require(usdPerEth > 0, "ETH price not set, cannot convert to dollars");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          110┆ require(usdPerEth > 0, "ETH price not set, cannot convert to dollars");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          110┆ require(usdPerEth > 0, "ETH price not set, cannot convert to dollars");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          128┆ require(usdPerEth > 0, "ETH price not set, cannot convert to dollars");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          128┆ require(usdPerEth > 0, "ETH price not set, cannot convert to dollars");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          190┆ require(block.timestamp > oldTimestamp, "now must come after before");
+            ⋮┆----------------------------------------
+          236┆ require(c / a == b, "multiplication overflow");
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 24 (24 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 24 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

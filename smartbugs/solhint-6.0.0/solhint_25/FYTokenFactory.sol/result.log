@@ -1,0 +1,23 @@
+A new version of Solhint is available: 6.1.0
+Please consider updating your Solhint package.
+/sb/FYTokenFactory.sol:2:1: Compiler version 0.8.1 does not satisfy the ^0.8.24 semver requirement [Error/compiler-version]
+/sb/FYTokenFactory.sol:4:1: global import of path ./interfaces/vault/IOracle.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/FYTokenFactory.sol:4:1: Import in /sb/FYTokenFactory.sol doesn't exist in: ./interfaces/vault/IOracle.sol [Warning/import-path-check]
+/sb/FYTokenFactory.sol:5:1: global import of path ./interfaces/vault/IJoin.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/FYTokenFactory.sol:5:1: Import in /sb/FYTokenFactory.sol doesn't exist in: ./interfaces/vault/IJoin.sol [Warning/import-path-check]
+/sb/FYTokenFactory.sol:6:1: global import of path ./interfaces/vault/IFYTokenFactory.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/FYTokenFactory.sol:6:1: Import in /sb/FYTokenFactory.sol doesn't exist in: ./interfaces/vault/IFYTokenFactory.sol [Warning/import-path-check]
+/sb/FYTokenFactory.sol:7:1: global import of path ./utils/access/AccessControl.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/FYTokenFactory.sol:7:1: Import in /sb/FYTokenFactory.sol doesn't exist in: ./utils/access/AccessControl.sol [Warning/import-path-check]
+/sb/FYTokenFactory.sol:8:1: global import of path ./FYToken.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/FYTokenFactory.sol:8:1: Import in /sb/FYTokenFactory.sol doesn't exist in: ./FYToken.sol [Warning/import-path-check]
+/sb/FYTokenFactory.sol:12:1: Missing @title tag in contract 'FYTokenFactory' [Warning/use-natspec]
+/sb/FYTokenFactory.sol:12:1: Missing @author tag in contract 'FYTokenFactory' [Warning/use-natspec]
+/sb/FYTokenFactory.sol:12:1: Missing @notice tag in contract 'FYTokenFactory' [Warning/use-natspec]
+/sb/FYTokenFactory.sol:16:3: Missing @notice tag in function 'createFYToken' [Warning/use-natspec]
+/sb/FYTokenFactory.sol:16:3: Missing @param tag in function 'createFYToken' [Warning/use-natspec]
+/sb/FYTokenFactory.sol:16:3: Mismatch in @param names for function 'createFYToken'. Expected: [baseId, oracle, baseJoin, maturity, name, symbol], Found: [] [Warning/use-natspec]
+/sb/FYTokenFactory.sol:16:3: GC: [name] argument on Function [createFYToken] could be [calldata] if it's not being updated [Warning/gas-calldata-parameters]
+/sb/FYTokenFactory.sol:16:3: GC: [symbol] argument on Function [createFYToken] could be [calldata] if it's not being updated [Warning/gas-calldata-parameters]
+
+19 problem/s (1 error/s, 18 warning/s)

@@ -1,0 +1,476 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 52 Code Findings │
+└──────────────────┘
+                   
+    /sb/Gravity.sol
+     ❱ solidity.performance.init-variables-with-default-value
+          Uninitialized variables are assigned with the types default value. Explicitly initializing a
+          variable with its default value costs unnecessary gas.                                      
+                                                                                                      
+           53┆ uint256 public state_lastValsetNonce = 0;
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          191┆ for (uint256 i = 0; i < _currentValidators.length; i++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          191┆ for (uint256 i = 0; i < _currentValidators.length; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          191┆ for (uint256 i = 0; i < _currentValidators.length; i++) {
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          196┆ require(
+          197┆    verifySig(_currentValidators[i], _theHash, _v[i], _r[i], _s[i]),
+          198┆    "Validator signature does not match."
+          199┆ );
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          196┆ require(
+          197┆    verifySig(_currentValidators[i], _theHash, _v[i], _r[i], _s[i]),
+          198┆    "Validator signature does not match."
+          199┆ );
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          212┆ require(
+          213┆    cumulativePower > _powerThreshold,
+          214┆    "Submitted validator set signatures do not have enough power."
+          215┆ );
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          212┆ require(
+          213┆    cumulativePower > _powerThreshold,
+          214┆    "Submitted validator set signatures do not have enough power."
+          215┆ );
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          237┆ require(
+          238┆    _newValset.valsetNonce > _currentValset.valsetNonce,
+          239┆    "New valset nonce must be greater than the current nonce"
+          240┆ );
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          237┆ require(
+          238┆    _newValset.valsetNonce > _currentValset.valsetNonce,
+          239┆    "New valset nonce must be greater than the current nonce"
+          240┆ );
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          243┆ require(_newValset.validators.length == _newValset.powers.length, "Malformed new validator
+               set");                                                                                    
+            ⋮┆----------------------------------------
+          246┆ require(
+          247┆    _currentValset.validators.length == _currentValset.powers.length &&
+          248┆            _currentValset.validators.length == _v.length &&
+          249┆            _currentValset.validators.length == _r.length &&
+          250┆            _currentValset.validators.length == _s.length,
+          251┆    "Malformed current validator set"
+          252┆ );
+   
+     ❱ solidity.performance.use-multiple-require
+          Using multiple require statements is cheaper than using && multiple check combinations.  There are
+          more advantages, such as easier to read code and better coverage reports.                         
+                                                                                                            
+          246┆ require(
+          247┆    _currentValset.validators.length == _currentValset.powers.length &&
+          248┆            _currentValset.validators.length == _v.length &&
+          249┆            _currentValset.validators.length == _r.length &&
+          250┆            _currentValset.validators.length == _s.length,
+          251┆    "Malformed current validator set"
+          252┆ );
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          255┆ require(
+          256┆    makeCheckpoint(
+          257┆            _currentValset,
+          258┆            state_gravityId
+          259┆    ) == state_lastValsetCheckpoint,
+          260┆    "Supplied current validators and powers do not match checkpoint."
+          261┆ );
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          255┆ require(
+          256┆    makeCheckpoint(
+          257┆            _currentValset,
+          258┆            state_gravityId
+          259┆    ) == state_lastValsetCheckpoint,
+          260┆    "Supplied current validators and powers do not match checkpoint."
+          261┆ );
+   
+     ❱ solidity.performance.use-nested-if
+          Using nested is cheaper than using && multiple check combinations.  There are more advantages, such
+          as easier to read code and better coverage reports.                                                
+                                                                                                             
+          287┆ if (_newValset.rewardToken != address(0) && _newValset.rewardAmount != 0) {
+          288┆    IERC20(_newValset.rewardToken).safeTransfer(msg.sender, _newValset.rewardAmount);
+          289┆ }
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          321┆ require(
+          322┆    state_lastBatchNonces[_tokenContract] < _batchNonce,
+          323┆    "New batch nonce must be greater than the current nonce"
+          324┆ );
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          321┆ require(
+          322┆    state_lastBatchNonces[_tokenContract] < _batchNonce,
+          323┆    "New batch nonce must be greater than the current nonce"
+          324┆ );
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          327┆ require(
+          328┆    block.number < _batchTimeout,
+          329┆    "Batch timeout must be greater than the current block height"
+          330┆ );
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          327┆ require(
+          328┆    block.number < _batchTimeout,
+          329┆    "Batch timeout must be greater than the current block height"
+          330┆ );
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          333┆ require(
+          334┆    _currentValset.validators.length == _currentValset.powers.length &&
+          335┆            _currentValset.validators.length == _v.length &&
+          336┆            _currentValset.validators.length == _r.length &&
+          337┆            _currentValset.validators.length == _s.length,
+          338┆    "Malformed current validator set"
+          339┆ );
+   
+     ❱ solidity.performance.use-multiple-require
+          Using multiple require statements is cheaper than using && multiple check combinations.  There are
+          more advantages, such as easier to read code and better coverage reports.                         
+                                                                                                            
+          333┆ require(
+          334┆    _currentValset.validators.length == _currentValset.powers.length &&
+          335┆            _currentValset.validators.length == _v.length &&
+          336┆            _currentValset.validators.length == _r.length &&
+          337┆            _currentValset.validators.length == _s.length,
+          338┆    "Malformed current validator set"
+          339┆ );
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          342┆ require(
+          343┆    makeCheckpoint(
+          344┆            _currentValset,
+          345┆            state_gravityId
+          346┆    ) == state_lastValsetCheckpoint,
+          347┆    "Supplied current validators and powers do not match checkpoint."
+          348┆ );
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          342┆ require(
+          343┆    makeCheckpoint(
+          344┆            _currentValset,
+          345┆            state_gravityId
+          346┆    ) == state_lastValsetCheckpoint,
+          347┆    "Supplied current validators and powers do not match checkpoint."
+          348┆ );
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          351┆ require(
+          352┆    _amounts.length == _destinations.length && _amounts.length == _fees.length,
+          353┆    "Malformed batch of transactions"
+          354┆ );
+   
+     ❱ solidity.performance.use-multiple-require
+          Using multiple require statements is cheaper than using && multiple check combinations.  There are
+          more advantages, such as easier to read code and better coverage reports.                         
+                                                                                                            
+          351┆ require(
+          352┆    _amounts.length == _destinations.length && _amounts.length == _fees.length,
+          353┆    "Malformed batch of transactions"
+          354┆ );
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          388┆ for (uint256 i = 0; i < _amounts.length; i++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          388┆ for (uint256 i = 0; i < _amounts.length; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          388┆ for (uint256 i = 0; i < _amounts.length; i++) {
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          426┆ require(block.number < _args.timeOut, "Timed out");
+            ⋮┆----------------------------------------
+          429┆ require(
+          430┆    state_invalidationMapping[_args.invalidationId] < _args.invalidationNonce,
+          431┆    "New invalidation nonce must be greater than the current nonce"
+          432┆ );
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          429┆ require(
+          430┆    state_invalidationMapping[_args.invalidationId] < _args.invalidationNonce,
+          431┆    "New invalidation nonce must be greater than the current nonce"
+          432┆ );
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          435┆ require(
+          436┆     _currentValset.validators.length == _currentValset.powers.length &&
+          437┆            _currentValset.validators.length == _v.length &&
+          438┆            _currentValset.validators.length == _r.length &&
+          439┆            _currentValset.validators.length == _s.length,
+          440┆    "Malformed current validator set"
+          441┆ );
+   
+     ❱ solidity.performance.use-multiple-require
+          Using multiple require statements is cheaper than using && multiple check combinations.  There are
+          more advantages, such as easier to read code and better coverage reports.                         
+                                                                                                            
+          435┆ require(
+          436┆     _currentValset.validators.length == _currentValset.powers.length &&
+          437┆            _currentValset.validators.length == _v.length &&
+          438┆            _currentValset.validators.length == _r.length &&
+          439┆            _currentValset.validators.length == _s.length,
+          440┆    "Malformed current validator set"
+          441┆ );
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          444┆ require(
+          445┆    makeCheckpoint(
+          446┆            _currentValset,
+          447┆            state_gravityId
+          448┆    ) == state_lastValsetCheckpoint,
+          449┆    "Supplied current validators and powers do not match checkpoint."
+          450┆ );
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          444┆ require(
+          445┆    makeCheckpoint(
+          446┆            _currentValset,
+          447┆            state_gravityId
+          448┆    ) == state_lastValsetCheckpoint,
+          449┆    "Supplied current validators and powers do not match checkpoint."
+          450┆ );
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          453┆ require(
+          454┆    _args.transferAmounts.length == _args.transferTokenContracts.length,
+          455┆    "Malformed list of token transfers"
+          456┆ );
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          453┆ require(
+          454┆    _args.transferAmounts.length == _args.transferTokenContracts.length,
+          455┆    "Malformed list of token transfers"
+          456┆ );
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          459┆ require(
+          460┆    _args.feeAmounts.length == _args.feeTokenContracts.length,
+          461┆    "Malformed list of fees"
+          462┆ );
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          503┆ for (uint256 i = 0; i < _args.transferAmounts.length; i++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          503┆ for (uint256 i = 0; i < _args.transferAmounts.length; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          503┆ for (uint256 i = 0; i < _args.transferAmounts.length; i++) {
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          514┆ for (uint256 i = 0; i < _args.feeAmounts.length; i++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          514┆ for (uint256 i = 0; i < _args.feeAmounts.length; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          514┆ for (uint256 i = 0; i < _args.feeAmounts.length; i++) {
+   
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+          567┆    constructor(
+          568┆            // A unique identifier for this gravity instance to use in signatures
+          569┆            bytes32 _gravityId,
+          570┆            // How much voting power is needed to approve operations
+          571┆            uint256 _powerThreshold,
+          572┆            // The validator set, not in valset args format since many of it's
+          573┆            // arguments would never be used in this case
+          574┆            address[] memory _validators,
+          575┆         uint256[] memory _powers
+          576┆    ) public {
+             [hid 34 additional lines, adjust with --max-lines-per-finding] 
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          580┆ require(_validators.length == _powers.length, "Malformed current validator set");
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          585┆ for (uint256 i = 0; i < _powers.length; i++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          585┆ for (uint256 i = 0; i < _powers.length; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          585┆ for (uint256 i = 0; i < _powers.length; i++) {
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          591┆ require(
+          592┆    cumulativePower > _powerThreshold,
+          593┆    "Submitted validator set signatures do not have enough power."
+          594┆ );
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          591┆ require(
+          592┆    cumulativePower > _powerThreshold,
+          593┆    "Submitted validator set signatures do not have enough power."
+          594┆ );
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 52 (52 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 52 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading
+
+📢 Too many findings? Try Semgrep Pro for more powerful queries and less noise.
+   See https://sg.run/false-positives.

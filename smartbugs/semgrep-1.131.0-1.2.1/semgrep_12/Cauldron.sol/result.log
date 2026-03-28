@@ -1,0 +1,201 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 47 Code Findings │
+└──────────────────┘
+                    
+    /sb/Cauldron.sol
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           17┆ require (y > 0 || x >= uint128(-y), "Result below zero");
+            ⋮┆----------------------------------------
+           77┆ require (assetId != bytes6(0), "Asset id is zero");
+            ⋮┆----------------------------------------
+           78┆ require (assets[assetId] == address(0), "Id already used");
+            ⋮┆----------------------------------------
+           88┆ require (assets[baseId] != address(0), "Base not found");
+            ⋮┆----------------------------------------
+           89┆ require (assets[ilkId] != address(0), "Ilk not found");
+            ⋮┆----------------------------------------
+          103┆ require (assets[baseId] != address(0), "Base not found");
+            ⋮┆----------------------------------------
+          122┆ require (assets[baseId] != address(0), "Base not found");
+            ⋮┆----------------------------------------
+          123┆ require (assets[ilkId] != address(0), "Ilk not found");
+            ⋮┆----------------------------------------
+          136┆ require (seriesId != bytes6(0), "Series id is zero");
+            ⋮┆----------------------------------------
+          138┆ require (base != address(0), "Base not found");
+            ⋮┆----------------------------------------
+          139┆ require (fyToken != IFYToken(address(0)), "Series need a fyToken");
+            ⋮┆----------------------------------------
+          140┆ require (fyToken.underlying() == base, "Mismatched series and base");
+            ⋮┆----------------------------------------
+          141┆ require (rateOracles[baseId] != IOracle(address(0)), "Rate oracle not found");
+            ⋮┆----------------------------------------
+          142┆ require (series[seriesId].fyToken == IFYToken(address(0)), "Id already used");
+            ⋮┆----------------------------------------
+          157┆ require (
+          158┆     series_.fyToken != IFYToken(address(0)),
+          159┆     "Series not found"
+          160┆ );
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          161┆ for (uint256 i = 0; i < ilkIds.length; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          161┆ for (uint256 i = 0; i < ilkIds.length; i++) {
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          162┆ require (
+          163┆     spotOracles[series_.baseId][ilkIds[i]].oracle != IOracle(address(0)),
+          164┆     "Spot oracle not found"
+          165┆ );
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          163┆ spotOracles[series_.baseId][ilkIds[i]].oracle != IOracle(address(0)),
+            ⋮┆----------------------------------------
+          166┆ ilks[seriesId][ilkIds[i]] = true;
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          179┆ require (vaultId != bytes12(0), "Vault id is zero");
+            ⋮┆----------------------------------------
+          180┆ require (vaults[vaultId].seriesId == bytes6(0), "Vault already exists");   // Series can't
+               take bytes6(0) as their id                                                                
+            ⋮┆----------------------------------------
+          181┆ require (ilks[seriesId][ilkId] == true, "Ilk not added to series");
+            ⋮┆----------------------------------------
+          198┆ require (balances_.art == 0 && balances_.ink == 0, "Only empty vaults");
+   
+     ❱ solidity.performance.use-multiple-require
+          Using multiple require statements is cheaper than using && multiple check combinations.  There are
+          more advantages, such as easier to read code and better coverage reports.                         
+                                                                                                            
+          198┆ require (balances_.art == 0 && balances_.ink == 0, "Only empty vaults");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          208┆ require (ilks[vault.seriesId][vault.ilkId] == true, "Ilk not added to series");
+            ⋮┆----------------------------------------
+          224┆ require (balances_.art == 0, "Only with no debt");
+            ⋮┆----------------------------------------
+          228┆ require (balances_.ink == 0, "Only with no collateral");
+            ⋮┆----------------------------------------
+          262┆ require (vault_.seriesId != bytes6(0), "Vault not found");
+            ⋮┆----------------------------------------
+          277┆ require (vaultFrom.ilkId == vaultTo.ilkId, "Different collateral");
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+          278┆ balancesFrom.ink -= ink;
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          282┆ require (vaultFrom.seriesId == vaultTo.seriesId, "Different series");
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+          283┆ balancesFrom.art -= art;
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          290┆ if (ink > 0) require(_level(vaultFrom, balancesFrom, series[vaultFrom.seriesId]) >= 0,
+               "Undercollateralized at origin");                                                     
+            ⋮┆----------------------------------------
+          291┆ if (art > 0) require(_level(vaultTo, balancesTo, series[vaultTo.seriesId]) >= 0,
+               "Undercollateralized at destination");                                          
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          291┆ if (art > 0) require(_level(vaultTo, balancesTo, series[vaultTo.seriesId]) >= 0,
+               "Undercollateralized at destination");                                          
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          321┆ require (balances_.art == 0 || balances_.art >= dust, "Min debt not reached");
+            ⋮┆----------------------------------------
+          322┆ if (art > 0) require (debt_.sum <= line, "Max debt exceeded");
+   
+     ❱ solidity.performance.use-nested-if
+          Using nested is cheaper than using && multiple check combinations.  There are more advantages, such
+          as easier to read code and better coverage reports.                                                
+                                                                                                             
+          342┆ if (balances_.art > 0 && (ink < 0 || art > 0))                          // If there is debt
+               and we are less safe                                                                       
+          343┆     require(_level(vault_, balances_, series_) >= 0, "Undercollateralized");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          343┆ require(_level(vault_, balances_, series_) >= 0, "Undercollateralized");
+            ⋮┆----------------------------------------
+          354┆ require (auctions[vaultId] + auctionInterval <= now_, "Vault under auction");        // 
+               Grabbing a vault protects it for a day from being grabbed by another liquidator. All    
+               grabbed vaults will be suddenly released on the 7th of February 2106, at 06:28:16 GMT. I
+               can live with that.                                                                     
+            ⋮┆----------------------------------------
+          357┆ require(_level(vault_, balances_, series_) < 0, "Not undercollateralized");
+            ⋮┆----------------------------------------
+          388┆ require (oldSeries_.baseId == newSeries_.baseId, "Mismatched bases in series");
+            ⋮┆----------------------------------------
+          397┆ require(_level(vault_, balances_, newSeries_) >= 0, "Undercollateralized");
+            ⋮┆----------------------------------------
+          417┆ require (uint32(block.timestamp) >= series_.maturity, "Only after maturity");
+            ⋮┆----------------------------------------
+          418┆ require (ratesAtMaturity[seriesId] == 0, "Already matured");
+            ⋮┆----------------------------------------
+          439┆ require (uint32(block.timestamp) >= series_.maturity, "Only after maturity");
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 47 (47 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 47 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading
+
+📢 Too many findings? Try Semgrep Pro for more powerful queries and less noise.
+   See https://sg.run/false-positives.

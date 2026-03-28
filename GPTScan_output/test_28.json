@@ -1,0 +1,160 @@
+{
+    "version": "1.1.0",
+    "success": true,
+    "message": null,
+    "results": [
+        {
+            "code": "price-manipulation",
+            "severity": "HIGH",
+            "title": "MWE-200: Insecure LP Token Value Calculation",
+            "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+            "recommendation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/28/contracts/Auctions/HyperbolicAuction.sol",
+                    "range": {
+                        "start": {
+                            "line": 448
+                        },
+                        "end": {
+                            "line": 457
+                        }
+                    },
+                    "highlights": []
+                },
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/28/contracts/Auctions/HyperbolicAuction.sol",
+                    "range": {
+                        "start": {
+                            "line": 466
+                        },
+                        "end": {
+                            "line": 485
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        },
+        {
+            "code": "price-manipulation",
+            "severity": "HIGH",
+            "title": "MWE-200: Insecure LP Token Value Calculation",
+            "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+            "recommendation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/28/contracts/Auctions/DutchAuction.sol",
+                    "range": {
+                        "start": {
+                            "line": 340
+                        },
+                        "end": {
+                            "line": 350
+                        }
+                    },
+                    "highlights": []
+                },
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/28/contracts/Auctions/HyperbolicAuction.sol",
+                    "range": {
+                        "start": {
+                            "line": 466
+                        },
+                        "end": {
+                            "line": 485
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        },
+        {
+            "code": "price-manipulation",
+            "severity": "HIGH",
+            "title": "MWE-200: Insecure LP Token Value Calculation",
+            "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+            "recommendation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/28/contracts/Auctions/Crowdsale.sol",
+                    "range": {
+                        "start": {
+                            "line": 355
+                        },
+                        "end": {
+                            "line": 363
+                        }
+                    },
+                    "highlights": []
+                },
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/28/contracts/Auctions/DutchAuction.sol",
+                    "range": {
+                        "start": {
+                            "line": 499
+                        },
+                        "end": {
+                            "line": 515
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        },
+        {
+            "code": "price-manipulation",
+            "severity": "HIGH",
+            "title": "MWE-200: Insecure LP Token Value Calculation",
+            "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+            "recommendation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/28/contracts/Helper/MISOHelper.sol",
+                    "range": {
+                        "start": {
+                            "line": 217
+                        },
+                        "end": {
+                            "line": 233
+                        }
+                    },
+                    "highlights": []
+                },
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/28/contracts/Helper/MISOHelper.sol",
+                    "range": {
+                        "start": {
+                            "line": 295
+                        },
+                        "end": {
+                            "line": 325
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        },
+        {
+            "code": "price-manipulation",
+            "severity": "HIGH",
+            "title": "MWE-200: Insecure LP Token Value Calculation",
+            "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+            "recommendation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/28/contracts/Helper/CalculationsSushiswap.sol",
+                    "range": {
+                        "start": {
+                            "line": 62
+                        },
+                        "end": {
+                            "line": 87
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        }
+    ]
+}

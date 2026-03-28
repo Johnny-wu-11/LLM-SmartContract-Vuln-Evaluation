@@ -1,0 +1,22 @@
+{
+  "title": "ChainGPT Final Audit Report",
+  "tool": "ChainGPT",
+  "status": "Completed",
+  "reduction_summary": {
+    "original_findings": 0,
+    "retained_findings_after_ai_review": 3,
+    "filtered_findings": 0,
+    "filtering_rate": "0.00%"
+  },
+  "adjudication_summary": "The findings include one confirmed issue related to potential denial of service, and two plausible issues that are currently unverified but worth considering for future contract updates.",
+  "findings": {
+    "confirmed": [
+      "Potential Denial of Service"
+    ],
+    "plausible_but_unverified": [
+      "Incorrect Interface Function Signatures",
+      "Reentrancy Consideration"
+    ],
+    "unsupported_or_false_positive": []
+  }
+}

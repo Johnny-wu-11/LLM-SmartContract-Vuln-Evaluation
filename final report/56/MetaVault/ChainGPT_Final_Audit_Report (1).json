@@ -1,0 +1,27 @@
+{
+  "title": "ChainGPT Final Audit Report",
+  "tool": "ChainGPT",
+  "status": "Completed",
+  "reduction_summary": {
+    "original_findings": 0,
+    "retained_findings_after_ai_review": 8,
+    "filtered_findings": 0,
+    "filtering_rate": "0.00%"
+  },
+  "adjudication_summary": "",
+  "findings": {
+    "confirmed": [
+      "Governance Functions",
+      "Reentrancy Vulnerability",
+      "Denial of Service (DoS)",
+      "Integer Overflow/Underflow",
+      "Bad Randomness"
+    ],
+    "plausible_but_unverified": [
+      "Unchecked External Calls",
+      "Frontrunning",
+      "Timestamp Dependence"
+    ],
+    "unsupported_or_false_positive": []
+  }
+}

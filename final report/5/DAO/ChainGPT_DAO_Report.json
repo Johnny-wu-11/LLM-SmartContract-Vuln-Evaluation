@@ -1,0 +1,26 @@
+{
+  "title": "ChainGPT Final Audit Report",
+  "tool": "ChainGPT",
+  "status": "Completed",
+  "reduction_summary": {
+    "original_findings": 0,
+    "retained_findings_after_ai_review": 7,
+    "filtered_findings": 0,
+    "filtering_rate": "0.00%"
+  },
+  "adjudication_summary": "Based on the provided information, the findings classified as confirmed have clear indications of issues present in the contract. Those marked as plausible_but_unverified require further investigation to confirm or refute, as their descriptions suggest these could pose a risk but lack direct evidence or confirmation of occurrence. No findings were determined to be unsupported or false positives.",
+  "findings": {
+    "confirmed": [
+      "Lack of Access Control",
+      "Event Emission",
+      "Initialization"
+    ],
+    "plausible_but_unverified": [
+      "Reentrancy Vulnerability",
+      "Vote Weight Calculation",
+      "Integer Underflow/Overflow",
+      "Proposal Finalization Logic"
+    ],
+    "unsupported_or_false_positive": []
+  }
+}

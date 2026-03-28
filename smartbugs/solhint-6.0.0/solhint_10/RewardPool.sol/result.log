@@ -1,0 +1,28 @@
+A new version of Solhint is available: 6.0.3
+Please consider updating your Solhint package.
+/sb/RewardPool.sol:2:1: Compiler version 0.7.6 does not satisfy the ^0.8.24 semver requirement [Error/compiler-version]
+/sb/RewardPool.sol:4:1: Import in /sb/RewardPool.sol doesn't exist in: @openzeppelin/contracts/token/ERC20/IERC20.sol [Warning/import-path-check]
+/sb/RewardPool.sol:5:1: Import in /sb/RewardPool.sol doesn't exist in: @openzeppelin/contracts/access/Ownable.sol [Warning/import-path-check]
+/sb/RewardPool.sol:6:1: Import in /sb/RewardPool.sol doesn't exist in: @uniswap/lib/contracts/libraries/TransferHelper.sol [Warning/import-path-check]
+/sb/RewardPool.sol:8:1: Import in /sb/RewardPool.sol doesn't exist in: ./Powered.sol [Warning/import-path-check]
+/sb/RewardPool.sol:10:1: Missing @title tag in contract 'IRewardPool' [Warning/use-natspec]
+/sb/RewardPool.sol:10:1: Missing @author tag in contract 'IRewardPool' [Warning/use-natspec]
+/sb/RewardPool.sol:10:1: Missing @notice tag in contract 'IRewardPool' [Warning/use-natspec]
+/sb/RewardPool.sol:11:5: Missing @notice tag in function 'sendERC20' [Warning/use-natspec]
+/sb/RewardPool.sol:11:5: Missing @param tag in function 'sendERC20' [Warning/use-natspec]
+/sb/RewardPool.sol:11:5: Mismatch in @param names for function 'sendERC20'. Expected: [token, to, value], Found: [] [Warning/use-natspec]
+/sb/RewardPool.sol:17:5: Missing @notice tag in function 'rescueERC20' [Warning/use-natspec]
+/sb/RewardPool.sol:17:5: Missing @param tag in function 'rescueERC20' [Warning/use-natspec]
+/sb/RewardPool.sol:17:5: Mismatch in @param names for function 'rescueERC20'. Expected: [tokens, recipient], Found: [] [Warning/use-natspec]
+/sb/RewardPool.sol:22:1: Missing @author tag in contract 'RewardPool' [Warning/use-natspec]
+/sb/RewardPool.sol:25:5: Missing @notice tag in function '<anonymous>' [Warning/use-natspec]
+/sb/RewardPool.sol:25:5: Missing @param tag in function '<anonymous>' [Warning/use-natspec]
+/sb/RewardPool.sol:25:5: Mismatch in @param names for function '<anonymous>'. Expected: [powerSwitch], Found: [] [Warning/use-natspec]
+/sb/RewardPool.sol:25:5: Explicitly mark visibility in function (Set ignoreConstructors to true if using solidity >=0.7.0) [Warning/func-visibility]
+/sb/RewardPool.sol:66:9: Error message for require is too long: 55 counted / 32 allowed [Warning/reason-string]
+/sb/RewardPool.sol:66:9: GC: String exceeds 32 bytes [Warning/gas-small-strings]
+/sb/RewardPool.sol:72:9: Error message for require is too long: 33 counted / 32 allowed [Warning/reason-string]
+/sb/RewardPool.sol:72:9: GC: String exceeds 32 bytes [Warning/gas-small-strings]
+/sb/RewardPool.sol:75:56: GC: For [ index ] variable, increment/decrement by 1 using: [ ++variable ] to save gas [Warning/gas-increment-by-one]
+
+24 problem/s (1 error/s, 23 warning/s)

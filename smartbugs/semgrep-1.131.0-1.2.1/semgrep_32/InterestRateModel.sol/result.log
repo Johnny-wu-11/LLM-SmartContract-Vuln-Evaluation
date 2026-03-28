@@ -1,0 +1,92 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                   
+                   
+┌─────────────────┐
+│ 9 Code Findings │
+└─────────────────┘
+                             
+    /sb/InterestRateModel.sol
+     ❱ solidity.best-practice.use-ownable2step
+          By demanding that the receiver of the owner permissions actively accept via a contract call of its 
+          own,  `Ownable2Step` and `Ownable2StepUpgradeable` prevent the contract ownership from accidentally
+          being transferred  to an address that cannot handle it.                                            
+                                                                                                             
+           14┆ contract InterestRateModel is IInterestRateModel, Ownable {
+   
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           31┆ constructor(
+           32┆   uint _minRate,
+           33┆   uint _lowRate,
+           34┆   uint _highRate,
+           35┆   uint _targetUtilization
+           36┆ ) {
+           37┆   minRate           = _timeRateToBlockRate(_minRate);
+           38┆   lowRate           = _timeRateToBlockRate(_lowRate);
+           39┆   highRate          = _timeRateToBlockRate(_highRate);
+           40┆   targetUtilization = _targetUtilization;
+             [hid 1 additional lines, adjust with --max-lines-per-finding] 
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           44┆ require(_value < lowRate, "InterestRateModel: _value < lowRate");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+           44┆ require(_value < lowRate, "InterestRateModel: _value < lowRate");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           50┆ require(_value < highRate, "InterestRateModel: _value < lowRate");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+           50┆ require(_value < highRate, "InterestRateModel: _value < lowRate");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           61┆ require(_value < 99e18, "InterestRateModel: _value < 100e18");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+           61┆ require(_value < 99e18, "InterestRateModel: _value < 100e18");
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+           81┆ utilization = 100e18 * ( _totalDebt - (_totalSupply * targetUtilization / 100e18) ) /
+               (_totalSupply * (100e18 - targetUtilization) / 100e18);                              
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 9 (9 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 9 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

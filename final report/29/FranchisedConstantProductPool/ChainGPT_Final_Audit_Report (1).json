@@ -1,0 +1,25 @@
+{
+  "title": "ChainGPT Final Audit Report",
+  "tool": "ChainGPT",
+  "status": "Completed",
+  "reduction_summary": {
+    "original_findings": 0,
+    "retained_findings_after_ai_review": 7,
+    "filtered_findings": 0,
+    "filtering_rate": "0.00%"
+  },
+  "adjudication_summary": "All retained findings require verification, indicating potential vulnerabilities common in smart contract development.",
+  "findings": {
+    "confirmed": [],
+    "plausible_but_unverified": [
+      "Reentrancy Vulnerability",
+      "Unchecked External Calls",
+      "Denial of Service (DoS)",
+      "Gas Limit and Block Timestamp Dependence",
+      "Integer Overflow/Underflow",
+      "Lack of Access Control",
+      "Frontrunning Vulnerability"
+    ],
+    "unsupported_or_false_positive": []
+  }
+}

@@ -1,0 +1,21 @@
+A new version of Solhint is available: 6.0.3
+Please consider updating your Solhint package.
+/sb/ProxyFactory.sol:2:1: Compiler version 0.7.6 does not satisfy the ^0.8.24 semver requirement [Error/compiler-version]
+/sb/ProxyFactory.sol:4:1: Import in /sb/ProxyFactory.sol doesn't exist in: @openzeppelin/contracts/proxy/Clones.sol [Warning/import-path-check]
+/sb/ProxyFactory.sol:6:1: Missing @title tag in contract 'ProxyFactory' [Warning/use-natspec]
+/sb/ProxyFactory.sol:6:1: Missing @author tag in contract 'ProxyFactory' [Warning/use-natspec]
+/sb/ProxyFactory.sol:6:1: Missing @notice tag in contract 'ProxyFactory' [Warning/use-natspec]
+/sb/ProxyFactory.sol:9:5: Missing @notice tag in function '_create' [Warning/use-natspec]
+/sb/ProxyFactory.sol:9:5: Missing @param tag in function '_create' [Warning/use-natspec]
+/sb/ProxyFactory.sol:9:5: Mismatch in @param names for function '_create'. Expected: [logic, data], Found: [] [Warning/use-natspec]
+/sb/ProxyFactory.sol:9:5: Missing @return tag in function '_create' [Warning/use-natspec]
+/sb/ProxyFactory.sol:9:5: Mismatch in @return names for function '_create'. Expected: [proxy], Found: [] [Warning/use-natspec]
+/sb/ProxyFactory.sol:15:48: Avoid to use low level calls. [Warning/avoid-low-level-calls]
+/sb/ProxyFactory.sol:23:5: Missing @notice tag in function '_create2' [Warning/use-natspec]
+/sb/ProxyFactory.sol:23:5: Missing @param tag in function '_create2' [Warning/use-natspec]
+/sb/ProxyFactory.sol:23:5: Mismatch in @param names for function '_create2'. Expected: [logic, data, salt], Found: [] [Warning/use-natspec]
+/sb/ProxyFactory.sol:23:5: Missing @return tag in function '_create2' [Warning/use-natspec]
+/sb/ProxyFactory.sol:23:5: Mismatch in @return names for function '_create2'. Expected: [proxy], Found: [] [Warning/use-natspec]
+/sb/ProxyFactory.sol:33:48: Avoid to use low level calls. [Warning/avoid-low-level-calls]
+
+17 problem/s (1 error/s, 16 warning/s)

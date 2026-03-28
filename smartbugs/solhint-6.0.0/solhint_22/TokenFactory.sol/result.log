@@ -1,0 +1,12 @@
+A new version of Solhint is available: 6.1.0
+Please consider updating your Solhint package.
+/sb/TokenFactory.sol:3:1: Compiler version 0.8.3 does not satisfy the ^0.8.24 semver requirement [Error/compiler-version]
+/sb/TokenFactory.sol:5:1: global import of path ./SyntheticToken.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/TokenFactory.sol:5:1: Import in /sb/TokenFactory.sol doesn't exist in: ./SyntheticToken.sol [Warning/import-path-check]
+/sb/TokenFactory.sol:6:1: global import of path ./interfaces/ITokenFactory.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/TokenFactory.sol:6:1: Import in /sb/TokenFactory.sol doesn't exist in: ./interfaces/ITokenFactory.sol [Warning/import-path-check]
+/sb/TokenFactory.sol:10:1: Missing @author tag in contract 'TokenFactory' [Warning/use-natspec]
+/sb/TokenFactory.sol:31:5: Provide an error message for require [Warning/reason-string]
+/sb/TokenFactory.sol:41:3: Explicitly mark visibility in function (Set ignoreConstructors to true if using solidity >=0.7.0) [Warning/func-visibility]
+
+8 problem/s (1 error/s, 7 warning/s)

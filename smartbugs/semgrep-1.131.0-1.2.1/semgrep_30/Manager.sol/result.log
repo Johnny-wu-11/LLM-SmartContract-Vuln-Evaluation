@@ -1,0 +1,125 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 29 Code Findings │
+└──────────────────┘
+                   
+    /sb/Manager.sol
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+          115┆ constructor(
+          116┆     address _yaxis
+          117┆ )
+          118┆     public
+          119┆ {
+          120┆     require(_yaxis != address(0), "!_yaxis");
+          121┆     yaxis = _yaxis;
+          122┆     governance = msg.sender;
+          123┆     strategist = msg.sender;
+          124┆     harvester = msg.sender;
+             [hid 5 additional lines, adjust with --max-lines-per-finding] 
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          120┆ require(_yaxis != address(0), "!_yaxis");
+            ⋮┆----------------------------------------
+          148┆ require(address(IController(_controller).manager()) == address(this), "!manager");
+            ⋮┆----------------------------------------
+          166┆ require(address(IConverter(_converter).manager()) == address(this), "!manager");
+            ⋮┆----------------------------------------
+          184┆ require(address(IStrategy(_strategy).manager()) == address(this), "!manager");
+            ⋮┆----------------------------------------
+          219┆ require(address(IVault(_vault).manager()) == address(this), "!manager");
+            ⋮┆----------------------------------------
+          250┆ require(address(IHarvester(_harvester).manager()) == address(this), "!manager");
+            ⋮┆----------------------------------------
+          266┆ require(_insuranceFee <= 100, "_insuranceFee over 1%");
+            ⋮┆----------------------------------------
+          296┆ require(_insurancePoolFee <= 2000, "_insurancePoolFee over 20%");
+            ⋮┆----------------------------------------
+          326┆ require(_stakingPoolShareFee <= 5000, "_stakingPoolShareFee over 50%");
+            ⋮┆----------------------------------------
+          341┆ require(_strategist != address(0), "!_strategist");
+            ⋮┆----------------------------------------
+          359┆ require(_treasury != address(0), "!_treasury");
+            ⋮┆----------------------------------------
+          375┆ require(_treasuryFee <= 2000, "_treasuryFee over 20%");
+            ⋮┆----------------------------------------
+          391┆ require(_withdrawalProtectionFee <= 100, "_withdrawalProtectionFee over 1%");
+            ⋮┆----------------------------------------
+          407┆ require(msg.sender == pendingStrategist, "!pendingStrategist");
+            ⋮┆----------------------------------------
+          409┆ require(block.timestamp > setPendingStrategistTime.add(PENDING_STRATEGIST_TIMELOCK),
+               "PENDING_STRATEGIST_TIMELOCK");                                                     
+            ⋮┆----------------------------------------
+          430┆ require(allowedTokens[_token], "!allowedTokens");
+            ⋮┆----------------------------------------
+          431┆ require(allowedVaults[_vault], "!allowedVaults");
+            ⋮┆----------------------------------------
+          432┆ require(tokens[_vault].length < MAX_TOKENS, ">tokens");
+            ⋮┆----------------------------------------
+          433┆ require(vaults[_token] == address(0), "!_token");
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          476┆ for (uint i = 0; i < k; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          476┆ for (uint i = 0; i < k; i++) {
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          477┆ if (tokens[_vault][i] == _token) {
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+          486┆ tokens[_vault][index] = tokens[_vault][k-1];
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          506┆ require(allowedVaults[_vault], "!_vault");
+            ⋮┆----------------------------------------
+          507┆ require(allowedControllers[_controller], "!_controller");
+            ⋮┆----------------------------------------
+          568┆ require(!halted, "halted");
+            ⋮┆----------------------------------------
+          573┆ require(msg.sender == governance, "!governance");
+            ⋮┆----------------------------------------
+          578┆ require(msg.sender == strategist, "!strategist");
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 29 (29 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 29 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading
+
+📢 Too many findings? Try Semgrep Pro for more powerful queries and less noise.
+   See https://sg.run/false-positives.

@@ -1,0 +1,53 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                   
+                   
+┌─────────────────┐
+│ 5 Code Findings │
+└─────────────────┘
+                 
+    /sb/Witch.sol
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           31┆ constructor (ICauldron cauldron_, ILadle ladle_) {
+           32┆     cauldron = cauldron_;
+           33┆     ladle = ladle_;
+           34┆ }
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           44┆ require (initialProportion_ <= 1e18, "Only at or under 100%");
+            ⋮┆----------------------------------------
+           60┆ require (balances_.art > 0, "Nothing to buy");                                      //
+               Cheapest way of failing gracefully if given a non existing vault                      
+            ⋮┆----------------------------------------
+           77┆ require (ink >= min, "Not enough bought");
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+           80┆ if (balances_.art - art == 0) {                                               
+               // If there is no debt left, return the vault with the collateral to the owner
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 5 (5 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 5 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

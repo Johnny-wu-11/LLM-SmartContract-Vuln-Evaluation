@@ -1,0 +1,50 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                   
+                   
+┌─────────────────┐
+│ 4 Code Findings │
+└─────────────────┘
+                   
+    /sb/Ownable.sol
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           11┆ constructor() {
+           12┆   owner = msg.sender;
+           13┆   emit OwnershipTransferred(address(0), owner);
+           14┆ }
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           17┆ require(isOwner(), "Ownable: caller is not the owner");
+            ⋮┆----------------------------------------
+           35┆ require(newOwner != address(0), "Ownable: new owner is the zero address");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+           35┆ require(newOwner != address(0), "Ownable: new owner is the zero address");
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 4 (4 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 4 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

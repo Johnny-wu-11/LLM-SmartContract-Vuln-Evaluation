@@ -1,0 +1,127 @@
+{
+    "version": "1.1.0",
+    "success": true,
+    "message": null,
+    "results": [
+        {
+            "code": "price-manipulation",
+            "severity": "HIGH",
+            "title": "MWE-200: Insecure LP Token Value Calculation",
+            "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+            "recommendation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/7/code/contracts/Comptroller.sol",
+                    "range": {
+                        "start": {
+                            "line": 731
+                        },
+                        "end": {
+                            "line": 803
+                        }
+                    },
+                    "highlights": []
+                },
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/7/code/contracts/Comptroller.sol",
+                    "range": {
+                        "start": {
+                            "line": 684
+                        },
+                        "end": {
+                            "line": 688
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        },
+        {
+            "code": "price-manipulation",
+            "severity": "HIGH",
+            "title": "MWE-200: Insecure LP Token Value Calculation",
+            "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+            "recommendation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/7/code/contracts/CToken.sol",
+                    "range": {
+                        "start": {
+                            "line": 330
+                        },
+                        "end": {
+                            "line": 334
+                        }
+                    },
+                    "highlights": []
+                },
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/7/code/contracts/Comptroller.sol",
+                    "range": {
+                        "start": {
+                            "line": 813
+                        },
+                        "end": {
+                            "line": 855
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        },
+        {
+            "code": "price-manipulation",
+            "severity": "HIGH",
+            "title": "MWE-200: Insecure LP Token Value Calculation",
+            "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+            "recommendation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/7/code/contracts/CToken.sol",
+                    "range": {
+                        "start": {
+                            "line": 341
+                        },
+                        "end": {
+                            "line": 371
+                        }
+                    },
+                    "highlights": []
+                },
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/7/code/contracts/CToken.sol",
+                    "range": {
+                        "start": {
+                            "line": 330
+                        },
+                        "end": {
+                            "line": 334
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        },
+        {
+            "code": "wrong-order-interest",
+            "severity": "HIGH",
+            "title": "MWE-209: Wrong Order for Interest or ExchangeRate",
+            "description": "Update of interest or exchange rate should be executed before calculating new balance, share, stake, loan or fee.",
+            "recommendation": "Check the business logic and move the statements about updating exchange rate or interest forward.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/7/code/contracts/DAIInterestRateModelV3.sol",
+                    "range": {
+                        "start": {
+                            "line": 94
+                        },
+                        "end": {
+                            "line": 109
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        }
+    ]
+}

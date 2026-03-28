@@ -1,0 +1,45 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                   
+                   
+┌─────────────────┐
+│ 3 Code Findings │
+└─────────────────┘
+                            
+    /sb/SushiYieldSource.sol
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           22┆ constructor(ISushiBar _sushiBar, ISushi _sushiAddr) public {
+           23┆     sushiBar = _sushiBar;
+           24┆     sushiAddr = _sushiAddr;
+           25┆ }
+   
+    ❯❱ solidity.security.exact-balance-check
+          Testing the balance of an account as a basis for some action has risks associated with unexpected 
+          receipt of ether or another token, including tokens deliberately transfered to cause such tests to
+          fail, as an MEV attack.                                                                           
+                                                                                                            
+           74┆ if(barSushiBalance == 0) return 0;
+            ⋮┆----------------------------------------
+           79┆ if(requiredShares == 0) return 0;
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 3 (3 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 3 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

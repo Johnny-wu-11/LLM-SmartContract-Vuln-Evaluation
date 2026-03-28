@@ -1,0 +1,41 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                  
+                  
+┌────────────────┐
+│ 1 Code Finding │
+└────────────────┘
+                       
+    /sb/CosmosToken.sol
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+            7┆ constructor(
+            8┆    address _gravityAddress,
+            9┆    string memory _name,
+           10┆    string memory _symbol,
+           11┆    uint8 _decimals
+           12┆ ) public ERC20(_name, _symbol) {
+           13┆    _setupDecimals(_decimals);
+           14┆    _mint(_gravityAddress, MAX_UINT);
+           15┆ }
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 1 (1 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 1 finding.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

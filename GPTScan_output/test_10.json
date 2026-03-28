@@ -1,0 +1,49 @@
+{
+    "version": "1.1.0",
+    "success": true,
+    "message": null,
+    "results": [
+        {
+            "code": "approval-not-clear",
+            "severity": "HIGH",
+            "title": "MWE-203: Approval Not Revoked",
+            "description": "Approval is not revoked or reset after the code functionality finishes.",
+            "recommendation": "Try to remove the approval after the code finishes its job.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/10/contracts/contracts/visor/Visor.sol",
+                    "range": {
+                        "start": {
+                            "line": 442
+                        },
+                        "end": {
+                            "line": 463
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        },
+        {
+            "code": "approval-not-clear",
+            "severity": "HIGH",
+            "title": "MWE-203: Approval Not Revoked",
+            "description": "Approval is not revoked or reset after the code functionality finishes.",
+            "recommendation": "Try to remove the approval after the code finishes its job.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/10/contracts/contracts/visor/Visor.sol",
+                    "range": {
+                        "start": {
+                            "line": 495
+                        },
+                        "end": {
+                            "line": 516
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        }
+    ]
+}

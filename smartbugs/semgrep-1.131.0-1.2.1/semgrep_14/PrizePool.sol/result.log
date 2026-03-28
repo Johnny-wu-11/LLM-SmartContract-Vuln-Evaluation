@@ -1,0 +1,187 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 34 Code Findings │
+└──────────────────┘
+                     
+    /sb/PrizePool.sol
+     ❱ solidity.best-practice.use-ownable2step
+          By demanding that the receiver of the owner permissions actively accept via a contract call of its 
+          own,  `Ownable2Step` and `Ownable2StepUpgradeable` prevent the contract ownership from accidentally
+          being transferred  to an address that cannot handle it.                                            
+                                                                                                             
+           26┆ abstract contract PrizePool is PrizePoolInterface, OwnableUpgradeable,
+               ReentrancyGuardUpgradeable, TokenControllerInterface {                
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          226┆ require(address(_reserveRegistry) != address(0), "PrizePool/reserveRegistry-not-zero");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          226┆ require(address(_reserveRegistry) != address(0), "PrizePool/reserveRegistry-not-zero");
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          228┆ for (uint256 i = 0; i < _controlledTokens.length; i++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          228┆ for (uint256 i = 0; i < _controlledTokens.length; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          228┆ for (uint256 i = 0; i < _controlledTokens.length; i++) {
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          331┆ require(exitFee <= maximumExitFee, "PrizePool/exit-fee-exceeds-user-maximum");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          331┆ require(exitFee <= maximumExitFee, "PrizePool/exit-fee-exceeds-user-maximum");
+   
+     ❱ solidity.performance.use-nested-if
+          Using nested is cheaper than using && multiple check combinations.  There are more advantages, such
+          as easier to read code and better coverage reports.                                                
+                                                                                                             
+          431┆ if (to != address(0) && to != from) {
+          432┆   _accrueCredit(to, msg.sender, IERC20Upgradeable(msg.sender).balanceOf(to), 0);
+          433┆ }
+            ⋮┆----------------------------------------
+          435┆ if (from != address(0) && address(prizeStrategy) != address(0)) {
+          436┆   prizeStrategy.beforeTokenTransfer(from, to, amount, msg.sender);
+          437┆ }
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          504┆ require(amount <= _currentAwardBalance, "PrizePool/award-exceeds-avail");
+            ⋮┆----------------------------------------
+          559┆ require(_canAwardExternal(externalToken), "PrizePool/invalid-external-token");
+            ⋮┆----------------------------------------
+          595┆ require(_canAwardExternal(externalToken), "PrizePool/invalid-external-token");
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          601┆ for (uint256 i = 0; i < tokenIds.length; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          601┆ for (uint256 i = 0; i < tokenIds.length; i++) {
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          652┆ for (i = 0; i < users.length; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          652┆ for (i = 0; i < users.length; i++) {
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          654┆ if (_unlockTimestamps[user] <= _currentTime()) {
+            ⋮┆----------------------------------------
+          655┆ totalWithdrawal = totalWithdrawal.add(_timelockBalances[user]);
+            ⋮┆----------------------------------------
+          656┆ balances[i] = _timelockBalances[user];
+            ⋮┆----------------------------------------
+          657┆ delete _timelockBalances[user];
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          672┆ for (i = 0; i < users.length; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          672┆ for (i = 0; i < users.length; i++) {
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          674┆ delete _unlockTimestamps[users[i]];
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          950┆ require(controlledTokenBalance >= amount, "PrizePool/insuff-funds");
+            ⋮┆----------------------------------------
+          991┆ require(_controlledToken.controller() == this, "PrizePool/token-ctrlr-mismatch");
+            ⋮┆----------------------------------------
+          1006┆ require(address(_prizeStrategy) != address(0), "PrizePool/prizeStrategy-not-zero");
+            ⋮┆----------------------------------------
+          1007┆ require(address(_prizeStrategy).supportsInterface(TokenListenerLibrary.ERC165_INTERFACE_ID
+               _TOKEN_LISTENER), "PrizePool/prizeStrategy-invalid");                                      
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          1059┆ while (currentToken != address(0) && currentToken != _tokens.end()) {
+            ⋮┆----------------------------------------
+          1061┆ currentToken = _tokens.next(currentToken);
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          1108┆ require(_isControlled(controlledToken), "PrizePool/unknown-token");
+            ⋮┆----------------------------------------
+          1114┆ require(_msgSender() == address(prizeStrategy), "PrizePool/only-prizeStrategy");
+            ⋮┆----------------------------------------
+          1120┆ require(_canAddLiquidity(_amount), "PrizePool/exceeds-liquidity-cap");
+            ⋮┆----------------------------------------
+          1126┆ require(address(reserve) == msg.sender, "PrizePool/only-reserve");
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 34 (34 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 34 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading
+
+📢 Too many findings? Try Semgrep Pro for more powerful queries and less noise.
+   See https://sg.run/false-positives.

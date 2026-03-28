@@ -1,0 +1,25 @@
+{
+  "title": "ChainGPT Final Audit Report",
+  "tool": "ChainGPT",
+  "status": "Completed",
+  "reduction_summary": {
+    "original_findings": 0,
+    "retained_findings_after_ai_review": 7,
+    "filtered_findings": 0,
+    "filtering_rate": "0.00%"
+  },
+  "adjudication_summary": "All findings are plausible but require further verification.",
+  "findings": {
+    "confirmed": [],
+    "plausible_but_unverified": [
+      "Reentrancy Vulnerability",
+      "Integer Underflow/Overflow",
+      "Incorrect Reward Calculation",
+      "Lack of Access Control",
+      "Gas Limit and DoS with (Unexpected) Revert",
+      "Reward Debt Not Updated",
+      "Potential Misuse of `emergencyWithdraw`"
+    ],
+    "unsupported_or_false_positive": []
+  }
+}

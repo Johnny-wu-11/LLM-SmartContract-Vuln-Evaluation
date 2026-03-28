@@ -1,0 +1,104 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 20 Code Findings │
+└──────────────────┘
+                  
+    /sb/Payout.sol
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           27┆ require(msg.sender == GovStorage.gs().govMain, 'NOT_GOV_MAIN');
+            ⋮┆----------------------------------------
+           32┆ require(msg.sender == PayoutStorage.ps().govPayout, 'NOT_GOV_PAY');
+            ⋮┆----------------------------------------
+           51┆ require(msg.sender == LibDiamond.contractOwner(), 'NOT_DEV');
+            ⋮┆----------------------------------------
+           52┆ require(_govPayout != address(0), 'ZERO_GOV');
+            ⋮┆----------------------------------------
+           53┆ require(ps.govPayout == address(0), 'ALREADY_SET');
+            ⋮┆----------------------------------------
+           61┆ require(_govPayout != address(0), 'ZERO_GOV');
+            ⋮┆----------------------------------------
+           62┆ require(ps.govPayout != _govPayout, 'SAME_GOV');
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+           83┆ for (uint256 i; i < tokens.length; i++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+           83┆ for (uint256 i; i < tokens.length; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+           83┆ for (uint256 i; i < tokens.length; i++) {
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          121┆ require(address(_payout) != address(0), 'ZERO_PAY');
+            ⋮┆----------------------------------------
+          122┆ require(address(_payout) != address(this), 'THIS_PAY');
+            ⋮┆----------------------------------------
+          123┆ require(_tokens.length == _firstMoneyOut.length, 'LENGTH_1');
+            ⋮┆----------------------------------------
+          124┆ require(_tokens.length == _amounts.length, 'LENGTH_2');
+            ⋮┆----------------------------------------
+          125┆ require(_tokens.length == _unallocatedSherX.length, 'LENGTH_3');
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          132┆ for (uint256 i; i < _tokens.length; i++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          132┆ for (uint256 i; i < _tokens.length; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          132┆ for (uint256 i; i < _tokens.length; i++) {
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          139┆ require(ps.govPool != address(0), 'INIT');
+            ⋮┆----------------------------------------
+          140┆ require(ps.unallocatedSherX >= unallocatedSherX, 'ERR_UNALLOC_FEE');
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 20 (20 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 20 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

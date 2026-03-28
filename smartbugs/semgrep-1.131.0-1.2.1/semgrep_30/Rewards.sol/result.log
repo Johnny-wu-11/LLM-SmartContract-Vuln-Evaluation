@@ -1,0 +1,91 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 10 Code Findings │
+└──────────────────┘
+                   
+    /sb/Rewards.sol
+     ❱ solidity.best-practice.use-ownable2step
+          By demanding that the receiver of the owner permissions actively accept via a contract call of its 
+          own,  `Ownable2Step` and `Ownable2StepUpgradeable` prevent the contract ownership from accidentally
+          being transferred  to an address that cannot handle it.                                            
+                                                                                                             
+           59┆ abstract contract IRewardDistributionRecipient is Ownable {
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           65┆ require(_msgSender() == rewardDistribution, "Caller is not reward distribution");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+           65┆ require(_msgSender() == rewardDistribution, "Caller is not reward distribution");
+   
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           86┆ constructor(
+           87┆     address _stakingToken
+           88┆ )
+           89┆     public
+           90┆ {
+           91┆     stakingToken = IERC20(_stakingToken);
+           92┆ }
+   
+     ❱ solidity.performance.init-variables-with-default-value
+          Uninitialized variables are assigned with the types default value. Explicitly initializing a
+          variable with its default value costs unnecessary gas.                                      
+                                                                                                      
+          126┆ uint256 public periodFinish = 0;
+            ⋮┆----------------------------------------
+          127┆ uint256 public rewardRate = 0;
+   
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+          138┆ constructor(
+          139┆     address _rewardToken,
+          140┆     address _stakingToken,
+          141┆     uint256 _duration
+          142┆ )
+          143┆     public
+          144┆     LPTokenWrapper(_stakingToken)
+          145┆ {
+          146┆     rewardToken = IERC20(_rewardToken);
+          147┆     duration = _duration;
+             [hid 1 additional lines, adjust with --max-lines-per-finding] 
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          163┆ require(msg.sender == address(stakingToken), "!stakingToken");
+            ⋮┆----------------------------------------
+          196┆ require(amount > 0, "Cannot stake 0");
+            ⋮┆----------------------------------------
+          202┆ require(amount > 0, "Cannot withdraw 0");
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 10 (10 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 10 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

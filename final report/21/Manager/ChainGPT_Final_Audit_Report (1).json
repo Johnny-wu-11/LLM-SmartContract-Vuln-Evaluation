@@ -1,0 +1,23 @@
+{
+  "title": "ChainGPT Final Audit Report",
+  "tool": "ChainGPT",
+  "status": "Completed",
+  "reduction_summary": {
+    "original_findings": 0,
+    "retained_findings_after_ai_review": 4,
+    "filtered_findings": 0,
+    "filtering_rate": "0.00%"
+  },
+  "adjudication_summary": "Two findings are confirmed due to the high potential risk they pose, while two are considered plausible but require further verification.",
+  "findings": {
+    "confirmed": [
+      "Access Control Relies on Single Address",
+      "Token Approval Race Condition"
+    ],
+    "plausible_but_unverified": [
+      "External Call Dependency for Token Updates",
+      "Insufficient Checks for State-Changing Functions"
+    ],
+    "unsupported_or_false_positive": []
+  }
+}

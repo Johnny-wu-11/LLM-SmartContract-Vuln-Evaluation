@@ -1,0 +1,28 @@
+A new version of Solhint is available: 6.1.0
+Please consider updating your Solhint package.
+/sb/MISOAccessControls.sol:1:1: Compiler version 0.6.12 does not satisfy the ^0.8.24 semver requirement [Error/compiler-version]
+/sb/MISOAccessControls.sol:3:1: global import of path ./MISOAdminAccess.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/MISOAccessControls.sol:3:1: Import in /sb/MISOAccessControls.sol doesn't exist in: ./MISOAdminAccess.sol [Warning/import-path-check]
+/sb/MISOAccessControls.sol:9:1: Missing @title tag in contract 'MISOAccessControls' [Warning/use-natspec]
+/sb/MISOAccessControls.sol:12:5: Missing @notice tag in variable 'SMART_CONTRACT_ROLE' [Warning/use-natspec]
+/sb/MISOAccessControls.sol:13:5: Missing @notice tag in variable 'OPERATOR_ROLE' [Warning/use-natspec]
+/sb/MISOAccessControls.sol:17:5: Missing @param tag in event 'MinterRoleGranted' [Warning/use-natspec]
+/sb/MISOAccessControls.sol:17:5: Mismatch in @param names for event 'MinterRoleGranted'. Expected: [beneficiary, caller], Found: [] [Warning/use-natspec]
+/sb/MISOAccessControls.sol:22:5: Missing @notice tag in event 'MinterRoleRemoved' [Warning/use-natspec]
+/sb/MISOAccessControls.sol:22:5: Missing @param tag in event 'MinterRoleRemoved' [Warning/use-natspec]
+/sb/MISOAccessControls.sol:22:5: Mismatch in @param names for event 'MinterRoleRemoved'. Expected: [beneficiary, caller], Found: [] [Warning/use-natspec]
+/sb/MISOAccessControls.sol:27:5: Missing @notice tag in event 'OperatorRoleGranted' [Warning/use-natspec]
+/sb/MISOAccessControls.sol:27:5: Missing @param tag in event 'OperatorRoleGranted' [Warning/use-natspec]
+/sb/MISOAccessControls.sol:27:5: Mismatch in @param names for event 'OperatorRoleGranted'. Expected: [beneficiary, caller], Found: [] [Warning/use-natspec]
+/sb/MISOAccessControls.sol:32:5: Missing @notice tag in event 'OperatorRoleRemoved' [Warning/use-natspec]
+/sb/MISOAccessControls.sol:32:5: Missing @param tag in event 'OperatorRoleRemoved' [Warning/use-natspec]
+/sb/MISOAccessControls.sol:32:5: Mismatch in @param names for event 'OperatorRoleRemoved'. Expected: [beneficiary, caller], Found: [] [Warning/use-natspec]
+/sb/MISOAccessControls.sol:37:5: Missing @notice tag in event 'SmartContractRoleGranted' [Warning/use-natspec]
+/sb/MISOAccessControls.sol:37:5: Missing @param tag in event 'SmartContractRoleGranted' [Warning/use-natspec]
+/sb/MISOAccessControls.sol:37:5: Mismatch in @param names for event 'SmartContractRoleGranted'. Expected: [beneficiary, caller], Found: [] [Warning/use-natspec]
+/sb/MISOAccessControls.sol:42:5: Missing @notice tag in event 'SmartContractRoleRemoved' [Warning/use-natspec]
+/sb/MISOAccessControls.sol:42:5: Missing @param tag in event 'SmartContractRoleRemoved' [Warning/use-natspec]
+/sb/MISOAccessControls.sol:42:5: Mismatch in @param names for event 'SmartContractRoleRemoved'. Expected: [beneficiary, caller], Found: [] [Warning/use-natspec]
+/sb/MISOAccessControls.sol:50:26: Code contains empty blocks [Warning/no-empty-blocks]
+
+24 problem/s (1 error/s, 23 warning/s)

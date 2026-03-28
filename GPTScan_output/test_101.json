@@ -1,0 +1,1111 @@
+{
+    "version": "1.1.0",
+    "success": true,
+    "message": null,
+    "results": [
+        {
+            "code": "price-manipulation",
+            "severity": "HIGH",
+            "title": "MWE-200: Insecure LP Token Value Calculation",
+            "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+            "recommendation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/101/sublime-v1/contracts/mocks/MockCEther.sol",
+                    "range": {
+                        "start": {
+                            "line": 39
+                        },
+                        "end": {
+                            "line": 44
+                        }
+                    },
+                    "highlights": []
+                },
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/101/sublime-v1/contracts/mocks/MockCToken.sol",
+                    "range": {
+                        "start": {
+                            "line": 32
+                        },
+                        "end": {
+                            "line": 41
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        },
+        {
+            "code": "price-manipulation",
+            "severity": "HIGH",
+            "title": "MWE-200: Insecure LP Token Value Calculation",
+            "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+            "recommendation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/101/sublime-v1/contracts/mocks/MockCToken.sol",
+                    "range": {
+                        "start": {
+                            "line": 25
+                        },
+                        "end": {
+                            "line": 30
+                        }
+                    },
+                    "highlights": []
+                },
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/101/sublime-v1/contracts/mocks/MockCToken.sol",
+                    "range": {
+                        "start": {
+                            "line": 32
+                        },
+                        "end": {
+                            "line": 41
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        },
+        {
+            "code": "price-manipulation",
+            "severity": "HIGH",
+            "title": "MWE-200: Insecure LP Token Value Calculation",
+            "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+            "recommendation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/101/sublime-v1/contracts/mocks/MockCToken.sol",
+                    "range": {
+                        "start": {
+                            "line": 51
+                        },
+                        "end": {
+                            "line": 56
+                        }
+                    },
+                    "highlights": []
+                },
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/101/sublime-v1/contracts/mocks/MockCToken.sol",
+                    "range": {
+                        "start": {
+                            "line": 32
+                        },
+                        "end": {
+                            "line": 41
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        },
+        {
+            "code": "price-manipulation",
+            "severity": "HIGH",
+            "title": "MWE-200: Insecure LP Token Value Calculation",
+            "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+            "recommendation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/101/sublime-v1/contracts/mocks/MockCToken.sol",
+                    "range": {
+                        "start": {
+                            "line": 74
+                        },
+                        "end": {
+                            "line": 78
+                        }
+                    },
+                    "highlights": []
+                },
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/101/sublime-v1/contracts/test/PooledCreditLines/Helpers/PCLParent.t.sol",
+                    "range": {
+                        "start": {
+                            "line": 470
+                        },
+                        "end": {
+                            "line": 487
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        },
+        {
+            "code": "unauthorized-transfer",
+            "severity": "HIGH",
+            "title": "MWE-207: Unauthorized Transfer",
+            "description": "The contract allows transferring tokens from an address different from the message sender without checking the approval of the address owner.",
+            "recommendation": "Check the business logic about the transfer and add the approval check if necessary.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/101/sublime-v1/contracts/test/PooledCreditLines/CTokenExchangeRateTests/PCLLiquidatedState.t.sol",
+                    "range": {
+                        "start": {
+                            "line": 478
+                        },
+                        "end": {
+                            "line": 517
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        },
+        {
+            "code": "unauthorized-transfer",
+            "severity": "HIGH",
+            "title": "MWE-207: Unauthorized Transfer",
+            "description": "The contract allows transferring tokens from an address different from the message sender without checking the approval of the address owner.",
+            "recommendation": "Check the business logic about the transfer and add the approval check if necessary.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/101/sublime-v1/contracts/test/PooledCreditLines/CTokenExchangeRateTests/PCLClosedState.t.sol",
+                    "range": {
+                        "start": {
+                            "line": 384
+                        },
+                        "end": {
+                            "line": 423
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        },
+        {
+            "code": "unauthorized-transfer",
+            "severity": "HIGH",
+            "title": "MWE-207: Unauthorized Transfer",
+            "description": "The contract allows transferring tokens from an address different from the message sender without checking the approval of the address owner.",
+            "recommendation": "Check the business logic about the transfer and add the approval check if necessary.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/101/sublime-v1/contracts/test/PooledCreditLines/CTokenExchangeRateTests/PCLRequestedState.t.sol",
+                    "range": {
+                        "start": {
+                            "line": 375
+                        },
+                        "end": {
+                            "line": 415
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        },
+        {
+            "code": "unauthorized-transfer",
+            "severity": "HIGH",
+            "title": "MWE-207: Unauthorized Transfer",
+            "description": "The contract allows transferring tokens from an address different from the message sender without checking the approval of the address owner.",
+            "recommendation": "Check the business logic about the transfer and add the approval check if necessary.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/101/sublime-v1/contracts/test/PooledCreditLines/CTokenExchangeRateTests/PCLExpiredState.t.sol",
+                    "range": {
+                        "start": {
+                            "line": 578
+                        },
+                        "end": {
+                            "line": 617
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        },
+        {
+            "code": "unauthorized-transfer",
+            "severity": "HIGH",
+            "title": "MWE-207: Unauthorized Transfer",
+            "description": "The contract allows transferring tokens from an address different from the message sender without checking the approval of the address owner.",
+            "recommendation": "Check the business logic about the transfer and add the approval check if necessary.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/101/sublime-v1/contracts/test/PooledCreditLines/PCLStageTests/PCLCancelledStage.t.sol",
+                    "range": {
+                        "start": {
+                            "line": 807
+                        },
+                        "end": {
+                            "line": 823
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        },
+        {
+            "code": "unauthorized-transfer",
+            "severity": "HIGH",
+            "title": "MWE-207: Unauthorized Transfer",
+            "description": "The contract allows transferring tokens from an address different from the message sender without checking the approval of the address owner.",
+            "recommendation": "Check the business logic about the transfer and add the approval check if necessary.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/101/sublime-v1/contracts/test/PooledCreditLines/PCLStageTests/PCLNotCreatedStage.t.sol",
+                    "range": {
+                        "start": {
+                            "line": 637
+                        },
+                        "end": {
+                            "line": 651
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        },
+        {
+            "code": "price-manipulation",
+            "severity": "HIGH",
+            "title": "MWE-200: Insecure LP Token Value Calculation",
+            "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+            "recommendation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/101/sublime-v1/contracts/test/PooledCreditLines/PCLStageTests/PCLActiveStage.t.sol",
+                    "range": {
+                        "start": {
+                            "line": 1118
+                        },
+                        "end": {
+                            "line": 1165
+                        }
+                    },
+                    "highlights": []
+                },
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/101/sublime-v1/contracts/test/PooledCreditLines/PCLStageTests/PCLActiveStage.t.sol",
+                    "range": {
+                        "start": {
+                            "line": 1203
+                        },
+                        "end": {
+                            "line": 1214
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        },
+        {
+            "code": "price-manipulation",
+            "severity": "HIGH",
+            "title": "MWE-200: Insecure LP Token Value Calculation",
+            "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+            "recommendation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/101/sublime-v1/contracts/test/PooledCreditLines/PCLStageTests/PCLActiveStage.t.sol",
+                    "range": {
+                        "start": {
+                            "line": 1182
+                        },
+                        "end": {
+                            "line": 1193
+                        }
+                    },
+                    "highlights": []
+                },
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/101/sublime-v1/contracts/test/PooledCreditLines/PCLStageTests/PCLActiveStage.t.sol",
+                    "range": {
+                        "start": {
+                            "line": 1203
+                        },
+                        "end": {
+                            "line": 1214
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        },
+        {
+            "code": "unauthorized-transfer",
+            "severity": "HIGH",
+            "title": "MWE-207: Unauthorized Transfer",
+            "description": "The contract allows transferring tokens from an address different from the message sender without checking the approval of the address owner.",
+            "recommendation": "Check the business logic about the transfer and add the approval check if necessary.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/101/sublime-v1/contracts/test/PooledCreditLines/PCLStageTests/PCLActiveStage.t.sol",
+                    "range": {
+                        "start": {
+                            "line": 1231
+                        },
+                        "end": {
+                            "line": 1245
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        },
+        {
+            "code": "wrong-order-interest",
+            "severity": "HIGH",
+            "title": "MWE-209: Wrong Order for Interest or ExchangeRate",
+            "description": "Update of interest or exchange rate should be executed before calculating new balance, share, stake, loan or fee.",
+            "recommendation": "Check the business logic and move the statements about updating exchange rate or interest forward.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/101/sublime-v1/contracts/test/PooledCreditLines/PCLStageTests/PCLActiveStage.t.sol",
+                    "range": {
+                        "start": {
+                            "line": 1256
+                        },
+                        "end": {
+                            "line": 1289
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        },
+        {
+            "code": "unauthorized-transfer",
+            "severity": "HIGH",
+            "title": "MWE-207: Unauthorized Transfer",
+            "description": "The contract allows transferring tokens from an address different from the message sender without checking the approval of the address owner.",
+            "recommendation": "Check the business logic about the transfer and add the approval check if necessary.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/101/sublime-v1/contracts/test/PooledCreditLines/PCLStageTests/PCLClosedStage.t.sol",
+                    "range": {
+                        "start": {
+                            "line": 823
+                        },
+                        "end": {
+                            "line": 840
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        },
+        {
+            "code": "price-manipulation",
+            "severity": "HIGH",
+            "title": "MWE-200: Insecure LP Token Value Calculation",
+            "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+            "recommendation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/101/sublime-v1/contracts/test/PooledCreditLines/PCLStageTests/PCLRequestedStage.t.sol",
+                    "range": {
+                        "start": {
+                            "line": 920
+                        },
+                        "end": {
+                            "line": 973
+                        }
+                    },
+                    "highlights": []
+                },
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/101/sublime-v1/contracts/test/PooledCreditLines/PCLStageTests/PCLRequestedStage.t.sol",
+                    "range": {
+                        "start": {
+                            "line": 975
+                        },
+                        "end": {
+                            "line": 979
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        },
+        {
+            "code": "unauthorized-transfer",
+            "severity": "HIGH",
+            "title": "MWE-207: Unauthorized Transfer",
+            "description": "The contract allows transferring tokens from an address different from the message sender without checking the approval of the address owner.",
+            "recommendation": "Check the business logic about the transfer and add the approval check if necessary.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/101/sublime-v1/contracts/test/PooledCreditLines/PCLStageTests/PCLRequestedStage.t.sol",
+                    "range": {
+                        "start": {
+                            "line": 1275
+                        },
+                        "end": {
+                            "line": 1285
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        },
+        {
+            "code": "unauthorized-transfer",
+            "severity": "HIGH",
+            "title": "MWE-207: Unauthorized Transfer",
+            "description": "The contract allows transferring tokens from an address different from the message sender without checking the approval of the address owner.",
+            "recommendation": "Check the business logic about the transfer and add the approval check if necessary.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/101/sublime-v1/contracts/test/PooledCreditLines/PCLStageTests/PCLRequestedStage.t.sol",
+                    "range": {
+                        "start": {
+                            "line": 1299
+                        },
+                        "end": {
+                            "line": 1315
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        },
+        {
+            "code": "price-manipulation",
+            "severity": "HIGH",
+            "title": "MWE-200: Insecure LP Token Value Calculation",
+            "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+            "recommendation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/101/sublime-v1/contracts/test/PooledCreditLines/PCLLifecycleTests/PCLLifecycleTest.t.sol",
+                    "range": {
+                        "start": {
+                            "line": 77
+                        },
+                        "end": {
+                            "line": 143
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        },
+        {
+            "code": "price-manipulation",
+            "severity": "HIGH",
+            "title": "MWE-200: Insecure LP Token Value Calculation",
+            "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+            "recommendation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/101/sublime-v1/contracts/test/PooledCreditLines/PCLLifecycleTests/PCLLifecycleTest.t.sol",
+                    "range": {
+                        "start": {
+                            "line": 145
+                        },
+                        "end": {
+                            "line": 428
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        },
+        {
+            "code": "unauthorized-transfer",
+            "severity": "HIGH",
+            "title": "MWE-207: Unauthorized Transfer",
+            "description": "The contract allows transferring tokens from an address different from the message sender without checking the approval of the address owner.",
+            "recommendation": "Check the business logic about the transfer and add the approval check if necessary.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/101/sublime-v1/contracts/test/PooledCreditLines/PriceOracleTests/PCLLiquidatedState.t.sol",
+                    "range": {
+                        "start": {
+                            "line": 451
+                        },
+                        "end": {
+                            "line": 492
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        },
+        {
+            "code": "unauthorized-transfer",
+            "severity": "HIGH",
+            "title": "MWE-207: Unauthorized Transfer",
+            "description": "The contract allows transferring tokens from an address different from the message sender without checking the approval of the address owner.",
+            "recommendation": "Check the business logic about the transfer and add the approval check if necessary.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/101/sublime-v1/contracts/test/PooledCreditLines/PriceOracleTests/PCLClosedState.t.sol",
+                    "range": {
+                        "start": {
+                            "line": 413
+                        },
+                        "end": {
+                            "line": 454
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        },
+        {
+            "code": "unauthorized-transfer",
+            "severity": "HIGH",
+            "title": "MWE-207: Unauthorized Transfer",
+            "description": "The contract allows transferring tokens from an address different from the message sender without checking the approval of the address owner.",
+            "recommendation": "Check the business logic about the transfer and add the approval check if necessary.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/101/sublime-v1/contracts/test/PooledCreditLines/PriceOracleTests/PCLRequestedState.t.sol",
+                    "range": {
+                        "start": {
+                            "line": 332
+                        },
+                        "end": {
+                            "line": 372
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        },
+        {
+            "code": "unauthorized-transfer",
+            "severity": "HIGH",
+            "title": "MWE-207: Unauthorized Transfer",
+            "description": "The contract allows transferring tokens from an address different from the message sender without checking the approval of the address owner.",
+            "recommendation": "Check the business logic about the transfer and add the approval check if necessary.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/101/sublime-v1/contracts/test/PooledCreditLines/PriceOracleTests/PCLRequestedState.t.sol",
+                    "range": {
+                        "start": {
+                            "line": 375
+                        },
+                        "end": {
+                            "line": 417
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        },
+        {
+            "code": "unauthorized-transfer",
+            "severity": "HIGH",
+            "title": "MWE-207: Unauthorized Transfer",
+            "description": "The contract allows transferring tokens from an address different from the message sender without checking the approval of the address owner.",
+            "recommendation": "Check the business logic about the transfer and add the approval check if necessary.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/101/sublime-v1/contracts/test/PooledCreditLines/PriceOracleTests/PCLExpiredState.t.sol",
+                    "range": {
+                        "start": {
+                            "line": 513
+                        },
+                        "end": {
+                            "line": 552
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        },
+        {
+            "code": "unauthorized-transfer",
+            "severity": "HIGH",
+            "title": "MWE-207: Unauthorized Transfer",
+            "description": "The contract allows transferring tokens from an address different from the message sender without checking the approval of the address owner.",
+            "recommendation": "Check the business logic about the transfer and add the approval check if necessary.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/101/sublime-v1/contracts/test/PooledCreditLines/PriceOracleTests/PCLExpiredState.t.sol",
+                    "range": {
+                        "start": {
+                            "line": 555
+                        },
+                        "end": {
+                            "line": 596
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        },
+        {
+            "code": "unauthorized-transfer",
+            "severity": "HIGH",
+            "title": "MWE-207: Unauthorized Transfer",
+            "description": "The contract allows transferring tokens from an address different from the message sender without checking the approval of the address owner.",
+            "recommendation": "Check the business logic about the transfer and add the approval check if necessary.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/101/sublime-v1/contracts/test/PooledCreditLines/PriceOracleTests/PCLActiveState.t.sol",
+                    "range": {
+                        "start": {
+                            "line": 843
+                        },
+                        "end": {
+                            "line": 882
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        },
+        {
+            "code": "unauthorized-transfer",
+            "severity": "HIGH",
+            "title": "MWE-207: Unauthorized Transfer",
+            "description": "The contract allows transferring tokens from an address different from the message sender without checking the approval of the address owner.",
+            "recommendation": "Check the business logic about the transfer and add the approval check if necessary.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/101/sublime-v1/contracts/test/PooledCreditLines/PriceOracleTests/PCLActiveState.t.sol",
+                    "range": {
+                        "start": {
+                            "line": 885
+                        },
+                        "end": {
+                            "line": 926
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        },
+        {
+            "code": "unauthorized-transfer",
+            "severity": "HIGH",
+            "title": "MWE-207: Unauthorized Transfer",
+            "description": "The contract allows transferring tokens from an address different from the message sender without checking the approval of the address owner.",
+            "recommendation": "Check the business logic about the transfer and add the approval check if necessary.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/101/sublime-v1/contracts/test/PooledCreditLines/PriceOracleTests/PCLActiveState.t.sol",
+                    "range": {
+                        "start": {
+                            "line": 929
+                        },
+                        "end": {
+                            "line": 999
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        },
+        {
+            "code": "unauthorized-transfer",
+            "severity": "HIGH",
+            "title": "MWE-207: Unauthorized Transfer",
+            "description": "The contract allows transferring tokens from an address different from the message sender without checking the approval of the address owner.",
+            "recommendation": "Check the business logic about the transfer and add the approval check if necessary.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/101/sublime-v1/contracts/test/PooledCreditLines/PriceOracleTests/PCLCancelledState.t.sol",
+                    "range": {
+                        "start": {
+                            "line": 258
+                        },
+                        "end": {
+                            "line": 297
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        },
+        {
+            "code": "unauthorized-transfer",
+            "severity": "HIGH",
+            "title": "MWE-207: Unauthorized Transfer",
+            "description": "The contract allows transferring tokens from an address different from the message sender without checking the approval of the address owner.",
+            "recommendation": "Check the business logic about the transfer and add the approval check if necessary.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/101/sublime-v1/contracts/test/PooledCreditLines/PriceOracleTests/PCLCancelledState.t.sol",
+                    "range": {
+                        "start": {
+                            "line": 300
+                        },
+                        "end": {
+                            "line": 341
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        },
+        {
+            "code": "wrong-order-interest",
+            "severity": "HIGH",
+            "title": "MWE-209: Wrong Order for Interest or ExchangeRate",
+            "description": "Update of interest or exchange rate should be executed before calculating new balance, share, stake, loan or fee.",
+            "recommendation": "Check the business logic and move the statements about updating exchange rate or interest forward.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/101/sublime-v1/contracts/test/PooledCreditLines/ProxyUpdateTests/PCL_AdminUpdates.t.sol",
+                    "range": {
+                        "start": {
+                            "line": 1170
+                        },
+                        "end": {
+                            "line": 1258
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        },
+        {
+            "code": "wrong-order-interest",
+            "severity": "HIGH",
+            "title": "MWE-209: Wrong Order for Interest or ExchangeRate",
+            "description": "Update of interest or exchange rate should be executed before calculating new balance, share, stake, loan or fee.",
+            "recommendation": "Check the business logic and move the statements about updating exchange rate or interest forward.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/101/sublime-v1/contracts/test/PooledCreditLines/ProxyUpdateTests/PCL_AdminUpdates.t.sol",
+                    "range": {
+                        "start": {
+                            "line": 1261
+                        },
+                        "end": {
+                            "line": 1328
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        },
+        {
+            "code": "price-manipulation",
+            "severity": "HIGH",
+            "title": "MWE-200: Insecure LP Token Value Calculation",
+            "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+            "recommendation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/101/sublime-v1/contracts/test/PooledCreditLines/Helpers/PCLParent.t.sol",
+                    "range": {
+                        "start": {
+                            "line": 459
+                        },
+                        "end": {
+                            "line": 468
+                        }
+                    },
+                    "highlights": []
+                },
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/101/sublime-v1/contracts/test/PooledCreditLines/CTokenExchangeRateTests/PCLClosedState.t.sol",
+                    "range": {
+                        "start": {
+                            "line": 525
+                        },
+                        "end": {
+                            "line": 579
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        },
+        {
+            "code": "price-manipulation",
+            "severity": "HIGH",
+            "title": "MWE-200: Insecure LP Token Value Calculation",
+            "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+            "recommendation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/101/sublime-v1/contracts/test/PooledCreditLines/Helpers/PCLParent.t.sol",
+                    "range": {
+                        "start": {
+                            "line": 470
+                        },
+                        "end": {
+                            "line": 487
+                        }
+                    },
+                    "highlights": []
+                },
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/101/sublime-v1/contracts/test/PooledCreditLines/CTokenExchangeRateTests/PCLRequestedState.t.sol",
+                    "range": {
+                        "start": {
+                            "line": 223
+                        },
+                        "end": {
+                            "line": 229
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        },
+        {
+            "code": "price-manipulation",
+            "severity": "HIGH",
+            "title": "MWE-200: Insecure LP Token Value Calculation",
+            "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+            "recommendation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/101/sublime-v1/contracts/test/PooledCreditLines/Helpers/PCLParent.t.sol",
+                    "range": {
+                        "start": {
+                            "line": 489
+                        },
+                        "end": {
+                            "line": 505
+                        }
+                    },
+                    "highlights": []
+                },
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/101/sublime-v1/contracts/test/PooledCreditLines/CTokenExchangeRateTests/PCLLiquidatedState.t.sol",
+                    "range": {
+                        "start": {
+                            "line": 307
+                        },
+                        "end": {
+                            "line": 318
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        },
+        {
+            "code": "price-manipulation",
+            "severity": "HIGH",
+            "title": "MWE-200: Insecure LP Token Value Calculation",
+            "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+            "recommendation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/101/sublime-v1/contracts/test/CreditLines/creditLine.Lifecycle.t.sol",
+                    "range": {
+                        "start": {
+                            "line": 357
+                        },
+                        "end": {
+                            "line": 380
+                        }
+                    },
+                    "highlights": []
+                },
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/101/sublime-v1/contracts/test/CreditLines/creditLine.ActiveStage.t.sol",
+                    "range": {
+                        "start": {
+                            "line": 421
+                        },
+                        "end": {
+                            "line": 448
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        },
+        {
+            "code": "price-manipulation",
+            "severity": "HIGH",
+            "title": "MWE-200: Insecure LP Token Value Calculation",
+            "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+            "recommendation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/101/sublime-v1/contracts/test/CreditLines/creditLine.ActiveStage.t.sol",
+                    "range": {
+                        "start": {
+                            "line": 452
+                        },
+                        "end": {
+                            "line": 473
+                        }
+                    },
+                    "highlights": []
+                },
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/101/sublime-v1/contracts/test/CreditLines/PriceOracleTests/creditLine.PriceOracle.ActiveStage.t.sol",
+                    "range": {
+                        "start": {
+                            "line": 1464
+                        },
+                        "end": {
+                            "line": 1506
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        },
+        {
+            "code": "price-manipulation",
+            "severity": "HIGH",
+            "title": "MWE-200: Insecure LP Token Value Calculation",
+            "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+            "recommendation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/101/sublime-v1/contracts/test/CreditLines/creditLine.EdgeCases.t.sol",
+                    "range": {
+                        "start": {
+                            "line": 291
+                        },
+                        "end": {
+                            "line": 312
+                        }
+                    },
+                    "highlights": []
+                },
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/101/sublime-v1/contracts/test/CreditLines/PriceOracleTests/creditLine.PriceOracle.ActiveStage.t.sol",
+                    "range": {
+                        "start": {
+                            "line": 613
+                        },
+                        "end": {
+                            "line": 649
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        },
+        {
+            "code": "price-manipulation",
+            "severity": "HIGH",
+            "title": "MWE-200: Insecure LP Token Value Calculation",
+            "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+            "recommendation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/101/sublime-v1/contracts/test/CreditLines/PriceOracleTests/creditLine.PriceOracle.ActiveStage.t.sol",
+                    "range": {
+                        "start": {
+                            "line": 2232
+                        },
+                        "end": {
+                            "line": 2254
+                        }
+                    },
+                    "highlights": []
+                },
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/101/sublime-v1/contracts/test/CreditLines/creditLine.Lifecycle.t.sol",
+                    "range": {
+                        "start": {
+                            "line": 240
+                        },
+                        "end": {
+                            "line": 319
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        },
+        {
+            "code": "unauthorized-transfer",
+            "severity": "HIGH",
+            "title": "MWE-207: Unauthorized Transfer",
+            "description": "The contract allows transferring tokens from an address different from the message sender without checking the approval of the address owner.",
+            "recommendation": "Check the business logic about the transfer and add the approval check if necessary.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/101/sublime-v1/contracts/SavingsAccount/SavingsAccount.sol",
+                    "range": {
+                        "start": {
+                            "line": 254
+                        },
+                        "end": {
+                            "line": 274
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        },
+        {
+            "code": "unauthorized-transfer",
+            "severity": "HIGH",
+            "title": "MWE-207: Unauthorized Transfer",
+            "description": "The contract allows transferring tokens from an address different from the message sender without checking the approval of the address owner.",
+            "recommendation": "Check the business logic about the transfer and add the approval check if necessary.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/101/sublime-v1/contracts/SavingsAccount/SavingsAccount.sol",
+                    "range": {
+                        "start": {
+                            "line": 285
+                        },
+                        "end": {
+                            "line": 304
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        },
+        {
+            "code": "price-manipulation",
+            "severity": "HIGH",
+            "title": "MWE-200: Insecure LP Token Value Calculation",
+            "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+            "recommendation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/101/sublime-v1/contracts/yield/CompoundYield.sol",
+                    "range": {
+                        "start": {
+                            "line": 350
+                        },
+                        "end": {
+                            "line": 358
+                        }
+                    },
+                    "highlights": []
+                },
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/101/sublime-v1/contracts/PooledCreditLine/PooledCreditLine.sol",
+                    "range": {
+                        "start": {
+                            "line": 605
+                        },
+                        "end": {
+                            "line": 614
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        },
+        {
+            "code": "price-manipulation",
+            "severity": "HIGH",
+            "title": "MWE-200: Insecure LP Token Value Calculation",
+            "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+            "recommendation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/101/sublime-v1/contracts/yield/CompoundYield.sol",
+                    "range": {
+                        "start": {
+                            "line": 366
+                        },
+                        "end": {
+                            "line": 371
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        }
+    ]
+}

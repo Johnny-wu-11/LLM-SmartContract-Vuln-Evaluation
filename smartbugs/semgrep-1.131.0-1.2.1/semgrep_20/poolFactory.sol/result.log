@@ -1,0 +1,92 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 11 Code Findings │
+└──────────────────┘
+                       
+    /sb/poolFactory.sol
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           28┆ constructor (address _base, address _wbnb) {
+           29┆     BASE = _base;
+           30┆     WBNB = _wbnb;
+           31┆     curatedPoolSize = 10;
+           32┆     DEPLOYER = msg.sender;
+           33┆ }
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           47┆ require((inputToken > 0 && inputBase >= (10000*10**18)), "!min"); // User must add at least
+               10,000 SPARTA liquidity & ratio must be finite                                             
+   
+     ❱ solidity.performance.use-multiple-require
+          Using multiple require statements is cheaper than using && multiple check combinations.  There are
+          more advantages, such as easier to read code and better coverage reports.                         
+                                                                                                            
+           47┆ require((inputToken > 0 && inputBase >= (10000*10**18)), "!min"); // User must add at least
+               10,000 SPARTA liquidity & ratio must be finite                                             
+            ⋮┆----------------------------------------
+           50┆ require(_token != BASE && iBEP20(_token).decimals() == 18); // Token must not be SPARTA &
+               it's decimals must be 18                                                                 
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           84┆ require(curatedPoolCount() < curatedPoolSize, "maxCurated"); // Must be room in the Curated
+               list                                                                                       
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          100┆ for(uint i = 0; i< arrayPools.length; i++){
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          100┆ for(uint i = 0; i< arrayPools.length; i++){
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          100┆ for(uint i = 0; i< arrayPools.length; i++){
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          100┆ for(uint i = 0; i< arrayPools.length; i++){
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          101┆ if(isCuratedPool[arrayPools[i]] == true){
+            ⋮┆----------------------------------------
+          101┆ if(isCuratedPool[arrayPools[i]] == true){
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 11 (11 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 11 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

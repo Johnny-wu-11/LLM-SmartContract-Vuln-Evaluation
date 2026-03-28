@@ -1,0 +1,43 @@
+{
+  "tool": "Mythril",
+  "file_name": "Attack.sol",
+  "status": "success",
+  "error": null,
+  "issues": [],
+  "raw_output": {
+    "args": [
+      "mythril/myth",
+      "analyze",
+      "/work/tmpn_r6zffo.sol:Attack",
+      "-o",
+      "json",
+      "--execution-timeout",
+      "30",
+      "--create-timeout",
+      "15",
+      "--solver-timeout",
+      "10000",
+      "--max-depth",
+      "12",
+      "--transaction-count",
+      "1",
+      "--no-onchain-data"
+    ],
+    "availableContractNames": [
+      "Attack"
+    ],
+    "data": {
+      "error": null,
+      "issues": [],
+      "success": true
+    },
+    "durationSec": 16.03,
+    "requestedContractName": "Attack",
+    "returncode": 0,
+    "selectedContractName": "Attack",
+    "status": "success",
+    "stderr": "",
+    "tool": "Mythril"
+  },
+  "timestamp": "2026-03-27T11:02:40.958Z"
+}

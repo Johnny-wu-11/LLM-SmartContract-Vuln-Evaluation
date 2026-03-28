@@ -1,0 +1,248 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 42 Code Findings │
+└──────────────────┘
+                  
+    /sb/CToken.sol
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           34┆ require(msg.sender == admin, "only admin may initialize the market");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+           34┆ require(msg.sender == admin, "only admin may initialize the market");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           35┆ require(accrualBlockNumber == 0 && borrowIndex == 0, "market may only be initialized
+               once");                                                                             
+   
+     ❱ solidity.performance.use-multiple-require
+          Using multiple require statements is cheaper than using && multiple check combinations.  There are
+          more advantages, such as easier to read code and better coverage reports.                         
+                                                                                                            
+           35┆ require(accrualBlockNumber == 0 && borrowIndex == 0, "market may only be initialized
+               once");                                                                             
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+           35┆ require(accrualBlockNumber == 0 && borrowIndex == 0, "market may only be initialized
+               once");                                                                             
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           39┆ require(initialExchangeRateMantissa > 0, "initial exchange rate must be greater than
+               zero.");                                                                            
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+           39┆ require(initialExchangeRateMantissa > 0, "initial exchange rate must be greater than
+               zero.");                                                                            
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           43┆ require(err == uint(Error.NO_ERROR), "setting comptroller failed");
+            ⋮┆----------------------------------------
+           51┆ require(err == uint(Error.NO_ERROR), "setting interest rate model failed");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+           51┆ require(err == uint(Error.NO_ERROR), "setting interest rate model failed");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          195┆ require(mErr == MathError.NO_ERROR, "balance could not be calculated");
+            ⋮┆----------------------------------------
+          254┆ require(accrueInterest() == uint(Error.NO_ERROR), "accrue interest failed");
+            ⋮┆----------------------------------------
+          264┆ require(accrueInterest() == uint(Error.NO_ERROR), "accrue interest failed");
+            ⋮┆----------------------------------------
+          275┆ require(err == MathError.NO_ERROR, "borrowBalanceStored: borrowBalanceStoredInternal
+               failed");                                                                           
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          275┆ require(err == MathError.NO_ERROR, "borrowBalanceStored: borrowBalanceStoredInternal
+               failed");                                                                           
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          321┆ require(accrueInterest() == uint(Error.NO_ERROR), "accrue interest failed");
+            ⋮┆----------------------------------------
+          332┆ require(err == MathError.NO_ERROR, "exchangeRateStored: exchangeRateStoredInternal
+               failed");                                                                         
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          332┆ require(err == MathError.NO_ERROR, "exchangeRateStored: exchangeRateStoredInternal
+               failed");                                                                         
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          404┆ require(borrowRateMantissa <= borrowRateMaxMantissa, "borrow rate is absurdly high");
+            ⋮┆----------------------------------------
+          408┆ require(mathErr == MathError.NO_ERROR, "could not calculate block delta");
+            ⋮┆----------------------------------------
+          538┆ require(vars.mathErr == MathError.NO_ERROR, "MINT_EXCHANGE_CALCULATION_FAILED");
+            ⋮┆----------------------------------------
+          546┆ require(vars.mathErr == MathError.NO_ERROR, "MINT_NEW_TOTAL_SUPPLY_CALCULATION_FAILED");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          546┆ require(vars.mathErr == MathError.NO_ERROR, "MINT_NEW_TOTAL_SUPPLY_CALCULATION_FAILED");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          549┆ require(vars.mathErr == MathError.NO_ERROR, "MINT_NEW_ACCOUNT_BALANCE_CALCULATION_FAILED");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          549┆ require(vars.mathErr == MathError.NO_ERROR, "MINT_NEW_ACCOUNT_BALANCE_CALCULATION_FAILED");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          616┆ require(redeemTokensIn == 0 || redeemAmountIn == 0, "one of redeemTokensIn or
+               redeemAmountIn must be zero");                                               
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          616┆ require(redeemTokensIn == 0 || redeemAmountIn == 0, "one of redeemTokensIn or
+               redeemAmountIn must be zero");                                               
+   
+   ❯❯❱ solidity.security.compound-precision-loss
+          In Compound forks if there is a market with totalSupply = 0 and collateralFactor != 0 a precision
+          loss attack is possible if redeemAmount is taken from the arguments of redeemFresh()             
+                                                                                                           
+          651┆ vars.redeemAmount = redeemAmountIn;
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          901┆ require(vars.mathErr == MathError.NO_ERROR,                   
+               "REPAY_BORROW_NEW_ACCOUNT_BORROW_BALANCE_CALCULATION_FAILED");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          901┆ require(vars.mathErr == MathError.NO_ERROR,                   
+               "REPAY_BORROW_NEW_ACCOUNT_BORROW_BALANCE_CALCULATION_FAILED");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          904┆ require(vars.mathErr == MathError.NO_ERROR,          
+               "REPAY_BORROW_NEW_TOTAL_BALANCE_CALCULATION_FAILED");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          904┆ require(vars.mathErr == MathError.NO_ERROR,          
+               "REPAY_BORROW_NEW_TOTAL_BALANCE_CALCULATION_FAILED");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          999┆ require(amountSeizeError == uint(Error.NO_ERROR),      
+               "LIQUIDATE_COMPTROLLER_CALCULATE_AMOUNT_SEIZE_FAILED");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          999┆ require(amountSeizeError == uint(Error.NO_ERROR),      
+               "LIQUIDATE_COMPTROLLER_CALCULATE_AMOUNT_SEIZE_FAILED");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          1002┆ require(cTokenCollateral.balanceOf(borrower) >= seizeTokens, "LIQUIDATE_SEIZE_TOO_MUCH");
+            ⋮┆----------------------------------------
+          1013┆ require(seizeError == uint(Error.NO_ERROR), "token seizure failed");
+            ⋮┆----------------------------------------
+          1162┆ require(newComptroller.isComptroller(), "marker method returned false");
+            ⋮┆----------------------------------------
+          1267┆ require(totalReservesNew >= totalReserves, "add reserves unexpected overflow");
+            ⋮┆----------------------------------------
+          1331┆ require(totalReservesNew <= totalReserves, "reduce reserves unexpected underflow");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          1331┆ require(totalReservesNew <= totalReserves, "reduce reserves unexpected underflow");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          1385┆ require(newInterestRateModel.isInterestRateModel(), "marker method returned false");
+            ⋮┆----------------------------------------
+          1425┆ require(_notEntered, "re-entered");
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 42 (42 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 42 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading
+
+📢 Too many findings? Try Semgrep Pro for more powerful queries and less noise.
+   See https://sg.run/false-positives.

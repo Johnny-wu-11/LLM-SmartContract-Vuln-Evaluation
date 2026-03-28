@@ -1,0 +1,23 @@
+{
+  "title": "ChainGPT Final Audit Report",
+  "tool": "ChainGPT",
+  "status": "Completed",
+  "reduction_summary": {
+    "original_findings": 0,
+    "retained_findings_after_ai_review": 5,
+    "filtered_findings": 0,
+    "filtering_rate": "0.00%"
+  },
+  "adjudication_summary": "All retained findings are confirmed as they represent valid concerns within the contract.",
+  "findings": {
+    "confirmed": [
+      "Access Control",
+      "Error Handling",
+      "Reentrancy",
+      "Insufficient Liquidity Handling",
+      "Input Validation"
+    ],
+    "plausible_but_unverified": [],
+    "unsupported_or_false_positive": []
+  }
+}

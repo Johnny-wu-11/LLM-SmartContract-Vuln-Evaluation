@@ -1,0 +1,66 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                   
+                   
+┌─────────────────┐
+│ 5 Code Findings │
+└─────────────────┘
+                           
+    /sb/UniswapV3Oracle.sol
+     ❱ solidity.best-practice.use-ownable2step
+          By demanding that the receiver of the owner permissions actively accept via a contract call of its 
+          own,  `Ownable2Step` and `Ownable2StepUpgradeable` prevent the contract ownership from accidentally
+          being transferred  to an address that cannot handle it.                                            
+                                                                                                             
+           12┆ contract UniswapV3Oracle is Ownable {
+   
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           34┆ constructor(
+           35┆   IUniswapPriceConverter _uniPriceConverter,
+           36┆   uint32       _twapPeriod,
+           37┆   uint         _minObservations
+           38┆ ) {
+           39┆   uniPriceConverter = _uniPriceConverter;
+           40┆   twapPeriod        = _twapPeriod;
+           41┆   minObservations   = _minObservations;
+           42┆ }
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           78┆ require(pools[_token].pairToken != address(0), "UniswapV3Oracle: token not supported");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+           78┆ require(pools[_token].pairToken != address(0), "UniswapV3Oracle: token not supported");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          110┆ require(isPoolValid(_token, _pairToken, _poolFee), "UniswapV3Oracle: invalid pool");
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 5 (5 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 5 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

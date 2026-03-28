@@ -1,0 +1,77 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 12 Code Findings │
+└──────────────────┘
+               
+    /sb/DAO.sol
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           44┆ constructor() {
+           45┆ }
+   
+     ❱ solidity.performance.inefficient-state-variable-increment
+          <x> += <y> costs more gas than <x> = <x> + <y> for state variables.
+                                                                             
+           59┆ proposalCount += 1;
+            ⋮┆----------------------------------------
+           70┆ proposalCount += 1;
+   
+     ❱ solidity.performance.use-nested-if
+          Using nested is cheaper than using && multiple check combinations.  There are more advantages, such
+          as easier to read code and better coverage reports.                                                
+                                                                                                             
+           82┆ if(hasQuorum(proposalID) && mapPID_finalising[proposalID] == false){
+           83┆     if(isEqual(_type, 'DAO') || isEqual(_type, 'UTILS') || isEqual(_type, 'REWARD')){
+           84┆         if(hasMajority(proposalID)){
+           85┆             _finalise(proposalID);
+           86┆         }
+           87┆     } else {
+           88┆         _finalise(proposalID);
+           89┆     }
+           90┆ }
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          103┆ require(mapPID_finalising[oldProposalID], "Must be finalising");
+            ⋮┆----------------------------------------
+          104┆ require(hasMinority(newProposalID), "Must have minority");
+            ⋮┆----------------------------------------
+          105┆ require(isEqual(bytes(mapPID_type[oldProposalID]), bytes(mapPID_type[newProposalID])),
+               "Must be same");                                                                      
+            ⋮┆----------------------------------------
+          112┆ require((block.timestamp - mapPID_timeStart[proposalID]) > coolOffPeriod, "Must be after
+               cool off");                                                                             
+            ⋮┆----------------------------------------
+          113┆ require(mapPID_finalising[proposalID] == true, "Must be finalising");
+            ⋮┆----------------------------------------
+          139┆ require(_grant.amount <= iERC20(USDV).balanceOf(VAULT) / 10, "Not more than 10%");
+            ⋮┆----------------------------------------
+          146┆ require(_proposedAddress != address(0), "No address proposed");
+            ⋮┆----------------------------------------
+          152┆ require(_proposedAddress != address(0), "No address proposed");
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 12 (12 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 12 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

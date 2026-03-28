@@ -1,0 +1,63 @@
+{
+  "tool": "Mythril",
+  "file_name": "FYToken.sol",
+  "status": "success",
+  "error": null,
+  "issues": [],
+  "raw_output": {
+    "args": [
+      "mythril/myth",
+      "analyze",
+      "/work/tmp8cf8wwic.sol:FYToken",
+      "-o",
+      "json",
+      "--execution-timeout",
+      "30",
+      "--create-timeout",
+      "15",
+      "--solver-timeout",
+      "10000",
+      "--max-depth",
+      "12",
+      "--transaction-count",
+      "1",
+      "--no-onchain-data"
+    ],
+    "availableContractNames": [
+      "using",
+      "ERC20",
+      "ERC20Permit",
+      "AddressStringUtil",
+      "will",
+      "SafeERC20Namer",
+      "method",
+      "function",
+      "AccessControl",
+      "call",
+      "has",
+      "WMul",
+      "WDiv",
+      "CastU256U128",
+      "CastU256U32",
+      "Constants",
+      "FYToken",
+      "to",
+      "uint256",
+      "within",
+      "receiving"
+    ],
+    "data": {
+      "error": null,
+      "issues": [],
+      "success": true
+    },
+    "durationSec": 8.79,
+    "requestedContractName": "FYToken",
+    "returncode": 0,
+    "selectedContractName": "FYToken",
+    "status": "success",
+    "stderr": "",
+    "tool": "Mythril"
+  },
+  "timestamp": "2026-03-27T12:56:29.779Z"
+}

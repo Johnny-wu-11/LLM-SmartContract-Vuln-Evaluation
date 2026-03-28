@@ -1,0 +1,13 @@
+A new version of Solhint is available: 6.1.0
+Please consider updating your Solhint package.
+/sb/IERC165Upgradeable.sol:3:1: Compiler version >=0.6.0 <0.8.0 does not satisfy the ^0.8.24 semver requirement [Error/compiler-version]
+/sb/IERC165Upgradeable.sol:14:1: Missing @title tag in contract 'IERC165Upgradeable' [Warning/use-natspec]
+/sb/IERC165Upgradeable.sol:14:1: Missing @author tag in contract 'IERC165Upgradeable' [Warning/use-natspec]
+/sb/IERC165Upgradeable.sol:14:1: Missing @notice tag in contract 'IERC165Upgradeable' [Warning/use-natspec]
+/sb/IERC165Upgradeable.sol:23:5: Missing @notice tag in function 'supportsInterface' [Warning/use-natspec]
+/sb/IERC165Upgradeable.sol:23:5: Missing @param tag in function 'supportsInterface' [Warning/use-natspec]
+/sb/IERC165Upgradeable.sol:23:5: Mismatch in @param names for function 'supportsInterface'. Expected: [interfaceId], Found: [] [Warning/use-natspec]
+/sb/IERC165Upgradeable.sol:23:5: Missing @return tag in function 'supportsInterface' [Warning/use-natspec]
+/sb/IERC165Upgradeable.sol:23:5: Mismatch in @return count for function 'supportsInterface'. Expected: 1, Found: 0 [Warning/use-natspec]
+
+9 problem/s (1 error/s, 8 warning/s)

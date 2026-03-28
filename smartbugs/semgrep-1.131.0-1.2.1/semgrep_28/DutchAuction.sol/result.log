@@ -1,0 +1,473 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 69 Code Findings │
+└──────────────────┘
+                        
+    /sb/DutchAuction.sol
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          149┆ require(_startTime < 10000000000, "DutchAuction: enter an unix timestamp in seconds, not
+               miliseconds");                                                                          
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          149┆ require(_startTime < 10000000000, "DutchAuction: enter an unix timestamp in seconds, not
+               miliseconds");                                                                          
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          150┆ require(_endTime < 10000000000, "DutchAuction: enter an unix timestamp in seconds, not
+               miliseconds");                                                                        
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          150┆ require(_endTime < 10000000000, "DutchAuction: enter an unix timestamp in seconds, not
+               miliseconds");                                                                        
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          151┆ require(_startTime >= block.timestamp, "DutchAuction: start time is before current time");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          151┆ require(_startTime >= block.timestamp, "DutchAuction: start time is before current time");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          152┆ require(_endTime > _startTime, "DutchAuction: end time must be older than start price");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          152┆ require(_endTime > _startTime, "DutchAuction: end time must be older than start price");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          153┆ require(_totalTokens > 0,"DutchAuction: total tokens must be greater than zero");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          153┆ require(_totalTokens > 0,"DutchAuction: total tokens must be greater than zero");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          154┆ require(_startPrice > _minimumPrice, "DutchAuction: start price must be higher than minimum
+               price");                                                                                   
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          154┆ require(_startPrice > _minimumPrice, "DutchAuction: start price must be higher than minimum
+               price");                                                                                   
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          155┆ require(_minimumPrice > 0, "DutchAuction: minimum price must be greater than 0");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          155┆ require(_minimumPrice > 0, "DutchAuction: minimum price must be greater than 0");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          156┆ require(_admin != address(0), "DutchAuction: admin is the zero address");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          156┆ require(_admin != address(0), "DutchAuction: admin is the zero address");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          157┆ require(_wallet != address(0), "DutchAuction: wallet is the zero address");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          157┆ require(_wallet != address(0), "DutchAuction: wallet is the zero address");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          158┆ require(IERC20(_token).decimals() == 18, "DutchAuction: Token does not have 18 decimals");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          158┆ require(IERC20(_token).decimals() == 18, "DutchAuction: Token does not have 18 decimals");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          160┆ require(IERC20(_paymentCurrency).decimals() > 0, "DutchAuction: Payment currency is not
+               ERC20");                                                                               
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          160┆ require(IERC20(_paymentCurrency).decimals() > 0, "DutchAuction: Payment currency is not
+               ERC20");                                                                               
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          254┆ revert("No agreement provided, please review the smart contract before interacting with
+               it");                                                                                  
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          254┆ revert("No agreement provided, please review the smart contract before interacting with
+               it");                                                                                  
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          267┆ require(paymentCurrency == ETH_ADDRESS, "DutchAuction: payment currency is not ETH
+               address");                                                                        
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          267┆ require(paymentCurrency == ETH_ADDRESS, "DutchAuction: payment currency is not ETH
+               address");                                                                        
+   
+   ❯❯❱ solidity.security.msg-value-multicall
+          commitEth with constant msg.value can be called multiple times
+                                                                        
+          272┆ uint256 ethToTransfer = calculateCommitment(msg.value);
+            ⋮┆----------------------------------------
+          275┆ uint256 ethToRefund = msg.value.sub(ethToTransfer);
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          285┆ require(marketStatus.commitmentsTotal <= address(this).balance, "DutchAuction: The
+               committed ETH exceeds the balance");                                              
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          285┆ require(marketStatus.commitmentsTotal <= address(this).balance, "DutchAuction: The
+               committed ETH exceeds the balance");                                              
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          310┆ require(address(paymentCurrency) != ETH_ADDRESS, "DutchAuction: Payment currency is not a
+               token");                                                                                 
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          310┆ require(address(paymentCurrency) != ETH_ADDRESS, "DutchAuction: Payment currency is not a
+               token");                                                                                 
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          426┆ require(block.timestamp >= uint256(marketInfo.startTime) && block.timestamp <=
+               uint256(marketInfo.endTime), "DutchAuction: outside auction hours");          
+   
+     ❱ solidity.performance.use-multiple-require
+          Using multiple require statements is cheaper than using && multiple check combinations.  There are
+          more advantages, such as easier to read code and better coverage reports.                         
+                                                                                                            
+          426┆ require(block.timestamp >= uint256(marketInfo.startTime) && block.timestamp <=
+               uint256(marketInfo.endTime), "DutchAuction: outside auction hours");          
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          426┆ require(block.timestamp >= uint256(marketInfo.startTime) && block.timestamp <=
+               uint256(marketInfo.endTime), "DutchAuction: outside auction hours");          
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          453┆ require(!status.finalized, "DutchAuction: auction already finalized");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          453┆ require(!status.finalized, "DutchAuction: auction already finalized");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          454┆ require( uint256(status.commitmentsTotal) == 0, "DutchAuction: auction already committed"
+               );                                                                                       
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          454┆ require( uint256(status.commitmentsTotal) == 0, "DutchAuction: auction already committed"
+               );                                                                                       
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          467┆ require(hasAdminRole(msg.sender)
+          468┆         || hasSmartContractRole(msg.sender)
+          469┆         || wallet == msg.sender
+          470┆         || finalizeTimeExpired(), "DutchAuction: sender must be an admin");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          467┆ require(hasAdminRole(msg.sender)
+          468┆         || hasSmartContractRole(msg.sender)
+          469┆         || wallet == msg.sender
+          470┆         || finalizeTimeExpired(), "DutchAuction: sender must be an admin");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          473┆ require(!status.finalized, "DutchAuction: auction already finalized");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          473┆ require(!status.finalized, "DutchAuction: auction already finalized");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          481┆ require(block.timestamp > uint256(marketInfo.endTime), "DutchAuction: auction has not
+               finished yet");                                                                      
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          481┆ require(block.timestamp > uint256(marketInfo.endTime), "DutchAuction: auction has not
+               finished yet");                                                                      
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          501┆ require(marketStatus.finalized, "DutchAuction: not finalized");
+            ⋮┆----------------------------------------
+          504┆ require(tokensToClaim > 0, "DutchAuction: No tokens to claim");
+            ⋮┆----------------------------------------
+          510┆ require(block.timestamp > uint256(marketInfo.endTime), "DutchAuction: auction has not
+               finished yet");                                                                      
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          510┆ require(block.timestamp > uint256(marketInfo.endTime), "DutchAuction: auction has not
+               finished yet");                                                                      
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          530┆ for (uint256 i = 0; i < numDocs; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          530┆ for (uint256 i = 0; i < numDocs; i++) {
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          574┆ require(_startTime < 10000000000, "DutchAuction: enter an unix timestamp in seconds, not
+               miliseconds");                                                                          
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          574┆ require(_startTime < 10000000000, "DutchAuction: enter an unix timestamp in seconds, not
+               miliseconds");                                                                          
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          575┆ require(_endTime < 10000000000, "DutchAuction: enter an unix timestamp in seconds, not
+               miliseconds");                                                                        
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          575┆ require(_endTime < 10000000000, "DutchAuction: enter an unix timestamp in seconds, not
+               miliseconds");                                                                        
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          576┆ require(_startTime >= block.timestamp, "DutchAuction: start time is before current time");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          576┆ require(_startTime >= block.timestamp, "DutchAuction: start time is before current time");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          577┆ require(_endTime > _startTime, "DutchAuction: end time must be older than start time");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          577┆ require(_endTime > _startTime, "DutchAuction: end time must be older than start time");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          578┆ require(marketStatus.commitmentsTotal == 0, "DutchAuction: auction cannot have already
+               started");                                                                            
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          578┆ require(marketStatus.commitmentsTotal == 0, "DutchAuction: auction cannot have already
+               started");                                                                            
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          593┆ require(_startPrice > _minimumPrice, "DutchAuction: start price must be higher than minimum
+               price");                                                                                   
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          593┆ require(_startPrice > _minimumPrice, "DutchAuction: start price must be higher than minimum
+               price");                                                                                   
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          594┆ require(_minimumPrice > 0, "DutchAuction: minimum price must be greater than 0");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          594┆ require(_minimumPrice > 0, "DutchAuction: minimum price must be greater than 0");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          595┆ require(marketStatus.commitmentsTotal == 0, "DutchAuction: auction cannot have already
+               started");                                                                            
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          595┆ require(marketStatus.commitmentsTotal == 0, "DutchAuction: auction cannot have already
+               started");                                                                            
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          609┆ require(_wallet != address(0), "DutchAuction: wallet is the zero address");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          609┆ require(_wallet != address(0), "DutchAuction: wallet is the zero address");
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 69 (69 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 69 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading
+
+📢 Too many findings? Try Semgrep Pro for more powerful queries and less noise.
+   See https://sg.run/false-positives.

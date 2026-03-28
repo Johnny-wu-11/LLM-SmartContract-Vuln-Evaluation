@@ -1,0 +1,64 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                   
+                   
+┌─────────────────┐
+│ 4 Code Findings │
+└─────────────────┘
+                       
+    /sb/BeaconProxy.sol
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           69┆ require(
+           70┆     Address.isContract(beacon),
+           71┆     "BeaconProxy: beacon is not a contract"
+           72┆ );
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+           69┆ require(
+           70┆     Address.isContract(beacon),
+           71┆     "BeaconProxy: beacon is not a contract"
+           72┆ );
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           73┆ require(
+           74┆     Address.isContract(IBeacon(beacon).implementation()),
+           75┆     "BeaconProxy: beacon implementation is not a contract"
+           76┆ );
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+           73┆ require(
+           74┆     Address.isContract(IBeacon(beacon).implementation()),
+           75┆     "BeaconProxy: beacon implementation is not a contract"
+           76┆ );
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 4 (4 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 4 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

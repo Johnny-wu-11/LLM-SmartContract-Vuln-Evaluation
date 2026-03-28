@@ -1,0 +1,129 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 21 Code Findings │
+└──────────────────┘
+                      
+    /sb/TempusPool.sol
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           80┆ require(maturity > block.timestamp, "maturityTime is after startTime");
+            ⋮┆----------------------------------------
+          103┆ require(msg.sender == controller, "Only callable by TempusController");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          103┆ require(msg.sender == controller, "Only callable by TempusController");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          117┆ require(block.timestamp >= maturityTime, "Maturity not been reached yet.");
+            ⋮┆----------------------------------------
+          130┆ require(newFeesConfig.depositPercent <= maxDepositFee, "Deposit fee percent > max");
+            ⋮┆----------------------------------------
+          131┆ require(newFeesConfig.earlyRedeemPercent <= maxEarlyRedeemFee, "Early redeem fee percent >
+               max");                                                                                    
+            ⋮┆----------------------------------------
+          132┆ require(newFeesConfig.matureRedeemPercent <= maxMatureRedeemFee, "Mature redeem fee percent
+               > max");                                                                                   
+            ⋮┆----------------------------------------
+          137┆ require(authorizer == owner(), "Only owner can transfer fees.");
+            ⋮┆----------------------------------------
+          157┆ require(backingTokenAmount > 0, "backingTokenAmount must be greater than 0");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          157┆ require(backingTokenAmount > 0, "backingTokenAmount must be greater than 0");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          176┆ require(yieldTokenAmount > 0, "yieldTokenAmount must be greater than 0");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          176┆ require(yieldTokenAmount > 0, "yieldTokenAmount must be greater than 0");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          193┆ require(!matured, "Maturity reached.");
+            ⋮┆----------------------------------------
+          195┆ require(rate >= initialInterestRate, "Negative yield!");
+   
+     ❱ solidity.performance.inefficient-state-variable-increment
+          <x> += <y> costs more gas than <x> = <x> + <y> for state variables.
+                                                                             
+          204┆ totalFees += fee;
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          269┆ require(IERC20(address(principalShare)).balanceOf(from) >= principalAmount, "Insufficient
+               principals.");                                                                           
+            ⋮┆----------------------------------------
+          270┆ require(IERC20(address(yieldShare)).balanceOf(from) >= yieldAmount, "Insufficient
+               yields.");                                                                       
+            ⋮┆----------------------------------------
+          273┆ require(matured || (principalAmount == yieldAmount), "Inequal redemption not allowed before
+               maturity.");                                                                               
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          273┆ require(matured || (principalAmount == yieldAmount), "Inequal redemption not allowed before
+               maturity.");                                                                               
+   
+     ❱ solidity.performance.inefficient-state-variable-increment
+          <x> += <y> costs more gas than <x> = <x> + <y> for state variables.
+                                                                             
+          281┆ totalFees += fee;
+   
+     ❱ solidity.performance.use-nested-if
+          Using nested is cheaper than using && multiple check combinations.  There are more advantages, such
+          as easier to read code and better coverage reports.                                                
+                                                                                                             
+          312┆ if (matured && currentRate > interestRate) {
+          313┆     uint256 additionalYieldRate = currentRate - interestRate;
+          314┆     uint256 feeBackingAmount = yieldAmount.mulfV(
+          315┆         additionalYieldRate.mulfV(initialInterestRate, exchangeRateONE),
+          316┆         exchangeRateONE
+          317┆     );
+          318┆     redeemFeeAmount = numYieldTokensPerAsset(feeBackingAmount, currentRate);
+          319┆ }
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 21 (21 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 21 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

@@ -1,0 +1,28 @@
+A new version of Solhint is available: 6.1.0
+Please consider updating your Solhint package.
+/sb/PoolFactory.sol:2:1: Compiler version >=0.8.0 does not satisfy the ^0.8.24 semver requirement [Error/compiler-version]
+/sb/PoolFactory.sol:4:1: global import of path ../interfaces/yieldspace/IPoolFactory.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/PoolFactory.sol:4:1: Import in /sb/PoolFactory.sol doesn't exist in: ../interfaces/yieldspace/IPoolFactory.sol [Warning/import-path-check]
+/sb/PoolFactory.sol:5:1: global import of path ./Pool.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/PoolFactory.sol:5:1: Import in /sb/PoolFactory.sol doesn't exist in: ./Pool.sol [Warning/import-path-check]
+/sb/PoolFactory.sol:9:1: Missing @title tag in contract 'PoolFactory' [Warning/use-natspec]
+/sb/PoolFactory.sol:9:1: Missing @author tag in contract 'PoolFactory' [Warning/use-natspec]
+/sb/PoolFactory.sol:9:1: Missing @notice tag in contract 'PoolFactory' [Warning/use-natspec]
+/sb/PoolFactory.sol:12:3: Missing @notice tag in variable 'POOL_BYTECODE_HASH' [Warning/use-natspec]
+/sb/PoolFactory.sol:18:3: Missing @notice tag in function 'isContract' [Warning/use-natspec]
+/sb/PoolFactory.sol:18:3: Missing @param tag in function 'isContract' [Warning/use-natspec]
+/sb/PoolFactory.sol:18:3: Mismatch in @param names for function 'isContract'. Expected: [account], Found: [] [Warning/use-natspec]
+/sb/PoolFactory.sol:18:3: Missing @return tag in function 'isContract' [Warning/use-natspec]
+/sb/PoolFactory.sol:18:3: Mismatch in @return count for function 'isContract'. Expected: 1, Found: 0 [Warning/use-natspec]
+/sb/PoolFactory.sol:33:3: Missing @notice tag in function 'calculatePoolAddress' [Warning/use-natspec]
+/sb/PoolFactory.sol:38:3: Missing @notice tag in function '_calculatePoolAddress' [Warning/use-natspec]
+/sb/PoolFactory.sol:38:3: Missing @param tag in function '_calculatePoolAddress' [Warning/use-natspec]
+/sb/PoolFactory.sol:38:3: Mismatch in @param names for function '_calculatePoolAddress'. Expected: [base, fyToken], Found: [] [Warning/use-natspec]
+/sb/PoolFactory.sol:38:3: Missing @return tag in function '_calculatePoolAddress' [Warning/use-natspec]
+/sb/PoolFactory.sol:38:3: Mismatch in @return names for function '_calculatePoolAddress'. Expected: [calculatedAddress], Found: [] [Warning/use-natspec]
+/sb/PoolFactory.sol:53:3: Missing @notice tag in function 'getPool' [Warning/use-natspec]
+/sb/PoolFactory.sol:68:3: Missing @notice tag in function 'createPool' [Warning/use-natspec]
+/sb/PoolFactory.sol:84:3: Missing @notice tag in function 'nextBase' [Warning/use-natspec]
+/sb/PoolFactory.sol:90:3: Missing @notice tag in function 'nextFYToken' [Warning/use-natspec]
+
+24 problem/s (1 error/s, 23 warning/s)

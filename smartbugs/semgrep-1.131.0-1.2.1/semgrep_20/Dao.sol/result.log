@@ -1,0 +1,159 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 29 Code Findings │
+└──────────────────┘
+               
+    /sb/Dao.sol
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           96┆ constructor (address _base){
+           97┆     BASE = _base;
+           98┆     DEPLOYER = msg.sender;
+           99┆     DAO = address(this);
+          100┆     coolOffPeriod = 259200;
+          101┆     erasToEarn = 30;
+          102┆     majorityFactor = 6666;
+          103┆     daoClaim = 1000;
+          104┆     daoFee = 100;
+          105┆     proposalCount = 0;
+             [hid 2 additional lines, adjust with --max-lines-per-finding] 
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          155┆ require(_POOLFACTORY.isCuratedPool(pool) == true, "!curated"); // Pool must be Curated
+            ⋮┆----------------------------------------
+          156┆ require(amount > 0, "!amount"); // Deposit amount must be valid
+            ⋮┆----------------------------------------
+          164┆ require(iBEP20(pool).transferFrom(msg.sender, address(_DAOVAULT), amount), "!funds"); //
+               Send user's deposit to the DAOVault                                                     
+            ⋮┆----------------------------------------
+          173┆ require(_DAOVAULT.withdraw(pool, msg.sender), "!transfer"); // User receives their
+               withdrawal                                                                        
+            ⋮┆----------------------------------------
+          180┆ require(_RESERVE.emissions(), "!emissions"); // Reserve must have emissions turned on
+            ⋮┆----------------------------------------
+          240┆ require(amount > 0, '!amount'); // Amount must be valid
+            ⋮┆----------------------------------------
+          241┆ require(isListed[asset], '!listed'); // Asset must be listed for Bond
+            ⋮┆----------------------------------------
+          263┆ require((_amount == msg.value), "!amount");
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          278┆ for(uint i = 0; i < listedAssets.length; i++){
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          278┆ for(uint i = 0; i < listedAssets.length; i++){
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          278┆ for(uint i = 0; i < listedAssets.length; i++){
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          281┆ _BONDVAULT.claimForMember(listedAssets[i], member); // Claim LPs if any unlocked
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          352┆ require(mapPID_open[currentProposal] == false, '!open'); // There must not be an existing
+               open proposal                                                                            
+   
+     ❱ solidity.performance.inefficient-state-variable-increment
+          <x> += <y> costs more gas than <x> = <x> + <y> for state variables.
+                                                                             
+          353┆ proposalCount += 1; // Increase proposal count
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          362┆ require(iBEP20(BASE).transferFrom(msg.sender, address(_RESERVE), _amount), '!fee'); // User
+               pays the new proposal fee                                                                  
+            ⋮┆----------------------------------------
+          370┆ require(mapPID_open[currentProposal] == true, "!open"); // Proposal must be open status
+   
+     ❱ solidity.performance.use-nested-if
+          Using nested is cheaper than using && multiple check combinations.  There are more advantages, such
+          as easier to read code and better coverage reports.                                                
+                                                                                                             
+          373┆ if(hasQuorum(currentProposal) && mapPID_finalising[currentProposal] == false){
+          374┆     if(isEqual(_type, 'DAO') || isEqual(_type, 'UTILS') || isEqual(_type, 'RESERVE')       
+               ||isEqual(_type, 'GET_SPARTA') || isEqual(_type, 'ROUTER') || isEqual(_type, 'LIST_BOND')||
+               isEqual(_type, 'GRANT')|| isEqual(_type, 'ADD_CURATED_POOL')){                             
+          375┆         if(hasMajority(currentProposal)){
+          376┆             _finalise(); // Critical proposals require 'majority' consensus to enter
+               finalization phase                                                                  
+          377┆         }
+          378┆     } else {
+          379┆         _finalise(); // Other proposals require 'quorum' consensus to enter finalization
+               phase                                                                                   
+          380┆     }
+          381┆ }
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          407┆ require(block.timestamp > (mapPID_startTime[currentProposal] + 1296000), "!days"); //
+               Proposal must not be new                                                             
+            ⋮┆----------------------------------------
+          415┆ require((block.timestamp - mapPID_coolOffTime[currentProposal]) > coolOffPeriod,
+               "!cooloff"); // Must be past cooloff period                                     
+            ⋮┆----------------------------------------
+          416┆ require(mapPID_finalising[currentProposal] == true, "!finalising"); // Must be in
+               finalising stage                                                                 
+            ⋮┆----------------------------------------
+          454┆ require(_proposedAddress != address(0), "!address"); // Proposed address must be valid
+            ⋮┆----------------------------------------
+          464┆ require(_proposedAddress != address(0), "!address"); // Proposed address must be valid
+            ⋮┆----------------------------------------
+          472┆ require(_proposedAddress != address(0), "!address"); // Proposed address must be valid
+            ⋮┆----------------------------------------
+          480┆ require(_proposedAddress != address(0), "!address"); // Proposed address must be valid
+            ⋮┆----------------------------------------
+          494┆ require(_proposedParam != 0, "!param"); // Proposed param must be valid
+            ⋮┆----------------------------------------
+          502┆ require(_proposedParam != 0, "!param"); // Proposed param must be valid
+            ⋮┆----------------------------------------
+          511┆ require(_proposedAmount != 0, "!param"); // Proposed grant amount must be valid
+            ⋮┆----------------------------------------
+          512┆ require(_proposedAddress != address(0), "!address"); // Proposed recipient must be valid
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 29 (29 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 29 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading
+
+📢 Too many findings? Try Semgrep Pro for more powerful queries and less noise.
+   See https://sg.run/false-positives.

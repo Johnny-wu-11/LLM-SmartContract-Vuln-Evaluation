@@ -1,0 +1,13 @@
+A new version of Solhint is available: 6.1.0
+Please consider updating your Solhint package.
+/sb/UntrustedERC20.sol:2:1: Compiler version 0.8.6 does not satisfy the ^0.8.24 semver requirement [Error/compiler-version]
+/sb/UntrustedERC20.sol:4:1: global import of path @openzeppelin/contracts/token/ERC20/IERC20.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/UntrustedERC20.sol:4:1: Import in /sb/UntrustedERC20.sol doesn't exist in: @openzeppelin/contracts/token/ERC20/IERC20.sol [Warning/import-path-check]
+/sb/UntrustedERC20.sol:5:1: global import of path @openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/UntrustedERC20.sol:5:1: Import in /sb/UntrustedERC20.sol doesn't exist in: @openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol [Warning/import-path-check]
+/sb/UntrustedERC20.sol:10:1: Missing @author tag in contract 'UntrustedERC20' [Warning/use-natspec]
+/sb/UntrustedERC20.sol:10:1: Missing @notice tag in contract 'UntrustedERC20' [Warning/use-natspec]
+/sb/UntrustedERC20.sol:18:5: Missing @notice tag in function 'untrustedTransfer' [Warning/use-natspec]
+/sb/UntrustedERC20.sol:34:5: Missing @notice tag in function 'untrustedTransferFrom' [Warning/use-natspec]
+
+9 problem/s (1 error/s, 8 warning/s)

@@ -1,0 +1,47 @@
+{
+  "tool": "Mythril",
+  "file_name": "CompoundMultiOracle.sol",
+  "status": "success",
+  "error": null,
+  "issues": [],
+  "raw_output": {
+    "args": [
+      "mythril/myth",
+      "analyze",
+      "/work/tmp8qu9m8cc.sol:CompoundMultiOracle",
+      "-o",
+      "json",
+      "--execution-timeout",
+      "30",
+      "--create-timeout",
+      "15",
+      "--solver-timeout",
+      "10000",
+      "--max-depth",
+      "12",
+      "--transaction-count",
+      "1",
+      "--no-onchain-data"
+    ],
+    "availableContractNames": [
+      "AccessControl",
+      "call",
+      "has",
+      "CastBytes32Bytes6",
+      "CompoundMultiOracle"
+    ],
+    "data": {
+      "error": null,
+      "issues": [],
+      "success": true
+    },
+    "durationSec": 29.35,
+    "requestedContractName": "CompoundMultiOracle",
+    "returncode": 0,
+    "selectedContractName": "CompoundMultiOracle",
+    "status": "success",
+    "stderr": "",
+    "tool": "Mythril"
+  },
+  "timestamp": "2026-03-27T12:00:19.603Z"
+}

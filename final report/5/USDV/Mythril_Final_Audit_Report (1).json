@@ -1,0 +1,65 @@
+{
+  "title": "Mythril Final Audit Report",
+  "tool": "Mythril",
+  "status": "Completed",
+  "reduction_summary": {
+    "original_findings": 4,
+    "retained_findings_after_ai_review": 4,
+    "filtered_findings": 0,
+    "filtering_rate": "0.00%"
+  },
+  "adjudication_summary": "No findings were removed. Report is based directly on Mythril normalized findings.",
+  "engine_error": null,
+  "findings": {
+    "confirmed": [
+      {
+        "id": "swc-1",
+        "title": "Dependence on predictable environment variable",
+        "swc_id": null,
+        "severity": "Low",
+        "contract": "USDV",
+        "function": "isMature()",
+        "line": 120,
+        "code": "if(lastBlock[tx.origin] + blockDelay <= block.number){ // Stops an EOA doing a flash attack in same block\r\r\n            return true;\r\r\n        }",
+        "description": "A control flow decision is made based on The block.number environment variable.\nThe block.number environment variable is used to determine a control flow decision. Note that the values of variables like coinbase, gaslimit, block number and timestamp are predictable and can be manipulated by a malicious miner. Also keep in mind that attackers know hashes of earlier blocks. Don't use any of those environment variables as sources of randomness and be aware that use of these variables introduces a certain level of trust into miners."
+      },
+      {
+        "id": "swc-2",
+        "title": "Dependence on tx.origin",
+        "swc_id": null,
+        "severity": "Low",
+        "contract": "USDV",
+        "function": "approve(address,uint256)",
+        "line": 160,
+        "code": "require(owner != address(0), \"sender\")",
+        "description": "Use of tx.origin as a part of authorization control.\nThe tx.origin environment variable has been found to influence a control flow decision. Note that using tx.origin as a security control might cause a situation where a user inadvertently authorizes a smart contract to perform an action on their behalf. It is recommended to use msg.sender instead."
+      },
+      {
+        "id": "swc-3",
+        "title": "Dependence on tx.origin",
+        "swc_id": null,
+        "severity": "Low",
+        "contract": "USDV",
+        "function": "redeem(uint256)",
+        "line": 183,
+        "code": "require(sender != address(0), \"sender\")",
+        "description": "Use of tx.origin as a part of authorization control.\nThe tx.origin environment variable has been found to influence a control flow decision. Note that using tx.origin as a security control might cause a situation where a user inadvertently authorizes a smart contract to perform an action on their behalf. It is recommended to use msg.sender instead."
+      },
+      {
+        "id": "swc-4",
+        "title": "Dependence on tx.origin",
+        "swc_id": null,
+        "severity": "Low",
+        "contract": "USDV",
+        "function": "burn(uint256)",
+        "line": 210,
+        "code": "require(account != address(0), \"address err\")",
+        "description": "Use of tx.origin as a part of authorization control.\nThe tx.origin environment variable has been found to influence a control flow decision. Note that using tx.origin as a security control might cause a situation where a user inadvertently authorizes a smart contract to perform an action on their behalf. It is recommended to use msg.sender instead."
+      }
+    ],
+    "plausible_but_unverified": [],
+    "unsupported_or_false_positive": []
+  },
+  "raw_findings_count": 4,
+  "raw_findings_preserved": true
+}

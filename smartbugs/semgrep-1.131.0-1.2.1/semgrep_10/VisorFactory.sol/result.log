@@ -1,0 +1,74 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                   
+                   
+┌─────────────────┐
+│ 8 Code Findings │
+└─────────────────┘
+                        
+    /sb/VisorFactory.sol
+     ❱ solidity.best-practice.use-ownable2step
+          By demanding that the receiver of the owner permissions actively accept via a contract call of its 
+          own,  `Ownable2Step` and `Ownable2StepUpgradeable` prevent the contract ownership from accidentally
+          being transferred  to an address that cannot handle it.                                            
+                                                                                                             
+           14┆ contract VisorFactory is Ownable, IFactory, IInstanceRegistry, ERC721 {
+   
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           25┆ constructor() ERC721("VISOR", "VISOR") {}
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           28┆ require(templates[name] == address(0), "Template already exists");
+            ⋮┆----------------------------------------
+           39┆ require(templates[name] != address(0), "Template does not exist");
+   
+     ❱ solidity.best-practice.use-abi-encodecall-instead-of-encodewithselector
+          To guarantee arguments type safety it is recommended to use `abi.encodeCall` instead of
+          `abi.encodeWithSelector`.                                                              
+                                                                                                 
+           62┆ vault = ProxyFactory._create(
+           63┆     templates[name],
+           64┆     abi.encodeWithSelector(IUniversalVault.initialize.selector)
+           65┆ );
+            ⋮┆----------------------------------------
+           80┆ vault = ProxyFactory._create2(
+           81┆     templates[name],
+           82┆     abi.encodeWithSelector(IUniversalVault.initialize.selector),
+           83┆     salt
+           84┆ );
+            ⋮┆----------------------------------------
+          107┆ vault = ProxyFactory._create(
+          108┆     templates[activeTemplate],
+          109┆     abi.encodeWithSelector(IUniversalVault.initialize.selector)
+          110┆ );
+            ⋮┆----------------------------------------
+          125┆ vault = ProxyFactory._create2(
+          126┆     templates[activeTemplate],
+          127┆     abi.encodeWithSelector(IUniversalVault.initialize.selector),
+          128┆     salt
+          129┆ );
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 8 (8 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 8 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

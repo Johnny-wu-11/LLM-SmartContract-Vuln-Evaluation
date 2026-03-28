@@ -1,0 +1,82 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 10 Code Findings │
+└──────────────────┘
+                            
+    /sb/YieldManagerAave.sol
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           62┆ require(msg.sender == longShort, "Not longShort");
+   
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           80┆ constructor(
+           81┆   address _longShort,
+           82┆   address _treasury,
+           83┆   address _paymentToken,
+           84┆   address _aToken,
+           85┆   address _lendingPool,
+           86┆   address _aaveIncentivesController,
+           87┆   uint16 _aaveReferralCode
+           88┆ ) {
+           89┆   longShort = _longShort;
+             [hid 12 additional lines, adjust with --max-lines-per-finding] 
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+          116┆ amountReservedInCaseOfInsufficientAaveLiquidity -= amount;
+            ⋮┆----------------------------------------
+          120┆ amount -= amountReservedInCaseOfInsufficientAaveLiquidity;
+            ⋮┆----------------------------------------
+          139┆ amountReservedInCaseOfInsufficientAaveLiquidity -= amount;
+   
+     ❱ solidity.performance.inefficient-state-variable-increment
+          <x> += <y> costs more gas than <x> = <x> + <y> for state variables.
+                                                                             
+          153┆ amountReservedInCaseOfInsufficientAaveLiquidity += amount;
+   
+    ❯❱ solidity.security.exact-balance-check
+          Testing the balance of an account as a basis for some action has risks associated with unexpected 
+          receipt of ether or another token, including tokens deliberately transfered to cause such tests to
+          fail, as an MEV attack.                                                                           
+                                                                                                            
+          189┆ if (totalRealized == totalHeld) {
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+          194┆ uint256 unrealizedYield = totalHeld - totalRealized;
+            ⋮┆----------------------------------------
+          197┆ uint256 amountForMarketIncentives = unrealizedYield - amountForTreasury;
+   
+     ❱ solidity.performance.inefficient-state-variable-increment
+          <x> += <y> costs more gas than <x> = <x> + <y> for state variables.
+                                                                             
+          199┆ totalReservedForTreasury += amountForTreasury;
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 10 (10 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 10 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

@@ -1,0 +1,168 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 28 Code Findings │
+└──────────────────┘
+                                         
+    /sb/FranchisedConstantProductPool.sol
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           48┆ require(unlocked == 1, "LOCKED");
+   
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           54┆ constructor(bytes memory _deployData, address _masterDeployer) {
+           55┆     (address _token0, address _token1, uint256 _swapFee, bool _twapSupport, address
+               _whiteListManager, address _operator, bool _level2) = abi.decode(                  
+           56┆         _deployData,
+           57┆         (address, address, uint256, bool, address, address, bool)
+           58┆     );
+           59┆
+           60┆     // @dev Factory ensures that the tokens are sorted.
+           61┆     require(_token0 != address(0), "ZERO_ADDRESS");
+           62┆     require(_token0 != _token1, "IDENTICAL_ADDRESSES");
+           63┆     require(_token0 != address(this), "INVALID_TOKEN");
+             [hid 23 additional lines, adjust with --max-lines-per-finding] 
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           61┆ require(_token0 != address(0), "ZERO_ADDRESS");
+            ⋮┆----------------------------------------
+           62┆ require(_token0 != _token1, "IDENTICAL_ADDRESSES");
+            ⋮┆----------------------------------------
+           63┆ require(_token0 != address(this), "INVALID_TOKEN");
+            ⋮┆----------------------------------------
+           64┆ require(_token1 != address(this), "INVALID_TOKEN");
+            ⋮┆----------------------------------------
+           65┆ require(_swapFee <= MAX_FEE, "INVALID_SWAP_FEE");
+   
+     ❱ solidity.best-practice.use-abi-encodecall-instead-of-encodewithselector
+          To guarantee arguments type safety it is recommended to use `abi.encodeCall` instead of
+          `abi.encodeWithSelector`.                                                              
+                                                                                                 
+           69┆ (, bytes memory _barFee) =                                                          
+               _masterDeployer.staticcall(abi.encodeWithSelector(IMasterDeployer.barFee.selector));
+            ⋮┆----------------------------------------
+           70┆ (, bytes memory _barFeeTo) =                                                          
+               _masterDeployer.staticcall(abi.encodeWithSelector(IMasterDeployer.barFeeTo.selector));
+            ⋮┆----------------------------------------
+           71┆ (, bytes memory _bento) =                                                          
+               _masterDeployer.staticcall(abi.encodeWithSelector(IMasterDeployer.bento.selector));
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          113┆ require(liquidity != 0, "INSUFFICIENT_LIQUIDITY_MINTED");
+            ⋮┆----------------------------------------
+          182┆ require(tokenOut == token0, "INVALID_OUTPUT_TOKEN");
+            ⋮┆----------------------------------------
+          210┆ require(tokenIn == token1, "INVALID_INPUT_TOKEN");
+            ⋮┆----------------------------------------
+          236┆ require(balance0 - _reserve0 >= amountIn, "INSUFFICIENT_AMOUNT_IN");
+            ⋮┆----------------------------------------
+          240┆ require(tokenIn == token1, "INVALID_INPUT_TOKEN");
+            ⋮┆----------------------------------------
+          245┆ require(balance1 - _reserve1 >= amountIn, "INSUFFICIENT_AMOUNT_IN");
+   
+     ❱ solidity.best-practice.use-abi-encodecall-instead-of-encodewithselector
+          To guarantee arguments type safety it is recommended to use `abi.encodeCall` instead of
+          `abi.encodeWithSelector`.                                                              
+                                                                                                 
+          254┆ (, bytes memory _barFee) =                                                         
+               masterDeployer.staticcall(abi.encodeWithSelector(IMasterDeployer.barFee.selector));
+            ⋮┆----------------------------------------
+          274┆ (, bytes memory _balance0) = bento.staticcall(abi.encodeWithSelector(0xf7888aec, token0,
+               address(this)));                                                                        
+            ⋮┆----------------------------------------
+          277┆ (, bytes memory _balance1) = bento.staticcall(abi.encodeWithSelector(0xf7888aec, token1,
+               address(this)));                                                                        
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          288┆ require(balance0 <= type(uint112).max && balance1 <= type(uint112).max, "OVERFLOW");
+   
+     ❱ solidity.performance.use-multiple-require
+          Using multiple require statements is cheaper than using && multiple check combinations.  There are
+          more advantages, such as easier to read code and better coverage reports.                         
+                                                                                                            
+          288┆ require(balance0 <= type(uint112).max && balance1 <= type(uint112).max, "OVERFLOW");
+   
+     ❱ solidity.performance.use-nested-if
+          Using nested is cheaper than using && multiple check combinations.  There are more advantages, such
+          as easier to read code and better coverage reports.                                                
+                                                                                                             
+          295┆ if (blockTimestamp != _blockTimestampLast && _reserve0 != 0 && _reserve1 != 0) {
+          296┆     unchecked {
+          297┆         uint32 timeElapsed = blockTimestamp - _blockTimestampLast;
+          298┆         uint256 price0 = (uint256(_reserve1) << PRECISION) / _reserve0;
+          299┆         price0CumulativeLast += price0 * timeElapsed;
+          300┆         uint256 price1 = (uint256(_reserve0) << PRECISION) / _reserve1;
+          301┆         price1CumulativeLast += price1 * timeElapsed;
+          302┆     }
+          303┆ }
+   
+     ❱ solidity.performance.inefficient-state-variable-increment
+          <x> += <y> costs more gas than <x> = <x> + <y> for state variables.
+                                                                             
+          299┆ price0CumulativeLast += price0 * timeElapsed;
+            ⋮┆----------------------------------------
+          301┆ price1CumulativeLast += price1 * timeElapsed;
+   
+     ❱ solidity.best-practice.use-abi-encodecall-instead-of-encodewithselector
+          To guarantee arguments type safety it is recommended to use `abi.encodeCall` instead of
+          `abi.encodeWithSelector`.                                                              
+                                                                                                 
+          346┆ (bool success, ) = bento.call(abi.encodeWithSelector(IBentoBoxMinimal.withdraw.selector,
+               token, address(this), to, 0, shares));                                                  
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          347┆ require(success, "WITHDRAW_FAILED");
+   
+     ❱ solidity.best-practice.use-abi-encodecall-instead-of-encodewithselector
+          To guarantee arguments type safety it is recommended to use `abi.encodeCall` instead of
+          `abi.encodeWithSelector`.                                                              
+                                                                                                 
+          349┆ (bool success, ) = bento.call(abi.encodeWithSelector(IBentoBoxMinimal.transfer.selector,
+               token, address(this), to, shares));                                                     
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          350┆ require(success, "TRANSFER_FAILED");
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 28 (28 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 28 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading
+
+📢 Too many findings? Try Semgrep Pro for more powerful queries and less noise.
+   See https://sg.run/false-positives.

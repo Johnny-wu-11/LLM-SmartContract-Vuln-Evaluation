@@ -1,0 +1,259 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 64 Code Findings │
+└──────────────────┘
+                     
+    /sb/MetaVault.sol
+     ❱ solidity.performance.init-variables-with-default-value
+          Uninitialized variables are assigned with the types default value. Explicitly initializing a
+          variable with its default value costs unnecessary gas.                                      
+                                                                                                      
+           47┆ bool public acceptContractDepositor = false; // dont accept contract at beginning
+   
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           96┆ constructor (IERC20 _tokenDAI, IERC20 _tokenUSDC, IERC20 _tokenUSDT, IERC20 _token3CRV,
+               IERC20 _tokenYAX,                                                                      
+           97┆     uint _yaxPerBlock, uint _startBlock) public ERC20("yAxis.io:MetaVault:3CRV", "MVLT") {
+           98┆     inputTokens[0] = _tokenDAI;
+           99┆     inputTokens[1] = _tokenUSDC;
+          100┆     inputTokens[2] = _tokenUSDT;
+          101┆     inputTokens[3] = _token3CRV;
+          102┆     token3CRV = _token3CRV;
+          103┆     tokenYAX = _tokenYAX;
+          104┆     yaxPerBlock = _yaxPerBlock; // supposed to be 0.000001 YAX (1000000000000 = 1e12 wei)
+          105┆     lastRewardBlock = (_startBlock > block.number) ? _startBlock : block.number; //
+               supposed to be 11,163,000 (Sat Oct 31 2020 06:30:00 GMT+0)                         
+             [hid 7 additional lines, adjust with --max-lines-per-finding] 
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          119┆ require(!address(msg.sender).isContract() && msg.sender == tx.origin, "Sorry we do not
+               accept contract!");                                                                   
+   
+     ❱ solidity.performance.use-multiple-require
+          Using multiple require statements is cheaper than using && multiple check combinations.  There are
+          more advantages, such as easier to read code and better coverage reports.                         
+                                                                                                            
+          119┆ require(!address(msg.sender).isContract() && msg.sender == tx.origin, "Sorry we do not
+               accept contract!");                                                                   
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          139┆ require(msg.sender == governance, "!governance");
+            ⋮┆----------------------------------------
+          148┆ require(msg.sender == governance, "!governance");
+            ⋮┆----------------------------------------
+          157┆ require(msg.sender == governance, "!governance");
+            ⋮┆----------------------------------------
+          168┆ require(msg.sender == governance, "!governance");
+            ⋮┆----------------------------------------
+          169┆ require(_converter.token() == address(token3CRV), "!token3CRV");
+            ⋮┆----------------------------------------
+          178┆ require(msg.sender == governance, "!governance");
+            ⋮┆----------------------------------------
+          189┆ require(msg.sender == governance, "!governance");
+            ⋮┆----------------------------------------
+          200┆ require(msg.sender == governance, "!governance");
+            ⋮┆----------------------------------------
+          211┆ require(msg.sender == governance, "!governance");
+            ⋮┆----------------------------------------
+          221┆ require(msg.sender == governance, "!governance");
+            ⋮┆----------------------------------------
+          235┆ require(msg.sender == governance, "!governance");
+            ⋮┆----------------------------------------
+          236┆ require(_index < 5, "_index out of range");
+            ⋮┆----------------------------------------
+          237┆ require(_epochEndBlock > block.number, "Too late to update");
+            ⋮┆----------------------------------------
+          238┆ require(epochEndBlocks[_index] > block.number, "Too late to update");
+            ⋮┆----------------------------------------
+          250┆ require(msg.sender == governance, "!governance");
+            ⋮┆----------------------------------------
+          251┆ require(_index > 0 && _index < 6, "Index out of range");
+   
+     ❱ solidity.performance.use-multiple-require
+          Using multiple require statements is cheaper than using && multiple check combinations.  There are
+          more advantages, such as easier to read code and better coverage reports.                         
+                                                                                                            
+          251┆ require(_index > 0 && _index < 6, "Index out of range");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          252┆ require(epochEndBlocks[_index - 1] > block.number, "Too late to update");
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+          252┆ require(epochEndBlocks[_index - 1] > block.number, "Too late to update");
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          265┆ if (_to >= epochEndBlocks[epochId - 1]) {
+            ⋮┆----------------------------------------
+          267┆ if (_from >= epochEndBlocks[epochId - 1]) return   
+               _to.sub(_from).mul(epochRewardMultiplers[epochId]);
+            ⋮┆----------------------------------------
+          267┆ if (_from >= epochEndBlocks[epochId - 1]) return   
+               _to.sub(_from).mul(epochRewardMultiplers[epochId]);
+            ⋮┆----------------------------------------
+          269┆ uint256 multiplier = _to.sub(epochEndBlocks[epochId -
+               1]).mul(epochRewardMultiplers[epochId]);             
+            ⋮┆----------------------------------------
+          269┆ uint256 multiplier = _to.sub(epochEndBlocks[epochId -
+               1]).mul(epochRewardMultiplers[epochId]);             
+            ⋮┆----------------------------------------
+          271┆ if (epochId == 1) return                                                   
+               multiplier.add(epochEndBlocks[0].sub(_from).mul(epochRewardMultiplers[0]));
+            ⋮┆----------------------------------------
+          271┆ if (epochId == 1) return                                                   
+               multiplier.add(epochEndBlocks[0].sub(_from).mul(epochRewardMultiplers[0]));
+            ⋮┆----------------------------------------
+          275┆ if (_from >= epochEndBlocks[epochId - 1]) return                                       
+               multiplier.add(epochEndBlocks[epochId].sub(_from).mul(epochRewardMultiplers[epochId]));
+            ⋮┆----------------------------------------
+          275┆ if (_from >= epochEndBlocks[epochId - 1]) return                                       
+               multiplier.add(epochEndBlocks[epochId].sub(_from).mul(epochRewardMultiplers[epochId]));
+            ⋮┆----------------------------------------
+          275┆ if (_from >= epochEndBlocks[epochId - 1]) return                                       
+               multiplier.add(epochEndBlocks[epochId].sub(_from).mul(epochRewardMultiplers[epochId]));
+            ⋮┆----------------------------------------
+          277┆ multiplier = multiplier.add(epochEndBlocks[epochId].sub(epochEndBlocks[epochId -
+               1]).mul(epochRewardMultiplers[epochId]));                                       
+            ⋮┆----------------------------------------
+          277┆ multiplier = multiplier.add(epochEndBlocks[epochId].sub(epochEndBlocks[epochId -
+               1]).mul(epochRewardMultiplers[epochId]));                                       
+            ⋮┆----------------------------------------
+          277┆ multiplier = multiplier.add(epochEndBlocks[epochId].sub(epochEndBlocks[epochId -
+               1]).mul(epochRewardMultiplers[epochId]));                                       
+            ⋮┆----------------------------------------
+          280┆ return multiplier.add(epochEndBlocks[0].sub(_from).mul(epochRewardMultiplers[0]));
+            ⋮┆----------------------------------------
+          280┆ return multiplier.add(epochEndBlocks[0].sub(_from).mul(epochRewardMultiplers[0]));
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          292┆ require(msg.sender == governance, "!governance");
+            ⋮┆----------------------------------------
+          305┆ require(msg.sender == governance, "!governance");
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+          364┆ _shares = _shares.mul(10000 - _withdrawFee).div(10000);
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          391┆ require(_amount > 0, "!_amount");
+            ⋮┆----------------------------------------
+          401┆ require(totalDepositCap == 0 || _after <= totalDepositCap, ">totalDepositCap");
+            ⋮┆----------------------------------------
+          403┆ require(_amount >= _min_mint_amount, "slippage");
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          426┆ for (uint8 i = 0; i < 4; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          426┆ for (uint8 i = 0; i < 4; i++) {
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          430┆ inputTokens[i].safeTransferFrom(msg.sender, address(this), _inputAmount);
+            ⋮┆----------------------------------------
+          431┆ } else if (converter.convert_rate(address(inputTokens[i]), address(token3CRV),
+               _inputAmount) > 0) {                                                          
+            ⋮┆----------------------------------------
+          431┆ } else if (converter.convert_rate(address(inputTokens[i]), address(token3CRV),
+               _inputAmount) > 0) {                                                          
+            ⋮┆----------------------------------------
+          431┆ } else if (converter.convert_rate(address(inputTokens[i]), address(token3CRV),
+               _inputAmount) > 0) {                                                          
+            ⋮┆----------------------------------------
+          432┆ inputTokens[i].safeTransferFrom(msg.sender, address(converter), _inputAmount);
+            ⋮┆----------------------------------------
+          432┆ inputTokens[i].safeTransferFrom(msg.sender, address(converter), _inputAmount);
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          445┆ require(totalDepositCap == 0 || _after <= totalDepositCap, ">totalDepositCap");
+            ⋮┆----------------------------------------
+          447┆ require(_totalDepositAmount >= _min_mint_amount, "slippage");
+   
+     ❱ solidity.performance.use-nested-if
+          Using nested is cheaper than using && multiple check combinations.  There are more advantages, such
+          as easier to read code and better coverage reports.                                                
+                                                                                                             
+          513┆ if (block.number > lastRewardBlock && lpSupply != 0) {
+          514┆     uint256 _multiplier = getMultiplier(lastRewardBlock, block.number);
+          515┆     _accYaxPerShare =                                                    
+               accYaxPerShare.add(_multiplier.mul(yaxPerBlock).mul(1e12).div(lpSupply));
+          516┆ }
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          562┆ require(msg.sender == controller, "!controller");
+            ⋮┆----------------------------------------
+          563┆ require(reserve != address(token3CRV), "token3CRV");
+            ⋮┆----------------------------------------
+          577┆ require(user.amount >= _amount, "stakedBal < _amount");
+            ⋮┆----------------------------------------
+          595┆ require(_need <= userInfo[msg.sender].amount, "_userBal+staked < _shares");
+            ⋮┆----------------------------------------
+          628┆ require(converter.convert_rate(address(token3CRV), _output, r) > 0, "rate=0");
+            ⋮┆----------------------------------------
+          665┆ require(msg.sender == governance, "!governance");
+            ⋮┆----------------------------------------
+          666┆ require(address(_token) != address(token3CRV), "3crv");
+            ⋮┆----------------------------------------
+          667┆ require(address(_token) != address(this), "mlvt");
+            ⋮┆----------------------------------------
+          669┆ require(converter.convert_rate(_token, address(token3CRV), _amount) > 0, "rate=0");
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 64 (64 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 64 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading
+
+📢 Too many findings? Try Semgrep Pro for more powerful queries and less noise.
+   See https://sg.run/false-positives.

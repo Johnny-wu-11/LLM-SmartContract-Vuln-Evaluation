@@ -1,0 +1,24 @@
+A new version of Solhint is available: 6.1.0
+Please consider updating your Solhint package.
+/sb/Import.sol:2:1: Compiler version ^0.7.4 does not satisfy the ^0.8.24 semver requirement [Error/compiler-version]
+/sb/Import.sol:9:1: global import of path diamond-2/contracts/facets/DiamondCutFacet.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/Import.sol:9:1: Import in /sb/Import.sol doesn't exist in: diamond-2/contracts/facets/DiamondCutFacet.sol [Warning/import-path-check]
+/sb/Import.sol:9:8: Use double quotes for string literals [Error/quotes]
+/sb/Import.sol:10:1: global import of path diamond-2/contracts/facets/DiamondLoupeFacet.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/Import.sol:10:1: Import in /sb/Import.sol doesn't exist in: diamond-2/contracts/facets/DiamondLoupeFacet.sol [Warning/import-path-check]
+/sb/Import.sol:10:8: Use double quotes for string literals [Error/quotes]
+/sb/Import.sol:11:1: global import of path diamond-2/contracts/facets/OwnershipFacet.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/Import.sol:11:1: Import in /sb/Import.sol doesn't exist in: diamond-2/contracts/facets/OwnershipFacet.sol [Warning/import-path-check]
+/sb/Import.sol:11:8: Use double quotes for string literals [Error/quotes]
+/sb/Import.sol:12:1: global import of path diamond-2/contracts/Diamond.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/Import.sol:12:1: Import in /sb/Import.sol doesn't exist in: diamond-2/contracts/Diamond.sol [Warning/import-path-check]
+/sb/Import.sol:12:8: Use double quotes for string literals [Error/quotes]
+/sb/Import.sol:15:1: Missing @title tag in contract 'Imports' [Warning/use-natspec]
+/sb/Import.sol:15:1: Missing @author tag in contract 'Imports' [Warning/use-natspec]
+/sb/Import.sol:15:1: Missing @notice tag in contract 'Imports' [Warning/use-natspec]
+/sb/Import.sol:16:3: Missing @notice tag in variable 'diamondCutFacet' [Warning/use-natspec]
+/sb/Import.sol:17:3: Missing @notice tag in variable 'diamondLoupeFacet' [Warning/use-natspec]
+/sb/Import.sol:18:3: Missing @notice tag in variable 'ownershipFacet' [Warning/use-natspec]
+/sb/Import.sol:19:3: Missing @notice tag in variable 'diamond' [Warning/use-natspec]
+
+20 problem/s (5 error/s, 15 warning/s)

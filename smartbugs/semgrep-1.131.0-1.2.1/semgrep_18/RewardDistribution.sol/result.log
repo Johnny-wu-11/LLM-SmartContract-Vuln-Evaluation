@@ -1,0 +1,117 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 12 Code Findings │
+└──────────────────┘
+                              
+    /sb/RewardDistribution.sol
+     ❱ solidity.best-practice.use-ownable2step
+          By demanding that the receiver of the owner permissions actively accept via a contract call of its 
+          own,  `Ownable2Step` and `Ownable2StepUpgradeable` prevent the contract ownership from accidentally
+          being transferred  to an address that cannot handle it.                                            
+                                                                                                             
+           17┆ contract RewardDistribution is Ownable {
+   
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           57┆ constructor(
+           58┆   IController  _controller,
+           59┆   IPairFactory _factory,
+           60┆   IERC20  _rewardToken,
+           61┆   uint    _totalRewardPerBlock
+           62┆ ) {
+           63┆   controller = _controller;
+           64┆   factory = _factory;
+           65┆   rewardToken = _rewardToken;
+           66┆   totalRewardPerBlock = _totalRewardPerBlock;
+             [hid 1 additional lines, adjust with --max-lines-per-finding] 
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           85┆ require(
+           86┆   pidByPairToken[_pair][_token][_isSupply].added == false,
+           87┆   "RewardDistribution: already added"
+           88┆ );
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+           85┆ require(
+           86┆   pidByPairToken[_pair][_token][_isSupply].added == false,
+           87┆   "RewardDistribution: already added"
+           88┆ );
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           90┆ require(
+           91┆   ILendingPair(_pair).tokenA() == _token || ILendingPair(_pair).tokenB() == _token,
+           92┆   "RewardDistribution: invalid token"
+           93┆ );
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+           90┆ require(
+           91┆   ILendingPair(_pair).tokenA() == _token || ILendingPair(_pair).tokenB() == _token,
+           92┆   "RewardDistribution: invalid token"
+           93┆ );
+   
+     ❱ solidity.performance.inefficient-state-variable-increment
+          <x> += <y> costs more gas than <x> = <x> + <y> for state variables.
+                                                                             
+           95┆ totalPoints += _points;
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          247┆ require(poolPosition.added, "RewardDistribution: invalid pool");
+            ⋮┆----------------------------------------
+          285┆ require(factoryPair == msg.sender, "RewardDistribution: caller not lending pair");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          285┆ require(factoryPair == msg.sender, "RewardDistribution: caller not lending pair");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          288┆ revert("RewardDistribution: caller not lending pair");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          288┆ revert("RewardDistribution: caller not lending pair");
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 12 (12 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 12 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

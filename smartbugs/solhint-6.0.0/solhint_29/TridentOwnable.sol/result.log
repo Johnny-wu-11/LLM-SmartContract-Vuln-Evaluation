@@ -1,0 +1,17 @@
+A new version of Solhint is available: 6.1.0
+Please consider updating your Solhint package.
+/sb/TridentOwnable.sol:3:1: Compiler version >=0.8.0 does not satisfy the ^0.8.24 semver requirement [Error/compiler-version]
+/sb/TridentOwnable.sol:7:1: Missing @title tag in contract 'TridentOwnable' [Warning/use-natspec]
+/sb/TridentOwnable.sol:8:5: Missing @notice tag in variable 'owner' [Warning/use-natspec]
+/sb/TridentOwnable.sol:9:5: Missing @notice tag in variable 'pendingOwner' [Warning/use-natspec]
+/sb/TridentOwnable.sol:11:5: Missing @notice tag in event 'TransferOwner' [Warning/use-natspec]
+/sb/TridentOwnable.sol:11:5: Missing @param tag in event 'TransferOwner' [Warning/use-natspec]
+/sb/TridentOwnable.sol:11:5: Mismatch in @param names for event 'TransferOwner'. Expected: [sender, recipient], Found: [] [Warning/use-natspec]
+/sb/TridentOwnable.sol:12:5: Missing @notice tag in event 'TransferOwnerClaim' [Warning/use-natspec]
+/sb/TridentOwnable.sol:12:5: Missing @param tag in event 'TransferOwnerClaim' [Warning/use-natspec]
+/sb/TridentOwnable.sol:12:5: Mismatch in @param names for event 'TransferOwnerClaim'. Expected: [sender, recipient], Found: [] [Warning/use-natspec]
+/sb/TridentOwnable.sol:15:5: Explicitly mark visibility in function (Set ignoreConstructors to true if using solidity >=0.7.0) [Warning/func-visibility]
+/sb/TridentOwnable.sol:22:9: GC: Use Custom Errors instead of require statements [Warning/gas-custom-errors]
+/sb/TridentOwnable.sol:28:9: GC: Use Custom Errors instead of require statements [Warning/gas-custom-errors]
+
+13 problem/s (1 error/s, 12 warning/s)

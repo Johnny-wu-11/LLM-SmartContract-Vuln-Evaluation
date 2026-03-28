@@ -1,0 +1,55 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                   
+                   
+┌─────────────────┐
+│ 3 Code Findings │
+└─────────────────┘
+                     
+    /sb/ERC20Mock.sol
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           12┆ constructor(
+           13┆   string memory _name,
+           14┆   string memory _symbol,
+           15┆   uint256 _amount
+           16┆ ) ERC20(_name, _symbol) {
+           17┆   _mint(msg.sender, _amount);
+           18┆ }
+            ⋮┆----------------------------------------
+           22┆ constructor(
+           23┆   string memory _name,
+           24┆   string memory _symbol,
+           25┆   uint256 _amount
+           26┆ ) ERC20(_name, _symbol) {
+           27┆   _mint(msg.sender, _amount);
+           28┆ }
+            ⋮┆----------------------------------------
+           36┆ constructor(
+           37┆   string memory _name,
+           38┆   string memory _symbol,
+           39┆   uint256 _amount
+           40┆ ) ERC20(_name, _symbol) {
+           41┆   _mint(msg.sender, _amount);
+           42┆ }
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 3 (3 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 3 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

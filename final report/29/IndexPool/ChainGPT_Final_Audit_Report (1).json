@@ -1,0 +1,25 @@
+{
+  "title": "ChainGPT Final Audit Report",
+  "tool": "ChainGPT",
+  "status": "Completed",
+  "reduction_summary": {
+    "original_findings": 0,
+    "retained_findings_after_ai_review": 5,
+    "filtered_findings": 0,
+    "filtering_rate": "0.00%"
+  },
+  "adjudication_summary": "The 'Access Control' finding is confirmed due to the clear lack of access restrictions. 'Reentrancy Vulnerability', 'Unchecked External Call', and 'Denial of Service (DoS)' are marked as plausible but require further investigation to verify. 'Integer Overflow/Underflow' is unsupported given Solidity's built-in checks in version 0.8.0 and later, reducing its validity as a finding.",
+  "findings": {
+    "confirmed": [
+      "Access Control"
+    ],
+    "plausible_but_unverified": [
+      "Reentrancy Vulnerability",
+      "Unchecked External Call",
+      "Denial of Service (DoS)"
+    ],
+    "unsupported_or_false_positive": [
+      "Integer Overflow/Underflow"
+    ]
+  }
+}

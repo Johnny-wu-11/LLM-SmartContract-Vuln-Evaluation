@@ -1,0 +1,221 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 24 Code Findings │
+└──────────────────┘
+                
+    /sb/Swap.sol
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           51┆ constructor(address owner_, address payable feeRecipient_, uint256 swapFee_) {
+           52┆     require(owner_ != address(0), "Swap::constructor: Owner must not be 0");
+           53┆     transferOwnership(owner_);
+           54┆     feeRecipient = feeRecipient_;
+           55┆     emit NewFeeRecipient(feeRecipient);
+           56┆     swapFee = swapFee_;
+           57┆     emit NewSwapFee(swapFee);
+           58┆ }
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           52┆ require(owner_ != address(0), "Swap::constructor: Owner must not be 0");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+           52┆ require(owner_ != address(0), "Swap::constructor: Owner must not be 0");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           64┆ require(swapFee_ < SWAP_FEE_DIVISOR, "Swap::setSwapFee: Swap fee must not exceed 100%");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+           64┆ require(swapFee_ < SWAP_FEE_DIVISOR, "Swap::setSwapFee: Swap fee must not exceed 100%");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          116┆ require(
+          117┆     block.timestamp <= deadline,
+          118┆     "Swap::swapByQuote: Deadline exceeded"
+          119┆ );
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          116┆ require(
+          117┆     block.timestamp <= deadline,
+          118┆     "Swap::swapByQuote: Deadline exceeded"
+          119┆ );
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          120┆ require(
+          121┆     !signifiesETHOrZero(zrxSellTokenAddress) || msg.value > 0,
+          122┆     "Swap::swapByQuote: Unwrapped ETH must be swapped via msg.value"
+          123┆ );
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          120┆ require(
+          121┆     !signifiesETHOrZero(zrxSellTokenAddress) || msg.value > 0,
+          122┆     "Swap::swapByQuote: Unwrapped ETH must be swapped via msg.value"
+          123┆ );
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          142┆ require(
+          143┆     (
+          144┆         !signifiesETHOrZero(zrxBuyTokenAddress) &&
+          145┆         boughtERC20Amount >= minimumAmountReceived
+          146┆     ) ||
+          147┆     (
+          148┆         signifiesETHOrZero(zrxBuyTokenAddress) &&
+          149┆         boughtETHAmount >= minimumAmountReceived
+          150┆     ),
+          151┆     "Swap::swapByQuote: Minimum swap proceeds requirement not met"
+             [hid 1 additional lines, adjust with --max-lines-per-finding] 
+   
+     ❱ solidity.performance.use-multiple-require
+          Using multiple require statements is cheaper than using && multiple check combinations.  There are
+          more advantages, such as easier to read code and better coverage reports.                         
+                                                                                                            
+          142┆ require(
+          143┆     (
+          144┆         !signifiesETHOrZero(zrxBuyTokenAddress) &&
+          145┆         boughtERC20Amount >= minimumAmountReceived
+          146┆     ) ||
+          147┆     (
+          148┆         signifiesETHOrZero(zrxBuyTokenAddress) &&
+          149┆         boughtETHAmount >= minimumAmountReceived
+          150┆     ),
+          151┆     "Swap::swapByQuote: Minimum swap proceeds requirement not met"
+             [hid 1 additional lines, adjust with --max-lines-per-finding] 
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          142┆ require(
+          143┆     (
+          144┆         !signifiesETHOrZero(zrxBuyTokenAddress) &&
+          145┆         boughtERC20Amount >= minimumAmountReceived
+          146┆     ) ||
+          147┆     (
+          148┆         signifiesETHOrZero(zrxBuyTokenAddress) &&
+          149┆         boughtETHAmount >= minimumAmountReceived
+          150┆     ),
+          151┆     "Swap::swapByQuote: Minimum swap proceeds requirement not met"
+             [hid 1 additional lines, adjust with --max-lines-per-finding] 
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          213┆ require(success, "Swap::fillZrxQuote: Failed to fill quote");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          213┆ require(success, "Swap::fillZrxQuote: Failed to fill quote");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          219┆ require(erc20Delta > 0, "Swap::fillZrxQuote: Didn't receive bought token");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          219┆ require(erc20Delta > 0, "Swap::fillZrxQuote: Didn't receive bought token");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          221┆ require(ethDelta > 0, "Swap::fillZrxQuote: Didn't receive bought ETH");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          221┆ require(ethDelta > 0, "Swap::fillZrxQuote: Didn't receive bought ETH");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          246┆ require(
+          247┆     feeRecipient != address(0),
+          248┆     "Swap::withdrawAccruedFees: feeRecipient is not initialized"
+          249┆ );
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          246┆ require(
+          247┆     feeRecipient != address(0),
+          248┆     "Swap::withdrawAccruedFees: feeRecipient is not initialized"
+          249┆ );
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          250┆ for (uint8 i = 0; i<tokens.length; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          250┆ for (uint8 i = 0; i<tokens.length; i++) {
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          253┆ IERC20(tokens[i]).safeTransfer(feeRecipient, balance);
+            ⋮┆----------------------------------------
+          254┆ emit FeesSwept(tokens[i], balance, feeRecipient);
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 24 (24 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 24 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

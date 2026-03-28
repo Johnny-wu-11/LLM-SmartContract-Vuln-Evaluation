@@ -1,0 +1,20 @@
+A new version of Solhint is available: 6.1.0
+Please consider updating your Solhint package.
+/sb/Migrations.sol:2:1: Compiler version 0.8.7 does not satisfy the ^0.8.24 semver requirement [Error/compiler-version]
+/sb/Migrations.sol:4:1: Missing @title tag in contract 'Migrations' [Warning/use-natspec]
+/sb/Migrations.sol:4:1: Missing @author tag in contract 'Migrations' [Warning/use-natspec]
+/sb/Migrations.sol:4:1: Missing @notice tag in contract 'Migrations' [Warning/use-natspec]
+/sb/Migrations.sol:5:5: Missing @notice tag in variable 'owner' [Warning/use-natspec]
+/sb/Migrations.sol:6:5: Missing @notice tag in variable 'last_completed_migration' [Warning/use-natspec]
+/sb/Migrations.sol:6:5: Variable name must be in mixedCase last_completed_migration [Warning/var-name-mixedcase]
+/sb/Migrations.sol:8:5: Missing @notice tag in function '<anonymous>' [Warning/use-natspec]
+/sb/Migrations.sol:8:5: Explicitly mark visibility in function (Set ignoreConstructors to true if using solidity >=0.7.0) [Warning/func-visibility]
+/sb/Migrations.sol:16:5: Missing @notice tag in function 'setCompleted' [Warning/use-natspec]
+/sb/Migrations.sol:16:5: Missing @param tag in function 'setCompleted' [Warning/use-natspec]
+/sb/Migrations.sol:16:5: Mismatch in @param names for function 'setCompleted'. Expected: [completed], Found: [] [Warning/use-natspec]
+/sb/Migrations.sol:20:5: Missing @notice tag in function 'upgrade' [Warning/use-natspec]
+/sb/Migrations.sol:20:5: Missing @param tag in function 'upgrade' [Warning/use-natspec]
+/sb/Migrations.sol:20:5: Mismatch in @param names for function 'upgrade'. Expected: [new_address], Found: [] [Warning/use-natspec]
+/sb/Migrations.sol:20:22: Variable name must be in mixedCase new_address [Warning/var-name-mixedcase]
+
+16 problem/s (1 error/s, 15 warning/s)

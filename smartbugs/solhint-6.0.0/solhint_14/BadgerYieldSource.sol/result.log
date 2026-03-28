@@ -1,0 +1,23 @@
+A new version of Solhint is available: 6.1.0
+Please consider updating your Solhint package.
+/sb/BadgerYieldSource.sol:3:1: Compiler version 0.6.12 does not satisfy the ^0.8.24 semver requirement [Error/compiler-version]
+/sb/BadgerYieldSource.sol:5:1: Import in /sb/BadgerYieldSource.sol doesn't exist in: @pooltogether/yield-source-interface/contracts/IYieldSource.sol [Warning/import-path-check]
+/sb/BadgerYieldSource.sol:6:1: global import of path @openzeppelin/contracts/math/SafeMath.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/BadgerYieldSource.sol:6:1: Import in /sb/BadgerYieldSource.sol doesn't exist in: @openzeppelin/contracts/math/SafeMath.sol [Warning/import-path-check]
+/sb/BadgerYieldSource.sol:7:1: global import of path ./IBadgerSett.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/BadgerYieldSource.sol:7:1: Import in /sb/BadgerYieldSource.sol doesn't exist in: ./IBadgerSett.sol [Warning/import-path-check]
+/sb/BadgerYieldSource.sol:8:1: global import of path ./IBadger.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/BadgerYieldSource.sol:8:1: Import in /sb/BadgerYieldSource.sol doesn't exist in: ./IBadger.sol [Warning/import-path-check]
+/sb/BadgerYieldSource.sol:9:1: Unexpected import of console file [Error/no-console]
+/sb/BadgerYieldSource.sol:9:1: global import of path hardhat/console.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/BadgerYieldSource.sol:9:1: Import in /sb/BadgerYieldSource.sol doesn't exist in: hardhat/console.sol [Warning/import-path-check]
+/sb/BadgerYieldSource.sol:13:1: Missing @notice tag in contract 'BadgerYieldSource' [Warning/use-natspec]
+/sb/BadgerYieldSource.sol:15:5: Immutable variables name are set to be in capitalized SNAKE_CASE [Warning/immutable-vars-naming]
+/sb/BadgerYieldSource.sol:16:5: Immutable variables name are set to be in capitalized SNAKE_CASE [Warning/immutable-vars-naming]
+/sb/BadgerYieldSource.sol:19:5: Missing @notice tag in function '<anonymous>' [Warning/use-natspec]
+/sb/BadgerYieldSource.sol:19:5: Missing @param tag in function '<anonymous>' [Warning/use-natspec]
+/sb/BadgerYieldSource.sol:19:5: Mismatch in @param names for function '<anonymous>'. Expected: [badgerSettAddr, badgerAddr], Found: [] [Warning/use-natspec]
+/sb/BadgerYieldSource.sol:32:5: Missing @param tag in function 'balanceOfToken' [Warning/use-natspec]
+/sb/BadgerYieldSource.sol:32:5: Mismatch in @param names for function 'balanceOfToken'. Expected: [addr], Found: [] [Warning/use-natspec]
+
+19 problem/s (2 error/s, 17 warning/s)

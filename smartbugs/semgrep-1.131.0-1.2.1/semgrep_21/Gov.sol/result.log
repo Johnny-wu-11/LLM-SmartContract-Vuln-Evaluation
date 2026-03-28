@@ -1,0 +1,177 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 55 Code Findings │
+└──────────────────┘
+               
+    /sb/Gov.sol
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           30┆ require(msg.sender == GovStorage.gs().govMain, 'NOT_GOV_MAIN');
+            ⋮┆----------------------------------------
+          103┆ require(_govMain != address(0), 'ZERO_GOV');
+            ⋮┆----------------------------------------
+          104┆ require(msg.sender == LibDiamond.contractOwner(), 'NOT_DEV');
+            ⋮┆----------------------------------------
+          105┆ require(gs.govMain == address(0), 'ALREADY_SET');
+            ⋮┆----------------------------------------
+          111┆ require(_govMain != address(0), 'ZERO_GOV');
+            ⋮┆----------------------------------------
+          112┆ require(GovStorage.gs().govMain != _govMain, 'SAME_GOV');
+            ⋮┆----------------------------------------
+          119┆ require(_watsons != address(0), 'ZERO_WATS');
+            ⋮┆----------------------------------------
+          120┆ require(gs.watsonsAddress != _watsons, 'SAME_WATS');
+            ⋮┆----------------------------------------
+          125┆ require(_unstakeWindow < 25000000, 'MAX'); // ~ approximate 10 years of blocks
+            ⋮┆----------------------------------------
+          130┆ require(_period < 25000000, 'MAX'); // ~ approximate 10 years of blocks
+            ⋮┆----------------------------------------
+          141┆ require(!gs.protocolIsCovered[_protocol], 'COVERED');
+            ⋮┆----------------------------------------
+          153┆ require(_protocol != bytes32(0), 'ZERO_PROTOCOL');
+            ⋮┆----------------------------------------
+          154┆ require(_eoaProtocolAgent != address(0), 'ZERO_AGENT');
+            ⋮┆----------------------------------------
+          155┆ require(_eoaManager != address(0), 'ZERO_MANAGER');
+            ⋮┆----------------------------------------
+          158┆ require(gs.protocolIsCovered[_protocol], 'NOT_COVERED');
+            ⋮┆----------------------------------------
+          170┆ require(_protocol != bytes32(0), 'ZERO_PROTOCOL');
+            ⋮┆----------------------------------------
+          171┆ require(_tokens.length > 0, 'ZERO');
+            ⋮┆----------------------------------------
+          174┆ require(gs.protocolIsCovered[_protocol], 'NOT_COVERED');
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          176┆ for (uint256 i; i < _tokens.length; i++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          176┆ for (uint256 i; i < _tokens.length; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          176┆ for (uint256 i; i < _tokens.length; i++) {
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          178┆ require(ps.premiums, 'INIT');
+            ⋮┆----------------------------------------
+          179┆ require(!ps.isProtocol[_protocol], 'ALREADY_ADDED');
+            ⋮┆----------------------------------------
+          188┆ require(gs.protocolIsCovered[_protocol], 'NOT_COVERED');
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          190┆ for (uint256 i; i < gs.tokensSherX.length; i++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          190┆ for (uint256 i; i < gs.tokensSherX.length; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          190┆ for (uint256 i; i < gs.tokensSherX.length; i++) {
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          195┆ require(ps.protocolPremium[_protocol] == 0, 'DEBT');
+            ⋮┆----------------------------------------
+          196┆ require(!ps.isProtocol[_protocol], 'POOL_PROTOCOL');
+            ⋮┆----------------------------------------
+          211┆ require(address(_token) != address(0), 'ZERO_TOKEN');
+            ⋮┆----------------------------------------
+          216┆ require(ps.govPool != address(0), 'ZERO_GOV');
+            ⋮┆----------------------------------------
+          220┆ require(_lock.getOwner() == address(this), 'OWNER');
+            ⋮┆----------------------------------------
+          221┆ require(_lock.totalSupply() == 0, 'SUPPLY');
+            ⋮┆----------------------------------------
+          224┆ require(_lock.underlying() == _token, 'UNDERLYING');
+            ⋮┆----------------------------------------
+          229┆ require(!ps.stakes, 'STAKES_SET');
+            ⋮┆----------------------------------------
+          233┆ revert('WRONG_LOCK');
+            ⋮┆----------------------------------------
+          238┆ require(!ps.premiums, 'PREMIUMS_SET');
+            ⋮┆----------------------------------------
+          247┆ require(gs.tokensStaker[_index] == _token, 'INDEX');
+            ⋮┆----------------------------------------
+          248┆ require(ps.sherXWeight == 0, 'ACTIVE_WEIGHT');
+            ⋮┆----------------------------------------
+          260┆ require(gs.tokensSherX[_index] == _token, 'INDEX');
+            ⋮┆----------------------------------------
+          261┆ require(ps.totalPremiumPerBlock == 0, 'ACTIVE_PREMIUM');
+            ⋮┆----------------------------------------
+          263┆ require(ps.sherXUnderlying == 0, 'ACTIVE_SHERX');
+            ⋮┆----------------------------------------
+          276┆ require(address(_native) != address(0), 'ZERO_NATIVE');
+            ⋮┆----------------------------------------
+          277┆ require(_remaining != address(0), 'ZERO_REMAIN');
+            ⋮┆----------------------------------------
+          279┆ require(ps.govPool != address(0), 'EMPTY');
+            ⋮┆----------------------------------------
+          286┆ require(!ps.stakes, 'STAKES_SET');
+            ⋮┆----------------------------------------
+          287┆ require(ps.totalPremiumPerBlock == 0, 'ACTIVE_PREMIUM');
+            ⋮┆----------------------------------------
+          288┆ require(address(ps.strategy) == address(0), 'ACTIVE_STRATEGY');
+            ⋮┆----------------------------------------
+          306┆ require(ps2.govPool != address(0), 'EMPTY_SWAP');
+            ⋮┆----------------------------------------
+          331┆ require(ps.govPool != address(0), 'EMPTY');
+            ⋮┆----------------------------------------
+          332┆ require(!ps.stakes, 'STAKES_SET');
+            ⋮┆----------------------------------------
+          333┆ require(!ps.premiums, 'PREMIUMS_SET');
+            ⋮┆----------------------------------------
+          334┆ require(ps.protocols.length == 0, 'ACTIVE_PROTOCOLS');
+            ⋮┆----------------------------------------
+          335┆ require(ps.stakeBalance == 0, 'BALANCE_SET');
+            ⋮┆----------------------------------------
+          337┆ require(ps.unallocatedSherX == 0, 'SHERX_SET');
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 55 (55 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 55 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading
+
+📢 Too many findings? Try Semgrep Pro for more powerful queries and less noise.
+   See https://sg.run/false-positives.

@@ -1,0 +1,179 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 32 Code Findings │
+└──────────────────┘
+                                      
+    /sb/NFTXMintRequestEligibility.sol
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          110┆ require(!finalized(), "Finalized");
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          112┆ for (uint256 i = 0; i < tokenIds.length; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          112┆ for (uint256 i = 0; i < tokenIds.length; i++) {
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          115┆ require(
+          116┆     mintRequests[msg.sender][tokenId] == 0,
+          117┆     "No existing request"
+          118┆ );
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          116┆ mintRequests[msg.sender][tokenId] == 0,
+            ⋮┆----------------------------------------
+          119┆ mintRequests[msg.sender][tokenId] = amount;
+            ⋮┆----------------------------------------
+          120┆ if (is1155) {
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          145┆ require(!finalized(), "Finalized");
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          150┆ for (uint256 i = 0; i < tokenIds.length; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          150┆ for (uint256 i = 0; i < tokenIds.length; i++) {
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          152┆ uint256 amount = mintRequests[addresses[i]][tokenId];
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          153┆ require(amount > 0, "No requests");
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          155┆ approvedMints[addresses[i]][tokenId] = false;
+            ⋮┆----------------------------------------
+          156┆ mintRequests[addresses[i]][tokenId] = 0;
+            ⋮┆----------------------------------------
+          161┆ vault.mintTo(_tokenIds, _amounts, addresses[i]);
+            ⋮┆----------------------------------------
+          163┆ approvedMints[addresses[i]][tokenId] = true;
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          173┆ for (uint256 i = 0; i < tokenIds.length; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          173┆ for (uint256 i = 0; i < tokenIds.length; i++) {
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          175┆ uint256 amount = mintRequests[addresses[i]][tokenId];
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          176┆ require(amount > 0, "No requests");
+            ⋮┆----------------------------------------
+          177┆ require(approvedMints[addresses[i]][tokenId], "Not approved");
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          177┆ require(approvedMints[addresses[i]][tokenId], "Not approved");
+            ⋮┆----------------------------------------
+          178┆ approvedMints[addresses[i]][tokenId] = false;
+            ⋮┆----------------------------------------
+          179┆ mintRequests[addresses[i]][tokenId] = 0;
+            ⋮┆----------------------------------------
+          184┆ vault.mintTo(_tokenIds, _amounts, addresses[i]);
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          194┆ for (uint256 i = 0; i < tokenIds.length; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          194┆ for (uint256 i = 0; i < tokenIds.length; i++) {
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          196┆ uint256 amount = mintRequests[msg.sender][tokenId];
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          197┆ require(amount > 0, "NFTXVault: nothing to reclaim");
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          198┆ mintRequests[msg.sender][tokenId] = 0;
+            ⋮┆----------------------------------------
+          199┆ approvedMints[msg.sender][tokenId] = false;
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          243┆ require(msg.sender == owner(), "Not owner");
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 32 (32 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 32 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading
+
+📢 Too many findings? Try Semgrep Pro for more powerful queries and less noise.
+   See https://sg.run/false-positives.

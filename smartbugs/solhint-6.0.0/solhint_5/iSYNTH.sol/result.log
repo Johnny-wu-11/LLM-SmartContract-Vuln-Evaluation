@@ -1,0 +1,18 @@
+A new version of Solhint is available: 6.0.3
+Please consider updating your Solhint package.
+/sb/iSYNTH.sol:2:1: Compiler version 0.8.3 does not satisfy the ^0.8.24 semver requirement [Error/compiler-version]
+/sb/iSYNTH.sol:4:1: Interface name 'iSYNTH' must start with "I" [Warning/interface-starts-with-i]
+/sb/iSYNTH.sol:4:1: Missing @title tag in contract 'iSYNTH' [Warning/use-natspec]
+/sb/iSYNTH.sol:4:1: Missing @author tag in contract 'iSYNTH' [Warning/use-natspec]
+/sb/iSYNTH.sol:4:1: Missing @notice tag in contract 'iSYNTH' [Warning/use-natspec]
+/sb/iSYNTH.sol:4:1: Contract, Structs and Enums should be in CapWords [Warning/contract-name-capwords]
+/sb/iSYNTH.sol:5:5: Missing @notice tag in function 'mint' [Warning/use-natspec]
+/sb/iSYNTH.sol:5:5: Missing @param tag in function 'mint' [Warning/use-natspec]
+/sb/iSYNTH.sol:5:5: Mismatch in @param names for function 'mint'. Expected: [account, amount], Found: [] [Warning/use-natspec]
+/sb/iSYNTH.sol:5:36: Rule is set with explicit type [var/s: uint] [Warning/explicit-types]
+/sb/iSYNTH.sol:6:5: Missing @notice tag in function 'TOKEN' [Warning/use-natspec]
+/sb/iSYNTH.sol:6:5: Missing @return tag in function 'TOKEN' [Warning/use-natspec]
+/sb/iSYNTH.sol:6:5: Mismatch in @return count for function 'TOKEN'. Expected: 1, Found: 0 [Warning/use-natspec]
+/sb/iSYNTH.sol:6:5: Function name must be in mixedCase [Warning/func-name-mixedcase]
+
+14 problem/s (1 error/s, 13 warning/s)

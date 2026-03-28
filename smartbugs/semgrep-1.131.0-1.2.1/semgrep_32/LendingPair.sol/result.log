@@ -1,0 +1,270 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 42 Code Findings │
+└──────────────────┘
+                       
+    /sb/LendingPair.sol
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           70┆ require(lpToken[tokenA] == msg.sender || lpToken[tokenB] == msg.sender, "LendingController:
+               caller must be LP token");                                                                 
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+           70┆ require(lpToken[tokenA] == msg.sender || lpToken[tokenB] == msg.sender, "LendingController:
+               caller must be LP token");                                                                 
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           82┆ require(tokenA == address(0), "LendingPair: already initialized");
+            ⋮┆----------------------------------------
+           83┆ require(_tokenA != address(0) && _tokenB != address(0), "LendingPair: cannot be ZERO
+               address");                                                                          
+   
+     ❱ solidity.performance.use-multiple-require
+          Using multiple require statements is cheaper than using && multiple check combinations.  There are
+          more advantages, such as easier to read code and better coverage reports.                         
+                                                                                                            
+           83┆ require(_tokenA != address(0) && _tokenB != address(0), "LendingPair: cannot be ZERO
+               address");                                                                          
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+           83┆ require(_tokenA != address(0) && _tokenB != address(0), "LendingPair: cannot be ZERO
+               address");                                                                          
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           96┆ require(decimals[tokenA] >= 6 && decimals[tokenB] >= 6, "LendingPair: min 6 decimals");
+   
+     ❱ solidity.performance.use-multiple-require
+          Using multiple require statements is cheaper than using && multiple check combinations.  There are
+          more advantages, such as easier to read code and better coverage reports.                         
+                                                                                                            
+           96┆ require(decimals[tokenA] >= 6 && decimals[tokenB] >= 6, "LendingPair: min 6 decimals");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          106┆ require(uniPosition[_account] == 0, "LendingPair: one position per account");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          106┆ require(uniPosition[_account] == 0, "LendingPair: one position per account");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          217┆ require(amount <= _maxAmount, "LendingPair: amount <= _maxAmount");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          217┆ require(amount <= _maxAmount, "LendingPair: amount <= _maxAmount");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          226┆ require(msg.value >= amount, "LendingPair: insufficient ETH deposit");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          226┆ require(msg.value >= amount, "LendingPair: insufficient ETH deposit");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          227┆ require(amount <= _maxAmount, "LendingPair: amount <= _maxAmount");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          227┆ require(amount <= _maxAmount, "LendingPair: amount <= _maxAmount");
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+          230┆ uint refundAmount = msg.value > amount ? (msg.value - amount) : 0;
+            ⋮┆----------------------------------------
+          250┆ pendingSystemFees[_token] += (newDebt - newSupply);
+            ⋮┆----------------------------------------
+          257┆ pendingSystemFees[_token] -= _amount;
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          263┆ require(debtSharesOf[_token][_to] == 0, "LendingPair: cannot deposit borrowed token");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          263┆ require(debtSharesOf[_token][_to] == 0, "LendingPair: cannot deposit borrowed token");
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+          264┆ supplySharesOf[_token][_from] -= _amount;
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          290┆ require(health < LIQ_MIN_HEALTH, "LendingPair: account health < LIQ_MIN_HEALTH");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          290┆ require(health < LIQ_MIN_HEALTH, "LendingPair: account health < LIQ_MIN_HEALTH");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          307┆ require(supplyOutput >= _minSupplyOutput, "LendingPair: supplyOutput >= _minSupplyOutput");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          307┆ require(supplyOutput >= _minSupplyOutput, "LendingPair: supplyOutput >= _minSupplyOutput");
+   
+     ❱ solidity.performance.use-nested-if
+          Using nested is cheaper than using && multiple check combinations.  There are more advantages, such
+          as easier to read code and better coverage reports.                                                
+                                                                                                             
+          330┆ if (debtSharesOf[tokenA][_account] == 0 && debtSharesOf[tokenB][_account] == 0) {
+          331┆   return LIQ_MIN_HEALTH;
+          332┆ }
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          400┆ require(health >= LIQ_MIN_HEALTH, "LendingPair: insufficient accountHealth");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          400┆ require(health >= LIQ_MIN_HEALTH, "LendingPair: insufficient accountHealth");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          538┆ require(supplySharesOf[_token][msg.sender] == 0, "LendingPair: cannot borrow supplied
+               token");                                                                             
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          538┆ require(supplySharesOf[_token][msg.sender] == 0, "LendingPair: cannot borrow supplied
+               token");                                                                             
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          556┆ require(debtSharesOf[_token][_account] == 0, "LendingPair: cannot deposit borrowed token");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          556┆ require(debtSharesOf[_token][_account] == 0, "LendingPair: cannot deposit borrowed token");
+   
+     ❱ solidity.performance.use-nested-if
+          Using nested is cheaper than using && multiple check combinations.  There are more advantages, such
+          as easier to read code and better coverage reports.                                                
+                                                                                                             
+          572┆ if (_totalShares > 0 && _totalAmount > 0) {
+          573┆   return _inputSupply * _totalShares / _totalAmount;
+          574┆ } else {
+          575┆   return _inputSupply;
+          576┆ }
+            ⋮┆----------------------------------------
+          580┆ if (_totalShares > 0 && _totalAmount > 0) {
+          581┆   return _inputShares * _totalAmount / _totalShares;
+          582┆ } else {
+          583┆   return _inputShares;
+          584┆ }
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          702┆ require(_token == tokenA || _token == tokenB, "LendingPair: invalid token");
+            ⋮┆----------------------------------------
+          715┆ require(totalSupplyAmount[_token] <= depositLimit, "LendingPair: deposit limit reached");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          715┆ require(totalSupplyAmount[_token] <= depositLimit, "LendingPair: deposit limit reached");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          720┆ require(lendingController.depositsEnabled(), "LendingPair: deposits disabled");
+            ⋮┆----------------------------------------
+          724┆ require(lendingController.borrowingEnabled(), "LendingPair: borrowing disabled");
+            ⋮┆----------------------------------------
+          731┆ require(totalDebtAmount[_token] <= borrowLimit, "LendingPair: borrow limit reached");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          731┆ require(totalDebtAmount[_token] <= borrowLimit, "LendingPair: borrow limit reached");
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 42 (42 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 42 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading
+
+📢 Too many findings? Try Semgrep Pro for more powerful queries and less noise.
+   See https://sg.run/false-positives.

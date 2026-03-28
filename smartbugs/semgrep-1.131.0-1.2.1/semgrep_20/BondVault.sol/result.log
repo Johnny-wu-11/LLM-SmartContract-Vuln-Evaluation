@@ -1,0 +1,63 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                   
+                   
+┌─────────────────┐
+│ 6 Code Findings │
+└─────────────────┘
+                     
+    /sb/BondVault.sol
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           37┆ constructor (address _base) {
+           38┆     BASE = _base;
+           39┆     DEPLOYER = msg.sender;
+           40┆     bondRelease = false;
+           41┆ }
+   
+     ❱ solidity.performance.inefficient-state-variable-increment
+          <x> += <y> costs more gas than <x> = <x> + <y> for state variables.
+                                                                             
+           87┆ totalWeight += weight; // Add new weight to totalWeight (scope: vault)
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          105┆ require(mapBondAsset_memberDetails[asset].bondedLP[member] > 0, '!bonded'); // They must
+               have remaining unclaimed LPs                                                            
+            ⋮┆----------------------------------------
+          106┆ require(mapBondAsset_memberDetails[asset].isMember[member], '!member'); // They must be a
+               member (scope: user -> asset)                                                            
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+          110┆ mapBondAsset_memberDetails[asset].bondedLP[member] -= _claimable; // Remove the claim
+               amount from the user's remainder                                                     
+   
+     ❱ solidity.performance.inefficient-state-variable-increment
+          <x> += <y> costs more gas than <x> = <x> + <y> for state variables.
+                                                                             
+          128┆ totalWeight += weight; // // Add new weight to totalWeight (scope: vault)
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 6 (6 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 6 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

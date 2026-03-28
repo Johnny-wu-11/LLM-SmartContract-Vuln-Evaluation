@@ -1,0 +1,71 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                   
+                   
+┌─────────────────┐
+│ 9 Code Findings │
+└─────────────────┘
+                                  
+    /sb/TridentFranchisedERC20.sol
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+           74┆ balanceOf[msg.sender] -= amount;
+            ⋮┆----------------------------------------
+           96┆ allowance[sender][msg.sender] -= amount;
+            ⋮┆----------------------------------------
+           98┆ balanceOf[sender] -= amount;
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          125┆ require(deadline >= block.timestamp, "PERMIT_DEADLINE_EXPIRED");
+            ⋮┆----------------------------------------
+          130┆ require(recoveredAddress != address(0) && recoveredAddress == owner,
+               "INVALID_PERMIT_SIGNATURE");                                        
+   
+     ❱ solidity.performance.use-multiple-require
+          Using multiple require statements is cheaper than using && multiple check combinations.  There are
+          more advantages, such as easier to read code and better coverage reports.                         
+                                                                                                            
+          130┆ require(recoveredAddress != address(0) && recoveredAddress == owner,
+               "INVALID_PERMIT_SIGNATURE");                                        
+   
+     ❱ solidity.performance.inefficient-state-variable-increment
+          <x> += <y> costs more gas than <x> = <x> + <y> for state variables.
+                                                                             
+          136┆ totalSupply += amount;
+   
+     ❱ solidity.best-practice.use-abi-encodecall-instead-of-encodewithselector
+          To guarantee arguments type safety it is recommended to use `abi.encodeCall` instead of
+          `abi.encodeWithSelector`.                                                              
+                                                                                                 
+          157┆ (, bytes memory _whitelisted) = whiteListManager.staticcall(abi.encodeWithSelector(IWhiteLi
+               stManager.whitelistedAccounts.selector, operator, account));                               
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          159┆ require(whitelisted, "NOT_WHITELISTED");
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 9 (9 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 9 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

@@ -1,0 +1,242 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 31 Code Findings │
+└──────────────────┘
+                    
+    /sb/Timelock.sol
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           28┆ constructor(address admin_, uint delay_) public {
+           29┆     require(delay_ >= MINIMUM_DELAY, "Timelock::constructor: Delay must exceed minimum
+               delay.");                                                                             
+           30┆     require(delay_ <= MAXIMUM_DELAY, "Timelock::setDelay: Delay must not exceed maximum
+               delay.");                                                                              
+           31┆
+           32┆     admin = admin_;
+           33┆     delay = delay_;
+           34┆ }
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           29┆ require(delay_ >= MINIMUM_DELAY, "Timelock::constructor: Delay must exceed minimum
+               delay.");                                                                         
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+           29┆ require(delay_ >= MINIMUM_DELAY, "Timelock::constructor: Delay must exceed minimum
+               delay.");                                                                         
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           30┆ require(delay_ <= MAXIMUM_DELAY, "Timelock::setDelay: Delay must not exceed maximum
+               delay.");                                                                          
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+           30┆ require(delay_ <= MAXIMUM_DELAY, "Timelock::setDelay: Delay must not exceed maximum
+               delay.");                                                                          
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           39┆ require(msg.sender == address(this), "Timelock::setDelay: Call must come from Timelock.");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+           39┆ require(msg.sender == address(this), "Timelock::setDelay: Call must come from Timelock.");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           40┆ require(delay_ >= MINIMUM_DELAY, "Timelock::setDelay: Delay must exceed minimum delay.");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+           40┆ require(delay_ >= MINIMUM_DELAY, "Timelock::setDelay: Delay must exceed minimum delay.");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           41┆ require(delay_ <= MAXIMUM_DELAY, "Timelock::setDelay: Delay must not exceed maximum
+               delay.");                                                                          
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+           41┆ require(delay_ <= MAXIMUM_DELAY, "Timelock::setDelay: Delay must not exceed maximum
+               delay.");                                                                          
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           48┆ require(msg.sender == pendingAdmin, "Timelock::acceptAdmin: Call must come from
+               pendingAdmin.");                                                               
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+           48┆ require(msg.sender == pendingAdmin, "Timelock::acceptAdmin: Call must come from
+               pendingAdmin.");                                                               
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           56┆ require(msg.sender == address(this), "Timelock::setPendingAdmin: Call must come from
+               Timelock.");                                                                        
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+           56┆ require(msg.sender == address(this), "Timelock::setPendingAdmin: Call must come from
+               Timelock.");                                                                        
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           63┆ require(msg.sender == admin, "Timelock::queueTransaction: Call must come from admin.");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+           63┆ require(msg.sender == admin, "Timelock::queueTransaction: Call must come from admin.");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           64┆ require(eta >= getBlockTimestamp().add(delay), "Timelock::queueTransaction: Estimated
+               execution block must satisfy delay.");                                               
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+           64┆ require(eta >= getBlockTimestamp().add(delay), "Timelock::queueTransaction: Estimated
+               execution block must satisfy delay.");                                               
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           74┆ require(msg.sender == admin, "Timelock::cancelTransaction: Call must come from admin.");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+           74┆ require(msg.sender == admin, "Timelock::cancelTransaction: Call must come from admin.");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           83┆ require(msg.sender == admin, "Timelock::executeTransaction: Call must come from admin.");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+           83┆ require(msg.sender == admin, "Timelock::executeTransaction: Call must come from admin.");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           86┆ require(queuedTransactions[txHash], "Timelock::executeTransaction: Transaction hasn't been
+               queued.");                                                                                
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+           86┆ require(queuedTransactions[txHash], "Timelock::executeTransaction: Transaction hasn't been
+               queued.");                                                                                
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           87┆ require(getBlockTimestamp() >= eta, "Timelock::executeTransaction: Transaction hasn't
+               surpassed time lock.");                                                              
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+           87┆ require(getBlockTimestamp() >= eta, "Timelock::executeTransaction: Transaction hasn't
+               surpassed time lock.");                                                              
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           88┆ require(getBlockTimestamp() <= eta.add(GRACE_PERIOD), "Timelock::executeTransaction:
+               Transaction is stale.");                                                            
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+           88┆ require(getBlockTimestamp() <= eta.add(GRACE_PERIOD), "Timelock::executeTransaction:
+               Transaction is stale.");                                                            
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          102┆ require(success, "Timelock::executeTransaction: Transaction execution reverted.");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          102┆ require(success, "Timelock::executeTransaction: Transaction execution reverted.");
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 31 (31 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 31 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading
+
+📢 Too many findings? Try Semgrep Pro for more powerful queries and less noise.
+   See https://sg.run/false-positives.

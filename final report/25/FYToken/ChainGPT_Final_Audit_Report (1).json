@@ -1,0 +1,27 @@
+{
+  "title": "ChainGPT Final Audit Report",
+  "tool": "ChainGPT",
+  "status": "Completed",
+  "reduction_summary": {
+    "original_findings": 0,
+    "retained_findings_after_ai_review": 9,
+    "filtered_findings": 0,
+    "filtering_rate": "0.00%"
+  },
+  "adjudication_summary": "All findings are relevant to security but are low confidence and need verification.",
+  "findings": {
+    "confirmed": [],
+    "plausible_but_unverified": [
+      "Access Control: ROOT Role",
+      "Maturity Checks: Timestamps",
+      "Flash Loan Implementation: Fee Absent",
+      "Flash Loan Implementation: Repayment Failures",
+      "Oracle Dependency",
+      "Burning and Minting Logic",
+      "Overflow Checks",
+      "Review Access Control",
+      "Enhance Oracle Security"
+    ],
+    "unsupported_or_false_positive": []
+  }
+}

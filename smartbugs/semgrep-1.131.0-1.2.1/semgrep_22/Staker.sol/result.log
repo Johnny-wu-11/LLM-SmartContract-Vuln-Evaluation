@@ -1,0 +1,212 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 25 Code Findings │
+└──────────────────┘
+                  
+    /sb/Staker.sol
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          130┆ require(msg.sender == admin, "not admin");
+            ⋮┆----------------------------------------
+          139┆ require(marketIndexOfToken[_synth] != 0, "not valid synth");
+            ⋮┆----------------------------------------
+          148┆ require(address(syntheticTokens[marketIndex][true]) != address(0), "not valid market");
+            ⋮┆----------------------------------------
+          157┆ require(msg.sender == address(longShort), "not long short");
+   
+     ❱ solidity.performance.use-multiple-require
+          Using multiple require statements is cheaper than using && multiple check combinations.  There are
+          more advantages, such as easier to read code and better coverage reports.                         
+                                                                                                            
+          213┆ require(newFloatPercentage <= 1e18 && newFloatPercentage > 0); // less than or equal to
+               100% and greater than 0%                                                               
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          248┆ require(initialMultiplier >= 1e18, "marketLaunchIncentiveMultiplier must be >= 1e18");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          248┆ require(initialMultiplier >= 1e18, "marketLaunchIncentiveMultiplier must be >= 1e18");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          275┆ require(
+          276┆   // The exponent has to be less than 5 in these versions of the contracts.
+          277┆   _balanceIncentiveCurve_exponent > 0 && _balanceIncentiveCurve_exponent < 6,
+          278┆   "balanceIncentiveCurve_exponent out of bounds"
+          279┆ );
+   
+     ❱ solidity.performance.use-multiple-require
+          Using multiple require statements is cheaper than using && multiple check combinations.  There are
+          more advantages, such as easier to read code and better coverage reports.                         
+                                                                                                            
+          275┆ require(
+          276┆   // The exponent has to be less than 5 in these versions of the contracts.
+          277┆   _balanceIncentiveCurve_exponent > 0 && _balanceIncentiveCurve_exponent < 6,
+          278┆   "balanceIncentiveCurve_exponent out of bounds"
+          279┆ );
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          275┆ require(
+          276┆   // The exponent has to be less than 5 in these versions of the contracts.
+          277┆   _balanceIncentiveCurve_exponent > 0 && _balanceIncentiveCurve_exponent < 6,
+          278┆   "balanceIncentiveCurve_exponent out of bounds"
+          279┆ );
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          304┆ require(
+          305┆   _balanceIncentiveCurve_equilibriumOffset > -9e17 &&
+               _balanceIncentiveCurve_equilibriumOffset < 9e17,     
+          306┆   "balanceIncentiveCurve_equilibriumOffset out of bounds"
+          307┆ );
+   
+     ❱ solidity.performance.use-multiple-require
+          Using multiple require statements is cheaper than using && multiple check combinations.  There are
+          more advantages, such as easier to read code and better coverage reports.                         
+                                                                                                            
+          304┆ require(
+          305┆   _balanceIncentiveCurve_equilibriumOffset > -9e17 &&
+               _balanceIncentiveCurve_equilibriumOffset < 9e17,     
+          306┆   "balanceIncentiveCurve_equilibriumOffset out of bounds"
+          307┆ );
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          304┆ require(
+          305┆   _balanceIncentiveCurve_equilibriumOffset > -9e17 &&
+               _balanceIncentiveCurve_equilibriumOffset < 9e17,     
+          306┆   "balanceIncentiveCurve_equilibriumOffset out of bounds"
+          307┆ );
+   
+     ❱ solidity.performance.use-nested-if
+          Using nested is cheaper than using && multiple check combinations.  There are more advantages, such
+          as easier to read code and better coverage reports.                                                
+                                                                                                             
+          697┆ if (usersShiftIndex > 0 && usersShiftIndex <     
+               batched_stakerNextTokenShiftIndex[marketIndex]) {
+          698┆   floatReward = _calculateAccumulatedFloatInRange(
+          699┆     marketIndex,
+          700┆     amountStakedLong,
+          701┆     amountStakedShort,
+          702┆     usersLastRewardIndex,
+          703┆                                                                                         
+               stakerTokenShiftIndex_to_accumulativeFloatIssuanceSnapshotIndex_mapping[usersShiftIndex]
+          704┆   );
+          705┆
+          706┆   // Update the users balances
+             [hid 46 additional lines, adjust with --max-lines-per-finding] 
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          790┆ for (uint256 i = 0; i < marketIndexes.length; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          790┆ for (uint256 i = 0; i < marketIndexes.length; i++) {
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          795┆ userIndexOfLastClaimedReward[marketIndexes[i]][user] = latestRewardIndex[marketIndexes[i]];
+            ⋮┆----------------------------------------
+          795┆ userIndexOfLastClaimedReward[marketIndexes[i]][user] = latestRewardIndex[marketIndexes[i]];
+   
+     ❱ solidity.performance.use-nested-if
+          Using nested is cheaper than using && multiple check combinations.  There are more advantages, such
+          as easier to read code and better coverage reports.                                                
+                                                                                                             
+          858┆ if (
+          859┆   userIndexOfLastClaimedReward[marketIndex][user] != 0 &&
+          860┆   userIndexOfLastClaimedReward[marketIndex][user] < latestRewardIndex[marketIndex]
+          861┆ ) {
+          862┆   _mintAccumulatedFloat(marketIndex, user);
+          863┆ }
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          885┆ require(userAmountStaked[token][msg.sender] >= amountSyntheticTokensToShift, "Not enough
+               tokens to shift");                                                                      
+   
+     ❱ solidity.performance.use-nested-if
+          Using nested is cheaper than using && multiple check combinations.  There are more advantages, such
+          as easier to read code and better coverage reports.                                                
+                                                                                                             
+          889┆ if (
+          890┆   userNextPrice_stakedSyntheticTokenShiftIndex[marketIndex][msg.sender] != 0 &&
+          891┆   userNextPrice_stakedSyntheticTokenShiftIndex[marketIndex][msg.sender] <
+          892┆   batched_stakerNextTokenShiftIndex[marketIndex]
+          893┆ ) {
+          894┆   _mintAccumulatedFloat(marketIndex, msg.sender);
+          895┆ }
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          930┆ require(userAmountStaked[token][msg.sender] > 0, "nothing to withdraw");
+            ⋮┆----------------------------------------
+          962┆ require(
+          963┆   userAmountStaked[token][msg.sender] >= amountToShiftForThisToken,
+          964┆   "Outstanding next price stake shifts too great"
+          965┆ );
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          962┆ require(
+          963┆   userAmountStaked[token][msg.sender] >= amountToShiftForThisToken,
+          964┆   "Outstanding next price stake shifts too great"
+          965┆ );
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+          982┆ _withdraw(marketIndex, token, userAmountStaked[token][msg.sender] -
+               amountToShiftForThisToken);                                        
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 25 (25 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 25 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

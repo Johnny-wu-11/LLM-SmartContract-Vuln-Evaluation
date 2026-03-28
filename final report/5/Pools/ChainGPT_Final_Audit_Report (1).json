@@ -1,0 +1,24 @@
+{
+  "title": "ChainGPT Final Audit Report",
+  "tool": "ChainGPT",
+  "status": "Completed",
+  "reduction_summary": {
+    "original_findings": 0,
+    "retained_findings_after_ai_review": 5,
+    "filtered_findings": 0,
+    "filtering_rate": "0.00%"
+  },
+  "adjudication_summary": "Access control and reentrancy vulnerabilities are confirmed due to their potential impact and typical behavior in smart contracts. Other findings are identified as plausible but require further validation.",
+  "findings": {
+    "confirmed": [
+      "Missing Access Control on Sensitive Functions",
+      "Potential Reentrancy Vulnerability"
+    ],
+    "plausible_but_unverified": [
+      "Lack of Reinitialization Protection",
+      "Potential Issue with Token Address Checks",
+      "Unauthorized Access to `sync` Function"
+    ],
+    "unsupported_or_false_positive": []
+  }
+}

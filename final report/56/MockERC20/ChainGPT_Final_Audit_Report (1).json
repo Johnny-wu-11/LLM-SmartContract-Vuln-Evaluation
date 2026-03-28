@@ -1,0 +1,25 @@
+{
+  "title": "ChainGPT Final Audit Report",
+  "tool": "ChainGPT",
+  "status": "Completed",
+  "reduction_summary": {
+    "original_findings": 0,
+    "retained_findings_after_ai_review": 6,
+    "filtered_findings": 0,
+    "filtering_rate": "0.00%"
+  },
+  "adjudication_summary": "The findings have varying degrees of verification. Some pose clear security risks and are confirmed, while others require further analysis to verify potential issues.",
+  "findings": {
+    "confirmed": [
+      "Unbounded Minting",
+      "Lack of Access Control for `burnFrom`",
+      "Denial of Service via `transferOwnership`"
+    ],
+    "plausible_but_unverified": [
+      "Integer Overflow/Underflow",
+      "Reentrancy Vulnerability",
+      "Lack of Input Validation"
+    ],
+    "unsupported_or_false_positive": []
+  }
+}

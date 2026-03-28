@@ -1,0 +1,17 @@
+A new version of Solhint is available: 6.1.0
+Please consider updating your Solhint package.
+/sb/Treasury_v0.sol:3:1: Compiler version 0.8.3 does not satisfy the ^0.8.24 semver requirement [Error/compiler-version]
+/sb/Treasury_v0.sol:5:1: global import of path @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/Treasury_v0.sol:5:1: Import in /sb/Treasury_v0.sol doesn't exist in: @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol [Warning/import-path-check]
+/sb/Treasury_v0.sol:8:1: Missing @author tag in contract 'Treasury_v0' [Warning/use-natspec]
+/sb/Treasury_v0.sol:8:1: Missing @notice tag in contract 'Treasury_v0' [Warning/use-natspec]
+/sb/Treasury_v0.sol:8:1: Contract, Structs and Enums should be in CapWords [Warning/contract-name-capwords]
+/sb/Treasury_v0.sol:9:3: Missing @notice tag in variable 'admin' [Warning/use-natspec]
+/sb/Treasury_v0.sol:24:3: Missing @notice tag in function 'initialize' [Warning/use-natspec]
+/sb/Treasury_v0.sol:24:3: Missing @param tag in function 'initialize' [Warning/use-natspec]
+/sb/Treasury_v0.sol:24:3: Mismatch in @param names for function 'initialize'. Expected: [_admin], Found: [] [Warning/use-natspec]
+/sb/Treasury_v0.sol:32:3: Missing @notice tag in function 'changeAdmin' [Warning/use-natspec]
+/sb/Treasury_v0.sol:32:3: Missing @param tag in function 'changeAdmin' [Warning/use-natspec]
+/sb/Treasury_v0.sol:32:3: Mismatch in @param names for function 'changeAdmin'. Expected: [_admin], Found: [] [Warning/use-natspec]
+
+13 problem/s (1 error/s, 12 warning/s)

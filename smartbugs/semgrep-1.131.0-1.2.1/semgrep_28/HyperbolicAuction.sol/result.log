@@ -1,0 +1,513 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 75 Code Findings │
+└──────────────────┘
+                             
+    /sb/HyperbolicAuction.sol
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          152┆ require(_startTime < 10000000000, "HyperbolicAuction: enter an unix timestamp in seconds,
+               not miliseconds");                                                                       
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          152┆ require(_startTime < 10000000000, "HyperbolicAuction: enter an unix timestamp in seconds,
+               not miliseconds");                                                                       
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          153┆ require(_endTime < 10000000000, "HyperbolicAuction: enter an unix timestamp in seconds, not
+               miliseconds");                                                                             
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          153┆ require(_endTime < 10000000000, "HyperbolicAuction: enter an unix timestamp in seconds, not
+               miliseconds");                                                                             
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          154┆ require(_startTime >= block.timestamp, "HyperbolicAuction: start time is before current
+               time");                                                                                
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          154┆ require(_startTime >= block.timestamp, "HyperbolicAuction: start time is before current
+               time");                                                                                
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          155┆ require(_totalTokens > 0,"HyperbolicAuction: total tokens must be greater than zero");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          155┆ require(_totalTokens > 0,"HyperbolicAuction: total tokens must be greater than zero");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          156┆ require(_endTime > _startTime, "HyperbolicAuction: end time must be older than start
+               time");                                                                             
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          156┆ require(_endTime > _startTime, "HyperbolicAuction: end time must be older than start
+               time");                                                                             
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          157┆ require(_minimumPrice > 0, "HyperbolicAuction: minimum price must be greater than 0");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          157┆ require(_minimumPrice > 0, "HyperbolicAuction: minimum price must be greater than 0");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          158┆ require(_wallet != address(0), "HyperbolicAuction: wallet is the zero address");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          158┆ require(_wallet != address(0), "HyperbolicAuction: wallet is the zero address");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          159┆ require(_admin != address(0), "HyperbolicAuction: admin is the zero address");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          159┆ require(_admin != address(0), "HyperbolicAuction: admin is the zero address");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          160┆ require(_token != address(0), "HyperbolicAuction: token is the zero address");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          160┆ require(_token != address(0), "HyperbolicAuction: token is the zero address");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          161┆ require(IERC20(_token).decimals() == 18, "HyperbolicAuction: Token does not have 18
+               decimals");                                                                        
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          161┆ require(IERC20(_token).decimals() == 18, "HyperbolicAuction: Token does not have 18
+               decimals");                                                                        
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          163┆ require(IERC20(_paymentCurrency).decimals() > 0, "HyperbolicAuction: Payment currency is
+               not ERC20");                                                                            
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          163┆ require(IERC20(_paymentCurrency).decimals() > 0, "HyperbolicAuction: Payment currency is
+               not ERC20");                                                                            
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+          181┆ uint256 _duration = _endTime - _startTime;
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          258┆ revert("No agreement provided, please review the smart contract before interacting with
+               it");                                                                                  
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          258┆ revert("No agreement provided, please review the smart contract before interacting with
+               it");                                                                                  
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          271┆ require(paymentCurrency == ETH_ADDRESS, "HyperbolicAuction: payment currency is not ETH
+               address");                                                                             
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          271┆ require(paymentCurrency == ETH_ADDRESS, "HyperbolicAuction: payment currency is not ETH
+               address");                                                                             
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          276┆ require(msg.value > 0, "HyperbolicAuction: Value must be higher than 0");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          276┆ require(msg.value > 0, "HyperbolicAuction: Value must be higher than 0");
+   
+   ❯❯❱ solidity.security.msg-value-multicall
+          commitEth with constant msg.value can be called multiple times
+                                                                        
+          276┆ require(msg.value > 0, "HyperbolicAuction: Value must be higher than 0");
+            ⋮┆----------------------------------------
+          277┆ uint256 ethToTransfer = calculateCommitment(msg.value);
+            ⋮┆----------------------------------------
+          280┆ uint256 ethToRefund = msg.value.sub(ethToTransfer);
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          290┆ require(marketStatus.commitmentsTotal <= address(this).balance, "DutchAuction: The
+               committed ETH exceeds the balance");                                              
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          290┆ require(marketStatus.commitmentsTotal <= address(this).balance, "DutchAuction: The
+               committed ETH exceeds the balance");                                              
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          309┆ require(paymentCurrency != ETH_ADDRESS, "HyperbolicAuction: payment currency is not a
+               token");                                                                             
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          309┆ require(paymentCurrency != ETH_ADDRESS, "HyperbolicAuction: payment currency is not a
+               token");                                                                             
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          348┆ require(block.timestamp >= uint256(marketInfo.startTime) && block.timestamp <=
+               uint256(marketInfo.endTime), "HyperbolicAuction: outside auction hours");     
+   
+     ❱ solidity.performance.use-multiple-require
+          Using multiple require statements is cheaper than using && multiple check combinations.  There are
+          more advantages, such as easier to read code and better coverage reports.                         
+                                                                                                            
+          348┆ require(block.timestamp >= uint256(marketInfo.startTime) && block.timestamp <=
+               uint256(marketInfo.endTime), "HyperbolicAuction: outside auction hours");     
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          348┆ require(block.timestamp >= uint256(marketInfo.startTime) && block.timestamp <=
+               uint256(marketInfo.endTime), "HyperbolicAuction: outside auction hours");     
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          350┆ require(!status.finalized, "HyperbolicAuction: auction already finalized");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          350┆ require(!status.finalized, "HyperbolicAuction: auction already finalized");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          404┆ require(hasAdminRole(msg.sender)
+          405┆         || wallet == msg.sender
+          406┆         || hasSmartContractRole(msg.sender)
+          407┆         || finalizeTimeExpired(), "HyperbolicAuction: sender must be an admin");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          404┆ require(hasAdminRole(msg.sender)
+          405┆         || wallet == msg.sender
+          406┆         || hasSmartContractRole(msg.sender)
+          407┆         || finalizeTimeExpired(), "HyperbolicAuction: sender must be an admin");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          411┆ require(!status.finalized, "HyperbolicAuction: auction already finalized");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          411┆ require(!status.finalized, "HyperbolicAuction: auction already finalized");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          419┆ require(block.timestamp > uint256(info.endTime), "HyperbolicAuction: auction has not
+               finished yet");                                                                     
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          419┆ require(block.timestamp > uint256(info.endTime), "HyperbolicAuction: auction has not
+               finished yet");                                                                     
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          434┆ require(!status.finalized, "HyperbolicAuction: auction already finalized");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          434┆ require(!status.finalized, "HyperbolicAuction: auction already finalized");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          435┆ require( uint256(status.commitmentsTotal) == 0, "HyperbolicAuction: auction already
+               committed" );                                                                      
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          435┆ require( uint256(status.commitmentsTotal) == 0, "HyperbolicAuction: auction already
+               committed" );                                                                      
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          470┆ require(marketStatus.finalized, "HyperbolicAuction: not finalized");
+            ⋮┆----------------------------------------
+          473┆ require(tokensToClaim > 0, "HyperbolicAuction: no tokens to claim");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          473┆ require(tokensToClaim > 0, "HyperbolicAuction: no tokens to claim");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          480┆ require(block.timestamp > uint256(marketInfo.endTime), "HyperbolicAuction: auction has not
+               finished yet");                                                                           
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          480┆ require(block.timestamp > uint256(marketInfo.endTime), "HyperbolicAuction: auction has not
+               finished yet");                                                                           
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          500┆ for (uint256 i = 0; i < numDocs; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          500┆ for (uint256 i = 0; i < numDocs; i++) {
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          544┆ require(_startTime < 10000000000, "HyperbolicAuction: enter an unix timestamp in seconds,
+               not miliseconds");                                                                       
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          544┆ require(_startTime < 10000000000, "HyperbolicAuction: enter an unix timestamp in seconds,
+               not miliseconds");                                                                       
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          545┆ require(_endTime < 10000000000, "HyperbolicAuction: enter an unix timestamp in seconds, not
+               miliseconds");                                                                             
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          545┆ require(_endTime < 10000000000, "HyperbolicAuction: enter an unix timestamp in seconds, not
+               miliseconds");                                                                             
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          546┆ require(_startTime >= block.timestamp, "HyperbolicAuction: start time is before current
+               time");                                                                                
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          546┆ require(_startTime >= block.timestamp, "HyperbolicAuction: start time is before current
+               time");                                                                                
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          547┆ require(_endTime > _startTime, "HyperbolicAuction: end time must be older than start
+               price");                                                                            
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          547┆ require(_endTime > _startTime, "HyperbolicAuction: end time must be older than start
+               price");                                                                            
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          548┆ require(marketStatus.commitmentsTotal == 0, "HyperbolicAuction: auction cannot have already
+               started");                                                                                 
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          548┆ require(marketStatus.commitmentsTotal == 0, "HyperbolicAuction: auction cannot have already
+               started");                                                                                 
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+          553┆ uint64 _duration = marketInfo.endTime - marketInfo.startTime;
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          566┆ require(_minimumPrice > 0, "HyperbolicAuction: minimum price must be greater than 0");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          566┆ require(_minimumPrice > 0, "HyperbolicAuction: minimum price must be greater than 0");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          567┆ require(marketStatus.commitmentsTotal == 0, "HyperbolicAuction: auction cannot have already
+               started");                                                                                 
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          567┆ require(marketStatus.commitmentsTotal == 0, "HyperbolicAuction: auction cannot have already
+               started");                                                                                 
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          584┆ require(_wallet != address(0), "HyperbolicAuction: wallet is the zero address");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          584┆ require(_wallet != address(0), "HyperbolicAuction: wallet is the zero address");
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 75 (75 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 75 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading
+
+📢 Too many findings? Try Semgrep Pro for more powerful queries and less noise.
+   See https://sg.run/false-positives.

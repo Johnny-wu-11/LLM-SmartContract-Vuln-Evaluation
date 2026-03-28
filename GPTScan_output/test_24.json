@@ -1,0 +1,115 @@
+{
+    "version": "1.1.0",
+    "success": true,
+    "message": null,
+    "results": [
+        {
+            "code": "price-manipulation",
+            "severity": "HIGH",
+            "title": "MWE-200: Insecure LP Token Value Calculation",
+            "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+            "recommendation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/24/swappable-yield-source/contracts/SwappableYieldSource.sol",
+                    "range": {
+                        "start": {
+                            "line": 148
+                        },
+                        "end": {
+                            "line": 162
+                        }
+                    },
+                    "highlights": []
+                },
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/24/in_scope/SwappableYieldSource.sol",
+                    "range": {
+                        "start": {
+                            "line": 186
+                        },
+                        "end": {
+                            "line": 192
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        },
+        {
+            "code": "price-manipulation",
+            "severity": "HIGH",
+            "title": "MWE-200: Insecure LP Token Value Calculation",
+            "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+            "recommendation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/24/swappable-yield-source/contracts/SwappableYieldSource.sol",
+                    "range": {
+                        "start": {
+                            "line": 167
+                        },
+                        "end": {
+                            "line": 180
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        },
+        {
+            "code": "price-manipulation",
+            "severity": "HIGH",
+            "title": "MWE-200: Insecure LP Token Value Calculation",
+            "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+            "recommendation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/24/in_scope/SwappableYieldSource.sol",
+                    "range": {
+                        "start": {
+                            "line": 148
+                        },
+                        "end": {
+                            "line": 162
+                        }
+                    },
+                    "highlights": []
+                },
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/24/in_scope/SwappableYieldSource.sol",
+                    "range": {
+                        "start": {
+                            "line": 186
+                        },
+                        "end": {
+                            "line": 192
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        },
+        {
+            "code": "price-manipulation",
+            "severity": "HIGH",
+            "title": "MWE-200: Insecure LP Token Value Calculation",
+            "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+            "recommendation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/24/in_scope/SwappableYieldSource.sol",
+                    "range": {
+                        "start": {
+                            "line": 167
+                        },
+                        "end": {
+                            "line": 180
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        }
+    ]
+}

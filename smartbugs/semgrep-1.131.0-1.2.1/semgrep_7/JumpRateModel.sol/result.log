@@ -1,0 +1,42 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                  
+                  
+┌────────────────┐
+│ 1 Code Finding │
+└────────────────┘
+                         
+    /sb/JumpRateModel.sol
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           49┆ constructor(uint baseRatePerYear, uint multiplierPerYear, uint jumpMultiplierPerYear, uint
+               kink_) public {                                                                           
+           50┆     baseRatePerBlock = baseRatePerYear.div(blocksPerYear);
+           51┆     multiplierPerBlock = multiplierPerYear.div(blocksPerYear);
+           52┆     jumpMultiplierPerBlock = jumpMultiplierPerYear.div(blocksPerYear);
+           53┆     kink = kink_;
+           54┆
+           55┆     emit NewInterestParams(baseRatePerBlock, multiplierPerBlock, jumpMultiplierPerBlock,
+               kink);                                                                                  
+           56┆ }
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 1 (1 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 1 finding.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

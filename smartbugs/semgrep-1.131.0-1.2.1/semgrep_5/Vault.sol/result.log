@@ -1,0 +1,61 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                   
+                   
+┌─────────────────┐
+│ 7 Code Findings │
+└─────────────────┘
+                 
+    /sb/Vault.sol
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           39┆ require(msg.sender == DAO(), "Not DAO");
+   
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           43┆ constructor(){}
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           69┆ require((block.timestamp - lastGranted) >= minGrantTime, "not too fast");
+            ⋮┆----------------------------------------
+           82┆ require((iFACTORY(FACTORY).isSynth(synth)), "Not Synth"); // Only Synths
+   
+     ❱ solidity.performance.inefficient-state-variable-increment
+          <x> += <y> costs more gas than <x> = <x> + <y> for state variables.
+                                                                             
+           94┆ totalWeight += _weight;                                             // Total weight
+            ⋮┆----------------------------------------
+          118┆ totalWeight += _weight;
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          157┆ require((block.timestamp - mapMemberSynth_lastTime[_member][_synth]) >= minimumDepositTime,
+               "DepositTime");    // stops attacks                                                        
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 7 (7 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 7 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

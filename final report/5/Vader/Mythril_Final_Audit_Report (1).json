@@ -1,0 +1,20 @@
+{
+  "title": "Mythril Final Audit Report",
+  "tool": "Mythril",
+  "status": "Completed",
+  "reduction_summary": {
+    "original_findings": 0,
+    "retained_findings_after_ai_review": 0,
+    "filtered_findings": 0,
+    "filtering_rate": "0.00%"
+  },
+  "adjudication_summary": "No findings reported by Mythril.",
+  "engine_error": null,
+  "findings": {
+    "confirmed": [],
+    "plausible_but_unverified": [],
+    "unsupported_or_false_positive": []
+  },
+  "raw_findings_count": 0,
+  "raw_findings_preserved": true
+}

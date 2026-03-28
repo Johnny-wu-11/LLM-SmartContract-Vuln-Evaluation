@@ -1,0 +1,25 @@
+{
+  "title": "ChainGPT Final Audit Report",
+  "tool": "ChainGPT",
+  "status": "Completed",
+  "reduction_summary": {
+    "original_findings": 0,
+    "retained_findings_after_ai_review": 5,
+    "filtered_findings": 0,
+    "filtering_rate": "0.00%"
+  },
+  "adjudication_summary": "Reviewed the retained findings and classified them based on the provided details.",
+  "findings": {
+    "confirmed": [
+      "Source Management",
+      "Denial of Service (DoS)"
+    ],
+    "plausible_but_unverified": [
+      "Role Locking",
+      "Price Calculation"
+    ],
+    "unsupported_or_false_positive": [
+      "Input Validation"
+    ]
+  }
+}

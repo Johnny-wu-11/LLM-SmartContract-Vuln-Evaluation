@@ -1,0 +1,16 @@
+{
+    "tool":  "mythril",
+    "contract":  "Visor.sol",
+    "source":  "C:\\Users\\ASUS\\Desktop\\blockchain\\Web3Bugs-main\\contracts\\10\\contracts\\contracts\\visor\\Visor.sol",
+    "working_copy":  "C:\\Users\\ASUS\\Desktop\\blockchain\\help\\mythril_tmp\\visor\\contracts\\visor\\Visor.sol",
+    "docker_image":  "mythril/myth:latest",
+    "command":  "docker run --rm -v C:\\Users\\ASUS\\Desktop\\blockchain\\help\\mythril_tmp\\visor:/src -w /src mythril/myth:latest analyze contracts/visor/Visor.sol --solv 0.7.6 --solc-args \"--allow-paths /src\" --execution-timeout 180 --solver-timeout 10000 --create-timeout 90 --parallel-solving -o jsonv2",
+    "exit_code":  1,
+    "issue_count":  4,
+    "status":  "completed_with_findings",
+    "notes":  [
+                  "Analysis executed against a temporary local working copy to satisfy missing imports and local compiler compatibility.",
+                  "Original source file was not modified.",
+                  "Temporary dependency shims were used for OpenZeppelin and Uniswap imports required for compilation."
+              ]
+}

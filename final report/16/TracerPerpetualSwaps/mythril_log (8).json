@@ -1,0 +1,63 @@
+{
+  "tool": "Mythril",
+  "file_name": "TracerPerpetualSwaps.sol",
+  "status": "success",
+  "error": null,
+  "issues": [],
+  "raw_output": {
+    "args": [
+      "mythril/myth",
+      "analyze",
+      "/work/tmpgiumec7b.sol:TracerPerpetualSwaps",
+      "-o",
+      "json",
+      "--execution-timeout",
+      "30",
+      "--create-timeout",
+      "15",
+      "--solver-timeout",
+      "10000",
+      "--max-depth",
+      "12",
+      "--transaction-count",
+      "1",
+      "--no-onchain-data"
+    ],
+    "availableContractNames": [
+      "is",
+      "Context",
+      "Ownable",
+      "setting",
+      "without",
+      "to",
+      "SafetyWithdraw",
+      "LibMath",
+      "PRBMathCommon",
+      "library",
+      "PRBMathUD60x18",
+      "Perpetuals",
+      "PRBMathSD59x18",
+      "Prices",
+      "Balances",
+      "TracerPerpetualSwaps",
+      "implementing",
+      "tracerQuoteToken",
+      "must",
+      "make",
+      "can"
+    ],
+    "data": {
+      "error": null,
+      "issues": [],
+      "success": true
+    },
+    "durationSec": 11.66,
+    "requestedContractName": "TracerPerpetualSwaps",
+    "returncode": 0,
+    "selectedContractName": "TracerPerpetualSwaps",
+    "status": "success",
+    "stderr": "",
+    "tool": "Mythril"
+  },
+  "timestamp": "2026-03-27T12:22:30.090Z"
+}

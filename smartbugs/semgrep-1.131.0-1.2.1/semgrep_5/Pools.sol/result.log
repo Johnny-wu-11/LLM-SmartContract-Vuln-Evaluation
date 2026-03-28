@@ -1,0 +1,85 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 13 Code Findings │
+└──────────────────┘
+                 
+    /sb/Pools.sol
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           40┆ constructor() {}
+   
+     ❱ solidity.performance.use-multiple-require
+          Using multiple require statements is cheaper than using && multiple check combinations.  There are
+          more advantages, such as easier to read code and better coverage reports.                         
+                                                                                                            
+           55┆ require(token != USDV && token != VADER); // Prohibited
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+          107┆ mapToken_baseAmount[token] -= outputAmount;
+            ⋮┆----------------------------------------
+          115┆ mapToken_tokenAmount[token] -= outputAmount;
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          144┆ require(iFACTORY(FACTORY).isSynth(getSynth(token)), "!synth");
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+          159┆ mapTokenMember_Units[token][address(this)] -= _unitsToDelete;               // Delete units
+               for self                                                                                   
+            ⋮┆----------------------------------------
+          160┆ mapToken_Units[token] -= _unitsToDelete;                                    // Delete units
+            ⋮┆----------------------------------------
+          162┆ mapToken_baseAmount[token] -= outputBase;                                   // Remove BASE
+            ⋮┆----------------------------------------
+          171┆ mapTokenMember_Units[token][address(this)] -= _unitsToDelete;               // Delete units
+               for self                                                                                   
+            ⋮┆----------------------------------------
+          172┆ mapToken_Units[token] -= _unitsToDelete;                                    // Delete units
+            ⋮┆----------------------------------------
+          180┆ mapTokenMember_Units[token][member] -= units;
+            ⋮┆----------------------------------------
+          185┆ mapTokenMember_Units[token][msg.sender] -= units;
+   
+     ❱ solidity.performance.use-nested-if
+          Using nested is cheaper than using && multiple check combinations.  There are more advantages, such
+          as easier to read code and better coverage reports.                                                
+                                                                                                             
+          194┆ if(_token == VADER && _pool != VADER){  // Want to know added VADER
+          195┆     addedAmount = _balance - pooledVADER;
+          196┆     pooledVADER = pooledVADER + addedAmount;
+          197┆ } else if(_token == USDV) {             // Want to know added USDV
+          198┆     addedAmount = _balance - pooledUSDV;
+          199┆     pooledUSDV = pooledUSDV + addedAmount;
+          200┆ } else {                                // Want to know added Asset/Anchor
+          201┆     addedAmount = _balance - mapToken_tokenAmount[_pool];
+          202┆ }
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 13 (13 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 13 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

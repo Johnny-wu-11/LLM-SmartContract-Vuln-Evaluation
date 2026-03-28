@@ -1,0 +1,25 @@
+{
+  "title": "ChainGPT Final Audit Report",
+  "tool": "ChainGPT",
+  "status": "Completed",
+  "reduction_summary": {
+    "original_findings": 0,
+    "retained_findings_after_ai_review": 6,
+    "filtered_findings": 0,
+    "filtering_rate": "0.00%"
+  },
+  "adjudication_summary": "Confirmed issues related to unchecked external calls and allowance handling. Other findings are plausible but require further verification.",
+  "findings": {
+    "confirmed": [
+      "Unchecked External Call",
+      "Handling of Allowance"
+    ],
+    "plausible_but_unverified": [
+      "Reentrancy Protection",
+      "Gas Limit and Block Gas Limit",
+      "Minimum Amount Received Check",
+      "Access Control"
+    ],
+    "unsupported_or_false_positive": []
+  }
+}

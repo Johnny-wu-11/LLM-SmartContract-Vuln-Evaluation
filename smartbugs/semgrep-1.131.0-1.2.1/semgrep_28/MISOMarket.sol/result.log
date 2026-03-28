@@ -1,0 +1,308 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 40 Code Findings │
+└──────────────────┘
+                      
+    /sb/MISOMarket.sol
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+          117┆ constructor() public {
+          118┆ }
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          128┆ require(_accessControls != address(0), "initMISOMarket: accessControls cannot be set to
+               zero");                                                                                
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          128┆ require(_accessControls != address(0), "initMISOMarket: accessControls cannot be set to
+               zero");                                                                                
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          129┆ require(_bentoBox != address(0), "initMISOMarket: bentoBox cannot be set to zero");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          129┆ require(_bentoBox != address(0), "initMISOMarket: bentoBox cannot be set to zero");
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          135┆ for(uint i = 0; i < _templates.length; i++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          135┆ for(uint i = 0; i < _templates.length; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          135┆ for(uint i = 0; i < _templates.length; i++) {
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          148┆ require(
+          149┆     accessControls.hasAdminRole(msg.sender),
+          150┆     "MISOMarket: Sender must be operator"
+          151┆ );
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          148┆ require(
+          149┆     accessControls.hasAdminRole(msg.sender),
+          150┆     "MISOMarket: Sender must be operator"
+          151┆ );
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          160┆ require(
+          161┆     accessControls.hasAdminRole(msg.sender),
+          162┆     "MISOMarket: Sender must be admin"
+          163┆ );
+            ⋮┆----------------------------------------
+          173┆ require(
+          174┆     accessControls.hasAdminRole(msg.sender),
+          175┆     "MISOMarket: Sender must be operator"
+          176┆ );
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          173┆ require(
+          174┆     accessControls.hasAdminRole(msg.sender),
+          175┆     "MISOMarket: Sender must be operator"
+          176┆ );
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          178┆ require(_amount <= 1000, "MISOMarket: Percentage is out of 1000");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          178┆ require(_amount <= 1000, "MISOMarket: Percentage is out of 1000");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          187┆ require(accessControls.hasAdminRole(msg.sender), "MISOMarket.setDev: Sender must be
+               operator");                                                                        
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          187┆ require(accessControls.hasAdminRole(msg.sender), "MISOMarket.setDev: Sender must be
+               operator");                                                                        
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          198┆ require(
+          199┆     accessControls.hasAdminRole(msg.sender),
+          200┆     "MISOMarket: Sender must be admin"
+          201┆ );
+            ⋮┆----------------------------------------
+          202┆ require(auctionTemplates[_templateId] != address(0), "MISOMarket: incorrect _templateId");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          202┆ require(auctionTemplates[_templateId] != address(0), "MISOMarket: incorrect _templateId");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          203┆ require(IMisoMarket(auctionTemplates[_templateId]).marketTemplate() == _templateType,
+               "MISOMarket: incorrect _templateType");                                              
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          203┆ require(IMisoMarket(auctionTemplates[_templateId]).marketTemplate() == _templateType,
+               "MISOMarket: incorrect _templateType");                                              
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          232┆ require(accessControls.hasAdminRole(msg.sender)
+          233┆         || accessControls.hasMinterRole(msg.sender)
+          234┆         || hasMarketMinterRole(msg.sender),
+          235┆     "MISOMarket: Sender must be minter if locked"
+          236┆ );
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          232┆ require(accessControls.hasAdminRole(msg.sender)
+          233┆         || accessControls.hasMinterRole(msg.sender)
+          234┆         || hasMarketMinterRole(msg.sender),
+          235┆     "MISOMarket: Sender must be minter if locked"
+          236┆ );
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          241┆ require(msg.value >= uint256(_marketFees.minimumFee), "MISOMarket: Failed to transfer
+               minimumFee");                                                                        
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          241┆ require(msg.value >= uint256(_marketFees.minimumFee), "MISOMarket: Failed to transfer
+               minimumFee");                                                                        
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          242┆ require(auctionTemplate != address(0), "MISOMarket: Auction template doesn't exist");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          242┆ require(auctionTemplate != address(0), "MISOMarket: Auction template doesn't exist");
+   
+     ❱ solidity.performance.use-nested-if
+          Using nested is cheaper than using && multiple check combinations.  There are more advantages, such
+          as easier to read code and better coverage reports.                                                
+                                                                                                             
+          245┆ if (_integratorFeeAccount != address(0) && _integratorFeeAccount != misoDiv) {
+          246┆     integratorFee = misoFee * uint256(_marketFees.integratorFeePct) / 1000;
+          247┆     misoFee = misoFee - integratorFee;
+          248┆ }
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          285┆ require(IERC20(_token).approve(newMarket, _tokenSupply), "1");
+            ⋮┆----------------------------------------
+          304┆ require(
+          305┆     accessControls.hasAdminRole(msg.sender) ||
+          306┆     accessControls.hasOperatorRole(msg.sender),
+          307┆     "MISOMarket: Sender must be operator"
+          308┆ );
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          304┆ require(
+          305┆     accessControls.hasAdminRole(msg.sender) ||
+          306┆     accessControls.hasOperatorRole(msg.sender),
+          307┆     "MISOMarket: Sender must be operator"
+          308┆ );
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          318┆ require(
+          319┆     accessControls.hasAdminRole(msg.sender) ||
+          320┆     accessControls.hasOperatorRole(msg.sender),
+          321┆     "MISOMarket: Sender must be operator"
+          322┆ );
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          318┆ require(
+          319┆     accessControls.hasAdminRole(msg.sender) ||
+          320┆     accessControls.hasOperatorRole(msg.sender),
+          321┆     "MISOMarket: Sender must be operator"
+          322┆ );
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          338┆ require(_template != address(0), "MISOMarket: Incorrect template");
+            ⋮┆----------------------------------------
+          339┆ require(auctionTemplateToId[_template] == 0, "MISOMarket: Template already added");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          339┆ require(auctionTemplateToId[_template] == 0, "MISOMarket: Template already added");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          341┆ require(templateType > 0, "MISOMarket: Incorrect template code ");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          341┆ require(templateType > 0, "MISOMarket: Incorrect template code ");
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          342┆ auctionTemplateId++;
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 40 (40 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 40 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading
+
+📢 Too many findings? Try Semgrep Pro for more powerful queries and less noise.
+   See https://sg.run/false-positives.

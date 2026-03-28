@@ -1,0 +1,28 @@
+A new version of Solhint is available: 6.1.0
+Please consider updating your Solhint package.
+/sb/YieldSourcePrizePool.sol:3:1: Compiler version >=0.6.0 <0.7.0 does not satisfy the ^0.8.24 semver requirement [Error/compiler-version]
+/sb/YieldSourcePrizePool.sol:5:1: global import of path @openzeppelin/contracts-upgradeable/token/ERC20/IERC20Upgradeable.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/YieldSourcePrizePool.sol:5:1: Import in /sb/YieldSourcePrizePool.sol doesn't exist in: @openzeppelin/contracts-upgradeable/token/ERC20/IERC20Upgradeable.sol [Warning/import-path-check]
+/sb/YieldSourcePrizePool.sol:6:1: global import of path @openzeppelin/contracts-upgradeable/token/ERC20/SafeERC20Upgradeable.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/YieldSourcePrizePool.sol:6:1: Import in /sb/YieldSourcePrizePool.sol doesn't exist in: @openzeppelin/contracts-upgradeable/token/ERC20/SafeERC20Upgradeable.sol [Warning/import-path-check]
+/sb/YieldSourcePrizePool.sol:7:1: global import of path @pooltogether/yield-source-interface/contracts/IYieldSource.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/YieldSourcePrizePool.sol:7:1: Import in /sb/YieldSourcePrizePool.sol doesn't exist in: @pooltogether/yield-source-interface/contracts/IYieldSource.sol [Warning/import-path-check]
+/sb/YieldSourcePrizePool.sol:9:1: global import of path ../PrizePool.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/YieldSourcePrizePool.sol:9:1: Import in /sb/YieldSourcePrizePool.sol doesn't exist in: ../PrizePool.sol [Warning/import-path-check]
+/sb/YieldSourcePrizePool.sol:11:1: Missing @title tag in contract 'YieldSourcePrizePool' [Warning/use-natspec]
+/sb/YieldSourcePrizePool.sol:11:1: Missing @author tag in contract 'YieldSourcePrizePool' [Warning/use-natspec]
+/sb/YieldSourcePrizePool.sol:11:1: Missing @notice tag in contract 'YieldSourcePrizePool' [Warning/use-natspec]
+/sb/YieldSourcePrizePool.sol:15:3: Missing @notice tag in variable 'yieldSource' [Warning/use-natspec]
+/sb/YieldSourcePrizePool.sol:17:3: Missing @notice tag in event 'YieldSourcePrizePoolInitialized' [Warning/use-natspec]
+/sb/YieldSourcePrizePool.sol:17:3: Missing @param tag in event 'YieldSourcePrizePoolInitialized' [Warning/use-natspec]
+/sb/YieldSourcePrizePool.sol:17:3: Mismatch in @param names for event 'YieldSourcePrizePoolInitialized'. Expected: [yieldSource], Found: [] [Warning/use-natspec]
+/sb/YieldSourcePrizePool.sol:24:3: Mismatch in @param names for function 'initializeYieldSourcePrizePool'. Expected: [_reserveRegistry, _controlledTokens, _maxExitFeeMantissa, _maxTimelockDuration, _yieldSource], Found: [_controlledTokens, _maxExitFeeMantissa, _maxTimelockDuration, _yieldSource] [Warning/use-natspec]
+/sb/YieldSourcePrizePool.sol:34:5: Error message for require is too long: 38 counted / 32 allowed [Warning/reason-string]
+/sb/YieldSourcePrizePool.sol:34:5: GC: String exceeds 32 bytes [Warning/gas-small-strings]
+/sb/YieldSourcePrizePool.sol:45:5: Error message for require is too long: 41 counted / 32 allowed [Warning/reason-string]
+/sb/YieldSourcePrizePool.sol:45:5: GC: String exceeds 32 bytes [Warning/gas-small-strings]
+/sb/YieldSourcePrizePool.sol:65:3: Missing @notice tag in function '_token' [Warning/use-natspec]
+/sb/YieldSourcePrizePool.sol:65:3: Missing @return tag in function '_token' [Warning/use-natspec]
+/sb/YieldSourcePrizePool.sol:65:3: Mismatch in @return count for function '_token'. Expected: 1, Found: 0 [Warning/use-natspec]
+
+24 problem/s (1 error/s, 23 warning/s)

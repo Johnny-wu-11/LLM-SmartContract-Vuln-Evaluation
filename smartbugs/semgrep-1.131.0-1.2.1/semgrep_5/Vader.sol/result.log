@@ -1,0 +1,136 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 17 Code Findings │
+└──────────────────┘
+                 
+    /sb/Vader.sol
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           44┆ require(msg.sender == DAO, "Not DAO");
+            ⋮┆----------------------------------------
+           49┆ require(isMature(), "No flash");
+   
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           58┆ constructor() {
+           59┆     name = 'VADER PROTOCOL TOKEN';
+           60┆     symbol = 'VADER';
+           61┆     decimals = 18;
+           62┆     _1m = 10**6 * 10 ** decimals; //1m
+           63┆     baseline = _1m;
+           64┆     totalSupply = 0;
+           65┆     maxSupply = 2 * _1m;
+           66┆     currentEra = 1;
+           67┆     secondsPerEra = 1; //86400;
+             [hid 5 additional lines, adjust with --max-lines-per-finding] 
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          101┆ require(owner != address(0), "sender");
+            ⋮┆----------------------------------------
+          102┆ require(spender != address(0), "spender");
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+          110┆ _approve(sender, msg.sender, _allowances[sender][msg.sender] - amount);
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          123┆ require(sender != address(0), "sender");
+            ⋮┆----------------------------------------
+          124┆ require(recipient != address(this), "recipient");
+   
+     ❱ solidity.performance.use-nested-if
+          Using nested is cheaper than using && multiple check combinations.  There are more advantages, such
+          as easier to read code and better coverage reports.                                                
+                                                                                                             
+          127┆ if(_fee >= 0 && _fee <= amount){                            // Stops reverts if UTILS
+               corrupted                                                                            
+          128┆     amount -= _fee;
+          129┆     _burn(msg.sender, _fee);
+          130┆ }
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          137┆ require(account != address(0), "recipient");
+   
+     ❱ solidity.performance.inefficient-state-variable-increment
+          <x> += <y> costs more gas than <x> = <x> + <y> for state variables.
+                                                                             
+          141┆ totalSupply += amount;
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+          150┆ uint decreasedAllowance = allowance(account, msg.sender) - amount;
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          155┆ require(account != address(0), "address err");
+            ⋮┆----------------------------------------
+          189┆ require(newUTILS != address(0), "address err");
+            ⋮┆----------------------------------------
+          194┆ require(newDAO != address(0), "address err");
+   
+     ❱ solidity.performance.use-nested-if
+          Using nested is cheaper than using && multiple check combinations.  There are more advantages, such
+          as easier to read code and better coverage reports.                                                
+                                                                                                             
+          205┆ if ((block.timestamp >= nextEraTime) && emitting) {                                // If
+               new Era and allowed to emit                                                             
+          206┆     currentEra += 1;                                                               //
+               Increment Era                                                                        
+          207┆     nextEraTime = block.timestamp + secondsPerEra;                                 // Set
+               next Era time                                                                            
+          208┆     uint _emission = getDailyEmission();                                           // Get
+               Daily Dmission                                                                           
+          209┆     _mint(rewardAddress, _emission);                                               // Mint
+               to the Rewad Address                                                                      
+          210┆     feeOnTransfer = iUTILS(UTILS).getFeeOnTransfer(totalSupply, maxSupply);        //
+               UpdateFeeOnTransfer                                                                  
+          211┆     if(feeOnTransfer > 1000){feeOnTransfer = 1000;}                                // Max
+               10% if UTILS corrupted                                                                   
+          212┆     emit NewEra(currentEra, nextEraTime, _emission);                               // Emit
+               Event                                                                                     
+          213┆ }
+   
+     ❱ solidity.performance.inefficient-state-variable-increment
+          <x> += <y> costs more gas than <x> = <x> + <y> for state variables.
+                                                                             
+          206┆ currentEra += 1;                                                               // Increment
+               Era                                                                                        
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 17 (17 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 17 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

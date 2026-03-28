@@ -1,0 +1,57 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                   
+                   
+┌─────────────────┐
+│ 6 Code Findings │
+└─────────────────┘
+                       
+    /sb/PowerSwitch.sol
+     ❱ solidity.best-practice.use-ownable2step
+          By demanding that the receiver of the owner permissions actively accept via a contract call of its 
+          own,  `Ownable2Step` and `Ownable2StepUpgradeable` prevent the contract ownership from accidentally
+          being transferred  to an address that cannot handle it.                                            
+                                                                                                             
+           40┆ contract PowerSwitch is IPowerSwitch, Ownable {
+   
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           47┆ constructor(address owner) {
+           48┆     // sanity check owner
+           49┆     require(owner != address(0), "PowerSwitch: invalid owner");
+           50┆     // transfer ownership
+           51┆     Ownable.transferOwnership(owner);
+           52┆ }
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           49┆ require(owner != address(0), "PowerSwitch: invalid owner");
+            ⋮┆----------------------------------------
+           62┆ require(_status == IPowerSwitch.State.Offline, "PowerSwitch: cannot power on");
+            ⋮┆----------------------------------------
+           73┆ require(_status == IPowerSwitch.State.Online, "PowerSwitch: cannot power off");
+            ⋮┆----------------------------------------
+           86┆ require(_status != IPowerSwitch.State.Shutdown, "PowerSwitch: cannot shutdown");
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 6 (6 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 6 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

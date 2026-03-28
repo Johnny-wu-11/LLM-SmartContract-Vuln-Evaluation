@@ -1,0 +1,101 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 12 Code Findings │
+└──────────────────┘
+                
+    /sb/USDV.sol
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           32┆ require(msg.sender == DAO(), "Not DAO");
+            ⋮┆----------------------------------------
+           37┆ require(isMature(), "No flash");
+   
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           48┆ constructor() {
+           49┆     name = 'VADER STABLE DOLLAR';
+           50┆     symbol = 'USDV';
+           51┆     decimals = 18;
+           52┆     totalSupply = 0;
+           53┆ }
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           81┆ require(owner != address(0), "sender");
+            ⋮┆----------------------------------------
+           82┆ require(spender != address(0), "spender");
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+           90┆ _approve(sender, msg.sender, _allowances[sender][msg.sender] - amount);
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          104┆ require(sender != address(0), "sender");
+            ⋮┆----------------------------------------
+          114┆ require(account != address(0), "recipient");
+   
+     ❱ solidity.performance.inefficient-state-variable-increment
+          <x> += <y> costs more gas than <x> = <x> + <y> for state variables.
+                                                                             
+          115┆ totalSupply += amount;
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+          125┆ uint decreasedAllowance = allowance(account, msg.sender)- amount;
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          131┆ require(account != address(0), "address err");
+   
+     ❱ solidity.performance.use-nested-if
+          Using nested is cheaper than using && multiple check combinations.  There are more advantages, such
+          as easier to read code and better coverage reports.                                                
+                                                                                                             
+          147┆ if (block.timestamp >= nextEraTime && emitting()) {                 // If new Era
+          148┆     nextEraTime = block.timestamp + iVADER(VADER).secondsPerEra();
+          149┆     uint _balance = iERC20(VADER).balanceOf(address(this));         // Get spare VADER
+          150┆     if(_balance > 4){
+          151┆         uint _USDVShare = _balance/2;                                   // Get 50%
+          152┆         _convert(address(this), _USDVShare);                            // Convert it
+          153┆         if(balanceOf(address(this)) > 2){
+          154┆             _transfer(address(this), ROUTER, balanceOf(address(this)) / 2);              //
+               Send half USDV to ROUTER                                                                   
+          155┆             _transfer(address(this), VAULT, balanceOf(address(this)));                   //
+               Send rest to VAULT                                                                         
+          156┆         }
+             [hid 4 additional lines, adjust with --max-lines-per-finding] 
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 12 (12 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 12 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

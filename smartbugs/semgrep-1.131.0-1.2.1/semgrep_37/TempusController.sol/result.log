@@ -1,0 +1,130 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 21 Code Findings │
+└──────────────────┘
+                            
+    /sb/TempusController.sol
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          281┆ require(swapAmount > 0, "Invalid swap amount.");
+            ⋮┆----------------------------------------
+          408┆ require(yieldTokenAmount > 0, "yieldTokenAmount is 0");
+            ⋮┆----------------------------------------
+          437┆ require(backingTokenAmount > 0, "backingTokenAmount is 0");
+            ⋮┆----------------------------------------
+          445┆ require(address(backingToken) == address(0), "given TempusPool's Backing Token is not
+               ETH");                                                                               
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          445┆ require(address(backingToken) == address(0), "given TempusPool's Backing Token is not
+               ETH");                                                                               
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          473┆ require((principals > 0) || (yields > 0), "principalAmount and yieldAmount cannot both be
+               0");                                                                                     
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          473┆ require((principals > 0) || (yields > 0), "principalAmount and yieldAmount cannot both be
+               0");                                                                                     
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          500┆ require((principals > 0) || (yields > 0), "principalAmount and yieldAmount cannot both be
+               0");                                                                                     
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          500┆ require((principals > 0) || (yields > 0), "principalAmount and yieldAmount cannot both be
+               0");                                                                                     
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          531┆ require(tempusAMM.transferFrom(msg.sender, address(this), lpTokensAmount), "LP token
+               transfer failed");                                                                  
+            ⋮┆----------------------------------------
+          548┆ require(lpTokensAmount > 0, "LP token amount is 0");
+            ⋮┆----------------------------------------
+          594┆ require(!tempusPool.matured(), "Pool already finalized");
+            ⋮┆----------------------------------------
+          597┆ require(principals == yields, "Needs equal amounts of shares before maturity");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          597┆ require(principals == yields, "Needs equal amounts of shares before maturity");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          600┆ require(tempusAMM.transferFrom(msg.sender, address(this), maxLpTokensToRedeem), "LP token
+               transfer failed");                                                                       
+            ⋮┆----------------------------------------
+          607┆ require(tempusAMM.transferFrom(address(this), msg.sender, lpTokenBalance), "LP token
+               transfer failed");                                                                  
+            ⋮┆----------------------------------------
+          629┆ require(principalShare.transferFrom(msg.sender, address(this), principals), "Principals
+               transfer failed");                                                                     
+            ⋮┆----------------------------------------
+          630┆ require(yieldShare.transferFrom(msg.sender, address(this), yields), "Yields transfer
+               failed");                                                                           
+            ⋮┆----------------------------------------
+          634┆ require(tempusAMM.transferFrom(msg.sender, address(this), lpTokens), "LP token transfer
+               failed");                                                                              
+            ⋮┆----------------------------------------
+          686┆ require(
+          687┆     ammTokens.length == 2 && ammBalances.length == 2 && ammBalances[0] > 0 &&
+               ammBalances[1] > 0,                                                          
+          688┆     "AMM not initialized"
+          689┆ );
+   
+     ❱ solidity.performance.use-multiple-require
+          Using multiple require statements is cheaper than using && multiple check combinations.  There are
+          more advantages, such as easier to read code and better coverage reports.                         
+                                                                                                            
+          686┆ require(
+          687┆     ammTokens.length == 2 && ammBalances.length == 2 && ammBalances[0] > 0 &&
+               ammBalances[1] > 0,                                                          
+          688┆     "AMM not initialized"
+          689┆ );
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 21 (21 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 21 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

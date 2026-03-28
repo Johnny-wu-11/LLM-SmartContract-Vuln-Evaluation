@@ -1,0 +1,55 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                   
+                   
+┌─────────────────┐
+│ 3 Code Findings │
+└─────────────────┘
+                          
+    /sb/LibLiquidation.sol
+     ❱ solidity.performance.use-nested-if
+          Using nested is cheaper than using && multiple check combinations.  There are more advantages, such
+          as easier to read code and better coverage reports.                                                
+                                                                                                             
+          113┆ if (
+          114┆     avgPrice == receipt.price || // No price change
+          115┆     (avgPrice < receipt.price && receipt.liquidationSide == Perpetuals.Side.Short) || //
+               Price dropped, but position is short                                                    
+          116┆     (avgPrice > receipt.price && receipt.liquidationSide == Perpetuals.Side.Long) // Price
+               jumped, but position is long                                                              
+          117┆ ) {
+          118┆     // No slippage
+          119┆     return 0;
+          120┆ } else {
+          121┆     // Liquidator took a long position, and price dropped
+          122┆     uint256 amountSoldFor = PRBMathUD60x18.mul(avgPrice, unitsSold);
+             [hid 23 additional lines, adjust with --max-lines-per-finding] 
+          129┆ if (avgPrice < receipt.price && receipt.liquidationSide == Perpetuals.Side.Long) {
+          130┆     amountToReturn = amountExpectedFor - amountSoldFor;
+          131┆ } else if (avgPrice > receipt.price && receipt.liquidationSide == Perpetuals.Side.Short) {
+          132┆     amountToReturn = amountSoldFor - amountExpectedFor;
+          133┆ }
+            ⋮┆----------------------------------------
+          131┆ } else if (avgPrice > receipt.price && receipt.liquidationSide == Perpetuals.Side.Short) {
+          132┆     amountToReturn = amountSoldFor - amountExpectedFor;
+          133┆ }
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 3 (3 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 3 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

@@ -1,0 +1,60 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                   
+                   
+┌─────────────────┐
+│ 3 Code Findings │
+└─────────────────┘
+                          
+    /sb/SyntheticToken.sol
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           34┆ constructor(
+           35┆   string memory name,
+           36┆   string memory symbol,
+           37┆   address _longShort,
+           38┆   address _staker,
+           39┆   uint32 _marketIndex,
+           40┆   bool _isLong
+           41┆ ) ERC20PresetMinterPauser(name, symbol) {
+           42┆   longShort = _longShort;
+           43┆   staker = _staker;
+             [hid 3 additional lines, adjust with --max-lines-per-finding] 
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           79┆ require(msg.sender == longShort, "Only LongShort contract");
+   
+     ❱ solidity.performance.use-nested-if
+          Using nested is cheaper than using && multiple check combinations.  There are more advantages, such
+          as easier to read code and better coverage reports.                                                
+                                                                                                             
+           96┆ if (recipient == longShort && msg.sender == longShort) {
+           97┆   super._transfer(sender, recipient, amount);
+           98┆   return true;
+           99┆ } else {
+          100┆   return super.transferFrom(sender, recipient, amount);
+          101┆ }
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 3 (3 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 3 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

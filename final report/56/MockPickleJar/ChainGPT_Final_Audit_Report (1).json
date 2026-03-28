@@ -1,0 +1,22 @@
+{
+  "title": "ChainGPT Final Audit Report",
+  "tool": "ChainGPT",
+  "status": "Completed",
+  "reduction_summary": {
+    "original_findings": 0,
+    "retained_findings_after_ai_review": 4,
+    "filtered_findings": 0,
+    "filtering_rate": "0.00%"
+  },
+  "adjudication_summary": "All retained findings are plausible but unverified. Further verification is necessary.",
+  "findings": {
+    "confirmed": [],
+    "plausible_but_unverified": [
+      "Integer Overflow/Underflow Risk",
+      "Denial of Service (DoS) Risk",
+      "Lack of Access Control",
+      "Potential Reentrancy Attack"
+    ],
+    "unsupported_or_false_positive": []
+  }
+}

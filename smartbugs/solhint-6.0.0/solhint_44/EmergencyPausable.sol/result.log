@@ -1,0 +1,12 @@
+A new version of Solhint is available: 6.1.0
+Please consider updating your Solhint package.
+/sb/EmergencyPausable.sol:1:1: Compiler version ^0.8.0 does not satisfy the ^0.8.24 semver requirement [Error/compiler-version]
+/sb/EmergencyPausable.sol:3:1: global import of path ./EmergencyGovernable.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/EmergencyPausable.sol:3:1: Import in /sb/EmergencyPausable.sol doesn't exist in: ./EmergencyGovernable.sol [Warning/import-path-check]
+/sb/EmergencyPausable.sol:4:1: global import of path @openzeppelin/contracts/security/Pausable.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/EmergencyPausable.sol:4:1: Import in /sb/EmergencyPausable.sol doesn't exist in: @openzeppelin/contracts/security/Pausable.sol [Warning/import-path-check]
+/sb/EmergencyPausable.sol:12:1: Missing @title tag in contract 'EmergencyPausable' [Warning/use-natspec]
+/sb/EmergencyPausable.sol:12:1: Missing @author tag in contract 'EmergencyPausable' [Warning/use-natspec]
+/sb/EmergencyPausable.sol:12:1: Missing @notice tag in contract 'EmergencyPausable' [Warning/use-natspec]
+
+8 problem/s (1 error/s, 7 warning/s)

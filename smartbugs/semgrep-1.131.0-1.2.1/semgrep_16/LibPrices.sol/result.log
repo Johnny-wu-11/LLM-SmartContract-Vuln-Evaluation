@@ -1,0 +1,72 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                   
+                   
+┌─────────────────┐
+│ 7 Code Findings │
+└─────────────────┘
+                     
+    /sb/LibPrices.sol
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+           61┆ for (uint256 i = 0; i < 24; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+           61┆ for (uint256 i = 0; i < 24; i++) {
+            ⋮┆----------------------------------------
+           69┆ j++;
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          116┆ require(hour < 24, "Hour index not valid");
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          123┆ for (uint256 i = 0; i < 8; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          123┆ for (uint256 i = 0; i < 8; i++) {
+   
+     ❱ solidity.performance.use-nested-if
+          Using nested is cheaper than using && multiple check combinations.  There are more advantages, such
+          as easier to read code and better coverage reports.                                                
+                                                                                                             
+          151┆ if (totalUnderlyingTimeWeight == 0 && totalDerivativeTimeWeight == 0) {
+          152┆     return TWAP(0, 0);
+          153┆ } else if (totalUnderlyingTimeWeight == 0) {
+          154┆     return TWAP(0, cumulativeDerivative / totalDerivativeTimeWeight);
+          155┆ } else if (totalDerivativeTimeWeight == 0) {
+          156┆     return TWAP(cumulativeUnderlying / totalUnderlyingTimeWeight, 0);
+          157┆ }
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 7 (7 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 7 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

@@ -1,0 +1,43 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                   
+                   
+┌─────────────────┐
+│ 2 Code Findings │
+└─────────────────┘
+                   
+    /sb/Reserve.sol
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           18┆ require(msg.sender == DAO || msg.sender == ROUTER || msg.sender == DEPLOYER || msg.sender
+               == LEND || msg.sender == SYNTHVAULT, "!DAO");                                            
+   
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           22┆ constructor (address _base) {
+           23┆     BASE = _base;
+           24┆     DEPLOYER = msg.sender;
+           25┆ }
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 2 (2 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 2 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

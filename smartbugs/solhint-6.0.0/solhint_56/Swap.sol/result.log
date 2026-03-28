@@ -1,0 +1,18 @@
+A new version of Solhint is available: 6.1.0
+Please consider updating your Solhint package.
+/sb/Swap.sol:3:1: Compiler version 0.6.12 does not satisfy the ^0.8.24 semver requirement [Error/compiler-version]
+/sb/Swap.sol:5:1: global import of path @openzeppelin/contracts/math/SafeMath.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/Swap.sol:5:1: Import in /sb/Swap.sol doesn't exist in: @openzeppelin/contracts/math/SafeMath.sol [Warning/import-path-check]
+/sb/Swap.sol:6:1: global import of path @openzeppelin/contracts/token/ERC20/SafeERC20.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/Swap.sol:6:1: Import in /sb/Swap.sol doesn't exist in: @openzeppelin/contracts/token/ERC20/SafeERC20.sol [Warning/import-path-check]
+/sb/Swap.sol:7:1: global import of path @openzeppelin/contracts/token/ERC20/IERC20.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/Swap.sol:7:1: Import in /sb/Swap.sol doesn't exist in: @openzeppelin/contracts/token/ERC20/IERC20.sol [Warning/import-path-check]
+/sb/Swap.sol:9:1: global import of path ./interfaces/IsYAX.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/Swap.sol:9:1: Import in /sb/Swap.sol doesn't exist in: ./interfaces/IsYAX.sol [Warning/import-path-check]
+/sb/Swap.sol:17:1: Missing @author tag in contract 'Swap' [Warning/use-natspec]
+/sb/Swap.sol:21:5: Missing @notice tag in variable 'YAXIS' [Warning/use-natspec]
+/sb/Swap.sol:22:5: Missing @notice tag in variable 'YAX' [Warning/use-natspec]
+/sb/Swap.sol:23:5: Missing @notice tag in variable 'SYAX' [Warning/use-natspec]
+/sb/Swap.sol:30:5: Missing @notice tag in function '<anonymous>' [Warning/use-natspec]
+
+14 problem/s (1 error/s, 13 warning/s)

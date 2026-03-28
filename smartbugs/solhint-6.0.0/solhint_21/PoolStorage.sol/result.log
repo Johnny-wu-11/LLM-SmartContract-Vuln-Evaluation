@@ -1,0 +1,23 @@
+A new version of Solhint is available: 6.1.0
+Please consider updating your Solhint package.
+/sb/PoolStorage.sol:2:1: Compiler version ^0.7.0 does not satisfy the ^0.8.24 semver requirement [Error/compiler-version]
+/sb/PoolStorage.sol:9:1: global import of path ../interfaces/ILock.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/PoolStorage.sol:9:1: Import in /sb/PoolStorage.sol doesn't exist in: ../interfaces/ILock.sol [Warning/import-path-check]
+/sb/PoolStorage.sol:9:8: Use double quotes for string literals [Error/quotes]
+/sb/PoolStorage.sol:10:1: global import of path ../interfaces/IStrategy.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/PoolStorage.sol:10:1: Import in /sb/PoolStorage.sol doesn't exist in: ../interfaces/IStrategy.sol [Warning/import-path-check]
+/sb/PoolStorage.sol:10:8: Use double quotes for string literals [Error/quotes]
+/sb/PoolStorage.sol:13:1: Missing @title tag in contract 'PoolStorage' [Warning/use-natspec]
+/sb/PoolStorage.sol:13:1: Missing @author tag in contract 'PoolStorage' [Warning/use-natspec]
+/sb/PoolStorage.sol:13:1: Missing @notice tag in contract 'PoolStorage' [Warning/use-natspec]
+/sb/PoolStorage.sol:14:3: Explicitly mark visibility of state [Warning/state-visibility]
+/sb/PoolStorage.sol:14:41: Use double quotes for string literals [Error/quotes]
+/sb/PoolStorage.sol:16:3: GC: For [ Base ] struct, packing seems inefficient. Try rearranging to achieve 32bytes slots [Warning/gas-struct-packing]
+/sb/PoolStorage.sol:86:3: Missing @notice tag in function 'ps' [Warning/use-natspec]
+/sb/PoolStorage.sol:86:3: Missing @param tag in function 'ps' [Warning/use-natspec]
+/sb/PoolStorage.sol:86:3: Mismatch in @param names for function 'ps'. Expected: [_token], Found: [] [Warning/use-natspec]
+/sb/PoolStorage.sol:86:3: Missing @return tag in function 'ps' [Warning/use-natspec]
+/sb/PoolStorage.sol:86:3: Mismatch in @return names for function 'ps'. Expected: [psx], Found: [] [Warning/use-natspec]
+/sb/PoolStorage.sol:88:5: Avoid to use inline assembly. It is acceptable only in rare cases [Warning/no-inline-assembly]
+
+19 problem/s (4 error/s, 15 warning/s)

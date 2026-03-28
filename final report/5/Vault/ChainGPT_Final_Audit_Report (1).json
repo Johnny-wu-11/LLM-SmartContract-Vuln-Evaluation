@@ -1,0 +1,26 @@
+{
+  "title": "ChainGPT Final Audit Report",
+  "tool": "ChainGPT",
+  "status": "Completed",
+  "reduction_summary": {
+    "original_findings": 0,
+    "retained_findings_after_ai_review": 7,
+    "filtered_findings": 0,
+    "filtering_rate": "0.00%"
+  },
+  "adjudication_summary": "Reentrancy and lack of input validation have been confirmed as potential vulnerabilities. Other findings are plausible but require further verification. No findings were classified as unsupported or false positive.",
+  "findings": {
+    "confirmed": [
+      "Reentrancy Vulnerability",
+      "Lack of Input Validation"
+    ],
+    "plausible_but_unverified": [
+      "Initialization Check",
+      "Access Control",
+      "Denial of Service (DoS)",
+      "Timestamp Dependence",
+      "External Call Risks"
+    ],
+    "unsupported_or_false_positive": []
+  }
+}

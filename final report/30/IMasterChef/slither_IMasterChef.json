@@ -1,0 +1,43 @@
+﻿{
+    "source":  "Slither",
+    "contract":  "IMasterChef",
+    "source_file":  "C:\\Users\\ASUS\\Desktop\\blockchain\\output_all\\slither_output\\slither_results_30.json",
+    "match_count":  1,
+    "results":  [
+                    {
+                        "elements":  [
+                                         {
+                                             "type":  "pragma",
+                                             "name":  "0.6.12",
+                                             "source_mapping":  {
+                                                                    "start":  32,
+                                                                    "length":  23,
+                                                                    "filename_relative":  "contracts/governance/interfaces/IMasterChef.sol",
+                                                                    "filename_absolute":  "/Users/mac/Web3Bugs/contracts/30/contracts/governance/interfaces/IMasterChef.sol",
+                                                                    "filename_short":  "contracts/governance/interfaces/IMasterChef.sol",
+                                                                    "is_dependency":  false,
+                                                                    "lines":  [
+                                                                                  2
+                                                                              ],
+                                                                    "starting_column":  1,
+                                                                    "ending_column":  24
+                                                                },
+                                             "type_specific_fields":  {
+                                                                          "directive":  [
+                                                                                            "solidity",
+                                                                                            "0.6",
+                                                                                            ".12"
+                                                                                        ]
+                                                                      }
+                                         }
+                                     ],
+                        "description":  "Version constraint 0.6.12 contains known severe issues (https://solidity.readthedocs.io/en/latest/bugs.html)\n\t- FullInlinerNonExpressionSplitArgumentEvaluationOrder\n\t- MissingSideEffectsOnSelectorAccess\n\t- AbiReencodingHeadOverflowWithStaticArrayCleanup\n\t- DirtyBytesArrayToStorage\n\t- DataLocationChangeInInternalOverride\n\t- NestedCalldataArrayAbiReencodingSizeValidation\n\t- SignedImmutables\n\t- ABIDecodeTwoDimensionalArrayMemory\n\t- KeccakCaching\n\t- EmptyByteArrayCopy\n\t- DynamicArrayCleanup.\nIt is used by:\n\t- 0.6.12 (contracts/governance/interfaces/IMasterChef.sol#2)\n",
+                        "markdown":  "Version constraint 0.6.12 contains known severe issues (https://solidity.readthedocs.io/en/latest/bugs.html)\n\t- FullInlinerNonExpressionSplitArgumentEvaluationOrder\n\t- MissingSideEffectsOnSelectorAccess\n\t- AbiReencodingHeadOverflowWithStaticArrayCleanup\n\t- DirtyBytesArrayToStorage\n\t- DataLocationChangeInInternalOverride\n\t- NestedCalldataArrayAbiReencodingSizeValidation\n\t- SignedImmutables\n\t- ABIDecodeTwoDimensionalArrayMemory\n\t- KeccakCaching\n\t- EmptyByteArrayCopy\n\t- DynamicArrayCleanup.\nIt is used by:\n\t- [0.6.12](contracts/governance/interfaces/IMasterChef.sol#L2)\n",
+                        "first_markdown_element":  "contracts/governance/interfaces/IMasterChef.sol#L2",
+                        "id":  "447bb9b269c9dfda647a23351b5e2aa61c99c7e1a9bddee0061bb08f15757356",
+                        "check":  "solc-version",
+                        "impact":  "Informational",
+                        "confidence":  "High"
+                    }
+                ]
+}

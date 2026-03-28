@@ -1,0 +1,111 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 17 Code Findings │
+└──────────────────┘
+                    
+    /sb/TimeLock.sol
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           29┆ constructor(address scheduler, address executor) AccessControl() {
+           30┆     delay = MINIMUM_DELAY;
+           31┆
+           32┆     // scheduler can schedule and cancel, executor can execute
+           33┆     _grantRole(ITimeLock.schedule.selector, scheduler); //
+               bytes4(keccak256("schedule(address[],bytes[],uint256)"))  
+           34┆     _grantRole(ITimeLock.cancel.selector, scheduler); //
+               bytes4(keccak256("cancel(address[],bytes[],uint256)"))  
+           35┆     _grantRole(ITimeLock.execute.selector, executor); //
+               bytes4(keccak256("execute(address[],bytes[],uint256)")) 
+           36┆
+           37┆     // Changing the delay must now be executed through this TimeLock contract
+           38┆     _grantRole(ITimeLock.setDelay.selector, address(this)); //
+               bytes4(keccak256("setDelay(uint256)"))                        
+             [hid 5 additional lines, adjust with --max-lines-per-finding] 
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           47┆ require(delay_ >= MINIMUM_DELAY, "Must exceed minimum delay.");
+            ⋮┆----------------------------------------
+           48┆ require(delay_ <= MAXIMUM_DELAY, "Must not exceed maximum delay.");
+            ⋮┆----------------------------------------
+           58┆ require(targets.length == data.length, "Mismatched inputs");
+            ⋮┆----------------------------------------
+           59┆ require(eta >= block.timestamp + delay, "Must satisfy delay."); // This also prevents
+               setting eta = 0 and messing up the state                                             
+            ⋮┆----------------------------------------
+           61┆ require(transactions[txHash] == 0, "Transaction not unknown.");
+            ⋮┆----------------------------------------
+           70┆ require(targets.length == data.length, "Mismatched inputs");
+            ⋮┆----------------------------------------
+           72┆ require(transactions[txHash] != 0, "Transaction hasn't been scheduled.");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+           72┆ require(transactions[txHash] != 0, "Transaction hasn't been scheduled.");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           81┆ require(targets.length == data.length, "Mismatched inputs");
+            ⋮┆----------------------------------------
+           85┆ require(eta != 0, "Transaction hasn't been scheduled.");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+           85┆ require(eta != 0, "Transaction hasn't been scheduled.");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           86┆ require(block.timestamp >= eta, "ETA not reached.");
+            ⋮┆----------------------------------------
+           87┆ require(block.timestamp <= eta + GRACE_PERIOD, "Transaction is stale.");
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+           92┆ for (uint256 i = 0; i < targets.length; i++){
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+           92┆ for (uint256 i = 0; i < targets.length; i++){
+   
+   ❯❯❱ solidity.security.arbitrary-low-level-call
+          An attacker may perform call() to an arbitrary address with controlled calldata
+                                                                                         
+           93┆ (bool success, bytes memory result) = targets[i].call(data[i]);
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 17 (17 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 17 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

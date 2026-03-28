@@ -1,0 +1,15 @@
+A new version of Solhint is available: 6.1.0
+Please consider updating your Solhint package.
+/sb/IERCProxy.sol:3:1: Compiler version 0.6.11 does not satisfy the ^0.8.24 semver requirement [Error/compiler-version]
+/sb/IERCProxy.sol:5:1: Missing @title tag in contract 'IERCProxy' [Warning/use-natspec]
+/sb/IERCProxy.sol:5:1: Missing @author tag in contract 'IERCProxy' [Warning/use-natspec]
+/sb/IERCProxy.sol:5:1: Missing @notice tag in contract 'IERCProxy' [Warning/use-natspec]
+/sb/IERCProxy.sol:6:5: Missing @notice tag in function 'proxyType' [Warning/use-natspec]
+/sb/IERCProxy.sol:6:5: Missing @return tag in function 'proxyType' [Warning/use-natspec]
+/sb/IERCProxy.sol:6:5: Mismatch in @return names for function 'proxyType'. Expected: [proxyTypeId], Found: [] [Warning/use-natspec]
+/sb/IERCProxy.sol:6:49: Rule is set with explicit type [var/s: uint] [Warning/explicit-types]
+/sb/IERCProxy.sol:7:5: Missing @notice tag in function 'implementation' [Warning/use-natspec]
+/sb/IERCProxy.sol:7:5: Missing @return tag in function 'implementation' [Warning/use-natspec]
+/sb/IERCProxy.sol:7:5: Mismatch in @return names for function 'implementation'. Expected: [codeAddr], Found: [] [Warning/use-natspec]
+
+11 problem/s (1 error/s, 10 warning/s)

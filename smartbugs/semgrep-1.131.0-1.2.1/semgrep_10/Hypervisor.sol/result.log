@@ -1,0 +1,291 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 47 Code Findings │
+└──────────────────┘
+                      
+    /sb/Hypervisor.sol
+     ❱ solidity.best-practice.use-ownable2step
+          By demanding that the receiver of the owner permissions actively accept via a contract call of its 
+          own,  `Ownable2Step` and `Ownable2StepUpgradeable` prevent the contract ownership from accidentally
+          being transferred  to an address that cannot handle it.                                            
+                                                                                                             
+          217┆ contract Hypervisor is IHypervisor, Powered, Ownable {
+   
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+          255┆ constructor(
+          256┆     address ownerAddress,
+          257┆     address rewardPoolFactory,
+          258┆     address powerSwitchFactory,
+          259┆     address stakingToken,
+          260┆     address rewardToken,
+          261┆     RewardScaling memory rewardScaling,
+          262┆     uint256 _stakeLimit
+          263┆ ) {
+          264┆     // the scaling floor must be smaller than ceiling
+             [hid 27 additional lines, adjust with --max-lines-per-finding] 
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          265┆ require(rewardScaling.floor <= rewardScaling.ceiling, "Hypervisor: floor above ceiling");
+            ⋮┆----------------------------------------
+          269┆ require(rewardScaling.time != 0, "Hypervisor: scaling time cannot be zero");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          269┆ require(rewardScaling.time != 0, "Hypervisor: scaling time cannot be zero");
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          323┆ for (uint256 index = 0; index < _vaultFactorySet.length(); index++) {
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          323┆ for (uint256 index = 0; index < _vaultFactorySet.length(); index++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          323┆ for (uint256 index = 0; index < _vaultFactorySet.length(); index++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          323┆ for (uint256 index = 0; index < _vaultFactorySet.length(); index++) {
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          324┆ if (IInstanceRegistry(_vaultFactorySet.at(index)).isInstance(target)) {
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          516┆ for (uint256 index; index < stakes.length; index++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          516┆ for (uint256 index; index < stakes.length; index++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          516┆ for (uint256 index; index < stakes.length; index++) {
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          553┆ for (uint256 index = 0; index < rewardSchedules.length; index++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          553┆ for (uint256 index = 0; index < rewardSchedules.length; index++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          553┆ for (uint256 index = 0; index < rewardSchedules.length; index++) {
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          596┆ StakeData memory lastStake = stakes[stakes.length.sub(stakesToDrop).sub(1)];
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          715┆ require(duration != 0, "Hypervisor: invalid duration");
+            ⋮┆----------------------------------------
+          763┆ require(_vaultFactorySet.add(factory), "Hypervisor: vault factory already registered");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          763┆ require(_vaultFactorySet.add(factory), "Hypervisor: vault factory already registered");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          783┆ require(_vaultFactorySet.remove(factory), "Hypervisor: vault factory not registered");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          783┆ require(_vaultFactorySet.remove(factory), "Hypervisor: vault factory not registered");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          804┆ require(_bonusTokenSet.length() < MAX_REWARD_TOKENS, "Hypervisor: max bonus tokens reached
+               ");                                                                                       
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          804┆ require(_bonusTokenSet.length() < MAX_REWARD_TOKENS, "Hypervisor: max bonus tokens reached
+               ");                                                                                       
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          834┆ require(token != _hypervisor.rewardToken, "Hypervisor: invalid address");
+            ⋮┆----------------------------------------
+          837┆ require(!_bonusTokenSet.contains(token), "Hypervisor: invalid address");
+            ⋮┆----------------------------------------
+          867┆ require(isValidVault(vault), "Hypervisor: vault is not registered");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          867┆ require(isValidVault(vault), "Hypervisor: vault is not registered");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          870┆ require(amount != 0, "Hypervisor: no amount staked");
+            ⋮┆----------------------------------------
+          876┆ require(
+          877┆     vaultData.stakes.length < MAX_STAKES_PER_VAULT,
+          878┆     "Hypervisor: MAX_STAKES_PER_VAULT reached"
+          879┆ );
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          876┆ require(
+          877┆     vaultData.stakes.length < MAX_STAKES_PER_VAULT,
+          878┆     "Hypervisor: MAX_STAKES_PER_VAULT reached"
+          879┆ );
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          890┆ require(
+          891┆     stakeLimit == 0 || vaultData.totalStake <= stakeLimit,
+          892┆     "Hypervisor: Stake limit exceeded"
+          893┆ );
+            ⋮┆----------------------------------------
+          932┆ require(amount != 0, "Hypervisor: no amount unstaked");
+            ⋮┆----------------------------------------
+          940┆ require(vaultData.totalStake >= amount, "Hypervisor: insufficient vault stake");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          940┆ require(vaultData.totalStake >= amount, "Hypervisor: insufficient vault stake");
+   
+    ❯❱ solidity.security.exact-balance-check
+          Testing the balance of an account as a basis for some action has risks associated with unexpected 
+          receipt of ether or another token, including tokens deliberately transfered to cause such tests to
+          fail, as an MEV attack.                                                                           
+                                                                                                            
+          973┆ if (out.newStakesCount == 0) {
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          1007┆ for (uint256 index = 0; index < _bonusTokenSet.length(); index++) {
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          1007┆ for (uint256 index = 0; index < _bonusTokenSet.length(); index++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          1007┆ for (uint256 index = 0; index < _bonusTokenSet.length(); index++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          1007┆ for (uint256 index = 0; index < _bonusTokenSet.length(); index++) {
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          1009┆ address bonusToken = _bonusTokenSet.at(index);
+            ⋮┆----------------------------------------
+          1014┆ IERC20(bonusToken).balanceOf(_hypervisor.rewardPool).mul(out.reward).div(
+            ⋮┆----------------------------------------
+          1019┆ IRewardPool(_hypervisor.rewardPool).sendERC20(bonusToken, recipient, bonusAmount);
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          1054┆ require(_vaultData.stakes.length != 0, "Hypervisor: no stake");
+            ⋮┆----------------------------------------
+          1083┆ require(isValidAddress(target), "Hypervisor: invalid address");
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          1092┆ for (uint256 index = 0; index < newLength; index++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          1092┆ for (uint256 index = 0; index < newLength; index++) {
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 47 (47 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 47 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading
+
+📢 Too many findings? Try Semgrep Pro for more powerful queries and less noise.
+   See https://sg.run/false-positives.

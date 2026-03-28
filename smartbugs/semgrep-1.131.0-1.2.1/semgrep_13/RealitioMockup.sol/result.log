@@ -1,0 +1,38 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                   
+                   
+┌─────────────────┐
+│ 3 Code Findings │
+└─────────────────┘
+                          
+    /sb/RealitioMockup.sol
+    ❯❱ solidity.security.missing-assignment
+          Meaningless statement that does not change any values could be a sign of missed security checks or
+          other important changes.                                                                          
+                                                                                                            
+           50┆ question_id;
+            ⋮┆----------------------------------------
+           57┆ question_id;
+            ⋮┆----------------------------------------
+           71┆ question_id;
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 3 (3 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 3 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

@@ -1,0 +1,193 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 33 Code Findings │
+└──────────────────┘
+                                
+    /sb/FranchisedHybridPool.sol
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           54┆ require(unlocked == 1, "LOCKED");
+   
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           60┆ constructor(bytes memory _deployData, address _masterDeployer) {
+           61┆     (address _token0, address _token1, uint256 _swapFee, uint256 a, address
+               _whiteListManager, address _operator, bool _level2) = abi.decode(          
+           62┆         _deployData,
+           63┆         (address, address, uint256, uint256, address, address, bool)
+           64┆     );
+           65┆
+           66┆     // @dev Factory ensures that the tokens are sorted.
+           67┆     require(_token0 != address(0), "ZERO_ADDRESS");
+           68┆     require(_token0 != _token1, "IDENTICAL_ADDRESSES");
+           69┆     require(_swapFee <= MAX_FEE, "INVALID_SWAP_FEE");
+             [hid 23 additional lines, adjust with --max-lines-per-finding] 
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           67┆ require(_token0 != address(0), "ZERO_ADDRESS");
+            ⋮┆----------------------------------------
+           68┆ require(_token0 != _token1, "IDENTICAL_ADDRESSES");
+            ⋮┆----------------------------------------
+           69┆ require(_swapFee <= MAX_FEE, "INVALID_SWAP_FEE");
+            ⋮┆----------------------------------------
+           70┆ require(a != 0, "ZERO_A");
+   
+     ❱ solidity.best-practice.use-abi-encodecall-instead-of-encodewithselector
+          To guarantee arguments type safety it is recommended to use `abi.encodeCall` instead of
+          `abi.encodeWithSelector`.                                                              
+                                                                                                 
+           74┆ (, bytes memory _barFee) =                                                          
+               _masterDeployer.staticcall(abi.encodeWithSelector(IMasterDeployer.barFee.selector));
+            ⋮┆----------------------------------------
+           75┆ (, bytes memory _barFeeTo) =                                                          
+               _masterDeployer.staticcall(abi.encodeWithSelector(IMasterDeployer.barFeeTo.selector));
+            ⋮┆----------------------------------------
+           76┆ (, bytes memory _bento) =                                                          
+               _masterDeployer.staticcall(abi.encodeWithSelector(IMasterDeployer.bento.selector));
+            ⋮┆----------------------------------------
+           77┆ (, bytes memory _decimals0) = _token0.staticcall(abi.encodeWithSelector(0x313ce567)); //
+               @dev 'decimals()'.                                                                      
+            ⋮┆----------------------------------------
+           78┆ (, bytes memory _decimals1) = _token1.staticcall(abi.encodeWithSelector(0x313ce567)); //
+               @dev 'decimals()'.                                                                      
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          115┆ require(liquidity != 0, "INSUFFICIENT_LIQUIDITY_MINTED");
+            ⋮┆----------------------------------------
+          174┆ require(tokenOut == token0, "INVALID_OUTPUT_TOKEN");
+            ⋮┆----------------------------------------
+          201┆ require(tokenIn == token1, "INVALID_INPUT_TOKEN");
+            ⋮┆----------------------------------------
+          230┆ require(balance0 - _reserve0 >= amountIn, "INSUFFICIENT_AMOUNT_IN");
+            ⋮┆----------------------------------------
+          232┆ require(tokenIn == token1, "INVALID_INPUT_TOKEN");
+            ⋮┆----------------------------------------
+          239┆ require(balance1 - _reserve1 >= amountIn, "INSUFFICIENT_AMOUNT_IN");
+   
+     ❱ solidity.best-practice.use-abi-encodecall-instead-of-encodewithselector
+          To guarantee arguments type safety it is recommended to use `abi.encodeCall` instead of
+          `abi.encodeWithSelector`.                                                              
+                                                                                                 
+          248┆ (, bytes memory _barFee) =                                                         
+               masterDeployer.staticcall(abi.encodeWithSelector(IMasterDeployer.barFee.selector));
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          271┆ require(_reserve0 < type(uint128).max && _reserve1 < type(uint128).max, "OVERFLOW");
+   
+     ❱ solidity.performance.use-multiple-require
+          Using multiple require statements is cheaper than using && multiple check combinations.  There are
+          more advantages, such as easier to read code and better coverage reports.                         
+                                                                                                            
+          271┆ require(_reserve0 < type(uint128).max && _reserve1 < type(uint128).max, "OVERFLOW");
+   
+     ❱ solidity.best-practice.use-abi-encodecall-instead-of-encodewithselector
+          To guarantee arguments type safety it is recommended to use `abi.encodeCall` instead of
+          `abi.encodeWithSelector`.                                                              
+                                                                                                 
+          284┆ (, bytes memory ___balance) =                                                      
+               bento.staticcall(abi.encodeWithSelector(IBentoBoxMinimal.balanceOf.selector, token,
+               address(this)));                                                                   
+            ⋮┆----------------------------------------
+          290┆ (, bytes memory _output) =                                                               
+               bento.staticcall(abi.encodeWithSelector(IBentoBoxMinimal.toAmount.selector, token, input,
+               false));                                                                                 
+            ⋮┆----------------------------------------
+          296┆ (, bytes memory _output) =                                                              
+               bento.staticcall(abi.encodeWithSelector(IBentoBoxMinimal.toShare.selector, token, input,
+               false));                                                                                
+            ⋮┆----------------------------------------
+          333┆ (bool success, ) = bento.call(abi.encodeWithSelector(IBentoBoxMinimal.withdraw.selector,
+               token, address(this), to, amount, 0));                                                  
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          334┆ require(success, "WITHDRAW_FAILED");
+   
+     ❱ solidity.best-practice.use-abi-encodecall-instead-of-encodewithselector
+          To guarantee arguments type safety it is recommended to use `abi.encodeCall` instead of
+          `abi.encodeWithSelector`.                                                              
+                                                                                                 
+          337┆ (bool success, ) = bento.call(abi.encodeWithSelector(IBentoBoxMinimal.transfer.selector,
+               token, address(this), to, _toShare(token, amount)));                                    
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          338┆ require(success, "TRANSFER_FAILED");
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          360┆ for (uint256 i = 0; i < MAX_LOOP_LIMIT; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          360┆ for (uint256 i = 0; i < MAX_LOOP_LIMIT; i++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          385┆ for (uint256 i = 0; i < MAX_LOOP_LIMIT; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          385┆ for (uint256 i = 0; i < MAX_LOOP_LIMIT; i++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          415┆ for (uint256 i = 0; i < MAX_LOOP_LIMIT; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          415┆ for (uint256 i = 0; i < MAX_LOOP_LIMIT; i++) {
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 33 (33 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 33 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading
+
+📢 Too many findings? Try Semgrep Pro for more powerful queries and less noise.
+   See https://sg.run/false-positives.

@@ -1,0 +1,47 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                   
+                   
+┌─────────────────┐
+│ 2 Code Findings │
+└─────────────────┘
+                      
+    /sb/NativeLock.sol
+     ❱ solidity.best-practice.use-ownable2step
+          By demanding that the receiver of the owner permissions actively accept via a contract call of its 
+          own,  `Ownable2Step` and `Ownable2StepUpgradeable` prevent the contract ownership from accidentally
+          being transferred  to an address that cannot handle it.                                            
+                                                                                                             
+           13┆ contract NativeLock is ERC20, ILock, Ownable {
+   
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           16┆ constructor(
+           17┆   string memory _name,
+           18┆   string memory _symbol,
+           19┆   IERC20 _sherlock
+           20┆ ) ERC20(_name, _symbol) {
+           21┆   transferOwnership(address(_sherlock));
+           22┆   underlying = _sherlock;
+           23┆ }
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 2 (2 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 2 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

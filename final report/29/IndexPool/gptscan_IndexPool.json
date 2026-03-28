@@ -1,0 +1,82 @@
+﻿{
+    "source":  "GPTScan",
+    "contract":  "IndexPool",
+    "source_file":  "C:\\Users\\ASUS\\Desktop\\blockchain\\output_all\\GPTScan_output\\test_29.json",
+    "match_count":  2,
+    "results":  [
+                    {
+                        "code":  "price-manipulation",
+                        "severity":  "HIGH",
+                        "title":  "MWE-200: Insecure LP Token Value Calculation",
+                        "description":  "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+                        "recommendation":  "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+                        "affectedFiles":  [
+                                              {
+                                                  "filePath":  "/Users/mac/Web3Bugs/contracts/29/trident/contracts/pool/IndexPool.sol",
+                                                  "range":  {
+                                                                "start":  {
+                                                                              "line":  268
+                                                                          },
+                                                                "end":  {
+                                                                            "line":  284
+                                                                        }
+                                                            },
+                                                  "highlights":  [
+
+                                                                 ]
+                                              },
+                                              {
+                                                  "filePath":  "/Users/mac/Web3Bugs/contracts/29/trident/contracts/pool/IndexPool.sol",
+                                                  "range":  {
+                                                                "start":  {
+                                                                              "line":  146
+                                                                          },
+                                                                "end":  {
+                                                                            "line":  171
+                                                                        }
+                                                            },
+                                                  "highlights":  [
+
+                                                                 ]
+                                              }
+                                          ]
+                    },
+                    {
+                        "code":  "price-manipulation",
+                        "severity":  "HIGH",
+                        "title":  "MWE-200: Insecure LP Token Value Calculation",
+                        "description":  "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+                        "recommendation":  "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+                        "affectedFiles":  [
+                                              {
+                                                  "filePath":  "/Users/mac/Web3Bugs/contracts/29/trident/contracts/pool/franchised/FranchisedIndexPool.sol",
+                                                  "range":  {
+                                                                "start":  {
+                                                                              "line":  258
+                                                                          },
+                                                                "end":  {
+                                                                            "line":  274
+                                                                        }
+                                                            },
+                                                  "highlights":  [
+
+                                                                 ]
+                                              },
+                                              {
+                                                  "filePath":  "/Users/mac/Web3Bugs/contracts/29/trident/contracts/pool/IndexPool.sol",
+                                                  "range":  {
+                                                                "start":  {
+                                                                              "line":  146
+                                                                          },
+                                                                "end":  {
+                                                                            "line":  171
+                                                                        }
+                                                            },
+                                                  "highlights":  [
+
+                                                                 ]
+                                              }
+                                          ]
+                    }
+                ]
+}

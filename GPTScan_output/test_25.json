@@ -1,0 +1,115 @@
+{
+    "version": "1.1.0",
+    "success": true,
+    "message": null,
+    "results": [
+        {
+            "code": "price-manipulation",
+            "severity": "HIGH",
+            "title": "MWE-200: Insecure LP Token Value Calculation",
+            "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+            "recommendation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/25/contracts/FYToken.sol",
+                    "range": {
+                        "start": {
+                            "line": 167
+                        },
+                        "end": {
+                            "line": 180
+                        }
+                    },
+                    "highlights": []
+                },
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/25/contracts/yieldspace/Pool.sol",
+                    "range": {
+                        "start": {
+                            "line": 346
+                        },
+                        "end": {
+                            "line": 393
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        },
+        {
+            "code": "price-manipulation",
+            "severity": "HIGH",
+            "title": "MWE-200: Insecure LP Token Value Calculation",
+            "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+            "recommendation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/25/contracts/oracles/compound/CTokenMultiOracle.sol",
+                    "range": {
+                        "start": {
+                            "line": 73
+                        },
+                        "end": {
+                            "line": 89
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        },
+        {
+            "code": "price-manipulation",
+            "severity": "HIGH",
+            "title": "MWE-200: Insecure LP Token Value Calculation",
+            "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+            "recommendation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/25/contracts/oracles/compound/CTokenMultiOracle.sol",
+                    "range": {
+                        "start": {
+                            "line": 91
+                        },
+                        "end": {
+                            "line": 107
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        },
+        {
+            "code": "price-manipulation",
+            "severity": "HIGH",
+            "title": "MWE-200: Insecure LP Token Value Calculation",
+            "description": "Liquidity token value/price can be manipulated to cause flashloan attacks.",
+            "recommendation": "Do not use AMM pool or custom liquidity calculation to caculate LP token value/price.",
+            "affectedFiles": [
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/25/contracts/oracles/compound/CompoundMultiOracle.sol",
+                    "range": {
+                        "start": {
+                            "line": 63
+                        },
+                        "end": {
+                            "line": 76
+                        }
+                    },
+                    "highlights": []
+                },
+                {
+                    "filePath": "/Users/mac/Web3Bugs/contracts/25/contracts/oracles/compound/CompoundMultiOracle.sol",
+                    "range": {
+                        "start": {
+                            "line": 41
+                        },
+                        "end": {
+                            "line": 48
+                        }
+                    },
+                    "highlights": []
+                }
+            ]
+        }
+    ]
+}

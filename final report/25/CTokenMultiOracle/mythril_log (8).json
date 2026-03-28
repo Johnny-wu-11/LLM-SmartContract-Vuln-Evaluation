@@ -1,0 +1,48 @@
+{
+  "tool": "Mythril",
+  "file_name": "CTokenMultiOracle.sol",
+  "status": "success",
+  "error": null,
+  "issues": [],
+  "raw_output": {
+    "args": [
+      "mythril/myth",
+      "analyze",
+      "/work/tmpn3tglxwq.sol:CTokenMultiOracle",
+      "-o",
+      "json",
+      "--execution-timeout",
+      "30",
+      "--create-timeout",
+      "15",
+      "--solver-timeout",
+      "10000",
+      "--max-depth",
+      "12",
+      "--transaction-count",
+      "1",
+      "--no-onchain-data"
+    ],
+    "availableContractNames": [
+      "AccessControl",
+      "call",
+      "has",
+      "Constants",
+      "CastBytes32Bytes6",
+      "CTokenMultiOracle"
+    ],
+    "data": {
+      "error": null,
+      "issues": [],
+      "success": true
+    },
+    "durationSec": 33.05,
+    "requestedContractName": "CTokenMultiOracle",
+    "returncode": 0,
+    "selectedContractName": "CTokenMultiOracle",
+    "status": "success",
+    "stderr": "",
+    "tool": "Mythril"
+  },
+  "timestamp": "2026-03-27T12:54:42.446Z"
+}

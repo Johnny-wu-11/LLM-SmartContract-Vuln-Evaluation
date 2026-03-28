@@ -1,0 +1,48 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                   
+                   
+┌─────────────────┐
+│ 5 Code Findings │
+└─────────────────┘
+                
+    /sb/Join.sol
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           28┆ constructor() {
+           29┆     asset = IJoinFactory(msg.sender).nextAsset();
+           30┆ }
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           88┆ require(address(token) != address(asset), "Use exit for asset");
+            ⋮┆----------------------------------------
+          108┆ require(token == asset, "Unsupported currency");
+            ⋮┆----------------------------------------
+          130┆ require(token == asset, "Unsupported currency");
+            ⋮┆----------------------------------------
+          135┆ require(receiver.onFlashLoan(msg.sender, token, _amount, _fee, data) == FLASH_LOAN_RETURN,
+               "Non-compliant borrower");                                                                
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 5 (5 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 5 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

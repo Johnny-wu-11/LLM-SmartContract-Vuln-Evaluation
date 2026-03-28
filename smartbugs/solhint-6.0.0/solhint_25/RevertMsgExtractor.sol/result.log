@@ -1,0 +1,14 @@
+A new version of Solhint is available: 6.1.0
+Please consider updating your Solhint package.
+/sb/RevertMsgExtractor.sol:4:1: Compiler version >=0.6.0 does not satisfy the ^0.8.24 semver requirement [Error/compiler-version]
+/sb/RevertMsgExtractor.sol:7:1: Missing @title tag in contract 'RevertMsgExtractor' [Warning/use-natspec]
+/sb/RevertMsgExtractor.sol:7:1: Missing @author tag in contract 'RevertMsgExtractor' [Warning/use-natspec]
+/sb/RevertMsgExtractor.sol:7:1: Missing @notice tag in contract 'RevertMsgExtractor' [Warning/use-natspec]
+/sb/RevertMsgExtractor.sol:10:5: Missing @notice tag in function 'getRevertMsg' [Warning/use-natspec]
+/sb/RevertMsgExtractor.sol:10:5: Missing @param tag in function 'getRevertMsg' [Warning/use-natspec]
+/sb/RevertMsgExtractor.sol:10:5: Mismatch in @param names for function 'getRevertMsg'. Expected: [returnData], Found: [] [Warning/use-natspec]
+/sb/RevertMsgExtractor.sol:10:5: Missing @return tag in function 'getRevertMsg' [Warning/use-natspec]
+/sb/RevertMsgExtractor.sol:10:5: Mismatch in @return count for function 'getRevertMsg'. Expected: 1, Found: 0 [Warning/use-natspec]
+/sb/RevertMsgExtractor.sol:17:9: Avoid to use inline assembly. It is acceptable only in rare cases [Warning/no-inline-assembly]
+
+10 problem/s (1 error/s, 9 warning/s)

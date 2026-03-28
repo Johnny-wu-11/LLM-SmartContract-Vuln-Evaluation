@@ -1,0 +1,27 @@
+{
+  "title": "ChainGPT Final Audit Report",
+  "tool": "ChainGPT",
+  "status": "Completed",
+  "reduction_summary": {
+    "original_findings": 0,
+    "retained_findings_after_ai_review": 7,
+    "filtered_findings": 0,
+    "filtering_rate": "0.00%"
+  },
+  "adjudication_summary": "Upon review of the findings, certain critical issues such as 'Unchecked External Calls', 'Denial of Service (DoS)', 'Reentrancy Attacks', and 'Unprotected Functions' are confirmed due to their potential impact on security. Findings like 'Slippage Assumptions' and 'Timestamp Dependence' are plausible security concerns but require further verification. The issue titled 'Fallback Function' is categorized as unsupported or a false positive due to its lower security impact.",
+  "findings": {
+    "confirmed": [
+      "Unchecked External Calls",
+      "Denial of Service (DoS)",
+      "Reentrancy Attacks",
+      "Unprotected Functions"
+    ],
+    "plausible_but_unverified": [
+      "Slippage Assumptions",
+      "Timestamp Dependence"
+    ],
+    "unsupported_or_false_positive": [
+      "Fallback Function"
+    ]
+  }
+}

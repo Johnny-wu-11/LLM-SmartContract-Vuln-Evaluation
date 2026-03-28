@@ -1,0 +1,31 @@
+﻿{
+    "source":  "GPTScan",
+    "contract":  "TracerPerpetualSwaps",
+    "source_file":  "C:\\Users\\ASUS\\Desktop\\blockchain\\output_all\\GPTScan_output\\test_16.json",
+    "match_count":  1,
+    "results":  [
+                    {
+                        "code":  "wrong-order-interest",
+                        "severity":  "HIGH",
+                        "title":  "MWE-209: Wrong Order for Interest or ExchangeRate",
+                        "description":  "Update of interest or exchange rate should be executed before calculating new balance, share, stake, loan or fee.",
+                        "recommendation":  "Check the business logic and move the statements about updating exchange rate or interest forward.",
+                        "affectedFiles":  [
+                                              {
+                                                  "filePath":  "/Users/mac/Web3Bugs/contracts/16/src/contracts/TracerPerpetualSwaps.sol",
+                                                  "range":  {
+                                                                "start":  {
+                                                                              "line":  216
+                                                                          },
+                                                                "end":  {
+                                                                            "line":  288
+                                                                        }
+                                                            },
+                                                  "highlights":  [
+
+                                                                 ]
+                                              }
+                                          ]
+                    }
+                ]
+}

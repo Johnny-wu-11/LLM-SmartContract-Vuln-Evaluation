@@ -1,0 +1,28 @@
+A new version of Solhint is available: 6.1.0
+Please consider updating your Solhint package.
+/sb/TestLogicContract.sol:1:1: Compiler version ^0.6.6 does not satisfy the ^0.8.24 semver requirement [Error/compiler-version]
+/sb/TestLogicContract.sol:3:1: Unexpected import of console file [Error/no-console]
+/sb/TestLogicContract.sol:3:1: global import of path hardhat/console.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/TestLogicContract.sol:3:1: Import in /sb/TestLogicContract.sol doesn't exist in: hardhat/console.sol [Warning/import-path-check]
+/sb/TestLogicContract.sol:4:1: global import of path @openzeppelin/contracts/math/SafeMath.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/TestLogicContract.sol:4:1: Import in /sb/TestLogicContract.sol doesn't exist in: @openzeppelin/contracts/math/SafeMath.sol [Warning/import-path-check]
+/sb/TestLogicContract.sol:5:1: global import of path @openzeppelin/contracts/access/Ownable.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/TestLogicContract.sol:5:1: Import in /sb/TestLogicContract.sol doesn't exist in: @openzeppelin/contracts/access/Ownable.sol [Warning/import-path-check]
+/sb/TestLogicContract.sol:6:1: global import of path @openzeppelin/contracts/token/ERC20/IERC20.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/TestLogicContract.sol:6:1: Import in /sb/TestLogicContract.sol doesn't exist in: @openzeppelin/contracts/token/ERC20/IERC20.sol [Warning/import-path-check]
+/sb/TestLogicContract.sol:7:1: global import of path @openzeppelin/contracts/token/ERC20/SafeERC20.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/TestLogicContract.sol:7:1: Import in /sb/TestLogicContract.sol doesn't exist in: @openzeppelin/contracts/token/ERC20/SafeERC20.sol [Warning/import-path-check]
+/sb/TestLogicContract.sol:9:1: Missing @title tag in contract 'TestLogicContract' [Warning/use-natspec]
+/sb/TestLogicContract.sol:9:1: Missing @author tag in contract 'TestLogicContract' [Warning/use-natspec]
+/sb/TestLogicContract.sol:9:1: Missing @notice tag in contract 'TestLogicContract' [Warning/use-natspec]
+/sb/TestLogicContract.sol:10:2: Explicitly mark visibility of state [Warning/state-visibility]
+/sb/TestLogicContract.sol:10:2: Variable name must be in mixedCase state_tokenContract [Warning/var-name-mixedcase]
+/sb/TestLogicContract.sol:12:2: Missing @notice tag in function '<anonymous>' [Warning/use-natspec]
+/sb/TestLogicContract.sol:12:2: Missing @param tag in function '<anonymous>' [Warning/use-natspec]
+/sb/TestLogicContract.sol:12:2: Mismatch in @param names for function '<anonymous>'. Expected: [_tokenContract], Found: [] [Warning/use-natspec]
+/sb/TestLogicContract.sol:16:2: Missing @notice tag in function 'transferTokens' [Warning/use-natspec]
+/sb/TestLogicContract.sol:16:2: Missing @param tag in function 'transferTokens' [Warning/use-natspec]
+/sb/TestLogicContract.sol:16:2: Mismatch in @param names for function 'transferTokens'. Expected: [_to, _a, _b], Found: [] [Warning/use-natspec]
+/sb/TestLogicContract.sol:22:3: Unexpected console statement [Error/no-console]
+
+24 problem/s (3 error/s, 21 warning/s)

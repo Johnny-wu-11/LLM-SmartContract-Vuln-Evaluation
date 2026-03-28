@@ -1,0 +1,26 @@
+A new version of Solhint is available: 6.1.0
+Please consider updating your Solhint package.
+/sb/GovernableProxy.sol:3:1: Compiler version 0.6.11 does not satisfy the ^0.8.24 semver requirement [Error/compiler-version]
+/sb/GovernableProxy.sol:5:1: Missing @title tag in contract 'GovernableProxy' [Warning/use-natspec]
+/sb/GovernableProxy.sol:5:1: Missing @author tag in contract 'GovernableProxy' [Warning/use-natspec]
+/sb/GovernableProxy.sol:5:1: Missing @notice tag in contract 'GovernableProxy' [Warning/use-natspec]
+/sb/GovernableProxy.sol:6:5: Explicitly mark visibility of state [Warning/state-visibility]
+/sb/GovernableProxy.sol:8:5: Missing @notice tag in event 'OwnershipTransferred' [Warning/use-natspec]
+/sb/GovernableProxy.sol:8:5: Missing @param tag in event 'OwnershipTransferred' [Warning/use-natspec]
+/sb/GovernableProxy.sol:8:5: Mismatch in @param names for event 'OwnershipTransferred'. Expected: [previousOwner, newOwner], Found: [] [Warning/use-natspec]
+/sb/GovernableProxy.sol:10:5: Missing @notice tag in function '<anonymous>' [Warning/use-natspec]
+/sb/GovernableProxy.sol:22:5: Missing @notice tag in function 'owner' [Warning/use-natspec]
+/sb/GovernableProxy.sol:22:5: Missing @return tag in function 'owner' [Warning/use-natspec]
+/sb/GovernableProxy.sol:22:5: Mismatch in @return names for function 'owner'. Expected: [_owner], Found: [] [Warning/use-natspec]
+/sb/GovernableProxy.sol:24:9: Avoid to use inline assembly. It is acceptable only in rare cases [Warning/no-inline-assembly]
+/sb/GovernableProxy.sol:32:5: Missing @notice tag in function 'transferOwnership' [Warning/use-natspec]
+/sb/GovernableProxy.sol:32:5: Missing @param tag in function 'transferOwnership' [Warning/use-natspec]
+/sb/GovernableProxy.sol:32:5: Mismatch in @param names for function 'transferOwnership'. Expected: [newOwner], Found: [] [Warning/use-natspec]
+/sb/GovernableProxy.sol:36:5: Missing @notice tag in function '_transferOwnership' [Warning/use-natspec]
+/sb/GovernableProxy.sol:36:5: Missing @param tag in function '_transferOwnership' [Warning/use-natspec]
+/sb/GovernableProxy.sol:36:5: Mismatch in @param names for function '_transferOwnership'. Expected: [newOwner], Found: [] [Warning/use-natspec]
+/sb/GovernableProxy.sol:37:9: Error message for require is too long: 43 counted / 32 allowed [Warning/reason-string]
+/sb/GovernableProxy.sol:37:9: GC: String exceeds 32 bytes [Warning/gas-small-strings]
+/sb/GovernableProxy.sol:40:9: Avoid to use inline assembly. It is acceptable only in rare cases [Warning/no-inline-assembly]
+
+22 problem/s (1 error/s, 21 warning/s)

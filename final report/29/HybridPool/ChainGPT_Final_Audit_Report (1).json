@@ -1,0 +1,27 @@
+{
+  "title": "ChainGPT Final Audit Report",
+  "tool": "ChainGPT",
+  "status": "Completed",
+  "reduction_summary": {
+    "original_findings": 0,
+    "retained_findings_after_ai_review": 7,
+    "filtered_findings": 0,
+    "filtering_rate": "0.00%"
+  },
+  "adjudication_summary": "Findings are classified based on the description of potential risks and the usage of speculative language. Confirmed findings have clear security implications directly from the descriptions.",
+  "findings": {
+    "confirmed": [
+      "Unchecked External Calls",
+      "Unprotected Function"
+    ],
+    "plausible_but_unverified": [
+      "Reentrancy Vulnerability",
+      "Denial of Service (DoS)",
+      "Frontrunning"
+    ],
+    "unsupported_or_false_positive": [
+      "Integer Overflow/Underflow",
+      "Oracle Manipulation"
+    ]
+  }
+}

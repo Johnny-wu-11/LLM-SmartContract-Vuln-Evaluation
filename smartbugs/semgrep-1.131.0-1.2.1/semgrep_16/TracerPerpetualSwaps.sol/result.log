@@ -1,0 +1,114 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 18 Code Findings │
+└──────────────────┘
+                                
+    /sb/TracerPerpetualSwaps.sol
+     ❱ solidity.best-practice.use-ownable2step
+          By demanding that the receiver of the owner permissions actively accept via a contract call of its 
+          own,  `Ownable2Step` and `Ownable2StepUpgradeable` prevent the contract ownership from accidentally
+          being transferred  to an address that cannot handle it.                                            
+                                                                                                             
+           20┆ contract TracerPerpetualSwaps is ITracerPerpetualSwaps, Ownable, SafetyWithdraw {
+   
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           92┆ constructor(
+           93┆     bytes32 _marketId,
+           94┆     address _tracerQuoteToken,
+           95┆     uint256 _tokenDecimals,
+           96┆     address _gasPriceOracle,
+           97┆     uint256 _maxLeverage,
+           98┆     uint256 _fundingRateSensitivity,
+           99┆     uint256 _feeRate,
+          100┆     address _feeReceiver,
+          101┆     uint256 _deleveragingCliff,
+             [hid 16 additional lines, adjust with --max-lines-per-finding] 
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+          180┆ int256 newQuote = userBalance.position.quote - convertedWadAmount;
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          185┆ require(
+          186┆     Balances.marginIsValid(
+          187┆         newPosition,
+          188┆         userBalance.lastUpdatedGasPrice * LIQUIDATION_GAS_COST,
+          189┆         pricingContract.fairPrice(),
+          190┆         trueMaxLeverage()
+          191┆     ),
+          192┆     "TCR: Withdraw below valid Margin"
+          193┆ );
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+          200┆ tvl = tvl - amount;
+            ⋮┆----------------------------------------
+          380┆ liquidatorBalance.position.quote +
+          381┆ liquidatorQuoteChange -
+          382┆ amountToEscrow.toInt256();
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          390┆ require(userMarginIsValid(liquidator), "TCR: Liquidator under min margin");
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+          413┆ balances[insuranceAddr].position.quote = balances[insuranceAddr].position.quote -
+               amountToTakeFromInsurance;                                                       
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          416┆ require(balances[insuranceAddr].position.quote >= 0, "TCR: Insurance not funded enough");
+            ⋮┆----------------------------------------
+          479┆ require(userMarginIsValid(account), "TCR: Target under-margined");
+            ⋮┆----------------------------------------
+          523┆ require(_liquidationContract != address(0), "address(0) given");
+            ⋮┆----------------------------------------
+          528┆ require(insurance != address(0), "address(0) given");
+            ⋮┆----------------------------------------
+          533┆ require(pricing != address(0), "address(0) given");
+            ⋮┆----------------------------------------
+          538┆ require(_gasOracle != address(0), "address(0) given");
+            ⋮┆----------------------------------------
+          543┆ require(_feeReceiver != address(0), "address(0) given");
+            ⋮┆----------------------------------------
+          573┆ require(newOwner != address(0), "address(0) given");
+            ⋮┆----------------------------------------
+          589┆ require(msg.sender == liquidationContract, "TCR: Sender not liquidation");
+            ⋮┆----------------------------------------
+          595┆ require(tradingWhitelist[msg.sender], "TCR: Contract not whitelisted");
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 18 (18 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 18 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

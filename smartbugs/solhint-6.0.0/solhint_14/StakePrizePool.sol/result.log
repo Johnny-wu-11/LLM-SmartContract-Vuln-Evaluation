@@ -1,0 +1,20 @@
+A new version of Solhint is available: 6.1.0
+Please consider updating your Solhint package.
+/sb/StakePrizePool.sol:3:1: Compiler version >=0.6.0 <0.7.0 does not satisfy the ^0.8.24 semver requirement [Error/compiler-version]
+/sb/StakePrizePool.sol:5:1: global import of path @openzeppelin/contracts-upgradeable/token/ERC20/IERC20Upgradeable.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/StakePrizePool.sol:5:1: Import in /sb/StakePrizePool.sol doesn't exist in: @openzeppelin/contracts-upgradeable/token/ERC20/IERC20Upgradeable.sol [Warning/import-path-check]
+/sb/StakePrizePool.sol:7:1: global import of path ../PrizePool.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/StakePrizePool.sol:7:1: Import in /sb/StakePrizePool.sol doesn't exist in: ../PrizePool.sol [Warning/import-path-check]
+/sb/StakePrizePool.sol:9:1: Missing @title tag in contract 'StakePrizePool' [Warning/use-natspec]
+/sb/StakePrizePool.sol:9:1: Missing @author tag in contract 'StakePrizePool' [Warning/use-natspec]
+/sb/StakePrizePool.sol:9:1: Missing @notice tag in contract 'StakePrizePool' [Warning/use-natspec]
+/sb/StakePrizePool.sol:13:3: Missing @notice tag in event 'StakePrizePoolInitialized' [Warning/use-natspec]
+/sb/StakePrizePool.sol:13:3: Missing @param tag in event 'StakePrizePoolInitialized' [Warning/use-natspec]
+/sb/StakePrizePool.sol:13:3: Mismatch in @param names for event 'StakePrizePoolInitialized'. Expected: [stakeToken], Found: [] [Warning/use-natspec]
+/sb/StakePrizePool.sol:20:3: Mismatch in @param names for function 'initialize'. Expected: [_reserveRegistry, _controlledTokens, _maxExitFeeMantissa, _maxTimelockDuration, _stakeToken], Found: [_controlledTokens, _maxExitFeeMantissa, _maxTimelockDuration, _stakeToken] [Warning/use-natspec]
+/sb/StakePrizePool.sol:56:3: Missing @notice tag in function '_token' [Warning/use-natspec]
+/sb/StakePrizePool.sol:56:3: Missing @return tag in function '_token' [Warning/use-natspec]
+/sb/StakePrizePool.sol:56:3: Mismatch in @return count for function '_token'. Expected: 1, Found: 0 [Warning/use-natspec]
+/sb/StakePrizePool.sol:62:58: Code contains empty blocks [Warning/no-empty-blocks]
+
+16 problem/s (1 error/s, 15 warning/s)

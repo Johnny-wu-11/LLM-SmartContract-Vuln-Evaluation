@@ -1,0 +1,78 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 10 Code Findings │
+└──────────────────┘
+                            
+    /sb/WhiteListManager.sol
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           32┆ constructor() {
+           33┆     _DOMAIN_SEPARATOR = _calculateDomainSeparator(DOMAIN_SEPARATOR_CHAIN_ID =
+               block.chainid);                                                              
+           34┆ }
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           67┆ require(account != address(0), "ACCOUNT_NOT_SET");
+            ⋮┆----------------------------------------
+           69┆ require(operator != address(0), "OPERATOR_NULL");
+            ⋮┆----------------------------------------
+           70┆ require(deadline >= block.timestamp && deadline <= (block.timestamp + 1 weeks), "EXPIRED");
+   
+     ❱ solidity.performance.use-multiple-require
+          Using multiple require statements is cheaper than using && multiple check combinations.  There are
+          more advantages, such as easier to read code and better coverage reports.                         
+                                                                                                            
+           70┆ require(deadline >= block.timestamp && deadline <= (block.timestamp + 1 weeks), "EXPIRED");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           81┆ require(recoveredAddress == operator, "INVALID_SIGNATURE");
+            ⋮┆----------------------------------------
+          102┆ require(!isWhitelisted(operator, index), "CLAIMED");
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          105┆ for (uint256 i = 0; i < merkleProof.length; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          105┆ for (uint256 i = 0; i < merkleProof.length; i++) {
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          116┆ require(computedHash == merkleRoot[operator], "NOT_ROOTED");
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 10 (10 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 10 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

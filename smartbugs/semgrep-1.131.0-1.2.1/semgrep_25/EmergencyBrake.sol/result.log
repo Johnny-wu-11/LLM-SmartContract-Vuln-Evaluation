@@ -1,0 +1,180 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 28 Code Findings │
+└──────────────────┘
+                          
+    /sb/EmergencyBrake.sol
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           34┆ constructor(address planner, address executor) AccessControl() {
+           35┆     _grantRole(IEmergencyBrake.plan.selector, planner);
+           36┆     _grantRole(IEmergencyBrake.cancel.selector, planner);
+           37┆     _grantRole(IEmergencyBrake.execute.selector, executor);
+           38┆     _grantRole(IEmergencyBrake.restore.selector, planner);
+           39┆     _grantRole(IEmergencyBrake.terminate.selector, planner);
+           40┆
+           41┆     // Granting roles (plan, cancel, execute, restore, terminate) is reserved to ROOT
+           42┆ }
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           49┆ require(contacts.length == permissions.length, "Mismatched inputs");
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+           51┆ for (uint256 i = 0; i < contacts.length; i++){
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+           51┆ for (uint256 i = 0; i < contacts.length; i++){
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+           51┆ for (uint256 i = 0; i < contacts.length; i++){
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+           52┆ for (uint256 j = 0; j < permissions[i].length; j++){
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+           52┆ for (uint256 j = 0; j < permissions[i].length; j++){
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+           52┆ for (uint256 j = 0; j < permissions[i].length; j++){
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           53┆ require(
+           54┆     permissions[i][j] != ROOT,
+           55┆     "Can't remove ROOT"
+           56┆ );
+            ⋮┆----------------------------------------
+           60┆ require(plans[txHash] == State.UNKNOWN, "Emergency already planned for.");
+            ⋮┆----------------------------------------
+           69┆ require(contacts.length == permissions.length, "Mismatched inputs");
+            ⋮┆----------------------------------------
+           71┆ require(plans[txHash] == State.PLANNED, "Emergency not planned for.");
+            ⋮┆----------------------------------------
+           80┆ require(contacts.length == permissions.length, "Mismatched inputs");
+            ⋮┆----------------------------------------
+           82┆ require(plans[txHash] == State.PLANNED, "Emergency not planned for.");
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+           85┆ for (uint256 i = 0; i < contacts.length; i++){
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+           85┆ for (uint256 i = 0; i < contacts.length; i++){
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+           85┆ for (uint256 i = 0; i < contacts.length; i++){
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+           88┆ for (uint256 j = 0; j < permissions[i].length; j++){
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+           88┆ for (uint256 j = 0; j < permissions[i].length; j++){
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+           88┆ for (uint256 j = 0; j < permissions[i].length; j++){
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           89┆ require(
+           90┆     AccessControl(contacts[i]).hasRole(permissions[i][j], target),
+           91┆     "Permission not found"
+           92┆ );
+            ⋮┆----------------------------------------
+          104┆ require(contacts.length == permissions.length, "Mismatched inputs");
+            ⋮┆----------------------------------------
+          106┆ require(plans[txHash] == State.EXECUTED, "Emergency plan not executed.");
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          109┆ for (uint256 i = 0; i < contacts.length; i++){
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          109┆ for (uint256 i = 0; i < contacts.length; i++){
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          109┆ for (uint256 i = 0; i < contacts.length; i++){
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          119┆ require(contacts.length == permissions.length, "Mismatched inputs");
+            ⋮┆----------------------------------------
+          121┆ require(plans[txHash] == State.EXECUTED, "Emergency plan not executed.");
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 28 (28 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 28 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading
+
+📢 Too many findings? Try Semgrep Pro for more powerful queries and less noise.
+   See https://sg.run/false-positives.

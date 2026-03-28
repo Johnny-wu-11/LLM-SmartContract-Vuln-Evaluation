@@ -1,0 +1,142 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 21 Code Findings │
+└──────────────────┘
+                         
+    /sb/RCLeaderboard.sol
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           50┆ constructor(IRCTreasury _treasury) {
+           51┆     treasury = _treasury;
+           52┆ }
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           55┆ require(
+           56┆     treasury.checkPermission(MARKET, msgSender()),
+           57┆     "Not authorised"
+           58┆ );
+            ⋮┆----------------------------------------
+           62┆ require(
+           63┆     treasury.checkPermission(FACTORY, msgSender()),
+           64┆     "Extremely Verboten"
+           65┆ );
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+           83┆ for (uint64 i = 0; i < _cardCount; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+           83┆ for (uint64 i = 0; i < _cardCount; i++) {
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+           91┆ leaderboardIndex[_market][_market][i] = leaderboard[_market].length;
+            ⋮┆----------------------------------------
+           91┆ leaderboardIndex[_market][_market][i] = leaderboard[_market].length;
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+           91┆ leaderboardIndex[_market][_market][i] = leaderboard[_market].length;
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+           92┆ leaderboard[_market].push(_newRecord);
+            ⋮┆----------------------------------------
+          173┆ leaderboard[_nextUser][leaderboardIndex[_nextUser][_market][_card]]
+            ⋮┆----------------------------------------
+          173┆ leaderboard[_nextUser][leaderboardIndex[_nextUser][_market][_card]]
+            ⋮┆----------------------------------------
+          177┆ _currRecord = leaderboard[_nextUser][
+            ⋮┆----------------------------------------
+          178┆ leaderboardIndex[_nextUser][_market][_card]
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          205┆ leaderboardLength[_market][_card]++;
+   
+     ❱ solidity.performance.use-nested-if
+          Using nested is cheaper than using && multiple check combinations.  There are more advantages, such
+          as easier to read code and better coverage reports.                                                
+                                                                                                             
+          234┆ if (leaderboard[_user].length != 0 && _index != _lastRecord) {
+          235┆     leaderboardIndex[_user][leaderboard[_user][_index].market][
+          236┆         leaderboard[_user][_index].card
+          237┆     ] = _index;
+          238┆ }
+   
+     ❱ solidity.performance.use-prefix-decrement-not-postfix
+          Consider using the prefix decrement expression whenever the return value is not needed. The prefix
+          decrement expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          240┆ leaderboardLength[_market][_card]--;
+   
+     ❱ solidity.performance.use-nested-if
+          Using nested is cheaper than using && multiple check combinations.  There are more advantages, such
+          as easier to read code and better coverage reports.                                                
+                                                                                                             
+          258┆ if (
+          259┆     leaderboard[_user][0].market == _market &&
+          260┆     leaderboard[_user][0].card == _card
+          261┆ ) {
+          262┆     return true;
+          263┆ }
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          277┆ require(
+          278┆     userIsOnLeaderboard(_user, _market, _card),
+          279┆     "Not in leaderboard"
+          280┆ );
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          305┆ _currRecord = leaderboard[_nextUser][
+            ⋮┆----------------------------------------
+          306┆ leaderboardIndex[_nextUser][_market][_card]
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          309┆ i++;
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 21 (21 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 21 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

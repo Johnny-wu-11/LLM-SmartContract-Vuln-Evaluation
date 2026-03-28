@@ -1,0 +1,27 @@
+A new version of Solhint is available: 6.1.0
+Please consider updating your Solhint package.
+/sb/ForeignLock.sol:2:1: Compiler version ^0.7.4 does not satisfy the ^0.8.24 semver requirement [Error/compiler-version]
+/sb/ForeignLock.sol:9:1: global import of path @openzeppelin/contracts/token/ERC20/ERC20.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/ForeignLock.sol:9:1: Import in /sb/ForeignLock.sol doesn't exist in: @openzeppelin/contracts/token/ERC20/ERC20.sol [Warning/import-path-check]
+/sb/ForeignLock.sol:9:8: Use double quotes for string literals [Error/quotes]
+/sb/ForeignLock.sol:10:1: global import of path @openzeppelin/contracts/access/Ownable.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/ForeignLock.sol:10:1: Import in /sb/ForeignLock.sol doesn't exist in: @openzeppelin/contracts/access/Ownable.sol [Warning/import-path-check]
+/sb/ForeignLock.sol:10:8: Use double quotes for string literals [Error/quotes]
+/sb/ForeignLock.sol:11:1: global import of path ./interfaces/ISherlock.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/ForeignLock.sol:11:1: Import in /sb/ForeignLock.sol doesn't exist in: ./interfaces/ISherlock.sol [Warning/import-path-check]
+/sb/ForeignLock.sol:11:8: Use double quotes for string literals [Error/quotes]
+/sb/ForeignLock.sol:13:1: global import of path ./NativeLock.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/ForeignLock.sol:13:1: Import in /sb/ForeignLock.sol doesn't exist in: ./NativeLock.sol [Warning/import-path-check]
+/sb/ForeignLock.sol:13:8: Use double quotes for string literals [Error/quotes]
+/sb/ForeignLock.sol:15:1: Missing @title tag in contract 'ForeignLock' [Warning/use-natspec]
+/sb/ForeignLock.sol:15:1: Missing @author tag in contract 'ForeignLock' [Warning/use-natspec]
+/sb/ForeignLock.sol:15:1: Missing @notice tag in contract 'ForeignLock' [Warning/use-natspec]
+/sb/ForeignLock.sol:16:3: Missing @notice tag in function '<anonymous>' [Warning/use-natspec]
+/sb/ForeignLock.sol:16:3: Missing @param tag in function '<anonymous>' [Warning/use-natspec]
+/sb/ForeignLock.sol:16:3: Mismatch in @param names for function '<anonymous>'. Expected: [_name, _symbol, _sherlock, _underlying], Found: [] [Warning/use-natspec]
+/sb/ForeignLock.sol:16:3: Explicitly mark visibility in function (Set ignoreConstructors to true if using solidity >=0.7.0) [Warning/func-visibility]
+/sb/ForeignLock.sol:25:3: Missing @notice tag in function '_beforeTokenTransfer' [Warning/use-natspec]
+/sb/ForeignLock.sol:25:3: Missing @param tag in function '_beforeTokenTransfer' [Warning/use-natspec]
+/sb/ForeignLock.sol:25:3: Mismatch in @param names for function '_beforeTokenTransfer'. Expected: [from, to, amount], Found: [] [Warning/use-natspec]
+
+23 problem/s (5 error/s, 18 warning/s)

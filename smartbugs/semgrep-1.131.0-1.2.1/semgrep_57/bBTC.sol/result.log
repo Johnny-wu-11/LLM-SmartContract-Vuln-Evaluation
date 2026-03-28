@@ -1,0 +1,49 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                   
+                   
+┌─────────────────┐
+│ 4 Code Findings │
+└─────────────────┘
+                
+    /sb/bBTC.sol
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           13┆ constructor(address _core)
+           14┆     public
+           15┆     ERC20("Interest-Bearing BTC", "ibBTC")
+           16┆ {
+           17┆     require(_core != address(0), "NULL_ADDRESS");
+           18┆     core = _core;
+           19┆ }
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           17┆ require(_core != address(0), "NULL_ADDRESS");
+            ⋮┆----------------------------------------
+           22┆ require(msg.sender == core, "bBTC: NO_AUTH");
+            ⋮┆----------------------------------------
+           35┆ require(_core != address(0), "NULL_ADDRESS");
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 4 (4 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 4 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

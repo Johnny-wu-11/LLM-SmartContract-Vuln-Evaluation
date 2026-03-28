@@ -1,0 +1,97 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 12 Code Findings │
+└──────────────────┘
+                  
+    /sb/Router.sol
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           29┆ constructor (address _base, address _wbnb) {
+           30┆     BASE = _base;
+           31┆     WBNB = _wbnb;
+           32┆     arrayFeeSize = 20;
+           33┆     eraLength = 30;
+           34┆     maxTrades = 100;
+           35┆     lastMonth = 0;
+           36┆     DEPLOYER = msg.sender;
+           37┆ }
+   
+     ❱ solidity.performance.use-multiple-require
+          Using multiple require statements is cheaper than using && multiple check combinations.  There are
+          more advantages, such as easier to read code and better coverage reports.                         
+                                                                                                            
+           95┆ require((basisPoints > 0 && basisPoints <= 10000)); // Must be valid basis points
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          202┆ require(success, "!send");
+            ⋮┆----------------------------------------
+          219┆ require(success, "!send");
+   
+    ❯❱ solidity.security.exact-balance-check
+          Testing the balance of an account as a basis for some action has risks associated with unexpected 
+          receipt of ether or another token, including tokens deliberately transfered to cause such tests to
+          fail, as an MEV attack.                                                                           
+                                                                                                            
+          273┆ if(!(reserve == 0)){
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          292┆ for(uint i = 0; i < arrayFeeSize; i++){
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          292┆ for(uint i = 0; i < arrayFeeSize; i++){
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          292┆ for(uint i = 0; i < arrayFeeSize; i++){
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          293┆ totalTradeFees = totalTradeFees + feeArray[i]; // NET sum of feeArray
+   
+     ❱ solidity.performance.use-prefix-decrement-not-postfix
+          Consider using the prefix decrement expression whenever the return value is not needed. The prefix
+          decrement expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          302┆ for (uint i = n - 1; i > 0; i--) {
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          303┆ feeArray[i] = feeArray[i - 1];
+            ⋮┆----------------------------------------
+          303┆ feeArray[i] = feeArray[i - 1];
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 12 (12 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 12 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

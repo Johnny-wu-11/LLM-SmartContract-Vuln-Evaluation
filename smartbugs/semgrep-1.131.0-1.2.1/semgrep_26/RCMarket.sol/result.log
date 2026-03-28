@@ -1,0 +1,536 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 93 Code Findings │
+└──────────────────┘
+                    
+    /sb/RCMarket.sol
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          246┆ for (uint256 i = 0; i < _numberOfCards; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          246┆ for (uint256 i = 0; i < _numberOfCards; i++) {
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          247┆ tokenIds.push(type(uint256).max);
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          263┆ for (uint256 i = 0; i < _numberOfCards; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          263┆ for (uint256 i = 0; i < _numberOfCards; i++) {
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          265┆ cardAffiliateCut = 0;
+   
+     ❱ solidity.performance.use-nested-if
+          Using nested is cheaper than using && multiple check combinations.  There are more advantages, such
+          as easier to read code and better coverage reports.                                                
+                                                                                                             
+          313┆ if (marketOpeningTime <= block.timestamp && state == States.CLOSED) {
+          314┆     _incrementState();
+          315┆ }
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          329┆ require(msgSender() == ownerOf(_token), "Not owner");
+            ⋮┆----------------------------------------
+          339┆ require(_cardId < numberOfCards, "Card does not exist");
+            ⋮┆----------------------------------------
+          354┆ require(
+          355┆     _from != address(0) && _to != address(0),
+          356┆     "Cannot send to/from zero address"
+          357┆ );
+   
+     ❱ solidity.performance.use-multiple-require
+          Using multiple require statements is cheaper than using && multiple check combinations.  There are
+          more advantages, such as easier to read code and better coverage reports.                         
+                                                                                                            
+          354┆ require(
+          355┆     _from != address(0) && _to != address(0),
+          356┆     "Cannot send to/from zero address"
+          357┆ );
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          373┆ require(msgSender() == address(orderbook), "Not orderbook");
+            ⋮┆----------------------------------------
+          429┆ require(isFinalized(), "Oracle not finalised");
+            ⋮┆----------------------------------------
+          431┆ require(marketLockingTime <= block.timestamp, "Market not finished");
+            ⋮┆----------------------------------------
+          439┆ require(
+          440┆     treasury.checkPermission(keccak256("OWNER"), msgSender()),
+          441┆     "Not authorised"
+          442┆ );
+            ⋮┆----------------------------------------
+          457┆ require(
+          458┆     uint256(marketLockingTime) <= block.timestamp,
+          459┆     "Market has not finished"
+          460┆ );
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          465┆ while (cardAccountingIndex < numberOfCards && !accountingComplete) {
+            ⋮┆----------------------------------------
+          465┆ while (cardAccountingIndex < numberOfCards && !accountingComplete) {
+            ⋮┆----------------------------------------
+          465┆ while (cardAccountingIndex < numberOfCards && !accountingComplete) {
+            ⋮┆----------------------------------------
+          467┆ cardAccountingIndex,
+            ⋮┆----------------------------------------
+          472┆ cardAccountingIndex++;
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          472┆ cardAccountingIndex++;
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          474┆ if (cardAccountingIndex == numberOfCards) {
+            ⋮┆----------------------------------------
+          474┆ if (cardAccountingIndex == numberOfCards) {
+            ⋮┆----------------------------------------
+          475┆ accountingComplete = true;
+            ⋮┆----------------------------------------
+          478┆ if (rentIterationCounter >= maxRentIterations) {
+   
+     ❱ solidity.performance.use-nested-if
+          Using nested is cheaper than using && multiple check combinations.  There are more advantages, such
+          as easier to read code and better coverage reports.                                                
+                                                                                                             
+          484┆ if (
+          485┆     accountingComplete &&
+          486┆     rentIterationCounter < maxRentIterationsToLockMarket
+          487┆ ) {
+          488┆     // and check that the orderbook has shut the market
+          489┆     if (orderbook.closeMarket()) {
+          490┆         // now lock the market
+          491┆         _incrementState();
+          492┆
+          493┆         for (uint256 i = 0; i < numberOfCards; i++) {
+             [hid 9 additional lines, adjust with --max-lines-per-finding] 
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          493┆ for (uint256 i = 0; i < numberOfCards; i++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          493┆ for (uint256 i = 0; i < numberOfCards; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          493┆ for (uint256 i = 0; i < numberOfCards; i++) {
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          498┆ emit LogLongestOwner(i, card[i].longestOwner);
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          512┆ require(_blockTimestamp <= type(uint32).max, "Overflow");
+            ⋮┆----------------------------------------
+          527┆ require(!userAlreadyWithdrawn[msgSender()], "Already withdrawn");
+            ⋮┆----------------------------------------
+          543┆ require(
+          544┆     !treasury.marketPaused(address(this)) && !treasury.globalPause(),
+          545┆     "Market is Paused"
+          546┆ );
+   
+     ❱ solidity.performance.use-multiple-require
+          Using multiple require statements is cheaper than using && multiple check combinations.  There are
+          more advantages, such as easier to read code and better coverage reports.                         
+                                                                                                            
+          543┆ require(
+          544┆     !treasury.marketPaused(address(this)) && !treasury.globalPause(),
+          545┆     "Market is Paused"
+          546┆ );
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          548┆ require(!card[_card].userAlreadyClaimed[_user], "Already claimed");
+   
+     ❱ solidity.performance.use-nested-if
+          Using nested is cheaper than using && multiple check combinations.  There are more advantages, such
+          as easier to read code and better coverage reports.                                                
+                                                                                                             
+          564┆ if (card[winningOutcome].longestOwner == msgSender() && winnerCut > 0) {
+          565┆     _winningsToTransfer =
+          566┆         (totalRentCollected * winnerCut) /
+          567┆         (PER_MILLE);
+          568┆ }
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          590┆ require(_winningsToTransfer > 0, "Not a winner");
+            ⋮┆----------------------------------------
+          601┆ require(_rentCollected > 0, "Paid no rent");
+            ⋮┆----------------------------------------
+          621┆ require(!artistPaid, "Artist already paid");
+            ⋮┆----------------------------------------
+          629┆ require(card[winningOutcome].totalTimeHeld > 0, "No winner");
+            ⋮┆----------------------------------------
+          630┆ require(!creatorPaid, "Creator already paid");
+            ⋮┆----------------------------------------
+          638┆ require(!affiliatePaid, "Affiliate already paid");
+            ⋮┆----------------------------------------
+          647┆ require(!card[_card].cardAffiliatePaid, "Card affiliate already paid");
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          695┆ for (uint256 i = 0; i < numberOfCards; i++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          695┆ for (uint256 i = 0; i < numberOfCards; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          695┆ for (uint256 i = 0; i < numberOfCards; i++) {
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          696┆ if (card[i].cardPrice == 0) {
+            ⋮┆----------------------------------------
+          700┆ (card[i].cardPrice * (minimumPriceIncreasePercent + 100)) /
+            ⋮┆----------------------------------------
+          700┆ (card[i].cardPrice * (minimumPriceIncreasePercent + 100)) /
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          704┆ require(_actualSumOfPrices <= _maxSumOfPrices, "Prices too high");
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          706┆ for (uint256 i = 0; i < numberOfCards; i++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          706┆ for (uint256 i = 0; i < numberOfCards; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          706┆ for (uint256 i = 0; i < numberOfCards; i++) {
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          709┆ if (card[i].cardPrice > 0) {
+            ⋮┆----------------------------------------
+          711┆ (card[i].cardPrice *
+            ⋮┆----------------------------------------
+          712┆ (minimumPriceIncreasePercent + 100)) /
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          736┆ require(_newPrice >= MIN_RENTAL_VALUE, "Price below min");
+            ⋮┆----------------------------------------
+          737┆ require(_card < numberOfCards, "Card does not exist");
+            ⋮┆----------------------------------------
+          748┆ require(
+          749┆     exitedTimestamp[_user] != block.timestamp,
+          750┆     "Cannot lose and re-rent in same block"
+          751┆ );
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          748┆ require(
+          749┆     exitedTimestamp[_user] != block.timestamp,
+          750┆     "Cannot lose and re-rent in same block"
+          751┆ );
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          752┆ require(
+          753┆     !treasury.marketPaused(address(this)) &&
+          754┆         !treasury.globalPause(),
+          755┆     "Rentals are disabled"
+          756┆ );
+   
+     ❱ solidity.performance.use-multiple-require
+          Using multiple require statements is cheaper than using && multiple check combinations.  There are
+          more advantages, such as easier to read code and better coverage reports.                         
+                                                                                                            
+          752┆ require(
+          753┆     !treasury.marketPaused(address(this)) &&
+          754┆         !treasury.globalPause(),
+          755┆     "Rentals are disabled"
+          756┆ );
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          758┆ require(
+          759┆     treasury.marketWhitelistCheck(_user),
+          760┆     "Not approved for this market"
+          761┆ );
+            ⋮┆----------------------------------------
+          768┆ require(
+          769┆     !treasury.isForeclosed(_user),
+          770┆     "Can't rent while foreclosed"
+          771┆ );
+            ⋮┆----------------------------------------
+          776┆ require(
+          777┆     _newPrice >= _requiredPrice ||
+          778┆         _newPrice < card[_card].cardPrice,
+          779┆     "Invalid price"
+          780┆ );
+            ⋮┆----------------------------------------
+          792┆ require(
+          793┆     treasury.userDeposit(_user) >=
+          794┆         _userTotalBidRate / minRentalDayDivisor,
+          795┆     "Insufficient deposit"
+          796┆ );
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          838┆ for (uint256 i = 0; i < numberOfCards; i++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          838┆ for (uint256 i = 0; i < numberOfCards; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          838┆ for (uint256 i = 0; i < numberOfCards; i++) {
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          906┆ require(_amount > 0, "Must send something");
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          915┆ for (uint256 i = 0; i < numberOfCards; i++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          915┆ for (uint256 i = 0; i < numberOfCards; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          915┆ for (uint256 i = 0; i < numberOfCards; i++) {
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          916┆ card[i].rentCollectedPerCard =
+            ⋮┆----------------------------------------
+          917┆ card[i].rentCollectedPerCard +
+            ⋮┆----------------------------------------
+          918┆ (_amount / numberOfCards);
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          926┆ require(_timeHeldLimit >= _minRentalTime, "Limit too low");
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          939┆ while (_counter < maxRentIterations && shouldContinue) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          941┆ _counter++;
+   
+     ❱ solidity.performance.use-nested-if
+          Using nested is cheaper than using && multiple check combinations.  There are more advantages, such
+          as easier to read code and better coverage reports.                                                
+                                                                                                             
+          962┆ if (
+          963┆     _user != address(this) &&
+          964┆     card[_card].timeLastCollected < _timeOfThisCollection
+          965┆ ) {
+          966┆     // User rent collect and fetch the time the user foreclosed, 0 means they didn't
+               foreclose yet                                                                       
+          967┆     uint256 _timeUserForeclosed = treasury.collectRentUser(
+          968┆         _user,
+          969┆         _timeOfThisCollection
+          970┆     );
+          971┆
+             [hid 79 additional lines, adjust with --max-lines-per-finding] 
+          994┆ if (!_foreclosed && !_limitHit) {
+          995┆     // CASE 1
+          996┆     // didn't foreclose AND
+          997┆     // didn't hit time limit
+          998┆     // THEN simple rent collect, same owner
+          999┆     _timeOfThisCollection = _timeOfThisCollection;
+          1000┆     _newOwner = false;
+          1001┆     _refundTime = 0;
+          1002┆ } else if (!_foreclosed && _limitHit) {
+          1003┆     // CASE 2
+             [hid 31 additional lines, adjust with --max-lines-per-finding] 
+          1002┆ } else if (!_foreclosed && _limitHit) {
+          1003┆     // CASE 2
+          1004┆     // didn't foreclose AND
+          1005┆     // did hit time limit
+          1006┆     // THEN refund rent between time limit and now
+          1007┆     _timeOfThisCollection = _cardTimeLimitTimestamp;
+          1008┆     _newOwner = true;
+          1009┆     _refundTime = block.timestamp - _cardTimeLimitTimestamp;
+          1010┆ } else if (_foreclosed && !_limitHit) {
+          1011┆     // CASE 3
+             [hid 23 additional lines, adjust with --max-lines-per-finding] 
+          1010┆ } else if (_foreclosed && !_limitHit) {
+          1011┆     // CASE 3
+          1012┆     // did foreclose AND
+          1013┆     // didn't hit time limit
+          1014┆     // THEN rent OK, find new owner
+          1015┆     _timeOfThisCollection = _timeUserForeclosed;
+          1016┆     _newOwner = true;
+          1017┆     _refundTime = 0;
+          1018┆ } else if (_foreclosed && _limitHit) {
+          1019┆     // CASE 4
+             [hid 15 additional lines, adjust with --max-lines-per-finding] 
+          1018┆ } else if (_foreclosed && _limitHit) {
+          1019┆     // CASE 4
+          1020┆     // did foreclose AND
+          1021┆     // did hit time limit
+          1022┆     // THEN if foreclosed first rent ok, otherwise refund after limit
+          1023┆     if (_timeUserForeclosed < _cardTimeLimitTimestamp) {
+          1024┆         // user foreclosed before time limit
+          1025┆         _timeOfThisCollection = _timeUserForeclosed;
+          1026┆         _newOwner = true;
+          1027┆         _refundTime = 0;
+             [hid 7 additional lines, adjust with --max-lines-per-finding] 
+   
+     ❱ solidity.performance.inefficient-state-variable-increment
+          <x> += <y> costs more gas than <x> = <x> + <y> for state variables.
+                                                                             
+          1090┆ totalRentCollected += _rentCollected;
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          1106┆ require(state == currentState, "Incorrect state");
+            ⋮┆----------------------------------------
+          1110┆ require(state != currentState, "Incorrect state");
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          1194┆ for (uint256 i = 0; i < numberOfCards; i++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          1194┆ for (uint256 i = 0; i < numberOfCards; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          1194┆ for (uint256 i = 0; i < numberOfCards; i++) {
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          1196┆ _prices[i] = card[i].cardPrice;
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          1216┆ require(
+          1217┆     block.timestamp > (uint256(oracleResolutionTime) + (12 weeks)),
+          1218┆     "Too early"
+          1219┆ );
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 93 (93 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 93 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading
+
+📢 Too many findings? Try Semgrep Pro for more powerful queries and less noise.
+   See https://sg.run/false-positives.

@@ -1,0 +1,607 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                     
+                     
+┌───────────────────┐
+│ 122 Code Findings │
+└───────────────────┘
+                       
+    /sb/Comptroller.sol
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           94┆ constructor() public {
+           95┆     admin = msg.sender;
+           96┆ }
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          130┆ for (uint i = 0; i < len; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          130┆ for (uint i = 0; i < len; i++) {
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          187┆ require(oErr == 0, "exitMarket: getAccountSnapshot failed"); // semi-opaque error code
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          187┆ require(oErr == 0, "exitMarket: getAccountSnapshot failed"); // semi-opaque error code
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          215┆ for (uint i = 0; i < len; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          215┆ for (uint i = 0; i < len; i++) {
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          246┆ require(!mintGuardianPaused[cToken], "mint is paused");
+   
+    ❯❱ solidity.security.missing-assignment
+          Meaningless statement that does not change any values could be a sign of missed security checks or
+          other important changes.                                                                          
+                                                                                                            
+          249┆ minter;
+            ⋮┆----------------------------------------
+          250┆ mintAmount;
+            ⋮┆----------------------------------------
+          272┆ cToken;
+            ⋮┆----------------------------------------
+          273┆ minter;
+            ⋮┆----------------------------------------
+          274┆ actualMintAmount;
+            ⋮┆----------------------------------------
+          275┆ mintTokens;
+            ⋮┆----------------------------------------
+          334┆ cToken;
+            ⋮┆----------------------------------------
+          335┆ redeemer;
+   
+     ❱ solidity.performance.use-nested-if
+          Using nested is cheaper than using && multiple check combinations.  There are more advantages, such
+          as easier to read code and better coverage reports.                                                
+                                                                                                             
+          338┆ if (redeemTokens == 0 && redeemAmount > 0) {
+          339┆     revert("redeemTokens zero");
+          340┆ }
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          339┆ revert("redeemTokens zero");
+            ⋮┆----------------------------------------
+          352┆ require(!borrowGuardianPaused[cToken], "borrow is paused");
+            ⋮┆----------------------------------------
+          360┆ require(msg.sender == cToken, "sender must be cToken");
+            ⋮┆----------------------------------------
+          382┆ require(mathErr == MathError.NO_ERROR, "total borrows overflow");
+            ⋮┆----------------------------------------
+          383┆ require(nextTotalBorrows < borrowCap, "market borrow cap reached");
+   
+    ❯❱ solidity.security.missing-assignment
+          Meaningless statement that does not change any values could be a sign of missed security checks or
+          other important changes.                                                                          
+                                                                                                            
+          410┆ cToken;
+            ⋮┆----------------------------------------
+          411┆ borrower;
+            ⋮┆----------------------------------------
+          412┆ borrowAmount;
+            ⋮┆----------------------------------------
+          434┆ payer;
+            ⋮┆----------------------------------------
+          435┆ borrower;
+            ⋮┆----------------------------------------
+          436┆ repayAmount;
+            ⋮┆----------------------------------------
+          464┆ cToken;
+            ⋮┆----------------------------------------
+          465┆ payer;
+            ⋮┆----------------------------------------
+          466┆ borrower;
+            ⋮┆----------------------------------------
+          467┆ actualRepayAmount;
+            ⋮┆----------------------------------------
+          468┆ borrowerIndex;
+            ⋮┆----------------------------------------
+          491┆ liquidator;
+            ⋮┆----------------------------------------
+          535┆ cTokenBorrowed;
+            ⋮┆----------------------------------------
+          536┆ cTokenCollateral;
+            ⋮┆----------------------------------------
+          537┆ liquidator;
+            ⋮┆----------------------------------------
+          538┆ borrower;
+            ⋮┆----------------------------------------
+          539┆ actualRepayAmount;
+            ⋮┆----------------------------------------
+          540┆ seizeTokens;
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          563┆ require(!seizeGuardianPaused, "seize is paused");
+   
+    ❯❱ solidity.security.missing-assignment
+          Meaningless statement that does not change any values could be a sign of missed security checks or
+          other important changes.                                                                          
+                                                                                                            
+          566┆ seizeTokens;
+            ⋮┆----------------------------------------
+          599┆ cTokenCollateral;
+            ⋮┆----------------------------------------
+          600┆ cTokenBorrowed;
+            ⋮┆----------------------------------------
+          601┆ liquidator;
+            ⋮┆----------------------------------------
+          602┆ borrower;
+            ⋮┆----------------------------------------
+          603┆ seizeTokens;
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          621┆ require(!transferGuardianPaused, "transfer is paused");
+   
+    ❯❱ solidity.security.missing-assignment
+          Meaningless statement that does not change any values could be a sign of missed security checks or
+          other important changes.                                                                          
+                                                                                                            
+          647┆ cToken;
+            ⋮┆----------------------------------------
+          648┆ src;
+            ⋮┆----------------------------------------
+          649┆ dst;
+            ⋮┆----------------------------------------
+          650┆ transferTokens;
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          743┆ for (uint i = 0; i < assets.length; i++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          743┆ for (uint i = 0; i < assets.length; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          743┆ for (uint i = 0; i < assets.length; i++) {
+   
+     ❱ solidity.performance.use-nested-if
+          Using nested is cheaper than using && multiple check combinations.  There are more advantages, such
+          as easier to read code and better coverage reports.                                                
+                                                                                                             
+          940┆ if (newCollateralFactorMantissa != 0 && oracle.getUnderlyingPrice(cToken) == 0) {
+          941┆     return fail(Error.PRICE_ERROR, FailureInfo.SET_COLLATERAL_FACTOR_WITHOUT_PRICE);
+          942┆ }
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          1036┆ for (uint i = 0; i < allMarkets.length; i ++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          1036┆ for (uint i = 0; i < allMarkets.length; i ++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          1036┆ for (uint i = 0; i < allMarkets.length; i ++) {
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          1037┆ require(allMarkets[i] != CToken(cToken), "market already added");
+            ⋮┆----------------------------------------
+          1050┆ require(msg.sender == admin || msg.sender == borrowCapGuardian, "not an admin");
+            ⋮┆----------------------------------------
+          1055┆ require(numMarkets != 0 && numMarkets == numBorrowCaps, "invalid input");
+   
+     ❱ solidity.performance.use-multiple-require
+          Using multiple require statements is cheaper than using && multiple check combinations.  There are
+          more advantages, such as easier to read code and better coverage reports.                         
+                                                                                                            
+          1055┆ require(numMarkets != 0 && numMarkets == numBorrowCaps, "invalid input");
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          1057┆ for(uint i = 0; i < numMarkets; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          1057┆ for(uint i = 0; i < numMarkets; i++) {
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          1068┆ require(msg.sender == admin, "not an admin");
+            ⋮┆----------------------------------------
+          1103┆ require(markets[address(cToken)].isListed, "cannot pause a market that is not listed");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          1103┆ require(markets[address(cToken)].isListed, "cannot pause a market that is not listed");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          1104┆ require(msg.sender == pauseGuardian || msg.sender == admin, "only pause guardian and admin
+               can pause");                                                                               
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          1104┆ require(msg.sender == pauseGuardian || msg.sender == admin, "only pause guardian and admin
+               can pause");                                                                               
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          1105┆ require(msg.sender == admin || state == true, "not an admin");
+            ⋮┆----------------------------------------
+          1113┆ require(markets[address(cToken)].isListed, "cannot pause a market that is not listed");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          1113┆ require(markets[address(cToken)].isListed, "cannot pause a market that is not listed");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          1114┆ require(msg.sender == pauseGuardian || msg.sender == admin, "only pause guardian and admin
+               can pause");                                                                               
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          1114┆ require(msg.sender == pauseGuardian || msg.sender == admin, "only pause guardian and admin
+               can pause");                                                                               
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          1115┆ require(msg.sender == admin || state == true, "not an admin");
+            ⋮┆----------------------------------------
+          1123┆ require(msg.sender == pauseGuardian || msg.sender == admin, "only pause guardian and admin
+               can pause");                                                                               
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          1123┆ require(msg.sender == pauseGuardian || msg.sender == admin, "only pause guardian and admin
+               can pause");                                                                               
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          1124┆ require(msg.sender == admin || state == true, "not an admin");
+            ⋮┆----------------------------------------
+          1132┆ require(msg.sender == pauseGuardian || msg.sender == admin, "only pause guardian and admin
+               can pause");                                                                               
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          1132┆ require(msg.sender == pauseGuardian || msg.sender == admin, "only pause guardian and admin
+               can pause");                                                                               
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          1133┆ require(msg.sender == admin || state == true, "not an admin");
+            ⋮┆----------------------------------------
+          1141┆ require(msg.sender == unitroller.admin(), "only unitroller admin can change brains");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          1141┆ require(msg.sender == unitroller.admin(), "only unitroller admin can change brains");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          1142┆ require(unitroller._acceptImplementation() == 0, "change not authorized");
+            ⋮┆----------------------------------------
+          1158┆ require(msg.sender == tx.origin, "only externally owned accounts may refresh speeds");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          1158┆ require(msg.sender == tx.origin, "only externally owned accounts may refresh speeds");
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          1165┆ for (uint i = 0; i < allMarkets_.length; i++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          1165┆ for (uint i = 0; i < allMarkets_.length; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          1165┆ for (uint i = 0; i < allMarkets_.length; i++) {
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          1174┆ for (uint i = 0; i < allMarkets_.length; i++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          1174┆ for (uint i = 0; i < allMarkets_.length; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          1174┆ for (uint i = 0; i < allMarkets_.length; i++) {
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          1184┆ for (uint i = 0; i < allMarkets_.length; i++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          1184┆ for (uint i = 0; i < allMarkets_.length; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          1184┆ for (uint i = 0; i < allMarkets_.length; i++) {
+   
+     ❱ solidity.performance.use-nested-if
+          Using nested is cheaper than using && multiple check combinations.  There are more advantages, such
+          as easier to read code and better coverage reports.                                                
+                                                                                                             
+          1201┆ if (deltaBlocks > 0 && supplySpeed > 0) {
+          1202┆     uint supplyTokens = CToken(cToken).totalSupply();
+          1203┆     uint compAccrued = mul_(deltaBlocks, supplySpeed);
+          1204┆     Double memory ratio = supplyTokens > 0 ? fraction(compAccrued, supplyTokens) :
+               Double({mantissa: 0});                                                             
+          1205┆     Double memory index = add_(Double({mantissa: supplyState.index}), ratio);
+          1206┆     compSupplyState[cToken] = CompMarketState({
+          1207┆         index: safe224(index.mantissa, "new index exceeds 224 bits"),
+          1208┆         block: safe32(blockNumber, "block number exceeds 32 bits")
+          1209┆     });
+          1210┆ } else if (deltaBlocks > 0) {
+             [hid 2 additional lines, adjust with --max-lines-per-finding] 
+          1224┆ if (deltaBlocks > 0 && borrowSpeed > 0) {
+          1225┆     uint borrowAmount = div_(CToken(cToken).totalBorrows(), marketBorrowIndex);
+          1226┆     uint compAccrued = mul_(deltaBlocks, borrowSpeed);
+          1227┆     Double memory ratio = borrowAmount > 0 ? fraction(compAccrued, borrowAmount) :
+               Double({mantissa: 0});                                                             
+          1228┆     Double memory index = add_(Double({mantissa: borrowState.index}), ratio);
+          1229┆     compBorrowState[cToken] = CompMarketState({
+          1230┆         index: safe224(index.mantissa, "new index exceeds 224 bits"),
+          1231┆         block: safe32(blockNumber, "block number exceeds 32 bits")
+          1232┆     });
+          1233┆ } else if (deltaBlocks > 0) {
+             [hid 2 additional lines, adjust with --max-lines-per-finding] 
+          1249┆ if (supplierIndex.mantissa == 0 && supplyIndex.mantissa > 0) {
+          1250┆     supplierIndex.mantissa = compInitialIndex;
+          1251┆ }
+            ⋮┆----------------------------------------
+          1291┆ if (userAccrued >= threshold && userAccrued > 0) {
+          1292┆     Blo blo = Blo(getCompAddress());
+          1293┆     uint bloRemaining = blo.balanceOf(address(this));
+          1294┆     if (userAccrued <= bloRemaining) {
+          1295┆         blo.transfer(user, userAccrued);
+          1296┆         return 0;
+          1297┆     }
+          1298┆ }
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          1329┆ for (uint i = 0; i < cTokens.length; i++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          1329┆ for (uint i = 0; i < cTokens.length; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          1329┆ for (uint i = 0; i < cTokens.length; i++) {
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          1331┆ require(markets[address(cToken)].isListed, "market must be listed");
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          1335┆ for (uint j = 0; j < holders.length; j++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          1335┆ for (uint j = 0; j < holders.length; j++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          1335┆ for (uint j = 0; j < holders.length; j++) {
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          1341┆ for (uint j = 0; j < holders.length; j++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          1341┆ for (uint j = 0; j < holders.length; j++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          1341┆ for (uint j = 0; j < holders.length; j++) {
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          1355┆ require(msg.sender == admin, "not an admin");
+            ⋮┆----------------------------------------
+          1364┆ require(adminOrInitializing(), "not an admin");
+            ⋮┆----------------------------------------
+          1378┆ require(adminOrInitializing(), "not an admin");
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          1380┆ for (uint i = 0; i < cTokens.length; i++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          1380┆ for (uint i = 0; i < cTokens.length; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          1380┆ for (uint i = 0; i < cTokens.length; i++) {
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          1389┆ require(market.isListed == true, "comp market is not listed");
+            ⋮┆----------------------------------------
+          1390┆ require(market.isComped == false, "comp market already added");
+   
+     ❱ solidity.performance.use-nested-if
+          Using nested is cheaper than using && multiple check combinations.  There are more advantages, such
+          as easier to read code and better coverage reports.                                                
+                                                                                                             
+          1395┆ if (compSupplyState[cToken].index == 0 && compSupplyState[cToken].block == 0) {
+          1396┆     compSupplyState[cToken] = CompMarketState({
+          1397┆         index: compInitialIndex,
+          1398┆         block: safe32(getBlockNumber(), "block number exceeds 32 bits")
+          1399┆     });
+          1400┆ }
+            ⋮┆----------------------------------------
+          1402┆ if (compBorrowState[cToken].index == 0 && compBorrowState[cToken].block == 0) {
+          1403┆     compBorrowState[cToken] = CompMarketState({
+          1404┆         index: compInitialIndex,
+          1405┆         block: safe32(getBlockNumber(), "block number exceeds 32 bits")
+          1406┆     });
+          1407┆ }
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          1415┆ require(msg.sender == admin, "not an admin");
+            ⋮┆----------------------------------------
+          1418┆ require(market.isComped == true, "market is not a comp market");
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 122 (122 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 122 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading
+
+📢 Too many findings? Try Semgrep Pro for more powerful queries and less noise.
+   See https://sg.run/false-positives.

@@ -1,0 +1,105 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 16 Code Findings │
+└──────────────────┘
+                 
+    /sb/Witch.sol
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           47┆ constructor (ICauldron cauldron_, ILadle ladle_) {
+           48┆     cauldron = cauldron_;
+           49┆     ladle = ladle_;
+           50┆ }
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           76┆ require (initialOffer <= 1e18, "Only at or under 100%");
+            ⋮┆----------------------------------------
+           89┆ require (auctions[vaultId].start == 0, "Vault already under auction");
+            ⋮┆----------------------------------------
+          110┆ require (balances_.art > 0, "Nothing to buy");                                      //
+               Cheapest way of failing gracefully if given a non existing vault                      
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+          113┆ uint256 elapsed = uint32(block.timestamp) - auction_.start;                      //      
+               Auctions will malfunction on the 7th of February 2106, at 06:28:16 GMT, we should replace
+               this contract before then.                                                               
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          116┆ require (ink >= min, "Not enough bought");
+            ⋮┆----------------------------------------
+          117┆ require (ink == balances_.ink || balances_.ink - ink >= ilk_.dust, "Leaves dust");
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+          117┆ require (ink == balances_.ink || balances_.ink - ink >= ilk_.dust, "Leaves dust");
+            ⋮┆----------------------------------------
+          122┆ if (balances_.art - art == 0) {                                               
+               // If there is no debt left, return the vault with the collateral to the owner
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          142┆ require (balances_.art > 0, "Nothing to buy");                                      //
+               Cheapest way of failing gracefully if given a non existing vault                      
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+          144┆ uint256 elapsed = uint32(block.timestamp) - auction_.start;                      //      
+               Auctions will malfunction on the 7th of February 2106, at 06:28:16 GMT, we should replace
+               this contract before then.                                                               
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          147┆ require (ink >= min, "Not enough bought");
+            ⋮┆----------------------------------------
+          148┆ require (ink == balances_.ink || balances_.ink - ink >= ilk_.dust, "Leaves dust");
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+          148┆ require (ink == balances_.ink || balances_.ink - ink >= ilk_.dust, "Leaves dust");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          164┆ require (ilkJoin != IJoin(address(0)), "Join not found");
+            ⋮┆----------------------------------------
+          169┆ require (baseJoin != IJoin(address(0)), "Join not found");
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 16 (16 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 16 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

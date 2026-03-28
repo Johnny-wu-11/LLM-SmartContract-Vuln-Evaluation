@@ -1,0 +1,89 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                   
+                   
+┌─────────────────┐
+│ 9 Code Findings │
+└─────────────────┘
+                   
+    /sb/FYToken.sol
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           39┆ constructor(
+           40┆     bytes6 underlyingId_,
+           41┆     IOracle oracle_, // Underlying vs its interest-bearing version
+           42┆     IJoin join_,
+           43┆     uint256 maturity_,
+           44┆     string memory name,
+           45┆     string memory symbol
+           46┆ ) ERC20Permit(name, symbol, IERC20Metadata(address(IJoin(join_).asset())).decimals()) { //
+               The join asset is this fyToken's underlying, from which we inherit the decimals           
+           47┆     uint256 now_ = block.timestamp;
+           48┆     require(
+             [hid 12 additional lines, adjust with --max-lines-per-finding] 
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           48┆ require(
+           49┆     maturity_ > now_ &&
+           50┆     maturity_ < now_ + MAX_TIME_TO_MATURITY &&
+           51┆     maturity_ < type(uint32).max,
+           52┆     "Invalid maturity"
+           53┆ );
+   
+     ❱ solidity.performance.use-multiple-require
+          Using multiple require statements is cheaper than using && multiple check combinations.  There are
+          more advantages, such as easier to read code and better coverage reports.                         
+                                                                                                            
+           48┆ require(
+           49┆     maturity_ > now_ &&
+           50┆     maturity_ < now_ + MAX_TIME_TO_MATURITY &&
+           51┆     maturity_ < type(uint32).max,
+           52┆     "Invalid maturity"
+           53┆ );
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           63┆ require(
+           64┆     uint32(block.timestamp) >= maturity,
+           65┆     "Only after maturity"
+           66┆ );
+            ⋮┆----------------------------------------
+           71┆ require(
+           72┆     uint32(block.timestamp) < maturity,
+           73┆     "Only before maturity"
+           74┆ );
+            ⋮┆----------------------------------------
+           93┆ require (chiAtMaturity == type(uint256).max, "Already matured");
+            ⋮┆----------------------------------------
+          204┆ require(token == address(this), "Unsupported currency");
+            ⋮┆----------------------------------------
+          222┆ require(token == address(this), "Unsupported currency");
+            ⋮┆----------------------------------------
+          224┆ require(receiver.onFlashLoan(msg.sender, token, amount, 0, data) == FLASH_LOAN_RETURN,
+               "Non-compliant borrower");                                                            
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 9 (9 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 9 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

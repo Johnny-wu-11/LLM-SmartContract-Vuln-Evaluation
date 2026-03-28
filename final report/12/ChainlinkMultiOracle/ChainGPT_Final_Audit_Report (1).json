@@ -1,0 +1,24 @@
+{
+  "title": "ChainGPT Final Audit Report",
+  "tool": "ChainGPT",
+  "status": "Completed",
+  "reduction_summary": {
+    "original_findings": 0,
+    "retained_findings_after_ai_review": 5,
+    "filtered_findings": 0,
+    "filtering_rate": "0.00%"
+  },
+  "adjudication_summary": "Reviewed and categorized retained findings based on provided descriptions and reasons.",
+  "findings": {
+    "confirmed": [
+      "Role Management",
+      "Oracle Manipulation"
+    ],
+    "plausible_but_unverified": [
+      "Locking Roles",
+      "Access Control on `setSource` and `setSources`",
+      "Insecure Arithmetic"
+    ],
+    "unsupported_or_false_positive": []
+  }
+}

@@ -1,0 +1,20 @@
+A new version of Solhint is available: 6.1.0
+Please consider updating your Solhint package.
+/sb/PoolDevOnly.sol:2:1: Compiler version ^0.7.4 does not satisfy the ^0.8.24 semver requirement [Error/compiler-version]
+/sb/PoolDevOnly.sol:10:1: global import of path diamond-2/contracts/libraries/LibDiamond.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/PoolDevOnly.sol:10:1: Import in /sb/PoolDevOnly.sol doesn't exist in: diamond-2/contracts/libraries/LibDiamond.sol [Warning/import-path-check]
+/sb/PoolDevOnly.sol:10:8: Use double quotes for string literals [Error/quotes]
+/sb/PoolDevOnly.sol:12:1: global import of path ./PoolOpen.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/PoolDevOnly.sol:12:1: Import in /sb/PoolDevOnly.sol doesn't exist in: ./PoolOpen.sol [Warning/import-path-check]
+/sb/PoolDevOnly.sol:12:8: Use double quotes for string literals [Error/quotes]
+/sb/PoolDevOnly.sol:14:1: Missing @title tag in contract 'PoolDevOnly' [Warning/use-natspec]
+/sb/PoolDevOnly.sol:14:1: Missing @author tag in contract 'PoolDevOnly' [Warning/use-natspec]
+/sb/PoolDevOnly.sol:14:1: Missing @notice tag in contract 'PoolDevOnly' [Warning/use-natspec]
+/sb/PoolDevOnly.sol:15:3: Missing @notice tag in function 'stake' [Warning/use-natspec]
+/sb/PoolDevOnly.sol:15:3: Missing @param tag in function 'stake' [Warning/use-natspec]
+/sb/PoolDevOnly.sol:15:3: Mismatch in @param names for function 'stake'. Expected: [_amount, _receiver, _token], Found: [] [Warning/use-natspec]
+/sb/PoolDevOnly.sol:15:3: Missing @return tag in function 'stake' [Warning/use-natspec]
+/sb/PoolDevOnly.sol:15:3: Mismatch in @return count for function 'stake'. Expected: 1, Found: 0 [Warning/use-natspec]
+/sb/PoolDevOnly.sol:20:55: Use double quotes for string literals [Error/quotes]
+
+16 problem/s (4 error/s, 12 warning/s)

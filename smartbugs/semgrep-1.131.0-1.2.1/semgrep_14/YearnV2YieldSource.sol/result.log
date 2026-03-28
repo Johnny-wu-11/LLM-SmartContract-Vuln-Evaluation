@@ -1,0 +1,132 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 16 Code Findings │
+└──────────────────┘
+                              
+    /sb/YearnV2YieldSource.sol
+     ❱ solidity.best-practice.use-ownable2step
+          By demanding that the receiver of the owner permissions actively accept via a contract call of its 
+          own,  `Ownable2Step` and `Ownable2StepUpgradeable` prevent the contract ownership from accidentally
+          being transferred  to an address that cannot handle it.                                            
+                                                                                                             
+           20┆ contract YearnV2YieldSource is IYieldSource, ERC20Upgradeable, OwnableUpgradeable,
+               ReentrancyGuardUpgradeable {                                                      
+   
+     ❱ solidity.performance.init-variables-with-default-value
+          Uninitialized variables are assigned with the types default value. Explicitly initializing a
+          variable with its default value costs unnecessary gas.                                      
+                                                                                                      
+           29┆ uint256 public maxLosses = 0; // 100% would be 10_000
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           73┆ require(address(vault) == address(0), "YearnV2YieldSource:: already initialized");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+           73┆ require(address(vault) == address(0), "YearnV2YieldSource:: already initialized");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           74┆ require(_vault.token() == address(_token), "YearnV2YieldSource:: incorrect vault");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+           74┆ require(_vault.token() == address(_token), "YearnV2YieldSource:: incorrect vault");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           75┆ require(_vault.activation() != uint256(0), "YearnV2YieldSource:: vault not initialized");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+           75┆ require(_vault.activation() != uint256(0), "YearnV2YieldSource:: vault not initialized");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           77┆ require(!areEqualStrings(_vault.apiVersion(), "0.3.2"), "YearnV2YieldSource:: vault not
+               compatible");                                                                          
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+           77┆ require(!areEqualStrings(_vault.apiVersion(), "0.3.2"), "YearnV2YieldSource:: vault not
+               compatible");                                                                          
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           78┆ require(!areEqualStrings(_vault.apiVersion(), "0.3.3"), "YearnV2YieldSource:: vault not
+               compatible");                                                                          
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+           78┆ require(!areEqualStrings(_vault.apiVersion(), "0.3.3"), "YearnV2YieldSource:: vault not
+               compatible");                                                                          
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           79┆ require(!areEqualStrings(_vault.apiVersion(), "0.3.4"), "YearnV2YieldSource:: vault not
+               compatible");                                                                          
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+           79┆ require(!areEqualStrings(_vault.apiVersion(), "0.3.4"), "YearnV2YieldSource:: vault not
+               compatible");                                                                          
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           96┆ require(_maxLosses <= 10_000, "YearnV2YieldSource:: losses set too high");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+           96┆ require(_maxLosses <= 10_000, "YearnV2YieldSource:: losses set too high");
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 16 (16 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 16 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

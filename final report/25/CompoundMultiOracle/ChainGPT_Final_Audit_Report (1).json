@@ -1,0 +1,24 @@
+{
+  "title": "ChainGPT Final Audit Report",
+  "tool": "ChainGPT",
+  "status": "Completed",
+  "reduction_summary": {
+    "original_findings": 0,
+    "retained_findings_after_ai_review": 4,
+    "filtered_findings": 0,
+    "filtering_rate": "0.00%"
+  },
+  "adjudication_summary": "The Reentrancy Vulnerability is confirmed as it aligns with known security issues. Access Control Mechanism and Oracle Manipulation are plausible risks but need further validation. The Role Locking Mechanism is unsupported as its impact is not directly security-related.",
+  "findings": {
+    "confirmed": [
+      "Reentrancy Vulnerability"
+    ],
+    "plausible_but_unverified": [
+      "Access Control Mechanism",
+      "Oracle Manipulation"
+    ],
+    "unsupported_or_false_positive": [
+      "Role Locking Mechanism"
+    ]
+  }
+}

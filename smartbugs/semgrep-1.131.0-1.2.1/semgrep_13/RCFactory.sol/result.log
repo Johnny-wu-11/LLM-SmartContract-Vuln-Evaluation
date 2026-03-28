@@ -1,0 +1,250 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 35 Code Findings │
+└──────────────────┘
+                     
+    /sb/RCFactory.sol
+     ❱ solidity.best-practice.use-ownable2step
+          By demanding that the receiver of the owner permissions actively accept via a contract call of its 
+          own,  `Ownable2Step` and `Ownable2StepUpgradeable` prevent the contract ownership from accidentally
+          being transferred  to an address that cannot handle it.                                            
+                                                                                                             
+           18┆ contract RCFactory is Ownable, NativeMetaTransaction, IRCFactory {
+   
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+          113┆ constructor(
+          114┆     IRCTreasury _treasuryAddress,
+          115┆     address _realitioAddress,
+          116┆     address _arbitratorAddress
+          117┆ ) {
+          118┆     require(address(_treasuryAddress) != address(0));
+          119┆     // initialise MetaTransactions
+          120┆     _initializeEIP712("RealityCardsFactory", "1");
+          121┆
+          122┆     // at initiation, uberOwner and owner will be the same
+             [hid 16 additional lines, adjust with --max-lines-per-finding] 
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+          152┆ return marketAddresses[_mode][marketAddresses[_mode].length - (1)];
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          183┆ require(
+          184┆     governors[msgSender()] || owner() == msgSender(),
+          185┆     "Not approved"
+          186┆ );
+            ⋮┆----------------------------------------
+          241┆ require(
+          242┆     _artistCut +
+          243┆         _winnerCut +
+          244┆         _creatorCut +
+          245┆         _affiliateCut +
+          246┆         _cardAffiliateCut <=
+          247┆         1000,
+          248┆     "Cuts too big"
+          249┆ );
+            ⋮┆----------------------------------------
+          288┆ require(_newAddress != address(0), "Must set an address");
+            ⋮┆----------------------------------------
+          295┆ require(_newAddress != address(0), "Must set an address");
+            ⋮┆----------------------------------------
+          433┆ require(msgSender() == uberOwner, "Extremely Verboten");
+   
+     ❱ solidity.performance.inefficient-state-variable-increment
+          <x> += <y> costs more gas than <x> = <x> + <y> for state variables.
+                                                                             
+          441┆ referenceContractVersion += 1;
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          446┆ require(msgSender() == uberOwner, "Extremely Verboten");
+            ⋮┆----------------------------------------
+          479┆ require(
+          480┆     _sponsorship >= sponsorshipRequired,
+          481┆     "Insufficient sponsorship"
+          482┆ );
+            ⋮┆----------------------------------------
+          488┆ require(
+          489┆     isArtistApproved[_artistAddress] ||
+          490┆         _artistAddress == address(0),
+          491┆     "Artist not approved"
+          492┆ );
+            ⋮┆----------------------------------------
+          496┆ require(
+          497┆     isAffiliateApproved[_affiliateAddress] ||
+          498┆         _affiliateAddress == address(0),
+          499┆     "Affiliate not approved"
+          500┆ );
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          502┆ for (uint256 i = 0; i < _cardAffiliateAddresses.length; i++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          502┆ for (uint256 i = 0; i < _cardAffiliateAddresses.length; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          502┆ for (uint256 i = 0; i < _cardAffiliateAddresses.length; i++) {
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          503┆ require(
+          504┆     isCardAffiliateApproved[_cardAffiliateAddresses[i]] ||
+          505┆         _cardAffiliateAddresses[i] == address(0),
+          506┆     "Card affiliate not approved"
+          507┆ );
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          504┆ isCardAffiliateApproved[_cardAffiliateAddresses[i]] ||
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          513┆ require(governors[_creator] || owner() == _creator, "Not approved");
+            ⋮┆----------------------------------------
+          517┆ require(_timestamps.length == 3, "Incorrect number of array elements");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          517┆ require(_timestamps.length == 3, "Incorrect number of array elements");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          520┆ require(
+          521┆     _timestamps[0] >= block.timestamp,
+          522┆     "Market opening time not set"
+          523┆ );
+            ⋮┆----------------------------------------
+          524┆ require(
+          525┆     _timestamps[0] - advancedWarning > block.timestamp,
+          526┆     "Market opens too soon"
+          527┆ );
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+          525┆ _timestamps[0] - advancedWarning > block.timestamp,
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          531┆ require(
+          532┆     _timestamps[1] < block.timestamp + maximumDuration,
+          533┆     "Market locks too late"
+          534┆ );
+            ⋮┆----------------------------------------
+          537┆ require(
+          538┆     _timestamps[1] + (1 weeks) > _timestamps[2] &&
+          539┆         _timestamps[1] <= _timestamps[2],
+          540┆     "Oracle resolution time error"
+          541┆ );
+   
+     ❱ solidity.performance.use-multiple-require
+          Using multiple require statements is cheaper than using && multiple check combinations.  There are
+          more advantages, such as easier to read code and better coverage reports.                         
+                                                                                                            
+          537┆ require(
+          538┆     _timestamps[1] + (1 weeks) > _timestamps[2] &&
+          539┆         _timestamps[1] <= _timestamps[2],
+          540┆     "Oracle resolution time error"
+          541┆ );
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          544┆ require(
+          545┆     _tokenURIs.length <= nftMintingLimit,
+          546┆     "Too many tokens to mint"
+          547┆ );
+            ⋮┆----------------------------------------
+          595┆ require(address(nfthub) != address(0), "Nfthub not set");
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          596┆ for (uint256 i = 0; i < _tokenURIs.length; i++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          596┆ for (uint256 i = 0; i < _tokenURIs.length; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          596┆ for (uint256 i = 0; i < _tokenURIs.length; i++) {
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          597┆ uint256 _tokenId = i + totalNftMintCount;
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          598┆ require(
+          599┆     nfthub.mint(_newAddress, _tokenId, _tokenURIs[i]),
+          600┆     "Nft Minting Failed"
+          601┆ );
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          599┆ nfthub.mint(_newAddress, _tokenId, _tokenURIs[i]),
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 35 (35 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 35 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading
+
+📢 Too many findings? Try Semgrep Pro for more powerful queries and less noise.
+   See https://sg.run/false-positives.

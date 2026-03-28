@@ -1,0 +1,18 @@
+A new version of Solhint is available: 6.1.0
+Please consider updating your Solhint package.
+/sb/SyntheticToken.sol:3:1: Compiler version 0.8.3 does not satisfy the ^0.8.24 semver requirement [Error/compiler-version]
+/sb/SyntheticToken.sol:5:1: global import of path ./interfaces/IStaker.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/SyntheticToken.sol:5:1: Import in /sb/SyntheticToken.sol doesn't exist in: ./interfaces/IStaker.sol [Warning/import-path-check]
+/sb/SyntheticToken.sol:6:1: global import of path ./interfaces/ILongShort.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/SyntheticToken.sol:6:1: Import in /sb/SyntheticToken.sol doesn't exist in: ./interfaces/ILongShort.sol [Warning/import-path-check]
+/sb/SyntheticToken.sol:7:1: global import of path ./interfaces/ISyntheticToken.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/SyntheticToken.sol:7:1: Import in /sb/SyntheticToken.sol doesn't exist in: ./interfaces/ISyntheticToken.sol [Warning/import-path-check]
+/sb/SyntheticToken.sol:16:1: Missing @author tag in contract 'SyntheticToken' [Warning/use-natspec]
+/sb/SyntheticToken.sol:34:3: Explicitly mark visibility in function (Set ignoreConstructors to true if using solidity >=0.7.0) [Warning/func-visibility]
+/sb/SyntheticToken.sol:91:3: Missing @return tag in function 'transferFrom' [Warning/use-natspec]
+/sb/SyntheticToken.sol:91:3: Mismatch in @return count for function 'transferFrom'. Expected: 1, Found: 0 [Warning/use-natspec]
+/sb/SyntheticToken.sol:111:3: Mismatch in @param count for function '_beforeTokenTransfer'. Expected: 3, Found: 1 [Warning/use-natspec]
+/sb/SyntheticToken.sol:127:3: Missing @return tag in function 'balanceOf' [Warning/use-natspec]
+/sb/SyntheticToken.sol:127:3: Mismatch in @return count for function 'balanceOf'. Expected: 1, Found: 0 [Warning/use-natspec]
+
+14 problem/s (1 error/s, 13 warning/s)

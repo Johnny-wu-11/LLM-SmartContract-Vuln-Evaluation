@@ -1,0 +1,50 @@
+{
+    "docker": {
+        "command": null,
+        "detach": true,
+        "entrypoint": "'/sb/bin/do_solidity.sh' '/sb/iVADER.sol' '/sb/bin'",
+        "image": "smartbugs/solhint:6.0.0",
+        "user": 0,
+        "volumes": {
+            "/var/folders/28/kcb98y_d7xg6c06t7q3pxdh00000gn/T/tmpytv2dceb": {
+                "bind": "/sb",
+                "mode": "rw"
+            }
+        }
+    },
+    "filename": "/Users/mac/Web3Bugs-2/contracts/5/vader-protocol/contracts/iVADER.sol",
+    "platform": {
+        "cpu": "Apple M1",
+        "python": "3.13.5.final.0 (64 bit)",
+        "release": "24.6.0",
+        "smartbugs": "2.0.15",
+        "system": "Darwin",
+        "version": "Darwin Kernel Version 24.6.0: Mon Jul 14 11:30:34 PDT 2025; root:xnu-11417.140.69~1/RELEASE_ARM64_T8103"
+    },
+    "result": {
+        "duration": 3.0623459815979004,
+        "exit_code": 1,
+        "logs": "result.log",
+        "output": null,
+        "start": 1773311696.392909
+    },
+    "runid": "20260312_1033",
+    "solc": "0.8.3",
+    "tool": {
+        "bin": "scripts",
+        "command": null,
+        "cpu_quota": null,
+        "entrypoint": "'$BIN/do_solidity.sh' '$FILENAME' '$BIN'",
+        "id": "solhint-6.0.0",
+        "image": "smartbugs/solhint:6.0.0",
+        "info": "Open source project for linting solidity code. This project provide both security and style guide validations.",
+        "mem_limit": null,
+        "mode": "solidity",
+        "name": "Solhint",
+        "origin": "https://github.com/protofire/solhint",
+        "output": null,
+        "parser": "parser.py",
+        "solc": true,
+        "version": "6.0.0"
+    }
+}

@@ -1,0 +1,85 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                   
+                   
+┌─────────────────┐
+│ 9 Code Findings │
+└─────────────────┘
+                     
+    /sb/GuestList.sol
+     ❱ solidity.best-practice.use-ownable2step
+          By demanding that the receiver of the owner permissions actively accept via a contract call of its 
+          own,  `Ownable2Step` and `Ownable2StepUpgradeable` prevent the contract ownership from accidentally
+          being transferred  to an address that cannot handle it.                                            
+                                                                                                             
+           25┆ contract GuestList is Ownable {
+   
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           41┆ constructor(address _bBTC) public {
+           42┆     bBTC = IbBTC(_bBTC);
+           43┆ }
+   
+     ❱ solidity.performance.use-nested-if
+          Using nested is cheaper than using && multiple check combinations.  There are more advantages, such
+          as easier to read code and better coverage reports.                                                
+                                                                                                             
+          120┆ if (!invited && guestRoot == bytes32(0)) {
+          121┆     invited = true;
+          122┆ }
+            ⋮┆----------------------------------------
+          125┆ if (!invited && guestRoot != bytes32(0)) {
+          126┆     // Will revert on invalid proof
+          127┆     invited = verifyInvitationProof(_guest, _merkleProof);
+          128┆ }
+            ⋮┆----------------------------------------
+          131┆ if (invited && remainingUserDepositAllowed(_guest) >= _amount &&
+               remainingTotalDepositAllowed() >= _amount) {                    
+          132┆     return true;
+          133┆ } else {
+          134┆     return false;
+          135┆ }
+   
+     ❱ solidity.performance.array-length-outside-loop
+          Caching the array length outside a loop saves reading it on each iteration, as long as the array's
+          length is not changed during the loop.                                                            
+                                                                                                            
+          140┆ for (uint i = 0; i < _guests.length; i++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          140┆ for (uint i = 0; i < _guests.length; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          140┆ for (uint i = 0; i < _guests.length; i++) {
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          144┆ guests[_guests[i]] = _invited[i];
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 9 (9 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 9 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

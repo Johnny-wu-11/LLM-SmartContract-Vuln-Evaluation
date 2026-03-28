@@ -1,0 +1,19 @@
+A new version of Solhint is available: 6.1.0
+Please consider updating your Solhint package.
+/sb/INFTXEligibilityManager.sol:1:1: Compiler version 0.6.8 does not satisfy the ^0.8.24 semver requirement [Error/compiler-version]
+/sb/INFTXEligibilityManager.sol:3:1: Missing @title tag in contract 'INFTXEligibilityManager' [Warning/use-natspec]
+/sb/INFTXEligibilityManager.sol:3:1: Missing @author tag in contract 'INFTXEligibilityManager' [Warning/use-natspec]
+/sb/INFTXEligibilityManager.sol:3:1: Missing @notice tag in contract 'INFTXEligibilityManager' [Warning/use-natspec]
+/sb/INFTXEligibilityManager.sol:4:3: Missing @notice tag in function 'nftxVaultFactory' [Warning/use-natspec]
+/sb/INFTXEligibilityManager.sol:4:3: Missing @return tag in function 'nftxVaultFactory' [Warning/use-natspec]
+/sb/INFTXEligibilityManager.sol:4:3: Mismatch in @return count for function 'nftxVaultFactory'. Expected: 1, Found: 0 [Warning/use-natspec]
+/sb/INFTXEligibilityManager.sol:5:3: Missing @notice tag in function 'eligibilityImpl' [Warning/use-natspec]
+/sb/INFTXEligibilityManager.sol:5:3: Missing @return tag in function 'eligibilityImpl' [Warning/use-natspec]
+/sb/INFTXEligibilityManager.sol:5:3: Mismatch in @return count for function 'eligibilityImpl'. Expected: 1, Found: 0 [Warning/use-natspec]
+/sb/INFTXEligibilityManager.sol:7:3: Missing @notice tag in function 'deployEligibility' [Warning/use-natspec]
+/sb/INFTXEligibilityManager.sol:7:3: Missing @param tag in function 'deployEligibility' [Warning/use-natspec]
+/sb/INFTXEligibilityManager.sol:7:3: Mismatch in @param names for function 'deployEligibility'. Expected: [vaultId, initData], Found: [] [Warning/use-natspec]
+/sb/INFTXEligibilityManager.sol:7:3: Missing @return tag in function 'deployEligibility' [Warning/use-natspec]
+/sb/INFTXEligibilityManager.sol:7:3: Mismatch in @return count for function 'deployEligibility'. Expected: 1, Found: 0 [Warning/use-natspec]
+
+15 problem/s (1 error/s, 14 warning/s)

@@ -1,0 +1,132 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 21 Code Findings │
+└──────────────────┘
+                
+    /sb/Core.sol
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           44┆ constructor(address _bBTC) public {
+           45┆     require(_bBTC != address(0), "NULL_ADDRESS");
+           46┆     bBTC = IbBTC(_bBTC);
+           47┆ }
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           45┆ require(_bBTC != address(0), "NULL_ADDRESS");
+            ⋮┆----------------------------------------
+           60┆ require(peaks[msg.sender] == PeakState.Active, "PEAK_INACTIVE");
+            ⋮┆----------------------------------------
+           62┆ require(
+           63┆     guestList.authorized(account, btc, merkleProof),
+           64┆     "guest-list-authorization"
+           65┆ );
+            ⋮┆----------------------------------------
+           68┆ require(bBtc > 0, "MINTING_0_bBTC");
+            ⋮┆----------------------------------------
+           95┆ require(bBtc > 0, "REDEEMING_0_bBTC");
+            ⋮┆----------------------------------------
+           96┆ require(peaks[msg.sender] != PeakState.Extinct, "PEAK_EXTINCT");
+            ⋮┆----------------------------------------
+          123┆ require(feeSink != address(0), "NULL_ADDRESS");
+            ⋮┆----------------------------------------
+          125┆ require(_fee > 0, "NO_FEE");
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          134┆ for (uint i = 0; i < numPeaks; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          134┆ for (uint i = 0; i < numPeaks; i++) {
+   
+     ❱ solidity.performance.state-variable-read-in-a-loop
+          Replace state variable reads and writes within loops with local variable reads and writes.
+                                                                                                    
+          135┆ if (peaks[_peakAddresses[i]] == PeakState.Extinct) {
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          154┆ require(
+          155┆     peaks[peak] == PeakState.Extinct,
+          156┆     "DUPLICATE_PEAK"
+          157┆ );
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          161┆ for (uint i = 0; i < numPeaks; i++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          161┆ for (uint i = 0; i < numPeaks; i++) {
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          162┆ require(_peakAddresses[i] != peak, "USE_setPeakStatus");
+            ⋮┆----------------------------------------
+          178┆ require(
+          179┆     peaks[peak] != PeakState.Extinct,
+          180┆     "Peak is extinct"
+          181┆ );
+            ⋮┆----------------------------------------
+          183┆ require(IPeak(peak).portfolioValue() <= 1e15, "NON_TRIVIAL_FUNDS_IN_PEAK");
+            ⋮┆----------------------------------------
+          202┆ require(
+          203┆     _mintFee <= PRECISION
+          204┆     && _redeemFee <= PRECISION,
+          205┆     "INVALID_PARAMETERS"
+          206┆ );
+   
+     ❱ solidity.performance.use-multiple-require
+          Using multiple require statements is cheaper than using && multiple check combinations.  There are
+          more advantages, such as easier to read code and better coverage reports.                         
+                                                                                                            
+          202┆ require(
+          203┆     _mintFee <= PRECISION
+          204┆     && _redeemFee <= PRECISION,
+          205┆     "INVALID_PARAMETERS"
+          206┆ );
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          207┆ require(_feeSink != address(0), "NULL_ADDRESS");
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 21 (21 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 21 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

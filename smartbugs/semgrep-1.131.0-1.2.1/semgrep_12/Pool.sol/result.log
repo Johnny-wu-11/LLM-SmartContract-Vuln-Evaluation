@@ -1,0 +1,235 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 34 Code Findings │
+└──────────────────┘
+                
+    /sb/Pool.sol
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           19┆ require (x <= type(uint112).max, "Cast overflow");
+            ⋮┆----------------------------------------
+           25┆ require (x <= type(uint128).max, "Cast overflow");
+            ⋮┆----------------------------------------
+           31┆ require(x <= uint256(type(int256).max), "Cast overflow");
+            ⋮┆----------------------------------------
+           39┆ require (x <= uint128(type(int128).max), "Cast overflow");
+            ⋮┆----------------------------------------
+           45┆ require (x <= uint128(type(uint112).max), "Cast overflow");
+   
+     ❱ solidity.best-practice.use-ownable2step
+          By demanding that the receiver of the owner permissions actively accept via a contract call of its 
+          own,  `Ownable2Step` and `Ownable2StepUpgradeable` prevent the contract ownership from accidentally
+          being transferred  to an address that cannot handle it.                                            
+                                                                                                             
+           52┆ contract Pool is IPool, ERC20Permit, Ownable {
+   
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           77┆ constructor()
+           78┆     ERC20Permit(
+           79┆         string(abi.encodePacked("Yield ",                                       
+               SafeERC20Namer.tokenName(IPoolFactory(msg.sender).nextFYToken()), " LP Token")),
+           80┆                                                                                            
+               string(abi.encodePacked(SafeERC20Namer.tokenSymbol(IPoolFactory(msg.sender).nextFYToken()),
+               "LP")),                                                                                    
+           81┆         SafeERC20Namer.tokenDecimals(IPoolFactory(msg.sender).nextBase())
+           82┆     )
+           83┆ {
+           84┆     IFYToken _fyToken = IFYToken(IPoolFactory(msg.sender).nextFYToken());
+           85┆     fyToken = _fyToken;
+           86┆     base = IERC20(IPoolFactory(msg.sender).nextBase());
+             [hid 5 additional lines, adjust with --max-lines-per-finding] 
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           89┆ require (_maturity <= type(uint32).max, "Pool: Maturity too far in the future");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+           89┆ require (_maturity <= type(uint32).max, "Pool: Maturity too far in the future");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           95┆ require(
+           96┆     block.timestamp < maturity,
+           97┆     "Pool: Too late"
+           98┆ );
+            ⋮┆----------------------------------------
+          109┆ else revert("Pool: Unrecognized parameter");
+   
+     ❱ solidity.performance.use-nested-if
+          Using nested is cheaper than using && multiple check combinations.  There are more advantages, such
+          as easier to read code and better coverage reports.                                                
+                                                                                                             
+          184┆ if (timeElapsed > 0 && _baseCached != 0 && _fyTokenCached != 0) {
+          185┆     uint256 scaledFYTokenCached = uint256(_fyTokenCached) * 1e27;
+          186┆     cumulativeBalancesRatio += scaledFYTokenCached / _baseCached * timeElapsed;
+          187┆ }
+   
+     ❱ solidity.performance.inefficient-state-variable-increment
+          <x> += <y> costs more gas than <x> = <x> + <y> for state variables.
+                                                                             
+          186┆ cumulativeBalancesRatio += scaledFYTokenCached / _baseCached * timeElapsed;
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          248┆ require (calculateFromBase && fyTokenToBuy == 0, "Pool: Initialize only from base");
+   
+     ❱ solidity.performance.use-multiple-require
+          Using multiple require statements is cheaper than using && multiple check combinations.  There are
+          more advantages, such as easier to read code and better coverage reports.                         
+                                                                                                            
+          248┆ require (calculateFromBase && fyTokenToBuy == 0, "Pool: Initialize only from base");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          266┆ require(_realFYTokenCached + fyTokenIn <= fyToken.balanceOf(address(this)), "Pool: Not
+               enough fyToken in");                                                                  
+            ⋮┆----------------------------------------
+          272┆ require(_baseBalance - _baseCached >= baseIn, "Pool: Not enough base token in");
+            ⋮┆----------------------------------------
+          280┆ require (tokensMinted >= minTokensMinted, "Pool: Not enough tokens minted");
+   
+     ❱ solidity.performance.use-nested-if
+          Using nested is cheaper than using && multiple check combinations.  There are more advantages, such
+          as easier to read code and better coverage reports.                                                
+                                                                                                             
+          294┆ if (supply > 0 && fyTokenToBuy > 0) base.safeTransfer(to, baseReturned);
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          359┆ require (tokenOut >= minBaseOut, "Pool: Not enough base tokens obtained");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          359┆ require (tokenOut >= minBaseOut, "Pool: Not enough base tokens obtained");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          360┆ require (fyTokenOut >= minFYTokenOut, "Pool: Not enough fyToken obtained");
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          360┆ require (fyTokenOut >= minFYTokenOut, "Pool: Not enough fyToken obtained");
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          403┆ require(
+          404┆     fyTokenOut >= min,
+          405┆     "Pool: Not enough fyToken obtained"
+          406┆ );
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          403┆ require(
+          404┆     fyTokenOut >= min,
+          405┆     "Pool: Not enough fyToken obtained"
+          406┆ );
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          455┆ require(
+          456┆     fyTokenBalance - fyTokenOut >= baseBalance + baseIn,
+          457┆     "Pool: fyToken balance too low"
+          458┆ );
+            ⋮┆----------------------------------------
+          482┆ require(
+          483┆     fyTokenBalance - _fyTokenCached >= fyTokenIn,
+          484┆     "Pool: Not enough fyToken in"
+          485┆ );
+            ⋮┆----------------------------------------
+          488┆ require(
+          489┆     fyTokenIn <= max,
+          490┆     "Pool: Too much fyToken in"
+          491┆ );
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+          495┆ _baseCached - tokenOut,
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          563┆ require(
+          564┆     baseOut >= min,
+          565┆     "Pool: Not enough base obtained"
+          566┆ );
+            ⋮┆----------------------------------------
+          635┆ require(
+          636┆     baseBalance - _baseCached >= baseIn,
+          637┆     "Pool: Not enough base token in"
+          638┆ );
+            ⋮┆----------------------------------------
+          641┆ require(
+          642┆     baseIn <= max,
+          643┆     "Pool: Too much base token in"
+          644┆ );
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+          649┆ _fyTokenCached - fyTokenOut,
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          693┆ require(
+          694┆     fyTokenBalance - fyTokenOut >= baseBalance + baseIn,
+          695┆     "Pool: fyToken balance too low"
+          696┆ );
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 34 (34 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 34 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading
+
+📢 Too many findings? Try Semgrep Pro for more powerful queries and less noise.
+   See https://sg.run/false-positives.

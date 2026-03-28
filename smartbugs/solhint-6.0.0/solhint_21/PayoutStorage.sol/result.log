@@ -1,0 +1,14 @@
+A new version of Solhint is available: 6.1.0
+Please consider updating your Solhint package.
+/sb/PayoutStorage.sol:2:1: Compiler version ^0.7.0 does not satisfy the ^0.8.24 semver requirement [Error/compiler-version]
+/sb/PayoutStorage.sol:9:1: Missing @title tag in contract 'PayoutStorage' [Warning/use-natspec]
+/sb/PayoutStorage.sol:9:1: Missing @author tag in contract 'PayoutStorage' [Warning/use-natspec]
+/sb/PayoutStorage.sol:9:1: Missing @notice tag in contract 'PayoutStorage' [Warning/use-natspec]
+/sb/PayoutStorage.sol:10:3: Explicitly mark visibility of state [Warning/state-visibility]
+/sb/PayoutStorage.sol:10:56: Use double quotes for string literals [Error/quotes]
+/sb/PayoutStorage.sol:16:3: Missing @notice tag in function 'ps' [Warning/use-natspec]
+/sb/PayoutStorage.sol:16:3: Missing @return tag in function 'ps' [Warning/use-natspec]
+/sb/PayoutStorage.sol:16:3: Mismatch in @return names for function 'ps'. Expected: [psx], Found: [] [Warning/use-natspec]
+/sb/PayoutStorage.sol:18:5: Avoid to use inline assembly. It is acceptable only in rare cases [Warning/no-inline-assembly]
+
+10 problem/s (2 error/s, 8 warning/s)

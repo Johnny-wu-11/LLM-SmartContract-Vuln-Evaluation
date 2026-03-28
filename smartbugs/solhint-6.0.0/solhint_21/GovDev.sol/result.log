@@ -1,0 +1,28 @@
+A new version of Solhint is available: 6.1.0
+Please consider updating your Solhint package.
+/sb/GovDev.sol:2:1: Compiler version ^0.7.0 does not satisfy the ^0.8.24 semver requirement [Error/compiler-version]
+/sb/GovDev.sol:10:1: global import of path diamond-2/contracts/libraries/LibDiamond.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/GovDev.sol:10:1: Import in /sb/GovDev.sol doesn't exist in: diamond-2/contracts/libraries/LibDiamond.sol [Warning/import-path-check]
+/sb/GovDev.sol:10:8: Use double quotes for string literals [Error/quotes]
+/sb/GovDev.sol:12:1: global import of path ../interfaces/IGovDev.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/GovDev.sol:12:1: Import in /sb/GovDev.sol doesn't exist in: ../interfaces/IGovDev.sol [Warning/import-path-check]
+/sb/GovDev.sol:12:8: Use double quotes for string literals [Error/quotes]
+/sb/GovDev.sol:14:1: Missing @title tag in contract 'GovDev' [Warning/use-natspec]
+/sb/GovDev.sol:14:1: Missing @author tag in contract 'GovDev' [Warning/use-natspec]
+/sb/GovDev.sol:14:1: Missing @notice tag in contract 'GovDev' [Warning/use-natspec]
+/sb/GovDev.sol:15:3: Missing @notice tag in function 'getGovDev' [Warning/use-natspec]
+/sb/GovDev.sol:15:3: Missing @return tag in function 'getGovDev' [Warning/use-natspec]
+/sb/GovDev.sol:15:3: Mismatch in @return count for function 'getGovDev'. Expected: 1, Found: 0 [Warning/use-natspec]
+/sb/GovDev.sol:19:3: Missing @notice tag in function 'transferGovDev' [Warning/use-natspec]
+/sb/GovDev.sol:19:3: Missing @param tag in function 'transferGovDev' [Warning/use-natspec]
+/sb/GovDev.sol:19:3: Mismatch in @param names for function 'transferGovDev'. Expected: [_govDev], Found: [] [Warning/use-natspec]
+/sb/GovDev.sol:20:55: Use double quotes for string literals [Error/quotes]
+/sb/GovDev.sol:21:52: Use double quotes for string literals [Error/quotes]
+/sb/GovDev.sol:25:3: Missing @notice tag in function 'updateSolution' [Warning/use-natspec]
+/sb/GovDev.sol:25:3: Missing @param tag in function 'updateSolution' [Warning/use-natspec]
+/sb/GovDev.sol:25:3: Mismatch in @param names for function 'updateSolution'. Expected: [_diamondCut, _init, _calldata], Found: [] [Warning/use-natspec]
+/sb/GovDev.sol:25:3: GC: [_diamondCut] argument on Function [updateSolution] could be [calldata] if it's not being updated [Warning/gas-calldata-parameters]
+/sb/GovDev.sol:25:3: GC: [_calldata] argument on Function [updateSolution] could be [calldata] if it's not being updated [Warning/gas-calldata-parameters]
+/sb/GovDev.sol:30:55: Use double quotes for string literals [Error/quotes]
+
+24 problem/s (6 error/s, 18 warning/s)

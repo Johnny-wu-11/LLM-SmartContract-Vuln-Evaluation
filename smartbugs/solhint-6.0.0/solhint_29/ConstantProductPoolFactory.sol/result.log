@@ -1,0 +1,20 @@
+A new version of Solhint is available: 6.1.0
+Please consider updating your Solhint package.
+/sb/ConstantProductPoolFactory.sol:3:1: Compiler version >=0.8.0 does not satisfy the ^0.8.24 semver requirement [Error/compiler-version]
+/sb/ConstantProductPoolFactory.sol:5:1: global import of path ./ConstantProductPool.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/ConstantProductPoolFactory.sol:5:1: Import in /sb/ConstantProductPoolFactory.sol doesn't exist in: ./ConstantProductPool.sol [Warning/import-path-check]
+/sb/ConstantProductPoolFactory.sol:6:1: global import of path ./PoolDeployer.sol is not allowed. Specify names to import individually or bind all exports of the module into a name (import "path" as Name) [Warning/no-global-import]
+/sb/ConstantProductPoolFactory.sol:6:1: Import in /sb/ConstantProductPoolFactory.sol doesn't exist in: ./PoolDeployer.sol [Warning/import-path-check]
+/sb/ConstantProductPoolFactory.sol:10:1: Missing @title tag in contract 'ConstantProductPoolFactory' [Warning/use-natspec]
+/sb/ConstantProductPoolFactory.sol:11:5: Missing @notice tag in function '<anonymous>' [Warning/use-natspec]
+/sb/ConstantProductPoolFactory.sol:11:5: Missing @param tag in function '<anonymous>' [Warning/use-natspec]
+/sb/ConstantProductPoolFactory.sol:11:5: Mismatch in @param names for function '<anonymous>'. Expected: [_masterDeployer], Found: [] [Warning/use-natspec]
+/sb/ConstantProductPoolFactory.sol:11:5: Explicitly mark visibility in function (Set ignoreConstructors to true if using solidity >=0.7.0) [Warning/func-visibility]
+/sb/ConstantProductPoolFactory.sol:13:5: Missing @notice tag in function 'deployPool' [Warning/use-natspec]
+/sb/ConstantProductPoolFactory.sol:13:5: Missing @param tag in function 'deployPool' [Warning/use-natspec]
+/sb/ConstantProductPoolFactory.sol:13:5: Mismatch in @param names for function 'deployPool'. Expected: [_deployData], Found: [] [Warning/use-natspec]
+/sb/ConstantProductPoolFactory.sol:13:5: Missing @return tag in function 'deployPool' [Warning/use-natspec]
+/sb/ConstantProductPoolFactory.sol:13:5: Mismatch in @return names for function 'deployPool'. Expected: [pool], Found: [] [Warning/use-natspec]
+/sb/ConstantProductPoolFactory.sol:13:5: GC: [_deployData] argument on Function [deployPool] could be [calldata] if it's not being updated [Warning/gas-calldata-parameters]
+
+16 problem/s (1 error/s, 15 warning/s)

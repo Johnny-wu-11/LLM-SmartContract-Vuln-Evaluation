@@ -1,0 +1,64 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                   
+                   
+┌─────────────────┐
+│ 5 Code Findings │
+└─────────────────┘
+                  
+    /sb/AaveV2.sol
+     ❱ solidity.best-practice.use-ownable2step
+          By demanding that the receiver of the owner permissions actively accept via a contract call of its 
+          own,  `Ownable2Step` and `Ownable2StepUpgradeable` prevent the contract ownership from accidentally
+          being transferred  to an address that cannot handle it.                                            
+                                                                                                             
+           21┆ contract AaveV2 is IStrategy, Ownable {
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           35┆ require(msg.sender == sherlock, 'sherlock');
+   
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+           39┆ constructor(
+           40┆   IAToken _aWant,
+           41┆   address _sherlock,
+           42┆   address _aaveLmReceiver
+           43┆ ) {
+           44┆   aWant = _aWant;
+           45┆   want = ERC20(_aWant.UNDERLYING_ASSET_ADDRESS());
+           46┆   aaveIncentivesController = _aWant.getIncentivesController();
+           47┆
+           48┆   sherlock = _sherlock;
+             [hid 5 additional lines, adjust with --max-lines-per-finding] 
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+           78┆ require(amount > 0, 'ZERO_AMOUNT');
+            ⋮┆----------------------------------------
+           92┆ require(_amount != uint256(-1), 'MAX');
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 5 (5 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 5 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

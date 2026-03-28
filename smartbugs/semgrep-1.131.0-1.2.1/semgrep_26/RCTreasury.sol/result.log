@@ -1,0 +1,342 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 57 Code rules:
+  Scanning 1 file with 57 solidity rules.
+                    
+                    
+┌──────────────────┐
+│ 58 Code Findings │
+└──────────────────┘
+                      
+    /sb/RCTreasury.sol
+     ❱ solidity.performance.non-payable-constructor
+          Consider making costructor payable to save gas.
+                                                         
+          120┆ constructor(address _tokenAddress) {
+          121┆     // initialise MetaTransactions
+          122┆     _initializeEIP712("RealityCardsTreasury", "1");
+          123┆
+          124┆     /* setup AccessControl
+          125┆
+          126┆                      UBER_OWNER
+          127┆         ┌───────────┬────┴─────┬────────────┬─────────┐
+          128┆         │           │          │            │         │
+          129┆       OWNER      FACTORY    ORDERBOOK   TREASURY  LEADERBOARD
+             [hid 29 additional lines, adjust with --max-lines-per-finding] 
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          168┆ require(
+          169┆     erc20.balanceOf(address(this)) >=
+          170┆         totalDeposits + marketBalance + totalMarketPots,
+          171┆     "Books are unbalanced!"
+          172┆ );
+            ⋮┆----------------------------------------
+          219┆ require(hasRole(MARKET, _market), "This isn't a market");
+            ⋮┆----------------------------------------
+          231┆ require(hasRole(MARKET, _market), "This isn't a market");
+            ⋮┆----------------------------------------
+          232┆ require(!lockMarketPaused[_market], "Owner has paused market");
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          255┆ for (uint256 index = 0; index < _users.length; index++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          255┆ for (uint256 index = 0; index < _users.length; index++) {
+   
+     ❱ solidity.performance.unnecessary-checked-arithmetic-in-loop
+          A lot of times there is no risk that the loop counter can overflow.  Using Solidity's unchecked
+          block saves the overflow checks.                                                               
+                                                                                                         
+          259┆ for (uint256 index = 0; index < _users.length; index++) {
+   
+     ❱ solidity.performance.use-prefix-increment-not-postfix
+          Consider using the prefix increment expression whenever the return value is not needed. The prefix
+          increment expression is cheaper in terms of gas.                                                  
+                                                                                                            
+          259┆ for (uint256 index = 0; index < _users.length; index++) {
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          298┆ require(_newFactory != address(0), "Must set an address");
+            ⋮┆----------------------------------------
+          314┆ require(_newOrderbook != address(0), "Must set an address");
+            ⋮┆----------------------------------------
+          326┆ require(_newLeaderboard != address(0), "Must set an address");
+            ⋮┆----------------------------------------
+          336┆ require(_newToken != address(0), "Must set an address");
+            ⋮┆----------------------------------------
+          345┆ require(_newBridge != address(0), "Must set an address");
+            ⋮┆----------------------------------------
+          372┆ require(!globalPause, "Deposits are disabled");
+            ⋮┆----------------------------------------
+          373┆ require(
+          374┆     erc20.allowance(msgSender(), address(this)) >= _amount,
+          375┆     "User not approved to send this amount"
+          376┆ );
+   
+     ❱ solidity.performance.use-short-revert-string
+          Shortening revert strings to fit in 32 bytes will decrease gas costs for deployment and  gas costs
+          when the revert condition has been met.                                                           
+                                                                                                            
+          373┆ require(
+          374┆     erc20.allowance(msgSender(), address(this)) >= _amount,
+          375┆     "User not approved to send this amount"
+          376┆ );
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          377┆ require(
+          378┆     (erc20.balanceOf(address(this)) + _amount) <= maxContractBalance,
+          379┆     "Limit hit"
+          380┆ );
+            ⋮┆----------------------------------------
+          381┆ require(_amount > 0, "Must deposit something");
+            ⋮┆----------------------------------------
+          383┆ require(hasRole(WHITELIST, _user), "Not in whitelist");
+   
+     ❱ solidity.performance.inefficient-state-variable-increment
+          <x> += <y> costs more gas than <x> = <x> + <y> for state variables.
+                                                                             
+          391┆ totalDeposits += _amount;
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          408┆ require(!globalPause, "Withdrawals are disabled");
+            ⋮┆----------------------------------------
+          410┆ require(user[_msgSender].deposit > 0, "Nothing to withdraw");
+            ⋮┆----------------------------------------
+          413┆ require(
+          414┆     user[_msgSender].bidRate == 0 ||
+          415┆         block.timestamp - (user[_msgSender].lastRentalTime) >
+          416┆         uint256(1 days) / minRentalDayDivisor,
+          417┆     "Too soon"
+          418┆ );
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+          428┆ user[_msgSender].deposit -= SafeCast.toUint128(_amount);
+            ⋮┆----------------------------------------
+          429┆ totalDeposits -= _amount;
+   
+     ❱ solidity.performance.use-nested-if
+          Using nested is cheaper than using && multiple check combinations.  There are more advantages, such
+          as easier to read code and better coverage reports.                                                
+                                                                                                             
+          440┆ if (
+          441┆     user[_msgSender].bidRate != 0 &&
+          442┆     user[_msgSender].bidRate / (minRentalDayDivisor) >
+          443┆     user[_msgSender].deposit
+          444┆ ) {
+          445┆     // foreclose user, this is requred to remove them from the orderbook
+          446┆     isForeclosed[_msgSender] = true;
+          447┆     // remove them from the orderbook
+          448┆     orderbook.removeUserFromOrderbook(_msgSender);
+          449┆ }
+   
+     ❱ solidity.performance.inefficient-state-variable-increment
+          <x> += <y> costs more gas than <x> = <x> + <y> for state variables.
+                                                                             
+          460┆ marketBalanceTopup += _amount;
+            ⋮┆----------------------------------------
+          461┆ marketBalance += _amount;
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          473┆ require(
+          474┆     erc20.allowance(sender, address(this)) >= _amount,
+          475┆     "Insufficient Allowance"
+          476┆ );
+            ⋮┆----------------------------------------
+          477┆ require(erc20.balanceOf(sender) >= _amount, "Insufficient Balance");
+            ⋮┆----------------------------------------
+          495┆ require(!globalPause, "Rentals are disabled");
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+          497┆ uint256 discrepancy = _amount - marketBalance;
+            ⋮┆----------------------------------------
+          501┆ marketBalanceTopup -= discrepancy;
+            ⋮┆----------------------------------------
+          506┆ marketBalance -= _amount;
+   
+     ❱ solidity.performance.inefficient-state-variable-increment
+          <x> += <y> costs more gas than <x> = <x> + <y> for state variables.
+                                                                             
+          508┆ totalMarketPots += _amount;
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          523┆ require(!globalPause, "Payouts are disabled");
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+          525┆ marketPot[msgSender()] -= _amount;
+            ⋮┆----------------------------------------
+          526┆ totalMarketPots -= _amount;
+   
+     ❱ solidity.performance.inefficient-state-variable-increment
+          <x> += <y> costs more gas than <x> = <x> + <y> for state variables.
+                                                                             
+          527┆ totalDeposits += _amount;
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+          540┆ marketBalance -= _refund;
+   
+     ❱ solidity.performance.inefficient-state-variable-increment
+          <x> += <y> costs more gas than <x> = <x> + <y> for state variables.
+                                                                             
+          542┆ totalDeposits += _refund;
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          554┆ require(!globalPause, "Global Pause is Enabled");
+            ⋮┆----------------------------------------
+          556┆ require(!lockMarketPaused[_msgSender], "Market is paused");
+            ⋮┆----------------------------------------
+          557┆ require(
+          558┆     erc20.allowance(_sponsor, address(this)) >= _amount,
+          559┆     "Not approved to send this amount"
+          560┆ );
+   
+     ❱ solidity.performance.inefficient-state-variable-increment
+          <x> += <y> costs more gas than <x> = <x> + <y> for state variables.
+                                                                             
+          563┆ totalMarketPots += _amount;
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          588┆ require(hasRole(FACTORY, msgSender()), "Not Authorised");
+   
+     ❱ solidity.performance.use-nested-if
+          Using nested is cheaper than using && multiple check combinations.  There are more advantages, such
+          as easier to read code and better coverage reports.                                                
+                                                                                                             
+          634┆ if (
+          635┆     _timeOwnershipChanged != user[_newOwner].lastRentCalc &&
+          636┆     !hasRole(MARKET, _newOwner)
+          637┆ ) {
+          638┆     // The new owners rent must be collected before adjusting their rentalRate
+          639┆     // See if the new owner has had a rent collection before or after this ownership change
+          640┆     if (_timeOwnershipChanged < user[_newOwner].lastRentCalc) {
+          641┆         // the new owner has a more recent rent collection
+          642┆
+          643┆         uint256 _additionalRentOwed = rentOwedBetweenTimestamps(
+             [hid 24 additional lines, adjust with --max-lines-per-finding] 
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+          670┆ user[_oldOwner].rentalRate -= SafeCast.toUint128(_oldPrice);
+            ⋮┆----------------------------------------
+          688┆ user[_user].bidRate -= SafeCast.toUint128(_price);
+   
+     ❱ solidity.performance.use-nested-if
+          Using nested is cheaper than using && multiple check combinations.  There are more advantages, such
+          as easier to read code and better coverage reports.                                                
+                                                                                                             
+          743┆ if (
+          744┆     foreclosureTimeWithoutNewCard > _timeOfNewBid &&
+          745┆     _timeOfNewBid != 0
+          746┆ ) {
+          747┆     // calculate how long they can own the new card for
+          748┆     uint256 _rentDifference = rentOwedBetweenTimestamps(
+          749┆         user[_user].lastRentCalc,
+          750┆         _timeOfNewBid,
+          751┆         totalUserDailyRent
+          752┆     );
+             [hid 36 additional lines, adjust with --max-lines-per-finding] 
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+          758┆ user[_user].deposit -
+          759┆ _rentDifference;
+   
+     ❱ solidity.performance.use-custom-error-not-require
+          Consider using custom errors as they are more gas efficient while allowing developers  to describe
+          the error in detail using NatSpec.                                                                
+                                                                                                            
+          811┆ require(!globalPause, "Global pause is enabled");
+            ⋮┆----------------------------------------
+          812┆ require(_timeToCollectTo != 0, "Must set collection time");
+            ⋮┆----------------------------------------
+          813┆ require(
+          814┆     _timeToCollectTo <= block.timestamp,
+          815┆     "Can't collect future rent"
+          816┆ );
+   
+     ❱ solidity.performance.use-nested-if
+          Using nested is cheaper than using && multiple check combinations.  There are more advantages, such
+          as easier to read code and better coverage reports.                                                
+                                                                                                             
+          820┆ if (rentOwedByUser > 0 && rentOwedByUser > user[_user].deposit) {
+          821┆     // The User has run out of deposit already.
+          822┆     uint256 previousCollectionTime = user[_user].lastRentCalc;
+          823┆
+          824┆     /*
+          825┆ timeTheirDepositLasted = timeSinceLastUpdate * (usersDeposit/rentOwed)
+          826┆                       = (now - previousCollectionTime) * (usersDeposit/rentOwed)
+          827┆ */
+          828┆     uint256 timeUsersDepositLasts = ((_timeToCollectTo -
+          829┆         previousCollectionTime) * uint256(user[_user].deposit)) /
+             [hid 20 additional lines, adjust with --max-lines-per-finding] 
+   
+     ❱ solidity.security.basic-arithmetic-underflow
+          Possible arithmetic underflow
+                                       
+          828┆ uint256 timeUsersDepositLasts = ((_timeToCollectTo -
+          829┆     previousCollectionTime) * uint256(user[_user].deposit)) /
+   
+     ❱ solidity.performance.inefficient-state-variable-increment
+          <x> += <y> costs more gas than <x> = <x> + <y> for state variables.
+                                                                             
+          858┆ marketBalance += rentCollected;
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 58 (58 blocking)
+ • Rules run: 57
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 57 rules on 1 file: 58 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading
+
+📢 Too many findings? Try Semgrep Pro for more powerful queries and less noise.
+   See https://sg.run/false-positives.
