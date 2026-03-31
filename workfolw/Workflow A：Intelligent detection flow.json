@@ -1,5 +1,5 @@
 {
-  "name": "Workflow A：智能检测流",
+  "name": "Workflow A：Intelligent detection flow",
   "nodes": [
     {
       "parameters": {
@@ -229,7 +229,7 @@
     },
     {
       "parameters": {
-        "jsCode": "const processedResults = [];\nconst allItems = $input.all();\n\nfor (let i = 0; i < allItems.length; i++) {\n  const item = allItems[i];\n  if (item.binary) {\n    const binaryKeys = Object.keys(item.binary);\n    for (const key of binaryKeys) {\n      try {\n        // 使用 helper 函数读取并强制转为字符串，防止乱码\n        const binaryBuffer = await this.helpers.getBinaryDataBuffer(i, key);\n        const rawCode = binaryBuffer.toString('utf-8');\n\n        if (rawCode.length > 0) {\n          processedResults.push({\n            json: {\n              code: rawCode,\n              fileName: item.binary[key].fileName || `${key}.sol`\n            }\n          });\n        }\n      } catch (e) { console.error(e.message); }\n    }\n  }\n}\nreturn processedResults;"
+        "jsCode": "const processedResults = [];\nconst allItems = $input.all();\n\nfor (let i = 0; i < allItems.length; i++) {\n  const item = allItems[i];\n  if (item.binary) {\n    const binaryKeys = Object.keys(item.binary);\n    for (const key of binaryKeys) {\n      try {\n        // Use the helper function to read and force-convert to a string to prevent garbled characters.\n        const binaryBuffer = await this.helpers.getBinaryDataBuffer(i, key);\n        const rawCode = binaryBuffer.toString('utf-8');\n\n        if (rawCode.length > 0) {\n          processedResults.push({\n            json: {\n              code: rawCode,\n              fileName: item.binary[key].fileName || `${key}.sol`\n            }\n          });\n        }\n      } catch (e) { console.error(e.message); }\n    }\n  }\n}\nreturn processedResults;"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -1167,7 +1167,7 @@
     "executionOrder": "v1",
     "availableInMCP": false
   },
-  "versionId": "c2a272d7-33d8-4be9-bb35-a1f26dcca047",
+  "versionId": "0382c169-0b6e-4ba7-97db-8cbb95e10e70",
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "3f3ea8ac169d063a17f38d145112a69e193af0e725aa75642445c49299872971"
